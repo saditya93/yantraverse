@@ -20,20 +20,56 @@ if (!GITHUB_TOKEN) {
 
 async function getChangelog(version) {
   const changelogPath = path.join(process.cwd(), 'CHANGELOG.md');
-  if (!fs.existsSync(changelogPath)) {
-    return 'No changelog available';
+  let releaseNotes = `# Release ${version}\n\n`;
+  
+  try {
+    // Get recent commits
+    const commits = execSync('git log --oneline --all | head -20').toString().split('\n').filter(l => l.trim());
+    
+    // Categorize commits
+    const features = commits.filter(c => c.includes('feat:') || c.includes('✨'));
+    const fixes = commits.filter(c => c.includes('fix:') || c.includes('🐛'));
+    const perf = commits.filter(c => c.includes('perf:') || c.includes('⚡'));
+    const docs = commits.filter(c => c.includes('docs:') || c.includes('📚'));
+
+    if (features.length > 0) {
+      releaseNotes += '## ✨ New Features\n';
+      features.forEach(f => {
+        const msg = f.split('] ')[1] || f;
+        releaseNotes += `- ${msg}\n`;
+      });
+      releaseNotes += '\n';
+    }
+
+    if (fixes.length > 0) {
+      releaseNotes += '## 🐛 Bug Fixes\n';
+      fixes.forEach(f => {
+        const msg = f.split('] ')[1] || f;
+        releaseNotes += `- ${msg}\n`;
+      });
+      releaseNotes += '\n';
+    }
+
+    if (perf.length > 0) {
+      releaseNotes += '## ⚡ Performance Improvements\n';
+      perf.forEach(p => {
+        const msg = p.split('] ')[1] || p;
+        releaseNotes += `- ${msg}\n`;
+      });
+      releaseNotes += '\n';
+    }
+
+    releaseNotes += `## 📦 Details\n`;
+    releaseNotes += `**Release Date:** ${new Date().toLocaleDateString()}\n`;
+    releaseNotes += `**Node.js:** ≥14\n`;
+    releaseNotes += `**Status:** Production Ready\n\n`;
+    releaseNotes += `[View Full Changelog](./CHANGELOG.md)\n`;
+
+  } catch (e) {
+    releaseNotes += 'See CHANGELOG.md for details';
   }
 
-  const content = fs.readFileSync(changelogPath, 'utf8');
-  const lines = content.split('\n');
-  const startIdx = lines.findIndex(l => l.includes(`[${version}]`) || l.includes('Automated'));
-  
-  if (startIdx === -1) return content.substring(0, 500);
-  
-  let endIdx = lines.findIndex((l, i) => i > startIdx && l.startsWith('##'));
-  if (endIdx === -1) endIdx = Math.min(startIdx + 20, lines.length);
-  
-  return lines.slice(startIdx, endIdx).join('\n');
+  return releaseNotes;
 }
 
 async function createGitHubRelease(version, changelog) {

@@ -1,0 +1,74 @@
+name: 📦 Weekly Release (Monday)
+
+on:
+  schedule:
+    - cron: '30 3 * * 1'  # Every Monday at 8:30 AM IST (3:00 AM UTC)
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  TZ: 'Asia/Kolkata'
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  # Weekly release: Only runs on Mondays
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 🔍 Verify Monday
+        run: |
+          DAY=$(date +%A)
+          echo "Current day: $DAY"
+          if [ "$DAY" != "Monday" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            echo "⚠️ Not Monday, skipping release"
+            exit 0
+          fi
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🧪 Run Tests
+        run: npm test
+        continue-on-error: false
+
+      - name: 📊 Bump Version
+        run: node scripts/bump-version.js weekly
+        continue-on-error: true
+
+      - name: 🚀 Create GitHub Release
+        run: node scripts/gh-release.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: false
+
+      - name: 📦 Publish to npm (Optional)
+        run: npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true
+
+      - name: 📌 Commit Version Bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "ci: bump version for weekly release [skip ci]" || true
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: ✅ Release Complete
+        run: echo "📦 Weekly release pipeline completed at $(date)"

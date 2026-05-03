@@ -21,6 +21,18 @@ async function getRecentCommits() {
   }
 }
 
+async function getUserResearch() {
+  try {
+    const researchPath = path.join(process.cwd(), 'USER_RESEARCH.json');
+    if (fs.existsSync(researchPath)) {
+      return JSON.parse(fs.readFileSync(researchPath, 'utf8'));
+    }
+  } catch (e) {
+    return null;
+  }
+  return null;
+}
+
 async function getPackageStats() {
   const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
   return {
@@ -91,10 +103,26 @@ async function main() {
 
     const commits = await getRecentCommits();
     const stats = await getPackageStats();
+    const research = await getUserResearch();
     const date = new Date().toISOString().split('T')[0];
+
+    // Build context from research
+    let researchContext = '';
+    if (research && research.analysis) {
+      const { patterns, recommendations } = research.analysis;
+      researchContext = `
+Research Data:
+- Recent development: ${patterns.commitRatio || 'balanced'}
+- Focus needed: ${recommendations ? recommendations[0] : 'feature development'}
+- Test status: ${patterns.testStatus || 'good'}
+- Code metrics: ${patterns.recentCommits || 0} recent commits
+`;
+    }
 
     const prompt = `
 You are yantraverse framework AI assistant. Plan ONE feature or bug fix for today (${date}).
+
+${researchContext}
 
 Recent commits:
 ${commits}
@@ -109,22 +137,23 @@ Rules:
 2. Must include tests
 3. Can be: new feature, bug fix, performance improvement, or refactor
 4. Complexity: 1-10 (1=easy, 10=complex)
+5. Prioritize based on research recommendations
 
-Respond as JSON only:
+Respond as JSON only (no markdown):
 {
   "date": "${date}",
   "category": "FEATURE|BUG|PERF|DOCS|REFACTOR",
-  "title": "Brief title",
-  "description": "What to build (2-3 sentences)",
+  "title": "Brief title (max 50 chars)",
+  "description": "What to build (1-2 sentences)",
   "complexity": 5,
   "estimatedLoc": 120,
   "filesAffected": ["src/file1.js", "test/file1.test.js"],
   "testCases": 3,
-  "reason": "Why this is valuable"
+  "reason": "Why this matters for users"
 }
     `;
 
-    console.log('🔄 Calling Groq AI...');
+    console.log('🔄 Calling Groq AI with user research...');
     const plan = await callGroq(prompt);
     
     // Parse JSON from response
@@ -143,6 +172,7 @@ Respond as JSON only:
 
     console.log(`✅ Plan created: ${dailyPlan.category} - ${dailyPlan.title}`);
     console.log(`📊 Complexity: ${dailyPlan.complexity}/10, Est. LOC: ${dailyPlan.estimatedLoc}`);
+    console.log(`💡 Reason: ${dailyPlan.reason}`);
     console.log(`💾 Saved to DAILY_PLAN.json`);
 
   } catch (error) {

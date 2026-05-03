@@ -184,7 +184,10 @@ schedule:
   - cron: '0 2 * * *'  # Current: 2am UTC daily
 ```
 
-[Cron schedule syntax](https://crontab.guru)
+[Cron schedule syntax](https://crontab.guru)npm install
+git add package-lock.json
+git commit -m "chore: add package-lock.json"
+git push origin main
 
 ### Disable Auto-Publish
 Edit `.github/workflows/daily-automation.yml` (comment out `weekly-release` job)
