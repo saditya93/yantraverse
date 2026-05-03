@@ -48,7 +48,7 @@ async function callGroq(prompt) {
     console.log('📡 Connecting to Groq API...');
     
     const requestBody = {
-      model: 'llama-2-70b-4096',
+      model: 'llama-3.1-70b-versatile',
       messages: [
         {
           role: 'user',
