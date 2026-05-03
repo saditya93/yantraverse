@@ -1,6 +1,6 @@
 {
   "name": "yantraverse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, zero-dependency Node.js web framework with routing, middleware, and static file serving.",
   "main": "index.js",
   "types": "types/index.d.ts",
