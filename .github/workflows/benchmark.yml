@@ -1,0 +1,13 @@
+name: Benchmark
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Every Monday
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm install
+      - run: npm run benchmark

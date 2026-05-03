@@ -1,0 +1,55 @@
+{
+  "name": "yantraverse",
+  "version": "1.0.0",
+  "description": "A lightweight, zero-dependency Node.js web framework with routing, middleware, and static file serving.",
+  "main": "index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "types": "./types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "test": "node test/run.js",
+    "example": "node examples/server.js",
+    "lint": "echo 'No linter configured yet'"
+  },
+  "keywords": [
+    "web",
+    "framework",
+    "http",
+    "server",
+    "router",
+    "routing",
+    "middleware",
+    "rest",
+    "api",
+    "static",
+    "lightweight",
+    "fast",
+    "zero-dependency",
+    "nodejs",
+    "express-like"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "types/",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saditya93/yantraverse"
+  },
+  "bugs": {
+    "url": "https://github.com/saditya93/yantraverse/issues"
+  },
+  "homepage": "https://github.com/saditya93/yantraverse#readme"
+}
