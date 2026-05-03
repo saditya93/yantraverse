@@ -31,7 +31,7 @@ async function callGroq(prompt) {
     console.log('📡 Connecting to Groq API...');
     
     const requestBody = {
-      model: 'mixtral-8x7b-32768',
+      model: 'llama-2-70b-4096',
       messages: [
         {
           role: 'user',
