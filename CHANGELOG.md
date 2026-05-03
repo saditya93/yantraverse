@@ -2,6 +2,10 @@
 
 ## [Automated] - 2026-05-03
 ### FEATURE
+- Add Support for Automatic API Documentation Generation: This feature will automatically generate API documentation based on route handlers and their corresponding parameters, allowing for easier maintenance and usage of the framework.
+
+## [Automated] - 2026-05-03
+### FEATURE
 - Demo Feature: This is a demo plan. Set GROQ_API_KEY in GitHub Secrets to enable AI planning.
 
 ## [Automated] - 2026-05-03
