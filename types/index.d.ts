@@ -12,6 +12,7 @@ export interface Request {
 
 export interface Response {
   json(data: any, status?: number): void;
+  html(html: string, status?: number): void;
   redirect(url: string): void;
   writeHead(status: number, headers?: Record<string, string>): void;
   end(data?: any): void;

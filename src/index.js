@@ -96,6 +96,13 @@ function yantraverse() {
                 res.end(JSON.stringify(data));
               };
 
+              res.html = (html, status = 200) => {
+                if (responseSent) return;
+                responseSent = true;
+                res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' });
+                res.end(html);
+              };
+
               res.redirect = (location, status = 302) => {
                 if (responseSent) return;
                 responseSent = true;

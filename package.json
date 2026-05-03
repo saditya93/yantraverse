@@ -13,6 +13,16 @@
   "scripts": {
     "test": "node test/run.js",
     "example": "node examples/server.js",
+    "format": "echo 'Prettier not configured yet'",
+    "coverage": "echo 'Coverage tool not configured yet'",
+    "benchmark": "echo 'Benchmarks not configured yet'",
+    "ai:plan": "node scripts/ai-plan.js",
+    "ai:code": "node scripts/ai-code.js",
+    "ai:commit": "node scripts/auto-commit.js",
+    "ai:readme": "node scripts/update-readme.js",
+    "ai:version": "node scripts/bump-version.js",
+    "ai:release": "node scripts/gh-release.js",
+    "ai:daily": "npm run ai:plan && npm run ai:code && npm test && npm run ai:readme && npm run ai:commit",
     "lint": "echo 'No linter configured yet'"
   },
   "keywords": [

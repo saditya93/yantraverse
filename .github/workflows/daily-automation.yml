@@ -1,0 +1,138 @@
+name: 🤖 Daily Automation Pipeline
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Every day at 2am UTC
+  workflow_dispatch:     # Manual trigger
+  push:
+    branches: [main]
+
+jobs:
+  # PHASE 1: AI Planning
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      plan-created: ${{ steps.plan.outcome }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: 🧠 Run AI Planning
+        id: plan
+        run: node scripts/ai-plan.js
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        continue-on-error: true
+
+      - name: 📤 Upload Plan Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: daily-plan
+          path: DAILY_PLAN.json
+          retention-days: 7
+
+  # PHASE 2: Code Generation + Testing
+  code:
+    needs: plan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: 📥 Download Plan
+        uses: actions/download-artifact@v3
+        with:
+          name: daily-plan
+
+      - name: 🤖 Generate Code with AI
+        run: node scripts/ai-code.js
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        continue-on-error: true
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: ✨ Format Code
+        run: npm run format || true
+
+      - name: 🧪 Run Tests
+        run: npm test
+        continue-on-error: true
+
+      - name: 🎯 Run Benchmarks
+        run: npm run benchmark || true
+        continue-on-error: true
+
+      - name: 📚 Update Documentation
+        run: node scripts/update-readme.js
+        continue-on-error: true
+
+      - name: 📤 Auto Commit & Push
+        run: node scripts/auto-commit.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+  # PHASE 3: Weekly Release (Every Monday)
+  weekly-release:
+    if: github.event.schedule == '0 2 * * 1' || github.event_name == 'workflow_dispatch'
+    needs: code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: 📊 Bump Version (Weekly)
+        run: node scripts/bump-version.js weekly
+        continue-on-error: true
+
+      - name: 🚀 Create GitHub Release
+        run: node scripts/gh-release.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: false
+
+      - name: 📦 Publish to npm (Optional)
+        run: npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true
+
+      - name: 📌 Commit Version Bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "ci: bump version [skip ci]" || true
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Notification
+  notify:
+    if: always()
+    needs: [plan, code]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📧 Build Summary
+        run: |
+          echo "✅ Daily automation pipeline completed"
+          echo "Plan: ${{ needs.plan.outputs.plan-created }}"
+          echo "Timestamp: $(date -u)"

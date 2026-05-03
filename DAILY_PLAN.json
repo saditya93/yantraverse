@@ -1,0 +1,15 @@
+{
+  "date": "2026-05-03",
+  "category": "FEATURE",
+  "title": "Example: Add caching layer to router",
+  "description": "Implement caching mechanism for frequently accessed routes to improve response time. Cache key-value pairs of routes and their handlers with TTL (time-to-live) for auto-expiration.",
+  "complexity": 6,
+  "estimatedLoc": 150,
+  "filesAffected": [
+    "src/router.js",
+    "test/router.test.js"
+  ],
+  "testCases": 4,
+  "reason": "Will improve performance for high-traffic applications by reducing pattern matching overhead",
+  "status": "template"
+}

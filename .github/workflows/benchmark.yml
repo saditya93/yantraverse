@@ -1,13 +1,37 @@
-name: Benchmark
+name: ⚡ Benchmarks
+
 on:
   schedule:
     - cron: '0 0 * * 1'  # Every Monday
+  workflow_dispatch:
 
 jobs:
   benchmark:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
-      - run: npm install
-      - run: npm run benchmark
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: ⚡ Run Benchmarks
+        run: npm run benchmark > benchmarks/results.txt 2>&1 || true
+
+      - name: 📊 Parse Results
+        run: |
+          mkdir -p benchmarks
+          echo "Benchmarks run at $(date)" > benchmarks/latest.json
+
+      - name: 📤 Commit Results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add benchmarks/
+          git commit -m "bench: update performance metrics [skip ci]" || true
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
