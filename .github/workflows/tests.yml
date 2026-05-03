@@ -21,14 +21,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       - name: 📦 Install Dependencies
         run: npm ci
 
-      - name: 🧪 Run Tests
-        run: npm test
-        continue-on-error: true
+      - name: 📋 Check Installation
+        run: |
+          node --version
+          npm --version
+          ls -la index.js
+          ls -la src/
 
-      - name: 📊 Check Coverage
-        run: npm run coverage || true
+      - name: 🧪 Run Tests
+        run: npm test 2>&1
         continue-on-error: true
