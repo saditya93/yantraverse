@@ -1,18 +1,18 @@
 {
   "date": "2026-05-03",
   "category": "FEATURE",
-  "title": "Demo Feature",
-  "description": "This is a demo plan. Set GROQ_API_KEY in GitHub Secrets to enable AI planning.",
-  "complexity": 3,
-  "estimatedLoc": 50,
+  "title": "Enhanced Rate Limiting with IP Blocking",
+  "description": "This feature enhances the existing rate limiting functionality by adding IP blocking capabilities, preventing malicious users from overwhelming the server. It will improve the security and performance of the framework by reducing the load on the server. This feature will also include logging and error handling for production readiness",
+  "complexity": 7,
+  "estimatedLoc": 180,
   "filesAffected": [
-    "src/demo.js",
-    "test/demo.test.js"
+    "src/middleware/rateLimit.js",
+    "test/middleware/rateLimit.test.js"
   ],
   "testCases": [
-    "Basic functionality",
-    "Error handling"
+    "Test rate limiting with IP blocking",
+    "Test rate limiting with multiple requests from the same IP"
   ],
-  "acceptance": "Feature works correctly and is documented",
-  "reason": "Testing workflow without API key"
+  "acceptance": "The feature is accepted when the rate limiting middleware correctly blocks IP addresses that exceed the specified limit and logs the blocked requests",
+  "reason": "This feature is technically justified as it improves the security and performance of the framework, and is business justified as it provides a more robust and reliable solution for users"
 }

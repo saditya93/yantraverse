@@ -2,6 +2,10 @@
 
 ## [Automated] - 2026-05-03
 ### FEATURE
+- Enhanced Rate Limiting with IP Blocking: This feature enhances the existing rate limiting functionality by adding IP blocking capabilities, preventing malicious users from overwhelming the server. It will improve the security and performance of the framework by reducing the load on the server. This feature will also include logging and error handling for production readiness
+
+## [Automated] - 2026-05-03
+### FEATURE
 - Add Support for Automatic API Documentation Generation: This feature will automatically generate API documentation based on route handlers and their corresponding parameters, allowing for easier maintenance and usage of the framework.
 
 ## [Automated] - 2026-05-03
