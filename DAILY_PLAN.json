@@ -1,15 +1,14 @@
 {
   "date": "2026-05-03",
   "category": "FEATURE",
-  "title": "Example: Add caching layer to router",
-  "description": "Implement caching mechanism for frequently accessed routes to improve response time. Cache key-value pairs of routes and their handlers with TTL (time-to-live) for auto-expiration.",
-  "complexity": 6,
-  "estimatedLoc": 150,
+  "title": "Demo Feature",
+  "description": "This is a demo plan. Set GROQ_API_KEY in GitHub Secrets to enable AI planning.",
+  "complexity": 3,
+  "estimatedLoc": 50,
   "filesAffected": [
-    "src/router.js",
-    "test/router.test.js"
+    "src/demo.js",
+    "test/demo.test.js"
   ],
-  "testCases": 4,
-  "reason": "Will improve performance for high-traffic applications by reducing pattern matching overhead",
-  "status": "template"
+  "testCases": 2,
+  "reason": "Testing workflow without API key"
 }

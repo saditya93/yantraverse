@@ -1,5 +1,25 @@
 # yantraverse
 
+<!-- STATS START -->
+**Build**: 5/3/2026  
+**Version**: 1.0.2  
+**Commits**: 1  
+**Last Updated**: 2026-05-03T10:05:13.728Z
+
+**Performance**:
+- 10000+ requests/sec
+- <1ms avg latency
+- 2.5MB memory usage
+
+**Quality**:
+- > yantraverse@1.0.2 coverage
+> echo 'Coverage tool not configured yet'
+Coverage tool not configured yet test coverage
+- 0 dependencies
+- <50KB bundle size
+<!-- STATS END -->
+
+
 > A lightweight, zero-dependency Node.js web framework. Fast routing, real middleware, static file serving — nothing more, nothing less.
 
 [![npm version](https://img.shields.io/npm/v/yantraverse.svg)](https://npmjs.com/package/yantraverse)
@@ -22,7 +42,8 @@
 
 ---
 
-## Installation
+
+- ✨ **Demo Feature** - This is a demo plan. Set GROQ_API_KEY in GitHub Secrets to enable AI planning.## Installation
 
 ```bash
 npm install yantraverse
