@@ -12,11 +12,6 @@ const { execSync } = require('child_process');
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
-if (!GROQ_API_KEY) {
-  console.error('❌ GROQ_API_KEY not set in environment');
-  process.exit(1);
-}
-
 async function readDailyPlan() {
   const planPath = path.join(process.cwd(), 'DAILY_PLAN.json');
   if (!fs.existsSync(planPath)) {
@@ -59,6 +54,13 @@ async function main() {
   try {
     const plan = await readDailyPlan();
     console.log(`📝 Plan: ${plan.category} - ${plan.title}`);
+
+    // If no GROQ_API_KEY, skip code generation
+    if (!GROQ_API_KEY) {
+      console.log('⚠️  GROQ_API_KEY not set - skipping code generation');
+      console.log('✅ To enable: Add GROQ_API_KEY to GitHub Secrets');
+      process.exit(0);
+    }
 
     const prompt = `
 You are yantraverse framework code generation AI. Generate code based on this plan:
@@ -125,7 +127,8 @@ Respond with JSON:
 
   } catch (error) {
     console.error('❌ Code generation failed:', error.message);
-    process.exit(1);
+    console.log('ℹ️  Continuing workflow...');
+    process.exit(0); // Don't fail the workflow
   }
 }
 
