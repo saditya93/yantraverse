@@ -28,21 +28,33 @@ function readDailyPlan() {
 
 async function callGroq(prompt) {
   try {
+    console.log('📡 Connecting to Groq API...');
+    
+    const requestBody = {
+      model: 'mixtral-8x7b-32768',
+      messages: [
+        {
+          role: 'user',
+          content: prompt
+        }
+      ],
+      temperature: 0.7,
+      max_tokens: 2000,
+      top_p: 1
+    };
+
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${GROQ_API_KEY}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        model: 'mixtral-8x7b-32768',
-        messages: [{ role: 'user', content: prompt }],
-        temperature: 0.8,
-        max_tokens: 3000
-      })
+      body: JSON.stringify(requestBody)
     });
 
     if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Groq error response:', errorData);
       throw new Error(`API error: ${response.status} ${response.statusText}`);
     }
 
@@ -74,37 +86,17 @@ async function main() {
     }
 
     console.log('🔄 Calling Groq AI for code generation...');
-    const response = await callGroq(`
-You are yantraverse framework code generation AI. Generate code based on this plan:
+    const response = await callGroq(`Generate JavaScript code for this feature:
+Title: ${plan.title}
+Description: ${plan.description}
+Test cases needed: ${plan.testCases}
+Estimated LOC: ${plan.estimatedLoc}
 
-PLAN:
-${JSON.stringify(plan, null, 2)}
+Framework: yantraverse (Node.js, zero dependencies)
+Style: no semicolons, 2-space indent, JSDoc comments
 
-Framework context:
-- yantraverse is a Node.js web framework
-- Uses native http module (zero dependencies)
-- Router pattern matching with named params
-- Middleware support
-- File: src/index.js has main app engine
-- File: src/router.js has routing logic
-- File: test/run.js has test runner
-
-Requirements:
-1. Write ONLY valid JavaScript code
-2. Follow existing code style (no semicolons, 2-space indent)
-3. Add JSDoc comments for functions
-4. Include ${plan.testCases} test cases
-5. Must pass npm test
-6. Max bundle size impact: <5KB
-
-Respond with JSON:
-{
-  "code": "// Main implementation file content here",
-  "tests": "// Test file content here",
-  "files": ["src/newfile.js", "test/newfile.test.js"],
-  "notes": "Any implementation notes"
-}
-    `);
+Respond ONLY with this JSON (no markdown):
+{"code":"// implementation code here","tests":"// test code here","files":["src/file.js","test/file.test.js"],"notes":"notes"}`);
     
     const jsonMatch = response.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {

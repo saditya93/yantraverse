@@ -44,13 +44,10 @@ async function getPackageStats() {
 }
 
 async function callGroq(prompt) {
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${GROQ_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
+  try {
+    console.log('📡 Connecting to Groq API...');
+    
+    const requestBody = {
       model: 'mixtral-8x7b-32768',
       messages: [
         {
@@ -59,16 +56,30 @@ async function callGroq(prompt) {
         }
       ],
       temperature: 0.7,
-      max_tokens: 1000
-    })
-  });
+      max_tokens: 1500,
+      top_p: 1
+    };
 
-  if (!response.ok) {
-    throw new Error(`Groq API error: ${response.statusText}`);
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Groq error response:', errorData);
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (error) {
+    throw new Error(`Groq API failed: ${error.message}`);
   }
-
-  const data = await response.json();
-  return data.choices[0].message.content;
 }
 
 function createFallbackPlan() {
@@ -119,39 +130,14 @@ Research Data:
 `;
     }
 
-    const prompt = `
-You are yantraverse framework AI assistant. Plan ONE feature or bug fix for today (${date}).
+    const prompt = `Plan ONE feature or bug fix for yantraverse Node.js framework.
 
-${researchContext}
+Date: ${date}
+Category: FEATURE, BUG, PERF, DOCS, or REFACTOR
+Guidelines: Small focused changes (50-200 lines), must include tests
 
-Recent commits:
-${commits}
-
-Current stats:
-- Version: ${stats.version}
-- Dependencies: ${stats.dependencies}
-- DevDependencies: ${stats.devDependencies}
-
-Rules:
-1. Small, focused changes (50-200 lines max)
-2. Must include tests
-3. Can be: new feature, bug fix, performance improvement, or refactor
-4. Complexity: 1-10 (1=easy, 10=complex)
-5. Prioritize based on research recommendations
-
-Respond as JSON only (no markdown):
-{
-  "date": "${date}",
-  "category": "FEATURE|BUG|PERF|DOCS|REFACTOR",
-  "title": "Brief title (max 50 chars)",
-  "description": "What to build (1-2 sentences)",
-  "complexity": 5,
-  "estimatedLoc": 120,
-  "filesAffected": ["src/file1.js", "test/file1.test.js"],
-  "testCases": 3,
-  "reason": "Why this matters for users"
-}
-    `;
+Respond ONLY with this JSON format (no markdown, no extra text):
+{"date":"${date}","category":"FEATURE","title":"Your title here","description":"1-2 sentence description","complexity":5,"estimatedLoc":120,"filesAffected":["src/file.js","test/file.test.js"],"testCases":3,"reason":"Why this matters"}`;
 
     console.log('🔄 Calling Groq AI with user research...');
     const plan = await callGroq(prompt);
