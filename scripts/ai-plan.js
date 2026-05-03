@@ -47,36 +47,60 @@ async function callGroq(prompt) {
   try {
     console.log('📡 Connecting to Groq API...');
     
-    const requestBody = {
-      model: 'llama-3.1-70b-versatile',
-      messages: [
-        {
-          role: 'user',
-          content: prompt
+    // Try models in order of preference (user-specified first, then fallbacks)
+    const models = [
+      process.env.GROQ_MODEL || 'llama-3.2-90b-vision-preview',
+      'llama-3.1-405b-reasoning',
+      'mixtral-8x7b-32768'
+    ];
+
+    let lastError = null;
+
+    for (const model of models) {
+      try {
+        console.log(`  Trying model: ${model}...`);
+        
+        const requestBody = {
+          model,
+          messages: [
+            {
+              role: 'user',
+              content: prompt
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 1500,
+          top_p: 1
+        };
+
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${GROQ_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          lastError = errorData.error?.message || `${response.status} ${response.statusText}`;
+          console.log(`  ✗ ${model} failed: ${lastError}`);
+          continue;
         }
-      ],
-      temperature: 0.7,
-      max_tokens: 1500,
-      top_p: 1
-    };
 
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${GROQ_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody)
-    });
-
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error('Groq error response:', errorData);
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
+        const data = await response.json();
+        console.log(`  ✓ Using model: ${model}`);
+        return data.choices[0].message.content;
+        
+      } catch (modelError) {
+        lastError = modelError.message;
+        console.log(`  ✗ ${model} error: ${lastError}`);
+        continue;
+      }
     }
 
-    const data = await response.json();
-    return data.choices[0].message.content;
+    throw new Error(`All models failed. Last error: ${lastError}`);
   } catch (error) {
     throw new Error(`Groq API failed: ${error.message}`);
   }
