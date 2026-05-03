@@ -1,0 +1,88 @@
+name: 📦 NPM Promotion & Publish (10:30 AM IST)
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 10:30 AM IST / 5:00 AM UTC
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  TZ: 'Asia/Kolkata'
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: 🎯 Generate NPM Optimization
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: node scripts/ai-promote.js
+      
+      - name: 📋 Update package.json with Optimization
+        run: |
+          if [ -f NPM_OPTIMIZATION.json ]; then
+            node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const opt = JSON.parse(fs.readFileSync('NPM_OPTIMIZATION.json', 'utf8'));
+            
+            pkg.description = opt.description;
+            pkg.keywords = opt.keywords;
+            
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+            console.log('✅ package.json updated with npm optimization');
+            "
+          fi
+      
+      - name: 📦 Bump Version (daily patch)
+        run: |
+          node scripts/bump-version.js daily
+      
+      - name: 🔖 Commit & Push Updates
+        env:
+          GIT_AUTHOR_NAME: 'AI Promotion'
+          GIT_AUTHOR_EMAIL: 'promotion@yantraverse.dev'
+          GIT_COMMITTER_NAME: 'AI Promotion'
+          GIT_COMMITTER_EMAIL: 'promotion@yantraverse.dev'
+        run: |
+          git add package.json NPM_OPTIMIZATION.json
+          git commit -m "chore: daily npm optimization and promotion" || true
+          git push origin main || true
+      
+      - name: 📤 Publish to NPM (Optional)
+        if: env.NPM_TOKEN != ''
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+          npm publish --access public
+          echo "✅ Published to npm!"
+        continue-on-error: true
+      
+      - name: 📊 Summary
+        run: |
+          echo "🎯 NPM Promotion Complete!"
+          echo "📈 This keeps yantraverse:"
+          echo "  - Recently updated on npm"
+          echo "  - With optimized keywords for discovery"
+          echo "  - Trending for nodejs developers"
+          if [ -f NPM_OPTIMIZATION.json ]; then
+            echo ""
+            echo "🔍 Keywords for today:"
+            cat NPM_OPTIMIZATION.json | jq '.keywords' 
+          fi

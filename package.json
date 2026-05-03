@@ -23,6 +23,7 @@
     "ai:readme": "node scripts/update-readme.js",
     "ai:version": "node scripts/bump-version.js",
     "ai:release": "node scripts/gh-release.js",
+    "ai:promote": "node scripts/ai-promote.js",
     "ai:daily": "npm run ai:research && npm run ai:plan && npm run ai:code && npm test && npm run ai:readme && npm run ai:commit",
     "lint": "echo 'No linter configured yet'"
   },

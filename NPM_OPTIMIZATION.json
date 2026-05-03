@@ -1,0 +1,24 @@
+{
+  "date": "2026-05-03",
+  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
+  "keywords": [
+    "nodejs",
+    "framework",
+    "routing",
+    "middleware",
+    "express-alternative",
+    "fast",
+    "zero-dependencies"
+  ],
+  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
+  "recommended_tags": [
+    "#nodejs",
+    "#framework",
+    "#performance"
+  ],
+  "download_hooks": [
+    "Developers want fast, simple frameworks",
+    "Zero dependencies = less maintenance headaches",
+    "Perfect for high-traffic APIs"
+  ]
+}
