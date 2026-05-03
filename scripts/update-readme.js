@@ -140,11 +140,16 @@ async function main() {
     updateChangelog();
     
     console.log('✅ Documentation updated successfully');
+    process.exit(0);
 
   } catch (error) {
-    console.error('⚠️ Documentation update warning:', error.message);
-    // Don't exit on error - this is non-critical
+    console.error('⚠️ Documentation update error:', error.message);
+    console.log('📝 Continuing workflow...');
+    process.exit(0); // Don't fail the workflow
   }
 }
 
-main();
+main().catch(err => {
+  console.error('Unexpected error:', err.message);
+  process.exit(0);
+});

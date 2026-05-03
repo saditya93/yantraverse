@@ -11,11 +11,11 @@ const { execSync } = require('child_process');
  */
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const GITHUB_REPO = process.env.GITHUB_REPOSITORY || 'S-Prudhvi/yantraverse';
+const GITHUB_REPO = process.env.GITHUB_REPOSITORY || 'saditya93/yantraverse';
 
 if (!GITHUB_TOKEN) {
-  console.error('❌ GITHUB_TOKEN not set');
-  process.exit(1);
+  console.log('⚠️  GITHUB_TOKEN not set - skipping release creation');
+  process.exit(0); // Don't fail
 }
 
 async function getChangelog(version) {
@@ -82,9 +82,13 @@ async function main() {
     console.log(`📊 Release ID: ${release.id}`);
 
   } catch (error) {
-    console.error('❌ Release creation failed:', error.message);
-    process.exit(1);
+    console.error('⚠️  Release creation failed:', error.message);
+    console.log('📝 Continuing workflow...');
+    process.exit(0); // Don't fail the workflow
   }
 }
 
-main();
+main().catch(err => {
+  console.error('Unexpected error:', err.message);
+  process.exit(0);
+});

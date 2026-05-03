@@ -154,7 +154,17 @@ Respond as JSON only:
       JSON.stringify(fallback, null, 2)
     );
     console.log('✅ Using fallback plan');
+    process.exit(0);
   }
 }
 
-main();
+main().catch(err => {
+  console.error('Unexpected error:', err.message);
+  // Still create fallback and exit successfully
+  const fallback = createFallbackPlan();
+  fs.writeFileSync(
+    path.join(process.cwd(), 'DAILY_PLAN.json'),
+    JSON.stringify(fallback, null, 2)
+  );
+  process.exit(0);
+});

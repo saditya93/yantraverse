@@ -12,57 +12,69 @@ const { execSync } = require('child_process');
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
-async function readDailyPlan() {
+function readDailyPlan() {
   const planPath = path.join(process.cwd(), 'DAILY_PLAN.json');
   if (!fs.existsSync(planPath)) {
-    throw new Error('DAILY_PLAN.json not found. Run ai-plan.js first.');
+    console.error('❌ DAILY_PLAN.json not found');
+    return null;
   }
-  return JSON.parse(fs.readFileSync(planPath, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(planPath, 'utf8'));
+  } catch (e) {
+    console.error('❌ Failed to parse DAILY_PLAN.json:', e.message);
+    return null;
+  }
 }
 
 async function callGroq(prompt) {
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${GROQ_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model: 'mixtral-8x7b-32768',
-      messages: [
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: 0.8,
-      max_tokens: 3000
-    })
-  });
+  try {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'mixtral-8x7b-32768',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.8,
+        max_tokens: 3000
+      })
+    });
 
-  if (!response.ok) {
-    throw new Error(`Groq API error: ${response.statusText}`);
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (error) {
+    throw new Error(`Groq API failed: ${error.message}`);
   }
-
-  const data = await response.json();
-  return data.choices[0].message.content;
 }
 
 async function main() {
   console.log('🤖 Starting AI Code Generation...');
 
   try {
-    const plan = await readDailyPlan();
+    const plan = readDailyPlan();
+    if (!plan) {
+      console.log('⚠️  Could not read plan, skipping code generation');
+      process.exit(0);
+    }
+
     console.log(`📝 Plan: ${plan.category} - ${plan.title}`);
 
     // If no GROQ_API_KEY, skip code generation
     if (!GROQ_API_KEY) {
-      console.log('⚠️  GROQ_API_KEY not set - skipping code generation');
-      console.log('✅ To enable: Add GROQ_API_KEY to GitHub Secrets');
+      console.log('⚠️  GROQ_API_KEY not set - skipping AI code generation');
+      console.log('💡 Set GROQ_API_KEY in GitHub Secrets to enable AI features');
+      console.log('✅ Tests and documentation updates will still run');
       process.exit(0);
     }
 
-    const prompt = `
+    console.log('🔄 Calling Groq AI for code generation...');
+    const response = await callGroq(`
 You are yantraverse framework code generation AI. Generate code based on this plan:
 
 PLAN:
@@ -92,44 +104,41 @@ Respond with JSON:
   "files": ["src/newfile.js", "test/newfile.test.js"],
   "notes": "Any implementation notes"
 }
-    `;
-
-    console.log('🔄 Calling Groq AI for code generation...');
-    const response = await callGroq(prompt);
+    `);
     
     const jsonMatch = response.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      throw new Error('Invalid response from Groq');
+      console.log('⚠️  No valid JSON in Groq response, skipping code creation');
+      process.exit(0);
     }
 
     const result = JSON.parse(jsonMatch[0]);
 
     // Create/update files
-    for (let i = 0; i < result.files.length; i++) {
-      const filePath = path.join(process.cwd(), result.files[i]);
+    for (const file of result.files) {
+      const filePath = path.join(process.cwd(), file);
       const dir = path.dirname(filePath);
       
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }
 
-      if (result.files[i].includes('test')) {
-        fs.writeFileSync(filePath, result.tests);
-      } else {
-        fs.writeFileSync(filePath, result.code);
-      }
-      
-      console.log(`✅ Created: ${result.files[i]}`);
+      const content = file.includes('test') ? result.tests : result.code;
+      fs.writeFileSync(filePath, content, 'utf8');
+      console.log(`✅ Created: ${file}`);
     }
 
-    console.log(`\n💡 Implementation notes: ${result.notes}`);
-    console.log('⏭️  Next: Run tests and commit');
+    console.log(`\n💡 ${result.notes || 'Code generated successfully'}`);
+    process.exit(0);
 
   } catch (error) {
-    console.error('❌ Code generation failed:', error.message);
-    console.log('ℹ️  Continuing workflow...');
+    console.error('⚠️  Code generation error:', error.message);
+    console.log('📝 Continuing workflow without new code...');
     process.exit(0); // Don't fail the workflow
   }
 }
 
-main();
+main().catch(err => {
+  console.error('Unexpected error:', err.message);
+  process.exit(0);
+});

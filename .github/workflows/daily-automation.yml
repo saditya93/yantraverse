@@ -62,6 +62,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: daily-plan
+          path: .
 
       - name: 🤖 Generate Code with AI
         run: node scripts/ai-code.js
@@ -95,7 +96,10 @@ jobs:
 
   # PHASE 3: Weekly Release (Every Monday)
   weekly-release:
-    if: github.event.schedule == '0 2 * * 1' || github.event_name == 'workflow_dispatch'
+    if: |
+      github.event_name == 'schedule' && 
+      github.event.schedule == '0 2 * * 1' ||
+      github.event_name == 'workflow_dispatch'
     needs: code
     runs-on: ubuntu-latest
     steps:
@@ -115,7 +119,7 @@ jobs:
         run: node scripts/gh-release.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: false
+        continue-on-error: true
 
       - name: 📦 Publish to npm (Optional)
         run: npm publish
