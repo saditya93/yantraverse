@@ -9,6 +9,10 @@
     "src/demo.js",
     "test/demo.test.js"
   ],
-  "testCases": 2,
+  "testCases": [
+    "Basic functionality",
+    "Error handling"
+  ],
+  "acceptance": "Feature works correctly and is documented",
   "reason": "Testing workflow without API key"
 }

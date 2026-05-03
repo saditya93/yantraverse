@@ -116,7 +116,8 @@ function createFallbackPlan() {
     complexity: 3,
     estimatedLoc: 50,
     filesAffected: ['src/demo.js', 'test/demo.test.js'],
-    testCases: 2,
+    testCases: ['Basic functionality', 'Error handling'],
+    acceptance: 'Feature works correctly and is documented',
     reason: 'Testing workflow without API key'
   };
 }
@@ -155,14 +156,26 @@ Research Data:
 `;
     }
 
-    const prompt = `Plan ONE feature or bug fix for yantraverse Node.js framework.
+    const prompt = `You are planning high-quality features for yantraverse - a lightweight Node.js framework.
 
-Date: ${date}
-Category: FEATURE, BUG, PERF, DOCS, or REFACTOR
-Guidelines: Small focused changes (50-200 lines), must include tests
+FRAMEWORK DETAILS:
+- Zero dependencies, production framework
+- Routing, middleware, static files, security (helmet), CORS, rate limiting
+- Code style: no semicolons, 2-space indent, JSDoc comments
+- Must be fully tested and documented
+${researchContext}
 
-Respond ONLY with this JSON format (no markdown, no extra text):
-{"date":"${date}","category":"FEATURE","title":"Your title here","description":"1-2 sentence description","complexity":5,"estimatedLoc":120,"filesAffected":["src/file.js","test/file.test.js"],"testCases":3,"reason":"Why this matters"}`;
+QUALITY CRITERIA:
+1. High-impact: Solves real problems or improves performance
+2. Well-scoped: 100-250 lines of code (quality over quantity)
+3. Testable: Include clear test cases and acceptance criteria
+4. Production-ready: Error handling, logging, edge cases
+5. Documented: Clear comments and changelog entry
+
+Plan ONE feature/fix for TODAY that is high-impact and production-ready.
+
+Respond ONLY with this JSON (no markdown):
+{"date":"${date}","category":"FEATURE or BUG or PERF","title":"Clear action-oriented title","description":"Why this matters + what it does (2-3 sentences)","complexity":7,"estimatedLoc":180,"filesAffected":["src/file.js","test/file.test.js"],"testCases":["Test case 1","Test case 2"],"acceptance":"Clear acceptance criteria","reason":"Business/technical justification"}`;
 
     console.log('🔄 Calling Groq AI with user research...');
     const plan = await callGroq(prompt);

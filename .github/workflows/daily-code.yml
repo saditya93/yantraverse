@@ -1,0 +1,61 @@
+name: 💻 Daily Code Generation (9:30 AM IST)
+
+on:
+  schedule:
+    - cron: '0 4 * * *'   # 9:30 AM IST / 4:00 AM UTC
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  TZ: 'Asia/Kolkata'
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: ⬇️ Download Plan from 9:00 AM Run
+        continue-on-error: true
+        run: |
+          # Get the latest plan from a previous run
+          ls -la DAILY_PLAN.json 2>/dev/null || echo "Plan not found locally, will use fallback"
+      
+      - name: 💻 Generate Code
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: npm run ai:code
+      
+      - name: ✅ Run Tests
+        continue-on-error: true
+        run: npm test
+      
+      - name: 📝 Update Documentation
+        continue-on-error: true
+        run: npm run ai:readme
+      
+      - name: 🔖 Commit Changes
+        env:
+          GIT_AUTHOR_NAME: 'AI Automation'
+          GIT_AUTHOR_EMAIL: 'ai@yantraverse.dev'
+          GIT_COMMITTER_NAME: 'AI Automation'
+          GIT_COMMITTER_EMAIL: 'ai@yantraverse.dev'
+        run: npm run ai:commit
+      
+      - name: 📊 Summary
+        run: |
+          echo "✅ Daily automation complete!"
+          echo "📅 Completed at: $(date '+%Y-%m-%d %H:%M:%S IST')"

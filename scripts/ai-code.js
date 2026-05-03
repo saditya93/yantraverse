@@ -108,17 +108,26 @@ async function main() {
     }
 
     console.log('🔄 Calling Groq AI for code generation...');
-    const response = await callGroq(`Generate JavaScript code for this feature:
+    const response = await callGroq(`Generate PRODUCTION-QUALITY code for this feature:
+
+FEATURE DETAILS:
 Title: ${plan.title}
 Description: ${plan.description}
-Test cases needed: ${plan.testCases}
-Estimated LOC: ${plan.estimatedLoc}
+Acceptance Criteria: ${plan.acceptance || 'See description'}
+Test Cases: ${Array.isArray(plan.testCases) ? plan.testCases.join(', ') : plan.testCases}
 
-Framework: yantraverse (Node.js, zero dependencies)
-Style: no semicolons, 2-space indent, JSDoc comments
+QUALITY REQUIREMENTS:
+- No semicolons, 2-space indent, JSDoc comments
+- Proper error handling and edge cases
+- Clear variable names and function purposes
+- Unit tests with good coverage
+- Follow yantraverse conventions
+- Ready for production immediately
 
-Return ONLY valid JSON (no markdown, no extra text):
-{"code":"// code here","tests":"// tests here","files":["src/file.js","test/file.test.js"],"notes":"notes"}`);
+Generate implementation code AND unit tests.
+
+Return ONLY valid JSON:
+{"code":"// Implementation with JSDoc, error handling, all features","tests":"// Unit tests covering all acceptance criteria","files":["src/file.js","test/file.test.js"],"notes":"Implementation notes"}`);
     
     // Extract JSON with improved error handling
     let jsonMatch = response.match(/\{[\s\S]*\}/);
