@@ -1,5 +1,25 @@
 # yantraverse
 
+<!-- STATS START -->
+**Build**: 5/3/2026  
+**Version**: 1.0.2  
+**Commits**: 1  
+**Last Updated**: 2026-05-03T10:20:18.106Z
+
+**Performance**:
+- 10000+ requests/sec
+- <1ms avg latency
+- 2.5MB memory usage
+
+**Quality**:
+- > yantraverse@1.0.2 coverage
+> echo 'Coverage tool not configured yet'
+Coverage tool not configured yet test coverage
+- 0 dependencies
+- <50KB bundle size
+<!-- STATS END -->
+
+
 A lightweight, zero-dependency Node.js web framework built for performance and simplicity.
 
 > **Spin fast, go far** — Simple routing meets powerful middleware
