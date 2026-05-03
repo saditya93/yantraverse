@@ -48,10 +48,11 @@ async function callGroq(prompt) {
     console.log('📡 Connecting to Groq API...');
     
     // Try models in order of preference (user-specified first, then fallbacks)
+    // Updated May 2026: Using currently available production models from Groq
     const models = [
-      process.env.GROQ_MODEL || 'llama-3.2-90b-vision-preview',
-      'llama-3.1-405b-reasoning',
-      'mixtral-8x7b-32768'
+      process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+      'openai/gpt-oss-120b',
+      'llama-3.1-8b-instant'
     ];
 
     let lastError = null;
