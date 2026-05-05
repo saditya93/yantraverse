@@ -1,20 +1,21 @@
 {
-  "date": "2026-05-03",
-  "category": "FEATURE",
-  "title": "Implement Robust Error Handling Mechanism",
-  "description": "This feature matters as it will provide a centralized error handling system, allowing for better error logging, and improved debugging capabilities, thus enhancing the overall stability of the yantraverse framework. It will handle and log errors in a standardized way, making it easier to identify and fix issues. This will also improve the developer experience by providing more informative error messages.",
+  "date": "2026-05-05",
+  "category": "BUG",
+  "title": "Fix Test Failures and Improve Test Coverage",
+  "description": "This fix matters because it ensures the stability and reliability of the yantraverse framework by resolving existing test failures and improving overall test coverage, which is crucial for a production-ready framework. It involves identifying and addressing the root causes of test failures, and adding new test cases to cover previously untested scenarios. By doing so, it enhances the framework's maintainability and trustworthiness",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/errorHandler.js",
-    "src/router.js",
-    "test/errorHandler.test.js"
+    "src/routing.js",
+    "src/middleware.js",
+    "test/routing.test.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test error handling for route not found",
-    "Test error handling for server errors",
-    "Test error handling for middleware errors"
+    "Test routing with query parameters",
+    "Test middleware chaining",
+    "Test error handling for invalid routes"
   ],
-  "acceptance": "The error handling mechanism should log errors with relevant details, provide informative error messages to the user, and not crash the server in case of an error. The logs should be easily readable and contain essential information for debugging purposes.",
-  "reason": "Implementing a robust error handling mechanism is crucial for a production-ready framework like yantraverse, as it directly impacts the user experience, debugging efficiency, and overall framework reliability."
+  "acceptance": "All existing tests pass, and new test cases cover at least 90% of the affected code paths",
+  "reason": "The current test status has failures, and improving test coverage is essential for ensuring the framework's quality and reliability, especially given the recent stability-focused development and the need for feature development"
 }
