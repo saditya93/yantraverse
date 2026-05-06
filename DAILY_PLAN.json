@@ -1,21 +1,18 @@
 {
-  "date": "2026-05-05",
+  "date": "2026-05-06",
   "category": "BUG",
-  "title": "Fix Test Failures and Improve Test Coverage",
-  "description": "This fix matters because it ensures the stability and reliability of the yantraverse framework by resolving existing test failures and improving overall test coverage, which is crucial for a production-ready framework. It involves identifying and addressing the root causes of test failures, and adding new test cases to cover previously untested scenarios. By doing so, it enhances the framework's maintainability and trustworthiness",
+  "title": "Fix Test Failures and Improve Rate Limiting",
+  "description": "This fix addresses the current test failures and enhances the rate limiting feature to prevent abuse and improve the overall security of the framework. It ensures that the rate limiting middleware is correctly handling edge cases and provides a more robust protection mechanism. By resolving these issues, the framework becomes more stable and reliable",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/routing.js",
-    "src/middleware.js",
-    "test/routing.test.js",
-    "test/middleware.test.js"
+    "src/middleware/rateLimit.js",
+    "test/middleware/rateLimit.test.js"
   ],
   "testCases": [
-    "Test routing with query parameters",
-    "Test middleware chaining",
-    "Test error handling for invalid routes"
+    "Test rate limiting with multiple requests",
+    "Test rate limiting with different IP addresses"
   ],
-  "acceptance": "All existing tests pass, and new test cases cover at least 90% of the affected code paths",
-  "reason": "The current test status has failures, and improving test coverage is essential for ensuring the framework's quality and reliability, especially given the recent stability-focused development and the need for feature development"
+  "acceptance": "The rate limiting feature should correctly block excessive requests from a single IP address and pass tests without failures",
+  "reason": "The current test failures and incomplete rate limiting implementation pose a significant risk to the security and reliability of the framework, making this fix a high-priority task"
 }

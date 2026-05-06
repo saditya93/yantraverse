@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-06
+### BUG
+- Fix Test Failures and Improve Rate Limiting: This fix addresses the current test failures and enhances the rate limiting feature to prevent abuse and improve the overall security of the framework. It ensures that the rate limiting middleware is correctly handling edge cases and provides a more robust protection mechanism. By resolving these issues, the framework becomes more stable and reliable
+
 ## [Automated] - 2026-05-05
 ### BUG
 - Fix Test Failures and Improve Test Coverage: This fix matters because it ensures the stability and reliability of the yantraverse framework by resolving existing test failures and improving overall test coverage, which is crucial for a production-ready framework. It involves identifying and addressing the root causes of test failures, and adding new test cases to cover previously untested scenarios. By doing so, it enhances the framework's maintainability and trustworthiness
