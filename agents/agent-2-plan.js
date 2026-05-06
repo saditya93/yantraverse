@@ -32,7 +32,7 @@ async function callGroqAPI(systemPrompt, userMessage) {
     const sanitizedUserMessage = String(userMessage).trim();
     
     const payload = {
-      model: 'mixtral-8x7b-32768',
+      model: 'llama-3.1-70b-versatile',
       messages: [
         { role: 'system', content: sanitizedSystemPrompt },
         { role: 'user', content: sanitizedUserMessage }
