@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Automated] - 2026-05-06
+### FEATURE
+- Implement Robust Error Handling Mechanism: This feature matters because it will improve the overall stability and reliability of the yantraverse framework by providing informative error messages and handling edge cases. It will introduce a centralized error handling mechanism that will catch and log errors, allowing for better debugging and issue resolution. This will enhance the developer experience and reduce downtime
+
+## [Automated] - 2026-05-06
 ### BUG
 - Fix Test Failures and Improve Rate Limiting: This fix addresses the current test failures and enhances the rate limiting feature to prevent abuse and improve the overall security of the framework. It ensures that the rate limiting middleware is correctly handling edge cases and provides a more robust protection mechanism. By resolving these issues, the framework becomes more stable and reliable
 
