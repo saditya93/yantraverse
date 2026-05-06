@@ -1,0 +1,220 @@
+name: 🤖 6-Agent Autonomous Pipeline
+
+on:
+  schedule:
+    # Mon-Fri 9 AM UTC - Daily research + plan + code + test + readme
+    - cron: '0 9 * * 1-5'
+    # Monday 6 PM UTC - PUBLISH to npm + GitHub Release
+    - cron: '0 18 * * 1'
+  
+  # Manual trigger for debugging
+  workflow_dispatch:
+    inputs:
+      agent:
+        description: 'Run specific agent (1-6) or all'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+
+env:
+  NODE_VERSION: '20'
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  agent-1-research:
+    name: '🔍 Agent 1: Research'
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'schedule' || inputs.agent == 'all' || inputs.agent == '1' }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '📡 Run Research Agent'
+        run: npm run agents:research 2>&1 | tee research-${{ github.run_id }}.log
+
+      - name: '📤 Upload research output'
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-output
+          path: agents/outputs/research-output-*.json
+          retention-days: 30
+
+      - name: '✅ Research complete'
+        run: echo "Agent 1 (Research) completed successfully" >> $GITHUB_STEP_SUMMARY
+
+  agent-2-plan:
+    name: '📋 Agent 2: Planning'
+    runs-on: ubuntu-latest
+    needs: agent-1-research
+    if: ${{ success() && (github.event_name == 'schedule' || inputs.agent == 'all' || inputs.agent == '2') }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '⬇️ Download research output'
+        uses: actions/download-artifact@v4
+        with:
+          name: research-output
+
+      - name: '📝 Run Plan Agent'
+        run: npm run agents:plan 2>&1 | tee plan-${{ github.run_id }}.log
+
+      - name: '📤 Upload plan output'
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan-output
+          path: agents/outputs/implementation-plan-*.json
+          retention-days: 30
+
+      - name: '✅ Planning complete'
+        run: echo "Agent 2 (Plan) completed successfully" >> $GITHUB_STEP_SUMMARY
+
+  agent-3-code:
+    name: '💻 Agent 3: Code Generation'
+    runs-on: ubuntu-latest
+    needs: agent-2-plan
+    if: ${{ success() && (github.event_name == 'schedule' || inputs.agent == 'all' || inputs.agent == '3') }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '⬇️ Download plan output'
+        uses: actions/download-artifact@v4
+        with:
+          name: plan-output
+
+      - name: '🔧 Run Code Generation Agent'
+        run: npm run agents:code 2>&1 | tee code-${{ github.run_id }}.log
+
+      - name: '📤 Upload code changes'
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-changes
+          path: agents/outputs/code-changes-*.json
+          retention-days: 30
+
+      - name: '✅ Code generation complete'
+        run: echo "Agent 3 (Code) completed successfully" >> $GITHUB_STEP_SUMMARY
+
+  agent-4-test:
+    name: '🧪 Agent 4: Test & Fix'
+    runs-on: ubuntu-latest
+    needs: agent-3-code
+    if: ${{ success() && (github.event_name == 'schedule' || inputs.agent == 'all' || inputs.agent == '4') }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '⬇️ Download code changes'
+        uses: actions/download-artifact@v4
+        with:
+          name: code-changes
+
+      - name: '🔬 Run Test & Fix Agent'
+        run: npm run agents:test 2>&1 | tee test-${{ github.run_id }}.log
+
+      - name: '📤 Upload test report'
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: agents/outputs/test-report-*.json
+          retention-days: 30
+
+      - name: '✅ Testing & fixing complete'
+        run: echo "Agent 4 (Test & Fix) completed successfully" >> $GITHUB_STEP_SUMMARY
+
+  agent-5-readme:
+    name: '📖 Agent 5: README Update'
+    runs-on: ubuntu-latest
+    needs: agent-4-test
+    if: ${{ success() && (github.event_name == 'schedule' || inputs.agent == 'all' || inputs.agent == '5') }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '⬇️ Download test report'
+        uses: actions/download-artifact@v4
+        with:
+          name: test-report
+
+      - name: '📝 Run README Update Agent'
+        run: npm run agents:readme 2>&1 | tee readme-${{ github.run_id }}.log
+
+      - name: '📤 Upload readme output'
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-output
+          path: agents/outputs/readme-update-*.json
+          retention-days: 30
+
+      - name: '✅ README update complete'
+        run: echo "Agent 5 (README) completed successfully" >> $GITHUB_STEP_SUMMARY
+
+  agent-6-publish:
+    name: '🚀 Agent 6: Publish'
+    runs-on: ubuntu-latest
+    needs: agent-5-readme
+    # ONLY runs on Monday (day 1 of week) at 6 PM UTC
+    if: ${{ success() && github.event.schedule == '0 18 * * 1' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '📦 Configure npm'
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm config set registry https://registry.npmjs.org/
+
+      - name: '🚀 Run Publish Agent'
+        run: npm run agents:publish 2>&1 | tee publish-${{ github.run_id }}.log
+
+      - name: '📤 Upload publish log'
+        uses: actions/upload-artifact@v4
+        with:
+          name: publish-log
+          path: agents/outputs/publish-log-*.json
+          retention-days: 30
+
+      - name: '✅ Publish complete'
+        run: echo "Agent 6 (Publish) completed successfully" >> $GITHUB_STEP_SUMMARY
+
+  # Cleanup old artifacts after 1 week
+  cleanup:
+    name: 'Cleanup'
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [agent-1-research, agent-2-plan, agent-3-code, agent-4-test, agent-5-readme]
+
+    steps:
+      - name: '🧹 Archive workflow run'
+        run: |
+          echo "Pipeline run ${{ github.run_id }} completed"
+          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"

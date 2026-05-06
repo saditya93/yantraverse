@@ -44,7 +44,11 @@ function yantraverse() {
       fn(groupApp);
       return app;
     },
-    static(dir, prefix) {
+    static(dir, prefix = '/') {
+      middlewares.push((req, res, next) => {
+        if (serveStatic(req, res, req.path, dir, prefix)) return;
+        next();
+      });
       return app;
     },
     notFound(handler) {

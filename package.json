@@ -16,6 +16,14 @@
     "format": "echo 'Prettier not configured yet'",
     "coverage": "echo 'Coverage tool not configured yet'",
     "benchmark": "echo 'Benchmarks not configured yet'",
+    "lint": "echo 'No linter configured yet'",
+    "agents:research": "node agents/agent-1-research.js",
+    "agents:plan": "node agents/agent-2-plan.js",
+    "agents:code": "node agents/agent-3-code.js",
+    "agents:test": "node agents/agent-4-test.js",
+    "agents:readme": "node agents/agent-5-readme.js",
+    "agents:publish": "node agents/agent-6-publish.js",
+    "agents:all": "npm run agents:research && npm run agents:plan && npm run agents:code && npm run agents:test && npm run agents:readme",
     "ai:research": "node scripts/research-users.js",
     "ai:plan": "node scripts/ai-plan.js",
     "ai:code": "node scripts/ai-code.js",
@@ -24,8 +32,7 @@
     "ai:version": "node scripts/bump-version.js",
     "ai:release": "node scripts/gh-release.js",
     "ai:promote": "node scripts/ai-promote.js",
-    "ai:daily": "npm run ai:research && npm run ai:plan && npm run ai:code && npm test && npm run ai:readme && npm run ai:commit",
-    "lint": "echo 'No linter configured yet'"
+    "ai:daily": "npm run ai:research && npm run ai:plan && npm run ai:code && npm test && npm run ai:readme && npm run ai:commit"
   },
   "keywords": [
     "web framework",

@@ -1,0 +1,268 @@
+name: yantraverse AI Weekly Pipeline
+
+on:
+  schedule:
+    # Research + Code + Test runs Tuesday through Saturday at 2 AM UTC
+    - cron: '0 2 * * 2-6'
+    # README update + Publish runs ONLY on Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      force_publish:
+        description: 'Force publish (skip day check)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+  packages: write
+  issues: write
+
+env:
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_VERSION: '20'
+
+jobs:
+
+  # ── CHECK WHAT DAY IT IS ───────────────────────────────────────────
+  check-schedule:
+    name: "Check Pipeline Schedule"
+    runs-on: ubuntu-latest
+    outputs:
+      is_monday: ${{ steps.check.outputs.is_monday }}
+      run_pipeline: ${{ steps.check.outputs.run_pipeline }}
+    steps:
+      - name: Determine day
+        id: check
+        run: |
+          DAY=$(date +%u)
+          echo "Today is weekday number: $DAY"
+          if [ "$DAY" = "1" ]; then
+            echo "is_monday=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_monday=false" >> $GITHUB_OUTPUT
+          fi
+          echo "run_pipeline=true" >> $GITHUB_OUTPUT
+
+  # ── AGENT 1: RESEARCH ──────────────────────────────────────────────
+  research:
+    name: "Agent 1 — Research Frameworks"
+    needs: check-schedule
+    if: needs.check-schedule.outputs.run_pipeline == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Run Research Agent
+        run: node agents/agent-1-research.js
+        env:
+          GROQ_API_KEY: ${{ env.GROQ_API_KEY }}
+
+      - name: Upload research artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-output-${{ github.run_id }}
+          path: agents/outputs/research-output-*.json
+          retention-days: 7
+
+  # ── AGENT 2: PLANNING ──────────────────────────────────────────────
+  plan:
+    name: "Agent 2 — Generate Implementation Plan"
+    needs: research
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Download research output
+        uses: actions/download-artifact@v4
+        with:
+          name: research-output-${{ github.run_id }}
+          path: agents/outputs/
+
+      - name: Run Planning Agent
+        run: node agents/agent-2-plan.js
+        env:
+          GROQ_API_KEY: ${{ env.GROQ_API_KEY }}
+
+      - name: Upload plan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan-output-${{ github.run_id }}
+          path: agents/outputs/implementation-plan-*.json
+          retention-days: 7
+
+  # ── AGENT 3: CODE ──────────────────────────────────────────────────
+  code:
+    name: "Agent 3 — Generate Code"
+    needs: plan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Download plan output
+        uses: actions/download-artifact@v4
+        with:
+          name: plan-output-${{ github.run_id }}
+          path: agents/outputs/
+
+      - name: Run Code Agent
+        run: node agents/agent-3-code.js
+        env:
+          GROQ_API_KEY: ${{ env.GROQ_API_KEY }}
+
+      - name: Upload code artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-output-${{ github.run_id }}
+          path: agents/outputs/code-changes-*.json
+          retention-days: 7
+
+  # ── AGENT 4: TEST & FIX ────────────────────────────────────────────
+  test-and-fix:
+    name: "Agent 4 — Test & Fix (Node ${{ matrix.node }})"
+    needs: code
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Download code output
+        uses: actions/download-artifact@v4
+        with:
+          name: code-output-${{ github.run_id }}
+          path: agents/outputs/
+
+      - name: Run Test & Fix Agent
+        run: node agents/agent-4-test.js
+        env:
+          GROQ_API_KEY: ${{ env.GROQ_API_KEY }}
+
+      - name: Upload test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-output-node${{ matrix.node }}-${{ github.run_id }}
+          path: agents/outputs/test-report-*.json
+          retention-days: 7
+
+  # ── AGENT 5: README UPDATE ─────────────────────────────────────────
+  readme:
+    name: "Agent 5 — Update README.md"
+    needs: [test-and-fix, check-schedule]
+    if: needs.check-schedule.outputs.is_monday == 'true' || github.event.inputs.force_publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: agents/outputs/
+
+      - name: Run README Agent
+        run: node agents/agent-5-readme.js
+        env:
+          GROQ_API_KEY: ${{ env.GROQ_API_KEY }}
+
+      - name: Upload readme artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-output-${{ github.run_id }}
+          path: agents/outputs/readme-update-*.json
+          retention-days: 7
+
+  # ── AGENT 6: PUBLISH (MONDAY ONLY) ────────────────────────────────
+  publish:
+    name: "Agent 6 — Publish to npm (Monday only)"
+    needs: [readme, check-schedule]
+    if: |
+      success() &&
+      (needs.check-schedule.outputs.is_monday == 'true' ||
+       github.event.inputs.force_publish == 'true')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: agents/outputs/
+
+      - name: Run Publish Agent
+        run: node agents/agent-6-publish.js
+        env:
+          GROQ_API_KEY: ${{ env.GROQ_API_KEY }}
+
+      - name: Write README and files to disk
+        run: node .agents/write-release-files.js
+
+      - name: Commit and push release
+        run: |
+          git config user.name "yantraverse-bot"
+          git config user.email "bot@yantraverse.dev"
+          git add -A
+          git commit -m "Release: yantraverse weekly update"
+          VERSION=$(node -p "require('./package.json').version")
+          git tag v$VERSION
+          git push origin main --tags
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            README.md
+            CHANGELOG.md
+
+      - name: Verify publish succeeded
+        run: |
+          sleep 30
+          VERSION=$(node -p "require('./package.json').version")
+          NPM_VERSION=$(npm view yantraverse version)
+          if [ "$VERSION" != "$NPM_VERSION" ]; then
+            echo "PUBLISH VERIFICATION FAILED"
+            exit 1
+          fi
+          echo "Published successfully: v$VERSION"
+
+      - name: Open issue on publish failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'PUBLISH FAILED — ' + new Date().toISOString().split('T')[0],
+              body: 'Monday publish failed. Check the Actions run: ' + context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId,
+              labels: ['publish-failure', 'urgent']
+            })
