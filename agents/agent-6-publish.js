@@ -14,12 +14,30 @@ const https = require('https');
 const { execSync } = require('child_process');
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const NPM_TOKEN = process.env.NPM_TOKEN;
 const OUTPUT_DIR = path.join(__dirname, 'outputs');
 const PACKAGE_JSON_PATH = path.join(__dirname, '../package.json');
 
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+}
+
+// Check for required environment variables
+if (!GROQ_API_KEY || !NPM_TOKEN) {
+  console.error('❌ FATAL: Missing required environment variables');
+  if (!GROQ_API_KEY) {
+    console.error('   - GROQ_API_KEY is not set');
+  }
+  if (!NPM_TOKEN) {
+    console.error('   - NPM_TOKEN is not set');
+  }
+  console.error('\n📋 Setup Instructions:');
+  console.error('1. See GITHUB_SECRETS_SETUP.md');
+  console.error('2. Add secrets to GitHub: Settings → Secrets and variables → Actions');
+  console.error('3. Secrets needed: GROQ_API_KEY, NPM_TOKEN');
+  console.error('4. Re-run the workflow');
+  process.exit(1);
 }
 
 function isMonday() {

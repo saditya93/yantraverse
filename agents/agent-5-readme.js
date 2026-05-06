@@ -20,6 +20,17 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
+// Check for required environment variables
+if (!GROQ_API_KEY) {
+  console.error('❌ FATAL: GROQ_API_KEY environment variable is not set');
+  console.error('\n📋 Setup Instructions:');
+  console.error('1. Get API key from: https://console.groq.com/keys');
+  console.error('2. Add to GitHub Secrets: Settings → Secrets and variables → Actions');
+  console.error('3. Create new secret named: GROQ_API_KEY');
+  console.error('4. Re-run the workflow');
+  process.exit(1);
+}
+
 async function callGroqAPI(systemPrompt, userMessage) {
   return new Promise((resolve, reject) => {
     const data = JSON.stringify({
