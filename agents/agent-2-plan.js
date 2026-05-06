@@ -47,7 +47,7 @@ async function callGroqAPI(systemPrompt, userMessage) {
         { role: 'system', content: sanitizedSystemPrompt },
         { role: 'user', content: sanitizedUserMessage }
       ],
-      max_tokens: 8000,
+      max_tokens: 4000,
       temperature: 0.7
     };
     
@@ -139,6 +139,17 @@ function getWeekNumber() {
   return Math.ceil((pastDaysOfYear + firstDay.getDay() + 1) / 7);
 }
 
+// Compress research data to essential fields only
+function compressResearchData(researchData) {
+  return {
+    frameworks_analyzed: researchData.frameworks_analyzed || [],
+    gap_analysis: researchData.gap_analysis || {},
+    recommended_features_for_yantraverse: (researchData.recommended_features_for_yantraverse || []).slice(0, 5),
+    feature_comparison: researchData.feature_comparison || {},
+    implementation_recommendations: (researchData.implementation_recommendations || []).slice(0, 3)
+  };
+}
+
 async function runPlanningAgent() {
   try {
     console.log('📋 AGENT 2: PLANNING - Starting...\n');
@@ -154,6 +165,9 @@ async function runPlanningAgent() {
     console.log(`📂 Reading research output from: ${path.basename(researchFile)}`);
     
     const researchData = JSON.parse(fs.readFileSync(researchFile, 'utf-8'));
+    
+    // Compress research data to reduce token usage
+    const compressedResearch = compressResearchData(researchData);
 
     // Get current version
     const currentVersion = getPackageVersion();
@@ -161,19 +175,17 @@ async function runPlanningAgent() {
     const weekNumber = getWeekNumber();
 
     const userMessage = `
-Here is the research output from Agent 1:
+Here is the research output from Agent 1 (compressed):
 
-${JSON.stringify(researchData, null, 2)}
+${JSON.stringify(compressedResearch, null, 2)}
 
 Current yantraverse version: ${currentVersion}
 New version should be: ${newVersion}
-Week number: ${weekNumber}
 
 Using the detailed planning prompt above, generate a comprehensive implementation plan.
-Select the top 3 features, provide complete technical specifications, file changes, 
-implementation steps, tests, and documentation.
+Select the top 3 features from the research, provide complete technical specifications.
 
-Return ONLY valid JSON in the exact format specified. No markdown.
+Return ONLY valid JSON in the exact format specified.
     `;
 
     console.log('🧠 Calling Groq API for planning...');

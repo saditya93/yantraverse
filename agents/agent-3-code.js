@@ -52,7 +52,7 @@ async function callGroqAPI(systemPrompt, userMessage) {
         { role: 'system', content: sanitizedSystemPrompt },
         { role: 'user', content: sanitizedUserMessage }
       ],
-      max_tokens: 16000,
+      max_tokens: 6000,
       temperature: 0.7
     };
     
