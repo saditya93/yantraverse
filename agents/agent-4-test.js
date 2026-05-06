@@ -30,6 +30,16 @@ if (!GROQ_API_KEY) {
   process.exit(1);
 }
 
+// Extract JSON from markdown code fences if present
+function extractJSON(text) {
+  // Match ```json ... ``` or ``` ... ```
+  const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (jsonMatch) {
+    return jsonMatch[1].trim();
+  }
+  return text.trim();
+}
+
 async function callGroqAPI(systemPrompt, userMessage) {
   return new Promise((resolve, reject) => {
     // Sanitize inputs to ensure proper JSON encoding
@@ -86,7 +96,10 @@ async function callGroqAPI(systemPrompt, userMessage) {
             return reject(new Error(`Invalid API response: No choices returned. Response: ${JSON.stringify(response)}`.substring(0, 500)));
           }
           
-          resolve(response.choices[0].message.content);
+          // Extract JSON from markdown if needed, then return
+          const content = response.choices[0].message.content;
+          const jsonContent = extractJSON(content);
+          resolve(jsonContent);
         } catch (e) {
           reject(new Error(`JSON parse error: ${e.message}. Body: ${body.substring(0, 500)}...`));
         }
