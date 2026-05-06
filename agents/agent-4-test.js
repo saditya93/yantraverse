@@ -32,15 +32,26 @@ if (!GROQ_API_KEY) {
 
 async function callGroqAPI(systemPrompt, userMessage) {
   return new Promise((resolve, reject) => {
-    const data = JSON.stringify({
+    // Sanitize inputs to ensure proper JSON encoding
+    const sanitizedSystemPrompt = String(systemPrompt).trim();
+    const sanitizedUserMessage = String(userMessage).trim();
+    
+    const payload = {
       model: 'mixtral-8x7b-32768',
       messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userMessage }
+        { role: 'system', content: sanitizedSystemPrompt },
+        { role: 'user', content: sanitizedUserMessage }
       ],
       max_tokens: 16000,
       temperature: 0.7
-    });
+    };
+    
+    let data;
+    try {
+      data = JSON.stringify(payload);
+    } catch (e) {
+      return reject(new Error(`Failed to stringify JSON payload: ${e.message}`));
+    }
 
     const options = {
       hostname: 'api.groq.com',
@@ -48,7 +59,7 @@ async function callGroqAPI(systemPrompt, userMessage) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Content-Length': data.length,
+        'Content-Length': Buffer.byteLength(data, 'utf8'),
         'Authorization': `Bearer ${GROQ_API_KEY}`
       }
     };
@@ -57,11 +68,27 @@ async function callGroqAPI(systemPrompt, userMessage) {
       let body = '';
       res.on('data', chunk => body += chunk);
       res.on('end', () => {
+        // Check HTTP status
+        if (res.statusCode !== 200) {
+          return reject(new Error(`Groq API HTTP ${res.statusCode}: ${body}`));
+        }
+        
         try {
           const response = JSON.parse(body);
+          
+          // Check for API errors
+          if (response.error) {
+            return reject(new Error(`Groq API Error: ${response.error.message}`));
+          }
+          
+          // Check for empty choices
+          if (!response.choices || !response.choices[0]) {
+            return reject(new Error(`Invalid API response: No choices returned. Response: ${JSON.stringify(response)}`.substring(0, 500)));
+          }
+          
           resolve(response.choices[0].message.content);
         } catch (e) {
-          reject(e);
+          reject(new Error(`JSON parse error: ${e.message}. Body: ${body.substring(0, 500)}...`));
         }
       });
     });
