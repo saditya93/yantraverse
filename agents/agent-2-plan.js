@@ -22,6 +22,7 @@ const PACKAGE_JSON_PATH = path.join(__dirname, '../package.json');
 const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
 const GROQ_MAX_TOKENS = Number(process.env.GROQ_MAX_TOKENS || 2200);
 const GROQ_MAX_RETRIES = Number(process.env.GROQ_MAX_RETRIES || 4);
+const AGENT2_USE_GROQ = process.env.AGENT2_USE_GROQ === 'true';
 
 const COMPACT_PLANNING_PROMPT = `
 You are a concise Node.js implementation planning agent for Yantravese.
@@ -398,19 +399,25 @@ Select the top 3 features from the research, provide complete technical specific
 Return ONLY valid JSON in the exact format specified.
     `;
 
-    console.log('🧠 Calling Groq API for planning...');
     let planData;
 
-    try {
-      const planOutput = await callGroqAPI(systemPrompt, userMessage);
-      planData = JSON.parse(planOutput);
-    } catch (error) {
-      if (error.statusCode !== 429 && error.statusCode !== 413) {
-        throw error;
-      }
-
-      console.warn('Groq request was rate-limited or too large; writing deterministic fallback plan so the pipeline can continue.');
+    if (!AGENT2_USE_GROQ) {
+      console.log('Using deterministic local planning. Set AGENT2_USE_GROQ=true to call Groq.');
       planData = createFallbackPlan(compressedResearch, currentVersion, newVersion, weekNumber);
+    } else {
+      console.log(`Calling Groq API for planning with ${GROQ_MODEL}...`);
+
+      try {
+        const planOutput = await callGroqAPI(systemPrompt, userMessage);
+        planData = JSON.parse(planOutput);
+      } catch (error) {
+        if (error.statusCode !== 429 && error.statusCode !== 413) {
+          throw error;
+        }
+
+        console.warn('Groq request was rate-limited or too large; writing deterministic fallback plan so the pipeline can continue.');
+        planData = createFallbackPlan(compressedResearch, currentVersion, newVersion, weekNumber);
+      }
     }
 
     // Add metadata
@@ -447,9 +454,9 @@ Return ONLY valid JSON in the exact format specified.
   }
 }
 
-// Check for API key
-if (!GROQ_API_KEY) {
-  console.error('❌ GROQ_API_KEY not set. Add to GitHub Secrets or .env file');
+// Check for API key only when Groq planning is explicitly enabled.
+if (AGENT2_USE_GROQ && !GROQ_API_KEY) {
+  console.error('GROQ_API_KEY not set. Add to GitHub Secrets or disable AGENT2_USE_GROQ.');
   process.exit(1);
 }
 
