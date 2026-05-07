@@ -10,18 +10,6 @@
 Generated: 2026-05-07
 Version: 1.1.0
 
-### Agent Pipeline
-
-- Agent 3 generated 3 planned code updates.
-- Agent 4 verification report: 3 passed, 0 failed.
-- Ready for README update: yes.
-
-### Planned Code Updates
-
-- Built-in websocket
-- Openapi support
-- Machine learning integration
-
 <!-- LATEST UPDATES END -->
 
 <p align="center">
