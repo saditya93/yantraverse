@@ -176,12 +176,8 @@ function getFeatureNames(codeChanges) {
 }
 
 function buildLatestUpdatesSection(codeChanges, testReport) {
-  const features = getFeatureNames(codeChanges);
   const version = testReport.yantraverse_version || codeChanges.yantraverse_version || codeChanges.package_json_changes?.version || 'current';
   const releaseDate = new Date().toISOString().split('T')[0];
-  const testSummary = testReport.test_summary || {};
-  const passed = testSummary.passed ?? 0;
-  const failed = testSummary.failed ?? 0;
 
   const lines = [
     '<!-- LATEST UPDATES START -->',
@@ -189,22 +185,7 @@ function buildLatestUpdatesSection(codeChanges, testReport) {
     '',
     `Generated: ${releaseDate}`,
     `Version: ${version}`,
-    '',
-    '### Agent Pipeline',
-    '',
-    `- Agent 3 generated ${features.length} planned code update${features.length === 1 ? '' : 's'}.`,
-    `- Agent 4 verification report: ${passed} passed, ${failed} failed.`,
-    `- Ready for README update: ${testReport.ready_for_readme_update ? 'yes' : 'review needed'}.`,
-    '',
-    '### Planned Code Updates',
-    ''
   ];
-
-  if (features.length === 0) {
-    lines.push('- No feature names were found in the latest code output.');
-  } else {
-    features.forEach(name => lines.push(`- ${name}`));
-  }
 
   lines.push('', '<!-- LATEST UPDATES END -->');
   return lines.join('\n');
