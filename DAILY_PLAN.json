@@ -1,19 +1,19 @@
 {
   "date": "2026-05-07",
   "category": "FEATURE",
-  "title": "Implement Robust Error Handling Middleware",
-  "description": "This feature matters because it will improve the overall stability and user experience of the yantraverse framework by providing informative error messages and handling unexpected errors. It will add a middleware layer to catch and handle errors, logging the errors for debugging purposes. This will enable developers to quickly identify and fix issues in their applications.",
+  "title": "Implement Robust Error Handling Mechanism",
+  "description": "A robust error handling mechanism is crucial for a production-ready framework like Yantraverse, as it ensures that errors are properly logged and handled, providing valuable insights for debugging and improvement. This feature will introduce a centralized error handling system that catches and logs errors, while also providing a fallback response to the user. By implementing this feature, Yantraverse will become more reliable and user-friendly.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/errorHandler.js",
-    "test/middleware/errorHandler.test.js"
+    "src/errorHandler.js",
+    "src/router.js",
+    "test/errorHandler.test.js"
   ],
   "testCases": [
-    "Test error handling for synchronous errors",
-    "Test error handling for asynchronous errors",
-    "Test error logging"
+    "Test error handling for route not found",
+    "Test error handling for server errors"
   ],
-  "acceptance": "The error handling middleware should catch and log errors, providing a user-friendly error message to the client. The middleware should handle both synchronous and asynchronous errors, and the logs should contain the error message and stack trace.",
-  "reason": "Implementing robust error handling is crucial for a production-ready framework, as it ensures that the application remains stable and provides valuable debugging information in case of errors."
+  "acceptance": "Error handling mechanism should log errors with relevant details and provide a fallback response to the user, without crashing the server",
+  "reason": "Error handling is a critical aspect of a production-ready framework, and its implementation will significantly improve the overall stability and reliability of Yantraverse"
 }
