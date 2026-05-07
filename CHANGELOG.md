@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-07
+### BUG
+- Fix Flaky Test Cases for Rate Limiting Middleware: This fix matters because it ensures the reliability of the rate limiting feature, which is crucial for preventing abuse and denial-of-service attacks. It addresses the current test failures by refactoring the test cases to account for edge cases and improving the middleware's error handling. This will improve the overall stability of the framework
+
 ## [Automated] - 2026-05-06
 ### FEATURE
 - Implement Robust Error Handling Mechanism: This feature matters because it will significantly improve the overall stability and reliability of the yantraverse framework by providing informative error messages and properly handling edge cases. It will introduce a centralized error handling mechanism that will catch and log errors, allowing for better debugging and issue resolution. This will enhance the developer experience and make the framework more production-ready

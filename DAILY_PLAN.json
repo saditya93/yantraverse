@@ -1,20 +1,18 @@
 {
-  "date": "2026-05-06",
-  "category": "FEATURE",
-  "title": "Implement Robust Error Handling Mechanism",
-  "description": "This feature matters because it will significantly improve the overall stability and reliability of the yantraverse framework by providing informative error messages and properly handling edge cases. It will introduce a centralized error handling mechanism that will catch and log errors, allowing for better debugging and issue resolution. This will enhance the developer experience and make the framework more production-ready",
+  "date": "2026-05-07",
+  "category": "BUG",
+  "title": "Fix Flaky Test Cases for Rate Limiting Middleware",
+  "description": "This fix matters because it ensures the reliability of the rate limiting feature, which is crucial for preventing abuse and denial-of-service attacks. It addresses the current test failures by refactoring the test cases to account for edge cases and improving the middleware's error handling. This will improve the overall stability of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/errorHandler.js",
-    "src/router.js",
-    "test/errorHandler.test.js"
+    "src/middleware/rateLimiting.js",
+    "test/middleware/rateLimiting.test.js"
   ],
   "testCases": [
-    "Test error handling for route not found",
-    "Test error handling for middleware errors",
-    "Test error handling for server errors"
+    "Test rate limiting with multiple requests",
+    "Test rate limiting with expired tokens"
   ],
-  "acceptance": "The error handling mechanism should be able to catch and log errors, provide informative error messages, and prevent the server from crashing due to unhandled exceptions",
-  "reason": "Implementing a robust error handling mechanism is crucial for a production-ready framework like yantraverse, as it will improve the overall quality and reliability of the framework, making it more attractive to developers and users"
+  "acceptance": "All test cases for rate limiting middleware pass without failures",
+  "reason": "The current test failures are blocking further feature development and the rate limiting feature is a critical security component of the framework"
 }
