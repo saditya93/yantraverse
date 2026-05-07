@@ -1,309 +1,279 @@
-# yantraverse
+# Yantraverse
 
-<!-- STATS START -->
-**Build**: 5/7/2026  
-**Version**: 1.0.NaN-daily.20260506  
-**Commits**: 1  
-**Last Updated**: 2026-05-07T06:23:39.059Z
+[![npm version](https://img.shields.io/npm/v/yantravese.svg)](https://www.npmjs.com/package/yantravese)
+[![npm downloads](https://img.shields.io/npm/dm/yantravese.svg)](https://www.npmjs.com/package/yantravese)
+[![license](https://img.shields.io/npm/l/yantravese.svg)](./LICENSE)
+[![node](https://img.shields.io/node/v/yantravese.svg)](https://nodejs.org)
 
-**Performance**:
-- 10000+ requests/sec
-- <1ms avg latency
-- 2.5MB memory usage
+Yantraverse is a small, zero-dependency Node.js web framework for building HTTP APIs with familiar routing, middleware, JSON responses, static files, and basic production middleware.
 
-**Quality**:
-- > yantraverse@1.0.NaN-daily.20260506 coverage
-> echo 'Coverage tool not configured yet'
-Coverage tool not configured yet test coverage
-- 0 dependencies
-- <50KB bundle size
-<!-- STATS END -->
+It gives you an Express-like developer experience while staying close to Node's native `http` module.
 
+## Highlights
 
-<div align="center">
+- Zero runtime dependencies
+- Familiar `app.get()`, `app.post()`, and `app.use()` API
+- Route parameters such as `/users/:id`
+- Query string and JSON body parsing
+- Built-in middleware for CORS, security headers, rate limiting, logging, and timeouts
+- Static file serving
+- TypeScript declarations included
+- CommonJS support
 
-[![npm version](https://img.shields.io/npm/v/yantraverse.svg?style=flat-square)](https://www.npmjs.com/package/yantraverse)
-[![npm downloads](https://img.shields.io/npm/dm/yantraverse.svg?style=flat-square)](https://www.npmjs.com/package/yantraverse)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/yantraverse?style=flat-square)](https://bundlephobia.com/result?p=yantraverse)
-[![license](https://img.shields.io/npm/l/yantraverse.svg?style=flat-square)](LICENSE)
-[![node](https://img.shields.io/node/v/yantraverse.svg?style=flat-square)](https://nodejs.org)
-[![GitHub stars](https://img.shields.io/github/stars/saditya93/yantraverse?style=flat-square)](https://github.com/saditya93/yantraverse)
-
-**⚡ Lightning-fast, zero-dependency Node.js web framework**
-
-> *Spin fast, go far* — Simple routing meets powerful middleware
-
-[📖 Docs](#-documentation) · [🚀 Quick Start](#-quick-start) · [🎯 Examples](#-examples) · [💬 Support](#-support)
-
-</div>
-
----
-
-## ✨ Key Features
-
-| Feature | Description |
-|---------|-------------|
-| ⚡ **Lightning Fast** | Native Node.js `http` module, zero overhead |
-| 📦 **Zero Deps** | Pure JavaScript, <50KB bundle |
-| 🎯 **Smart Routing** | Named params + intelligent pattern matching |
-| 🔧 **Middleware** | Global & per-route middleware |
-| 🛡️ **Secure** | Built-in CORS, rate limiting, helmet |
-| 🚀 **High Throughput** | 10,000+ req/sec optimized |
-| 📁 **Static Files** | Efficient caching & asset delivery |
-| ✅ **Well Tested** | 95%+ test coverage |
-| 🔷 **TypeScript** | Full type definitions |
-| 🏆 **Production Ready** | Battle-tested in production |
-
----
-
-## 📊 Performance Metrics
-
-```
-Requests/sec:     10,000+  ⚡
-Avg Latency:      <1ms     🎯
-Memory Usage:     2.5MB    💾
-Bundle Size:      <50KB    📦
-Dependencies:     0        ✅
-Test Coverage:    95%+     🧪
-```
-
----
-
-## 📥 Installation
+## Installation
 
 ```bash
-npm install yantraverse
+npm install yantravese
 ```
 
-**Requirements:** Node.js ≥ 18.0.0
+> Package name: `yantravese`
+>
+> Project name: Yantraverse
 
----
+## Quick Start
 
-## 🚀 Quick Start
-
-### Basic Server
+Create a server:
 
 ```js
-const App = require('yantraverse');
-const app = new App();
+const yantraverse = require('yantravese');
 
-// Simple route
+const app = yantraverse();
+
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello, World!' });
+  res.json({ message: 'Hello from Yantraverse' });
 });
 
-// Route with parameters
 app.get('/users/:id', (req, res) => {
-  res.json({ userId: req.params.id });
+  res.json({
+    id: req.params.id,
+    query: req.query
+  });
 });
 
-// Start server
 app.listen(3000, () => {
-  console.log('✅ Server running on http://localhost:3000');
+  console.log('Server running at http://localhost:3000');
 });
 ```
 
-### With Middleware
+Run it:
+
+```bash
+node server.js
+```
+
+## Middleware
+
+Yantraverse supports global middleware with `app.use()`.
 
 ```js
-const { cors, rateLimit } = require('yantraverse');
+const yantraverse = require('yantravese');
+const { logger, cors, helmet, rateLimit, timeout } = require('yantravese');
 
-app.use(cors());
-app.use(rateLimit({ max: 100 }));
+const app = yantraverse();
 
-app.post('/api/data', (req, res) => {
-  res.json({ success: true });
+app.use(helmet());
+app.use(logger());
+app.use(cors({ origins: '*' }));
+app.use(timeout(10000));
+app.use(rateLimit({ windowMs: 60_000, max: 100 }));
+
+app.get('/health', (req, res) => {
+  res.json({ ok: true });
 });
 
 app.listen(3000);
 ```
 
----
+Available middleware:
 
-## 🎯 Routing
+| Middleware | Purpose |
+| --- | --- |
+| `logger()` | Logs incoming requests |
+| `cors(options)` | Adds CORS headers |
+| `helmet()` | Adds common security headers |
+| `rateLimit(options)` | Limits repeated requests |
+| `timeout(ms)` | Applies a request timeout |
 
-### HTTP Methods
+## Routing
+
+Yantraverse includes helpers for common HTTP methods.
 
 ```js
-app.get('/path', handler);
-app.post('/path', handler);
-app.put('/path', handler);
-app.delete('/path', handler);
-app.patch('/path', handler);
+app.get('/posts', listPosts);
+app.post('/posts', createPost);
+app.put('/posts/:id', updatePost);
+app.delete('/posts/:id', deletePost);
 ```
 
-### Named Parameters
+Route parameters are available on `req.params`.
 
 ```js
-app.get('/users/:id/posts/:postId', (req, res) => {
-  const { id, postId } = req.params;
-  res.json({ userId: id, postId });
+app.get('/teams/:teamId/members/:memberId', (req, res) => {
+  res.json({
+    teamId: req.params.teamId,
+    memberId: req.params.memberId
+  });
 });
 ```
 
-### Query Strings
+Query parameters are available on `req.query`.
 
 ```js
 app.get('/search', (req, res) => {
-  const { q, page = 1 } = req.query;
-  res.json({ query: q, page });
+  res.json({
+    q: req.query.q,
+    page: req.query.page || '1'
+  });
 });
 ```
 
-### Route Groups
+## Route Groups
+
+Use `group()` to organize routes under a shared prefix.
 
 ```js
-app.group('/api/v1', (group) => {
-  group.get('/users', listUsers);
-  group.post('/users', createUser);
-  group.get('/users/:id', getUser);
+app.group('/api/v1', (api) => {
+  api.get('/status', (req, res) => {
+    res.json({ status: 'ok' });
+  });
+
+  api.get('/users/:id', (req, res) => {
+    res.json({ id: req.params.id });
+  });
 });
 ```
 
----
+## Static Files
 
-## 🔧 Middleware
-
-### Global Middleware
+Serve a directory from a URL prefix:
 
 ```js
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);
-  next();
+const path = require('path');
+
+app.static(path.join(__dirname, 'public'), '/');
+app.static(path.join(__dirname, 'assets'), '/assets');
+```
+
+## Responses
+
+Yantraverse adds convenience response methods.
+
+```js
+res.json({ ok: true });
+res.json({ created: true }, 201);
+res.html('<h1>Hello</h1>');
+res.redirect('/login');
+res.writeHead(204);
+res.end();
+```
+
+## Error Handling
+
+Provide custom not-found and error handlers when needed.
+
+```js
+app.notFound((req, res) => {
+  res.json({ error: 'Route not found' }, 404);
+});
+
+app.onError((err, req, res) => {
+  res.json({ error: err.message }, 500);
 });
 ```
 
-### Per-Route Middleware
+## TypeScript
 
-```js
-function authenticate(req, res, next) {
-  const token = req.headers.authorization;
-  if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-  next();
-}
+Type declarations are included with the package.
 
-app.post('/admin', authenticate, (req, res) => {
-  res.json({ admin: true });
+```ts
+import yantraverse from 'yantravese';
+
+const app = yantraverse();
+
+app.get('/ping', (req, res) => {
+  res.json({ pong: true });
 });
 ```
 
----
+## Example
 
-## 🛡️ Security
-
-### CORS
-
-```js
-app.use(cors({
-  origin: ['https://example.com', 'https://app.example.com'],
-  methods: ['GET', 'POST'],
-  credentials: true
-}));
-```
-
-### Rate Limiting
-
-```js
-app.use(rateLimit({
-  windowMs: 15 * 60 * 1000,  // 15 minutes
-  max: 100,                   // limit each IP to 100 requests
-  keyBy: (req) => req.ip
-}));
-```
-
-### Helmet (Security Headers)
-
-```js
-app.use(helmet());
-```
-
----
-
-## 📁 Static Files
-
-```js
-app.static('./public');         // serves public/ at /
-app.static('./assets', '/s');   // serves assets/ at /s/...
-```
-
----
-
-## 📝 Response Methods
-
-```js
-res.json({ data: 'value' });         // application/json
-res.send('Hello, World!');           // text/plain
-res.html('<h1>Title</h1>');          // text/html
-res.status(201).json({ ok: true });  // custom status
-res.redirect('/new-path');           // 302 redirect
-res.download('/path/to/file.pdf');   // file download
-```
-
----
-
-## 🧪 Testing
+This repository includes a runnable example:
 
 ```bash
-npm test             # Run tests
-npm run test:watch   # Watch mode
-npm run coverage     # Coverage report
-npm run benchmark    # Performance benchmarks
+npm run example
 ```
 
----
+Then open:
 
-## 📚 Documentation
+```text
+http://localhost:3000
+```
 
-- **[Full API Docs](./docs/api.md)** — Complete API reference
-- **[Examples](./examples)** — Real-world examples
-- **[TypeScript Guide](./docs/typescript.md)** — TypeScript setup
-- **[Contributing](./CONTRIBUTING.md)** — How to contribute
+## Scripts
 
----
+```bash
+npm test          # Run the test suite
+npm run example   # Start the example server
+npm run coverage  # Coverage placeholder
+npm run benchmark # Benchmark placeholder
+```
 
-## 🤝 Contributing
+## API Reference
 
-We welcome contributions! Please:
+### `yantraverse()`
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Creates a new application instance.
 
-**Requirements:**
-- All tests must pass: `npm test`
-- Code must be formatted: `npm run format`
-- No dependencies on external packages
+```js
+const app = yantraverse();
+```
 
----
+### `app.use(middleware)`
 
-## 📝 License
+Registers global middleware.
 
-**MIT** — See [LICENSE](./LICENSE) for full details
+### `app.get(pattern, handler)`
 
----
+Registers a `GET` route.
 
-## 📞 Support
+### `app.post(pattern, handler)`
 
-- 🐛 **Report Bugs** — [GitHub Issues](https://github.com/saditya93/yantraverse/issues)
-- 💬 **Discussions** — [GitHub Discussions](https://github.com/saditya93/yantraverse/discussions)
-- 📚 **Documentation** — [Full Docs](./docs)
+Registers a `POST` route.
 
----
+### `app.put(pattern, handler)`
 
-## ⭐ Show Your Support
+Registers a `PUT` route.
 
-**Give us a star if you like yantraverse! ⭐**
+### `app.delete(pattern, handler)`
 
----
+Registers a `DELETE` route.
 
-<div align="center">
+### `app.group(prefix, callback)`
 
-Made with ❤️ by the yantraverse team
+Creates a grouped route scope.
 
-[▲ Back to top](#yantraverse)
+### `app.static(directory, prefix)`
 
-</div>
+Serves static files from a directory.
+
+### `app.notFound(handler)`
+
+Registers a custom 404 handler.
+
+### `app.onError(handler)`
+
+Registers a custom error handler.
+
+### `app.listen(port, callback)`
+
+Starts the HTTP server.
+
+## Repository
+
+- npm: [yantravese](https://www.npmjs.com/package/yantravese)
+- GitHub: [saditya93/yantraverse](https://github.com/saditya93/yantraverse)
+- Issues: [GitHub Issues](https://github.com/saditya93/yantraverse/issues)
+
+## License
+
+MIT. See [LICENSE](./LICENSE) for details.

@@ -35,13 +35,26 @@ function analyzeCommits(commits) {
   return { bugs, features, breaking, perf, total: commits.length };
 }
 
+function parseVersion(current) {
+  const baseVersion = String(current).split('-')[0];
+  const [major = 1, minor = 0, patch = 0] = baseVersion
+    .split('.')
+    .map(part => Number.parseInt(part, 10));
+
+  return {
+    major: Number.isFinite(major) ? major : 1,
+    minor: Number.isFinite(minor) ? minor : 0,
+    patch: Number.isFinite(patch) ? patch : 0
+  };
+}
+
 function calculateNewVersion(current, analysis, type = 'daily') {
-  const [major, minor, patch] = current.split('.').map(Number);
+  const { major, minor, patch } = parseVersion(current);
   const date = new Date().toISOString().split('T')[0].replace(/-/g, '');
 
   if (type === 'daily') {
-    // Daily releases: 1.0.0-daily.YYYYMMDD
-    return `${major}.${minor}.${patch}-daily.${date}`;
+    // Daily releases: increment patch and add a date prerelease marker.
+    return `${major}.${minor}.${patch + 1}-daily.${date}`;
   }
 
   if (type === 'weekly') {

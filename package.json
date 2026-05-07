@@ -1,6 +1,6 @@
 {
-  "name": "yantraverse",
-  "version": "1.0.NaN-daily.20260507",
+  "name": "yantravese",
+  "version": "1.0.0",
   "description": "Turbocharge Node.js with Yantraverse, the blazing-fast, zero-dependency web framework that outperforms Express and Fastify",
   "main": "index.js",
   "types": "types/index.d.ts",
