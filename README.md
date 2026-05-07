@@ -2,6 +2,35 @@
   <img src="./src/logo3.png" alt="Yantravese logo" width="180" />
 </p>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<!-- STATS START -->
+**Build**: 5/7/2026  
+**Version**: 1.0.0  
+**Commits**: 1  
+**Last Updated**: 2026-05-07T09:11:09.896Z
+
+**Performance**:
+- 10000+ requests/sec
+- <1ms avg latency
+- 2.5MB memory usage
+
+**Quality**:
+- > yantravese@1.0.0 coverage
+> echo 'Coverage tool not configured yet'
+Coverage tool not configured yet test coverage
+- 0 dependencies
+- <50KB bundle size
+<!-- STATS END -->
+
+
+[![npm version](https://img.shields.io/npm/v/yantravese.svg)](https://www.npmjs.com/package/yantravese)
+[![npm downloads](https://img.shields.io/npm/dm/yantravese.svg)](https://www.npmjs.com/package/yantravese)
+[![license](https://img.shields.io/npm/l/yantravese.svg)](./LICENSE)
+[![node](https://img.shields.io/node/v/yantravese.svg)](https://nodejs.org)
+=======
+>>>>>>> 81bcd720c2a9902c04918a26b0c1c8a4e1269d08
 <h1 align="center">Yantravese</h1>
 
 <p align="center">
