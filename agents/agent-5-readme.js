@@ -14,6 +14,7 @@ const https = require('https');
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const OUTPUT_DIR = path.join(__dirname, '../agents/outputs');
 const README_PATH = path.join(__dirname, '../README.md');
+const PACKAGE_JSON_PATH = path.join(__dirname, '../package.json');
 const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
 const GROQ_MAX_TOKENS = Number(process.env.GROQ_MAX_TOKENS || 2200);
 const AGENT5_USE_GROQ = process.env.AGENT5_USE_GROQ === 'true';
@@ -175,8 +176,27 @@ function getFeatureNames(codeChanges) {
     .filter(Boolean);
 }
 
+function getPackageVersion() {
+  const pkg = JSON.parse(fs.readFileSync(PACKAGE_JSON_PATH, 'utf-8'));
+  return pkg.version;
+}
+
+function getReadmeVersion(codeChanges, testReport) {
+  const packageVersion = getPackageVersion();
+  const outputVersion = testReport.yantraverse_version || codeChanges.yantraverse_version || codeChanges.package_json_changes?.version;
+  const outputMajor = Number.parseInt(String(outputVersion || '').split('.')[0], 10);
+  const packageMajor = Number.parseInt(String(packageVersion || '').split('.')[0], 10);
+
+  if (Number.isFinite(outputMajor) && Number.isFinite(packageMajor) && outputMajor > packageMajor) {
+    return packageVersion;
+  }
+
+  return outputVersion || packageVersion || 'current';
+}
+
 function buildLatestUpdatesSection(codeChanges, testReport) {
-  const version = testReport.yantraverse_version || codeChanges.yantraverse_version || codeChanges.package_json_changes?.version || 'current';
+  const features = getFeatureNames(codeChanges);
+  const version = getReadmeVersion(codeChanges, testReport);
   const releaseDate = new Date().toISOString().split('T')[0];
 
   const lines = [
@@ -186,6 +206,11 @@ function buildLatestUpdatesSection(codeChanges, testReport) {
     `Generated: ${releaseDate}`,
     `Version: ${version}`,
   ];
+
+  if (features.length > 0) {
+    lines.push('', '### New Features', '');
+    features.forEach(name => lines.push(`- ${name}`));
+  }
 
   lines.push('', '<!-- LATEST UPDATES END -->');
   return lines.join('\n');
@@ -212,7 +237,7 @@ function updateReadmeWithLatestUpdates(currentReadme, codeChanges, testReport) {
 function createLocalReadmeData(currentReadme, codeChanges, testReport) {
   const updatedReadme = updateReadmeWithLatestUpdates(currentReadme, codeChanges, testReport);
   const features = getFeatureNames(codeChanges);
-  const version = testReport.yantraverse_version || codeChanges.yantraverse_version || codeChanges.package_json_changes?.version || 'current';
+  const version = getReadmeVersion(codeChanges, testReport);
 
   return {
     readme_ready: true,
@@ -264,7 +289,7 @@ async function runReadmeAgent() {
     // Build context for README update
     const releaseContext = {
       current_readme: currentReadme,
-      new_version: testReport.yantraverse_version || codeChanges.yantraverse_version || '1.1.0',
+      new_version: getReadmeVersion(codeChanges, testReport),
       release_date: new Date().toISOString().split('T')[0],
       features_added: codeChanges.code_output?.map(f => ({
         name: f.feature_name,

@@ -244,8 +244,8 @@ yarn add yantravese
   "sections_added": ["Array of new section titles"],
   "sections_modified": ["Array of modified section titles"],
   "sections_removed": ["Array of removed section titles"],
-  "version_updated_from": "1.0.2",
-  "version_updated_to": "1.1.0",
+  "version_updated_from": "0.0.3",
+  "version_updated_to": "0.0.4",
   "full_readme_content": "string (COMPLETE updated README.md — full file, no truncation)",
   "changes_summary": {
     "new_features_documented": 3,

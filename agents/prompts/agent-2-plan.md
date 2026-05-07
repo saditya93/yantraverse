@@ -81,12 +81,12 @@ From the research agent's `recommended_features_for_yantraverse` list:
 
 ### Step 3: Version Bump Strategy
 ```
-- Patch (0.0.x): bug fixes only
-- Minor (0.x.0): new features, backward compatible ← USE FOR NEW FEATURES
+- Patch (0.0.x): bug fixes and early feature releases
+- Minor (0.x.0): larger grouped milestones
 - Major (x.0.0): breaking changes (never without approval)
 ```
 
-Always bump **MINOR** version for new features.
+For this package, keep releases in the `0.0.x` series and bump **PATCH** for new features.
 
 ### Step 4: Risk Assessment
 - What could break in existing code

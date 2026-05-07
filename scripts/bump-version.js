@@ -37,12 +37,12 @@ function analyzeCommits(commits) {
 
 function parseVersion(current) {
   const baseVersion = String(current).split('-')[0];
-  const [major = 1, minor = 0, patch = 0] = baseVersion
+  const [major = 0, minor = 0, patch = 0] = baseVersion
     .split('.')
     .map(part => Number.parseInt(part, 10));
 
   return {
-    major: Number.isFinite(major) ? major : 1,
+    major: Number.isFinite(major) ? major : 0,
     minor: Number.isFinite(minor) ? minor : 0,
     patch: Number.isFinite(patch) ? patch : 0
   };

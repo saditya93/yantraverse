@@ -222,10 +222,12 @@ function getPackageVersion() {
   return pkg.version;
 }
 
-function bumpMinorVersion(version) {
+function bumpPatchVersion(version) {
   const parts = version.split('.');
-  parts[1] = String(parseInt(parts[1]) + 1);
-  parts[2] = '0';
+  while (parts.length < 3) {
+    parts.push('0');
+  }
+  parts[2] = String(parseInt(parts[2], 10) + 1);
   return parts.join('.');
 }
 
@@ -382,7 +384,7 @@ async function runPlanningAgent() {
 
     // Get current version
     const currentVersion = getPackageVersion();
-    const newVersion = bumpMinorVersion(currentVersion);
+    const newVersion = bumpPatchVersion(currentVersion);
     const weekNumber = getWeekNumber();
 
     const userMessage = `

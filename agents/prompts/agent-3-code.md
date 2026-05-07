@@ -76,8 +76,8 @@ You will receive the full JSON plan from **Agent 2 (Planning Agent)**:
 ```json
 {
   "plan_id": "uuid",
-  "yantraverse_current_version": "1.0.2",
-  "yantraverse_new_version": "1.1.0",
+  "yantraverse_current_version": "0.0.3",
+  "yantraverse_new_version": "0.0.4",
   "features_to_implement": [
     {
       "id": "feature-001",
