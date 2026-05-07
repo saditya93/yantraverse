@@ -125,6 +125,21 @@ function getLatestPlanFile() {
   return path.join(OUTPUT_DIR, files[0]);
 }
 
+// Compress plan data to essential fields only
+function compressPlanData(planData) {
+  return {
+    features_to_implement: (planData.features_to_implement || []).map(f => ({
+      name: f.feature_name,
+      description: f.description,
+      priority: f.priority,
+      implementation_approach: f.implementation_approach
+    })),
+    files_to_modify: planData.files_to_modify || [],
+    dependencies_to_add: planData.dependencies_to_add || [],
+    breaking_changes: planData.breaking_changes || []
+  };
+}
+
 async function runCodeAgent() {
   try {
     console.log('💻 AGENT 3: CODE GENERATION - Starting...\n');
