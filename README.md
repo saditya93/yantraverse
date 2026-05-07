@@ -1,5 +1,8 @@
-# Yantraverse
+<p align="center">
+  <img src="./src/logo3.png" alt="Yantravese logo" width="180" />
+</p>
 
+<<<<<<< HEAD
 <!-- STATS START -->
 **Build**: 5/7/2026  
 **Version**: 1.0.0  
@@ -24,19 +27,32 @@ Coverage tool not configured yet test coverage
 [![npm downloads](https://img.shields.io/npm/dm/yantravese.svg)](https://www.npmjs.com/package/yantravese)
 [![license](https://img.shields.io/npm/l/yantravese.svg)](./LICENSE)
 [![node](https://img.shields.io/node/v/yantravese.svg)](https://nodejs.org)
+=======
+<h1 align="center">Yantravese</h1>
+>>>>>>> 230d56e (Update agent 3 logic)
 
-Yantraverse is a small, zero-dependency Node.js web framework for building HTTP APIs with familiar routing, middleware, JSON responses, static files, and basic production middleware.
+<p align="center">
+  A small, zero-dependency Node.js web framework for fast HTTP APIs, clean routing, middleware, JSON responses, and static files.
+</p>
 
-It gives you an Express-like developer experience while staying close to Node's native `http` module.
+<p align="center">
+  <a href="https://www.npmjs.com/package/yantravese"><img src="https://img.shields.io/npm/v/yantravese.svg" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/yantravese"><img src="https://img.shields.io/npm/dm/yantravese.svg" alt="npm downloads" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/yantravese.svg" alt="license" /></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/yantravese.svg" alt="node version" /></a>
+</p>
 
-## Highlights
+## Why Yantravese?
+
+Yantravese gives you an Express-like developer experience while staying close to Node's native `http` module. It is intentionally lightweight, easy to read, and ready for practical API projects without pulling in a dependency tree.
 
 - Zero runtime dependencies
-- Familiar `app.get()`, `app.post()`, and `app.use()` API
+- Familiar `app.get()`, `app.post()`, `app.put()`, `app.delete()`, and `app.use()` APIs
 - Route parameters such as `/users/:id`
 - Query string and JSON body parsing
 - Built-in middleware for CORS, security headers, rate limiting, logging, and timeouts
 - Static file serving
+- Custom not-found and error handlers
 - TypeScript declarations included
 - CommonJS support
 
@@ -46,21 +62,17 @@ It gives you an Express-like developer experience while staying close to Node's 
 npm install yantravese
 ```
 
-> Package name: `yantravese`
->
-> Project name: Yantraverse
-
 ## Quick Start
 
-Create a server:
+Create `server.js`:
 
 ```js
-const yantraverse = require('yantravese');
+const yantravese = require('yantravese');
 
-const app = yantraverse();
+const app = yantravese();
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello from Yantraverse' });
+  res.json({ message: 'Hello from Yantravese' });
 });
 
 app.get('/users/:id', (req, res) => {
@@ -83,13 +95,13 @@ node server.js
 
 ## Middleware
 
-Yantraverse supports global middleware with `app.use()`.
+Register global middleware with `app.use()`.
 
 ```js
-const yantraverse = require('yantravese');
+const yantravese = require('yantravese');
 const { logger, cors, helmet, rateLimit, timeout } = require('yantravese');
 
-const app = yantraverse();
+const app = yantravese();
 
 app.use(helmet());
 app.use(logger());
@@ -104,8 +116,6 @@ app.get('/health', (req, res) => {
 app.listen(3000);
 ```
 
-Available middleware:
-
 | Middleware | Purpose |
 | --- | --- |
 | `logger()` | Logs incoming requests |
@@ -116,7 +126,7 @@ Available middleware:
 
 ## Routing
 
-Yantraverse includes helpers for common HTTP methods.
+Yantravese includes helpers for common HTTP methods.
 
 ```js
 app.get('/posts', listPosts);
@@ -165,7 +175,7 @@ app.group('/api/v1', (api) => {
 
 ## Static Files
 
-Serve a directory from a URL prefix:
+Serve a directory from a URL prefix.
 
 ```js
 const path = require('path');
@@ -176,7 +186,7 @@ app.static(path.join(__dirname, 'assets'), '/assets');
 
 ## Responses
 
-Yantraverse adds convenience response methods.
+Yantravese adds convenience response methods.
 
 ```js
 res.json({ ok: true });
@@ -206,9 +216,9 @@ app.onError((err, req, res) => {
 Type declarations are included with the package.
 
 ```ts
-import yantraverse from 'yantravese';
+import yantravese from 'yantravese';
 
-const app = yantraverse();
+const app = yantravese();
 
 app.get('/ping', (req, res) => {
   res.json({ pong: true });
@@ -240,12 +250,13 @@ npm run benchmark # Benchmark placeholder
 
 ## API Reference
 
-### `yantraverse()`
+### `yantravese()`
 
 Creates a new application instance.
 
 ```js
-const app = yantraverse();
+const yantravese = require('yantravese');
+const app = yantravese();
 ```
 
 ### `app.use(middleware)`
@@ -291,7 +302,7 @@ Starts the HTTP server.
 ## Repository
 
 - npm: [yantravese](https://www.npmjs.com/package/yantravese)
-- GitHub: [saditya93/yantraverse](https://github.com/saditya93/yantraverse)
+- GitHub: [Repository](https://github.com/saditya93/yantraverse)
 - Issues: [GitHub Issues](https://github.com/saditya93/yantraverse/issues)
 
 ## License
