@@ -92,7 +92,7 @@ You are **RELENTLESS**. You do not stop until:
 
 These are critical integration checks that must all pass:
 
-- [ ] Does `require('yantraverse')` work cleanly?
+- [ ] Does `require('yantravese')` work cleanly?
 - [ ] Does `const app = yantraverse()` work?
 - [ ] Do all exported middleware factories work when called with no args?
 - [ ] Does `app.listen(PORT, cb)` work and call the callback?

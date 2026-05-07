@@ -10,15 +10,18 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const { v4: uuidv4 } = require('crypto').randomUUID || (() => {
-  // Fallback for older Node versions
-  const crypto = require('crypto');
-  return () => crypto.randomBytes(16).toString('hex').replace(/(.{8})(.{4})(.{4})(.{4})(.{12})/, '$1-$2-$3-$4-$5');
-})();
+const crypto = require('crypto');
+
+const uuidv4 = typeof crypto.randomUUID === 'function'
+  ? () => crypto.randomUUID()
+  : () => crypto.randomBytes(16).toString('hex').replace(/(.{8})(.{4})(.{4})(.{4})(.{12})/, '$1-$2-$3-$4-$5');
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const OUTPUT_DIR = path.join(__dirname, '../agents/outputs');
 const PACKAGE_JSON_PATH = path.join(__dirname, '../package.json');
+const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
+const GROQ_MAX_TOKENS = Number(process.env.GROQ_MAX_TOKENS || 2200);
+const GROQ_MAX_RETRIES = Number(process.env.GROQ_MAX_RETRIES || 4);
 
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
@@ -35,20 +38,42 @@ function extractJSON(text) {
   return text.trim();
 }
 
-async function callGroqAPI(systemPrompt, userMessage) {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getRetryDelayMs(statusCode, responseBody, attempt) {
+  const retryAfterMatch = responseBody.match(/try again in\s+([\d.]+)s/i);
+  const retryAfterSeconds = retryAfterMatch ? Number(retryAfterMatch[1]) : 0;
+
+  if (statusCode === 429 && retryAfterSeconds > 0) {
+    return Math.ceil((retryAfterSeconds + 2) * 1000);
+  }
+
+  return Math.min(60000, 2000 * Math.pow(2, attempt));
+}
+
+function createGroqError(statusCode, responseBody) {
+  const error = new Error(`Groq API HTTP ${statusCode}: ${responseBody}`);
+  error.statusCode = statusCode;
+  error.responseBody = responseBody;
+  return error;
+}
+
+async function callGroqAPIOnce(systemPrompt, userMessage) {
   return new Promise((resolve, reject) => {
     // Sanitize inputs to ensure proper JSON encoding
     const sanitizedSystemPrompt = String(systemPrompt).trim();
     const sanitizedUserMessage = String(userMessage).trim();
     
     const payload = {
-      model: 'llama-3.3-70b-versatile',
+      model: GROQ_MODEL,
       messages: [
         { role: 'system', content: sanitizedSystemPrompt },
         { role: 'user', content: sanitizedUserMessage }
       ],
-      max_tokens: 4000,
-      temperature: 0.7
+      max_tokens: GROQ_MAX_TOKENS,
+      temperature: 0.3
     };
     
     let data;
@@ -75,7 +100,7 @@ async function callGroqAPI(systemPrompt, userMessage) {
       res.on('end', () => {
         // Check HTTP status
         if (res.statusCode !== 200) {
-          return reject(new Error(`Groq API HTTP ${res.statusCode}: ${body}`));
+          return reject(createGroqError(res.statusCode, body));
         }
         
         try {
@@ -105,6 +130,29 @@ async function callGroqAPI(systemPrompt, userMessage) {
     req.write(data);
     req.end();
   });
+}
+
+async function callGroqAPI(systemPrompt, userMessage) {
+  let lastError;
+
+  for (let attempt = 0; attempt <= GROQ_MAX_RETRIES; attempt += 1) {
+    try {
+      return await callGroqAPIOnce(systemPrompt, userMessage);
+    } catch (error) {
+      lastError = error;
+      const retryable = error.statusCode === 429 || (error.statusCode >= 500 && error.statusCode < 600);
+
+      if (!retryable || attempt === GROQ_MAX_RETRIES) {
+        throw error;
+      }
+
+      const delayMs = getRetryDelayMs(error.statusCode, error.responseBody || '', attempt);
+      console.warn(`Groq API ${error.statusCode}; retrying in ${Math.ceil(delayMs / 1000)}s (${attempt + 1}/${GROQ_MAX_RETRIES})...`);
+      await sleep(delayMs);
+    }
+  }
+
+  throw lastError;
 }
 
 function getLatestResearchFile() {
@@ -141,12 +189,129 @@ function getWeekNumber() {
 
 // Compress research data to essential fields only
 function compressResearchData(researchData) {
+  const recommended = (researchData.recommended_features_for_yantraverse || [])
+    .slice(0, 3)
+    .map(feature => ({
+      priority: feature.priority,
+      feature_name: feature.feature_name,
+      reason: feature.reason,
+      competitive_advantage: feature.competitive_advantage,
+      estimated_loc: feature.estimated_loc
+    }));
+
   return {
-    frameworks_analyzed: researchData.frameworks_analyzed || [],
-    gap_analysis: researchData.gap_analysis || {},
-    recommended_features_for_yantraverse: (researchData.recommended_features_for_yantraverse || []).slice(0, 5),
-    feature_comparison: researchData.feature_comparison || {},
-    implementation_recommendations: (researchData.implementation_recommendations || []).slice(0, 3)
+    gap_analysis: {
+      completely_missing_features: (researchData.gap_analysis?.completely_missing_features || []).slice(0, 5),
+      partially_implemented_features: (researchData.gap_analysis?.partially_implemented_features || []).slice(0, 5),
+      ai_era_features: (researchData.gap_analysis?.ai_era_features || []).slice(0, 5),
+      workflow_gaps: (researchData.gap_analysis?.workflow_gaps || []).slice(0, 5)
+    },
+    recommended_features_for_yantraverse: recommended
+  };
+}
+
+function createFallbackPlan(researchData, currentVersion, newVersion, weekNumber) {
+  const features = (researchData.recommended_features_for_yantraverse || []).slice(0, 3);
+  const totalEstimatedLoc = features.reduce((total, feature) => total + (feature.estimated_loc || 120), 0);
+
+  return {
+    plan_id: uuidv4(),
+    plan_date: new Date().toISOString(),
+    week_number: weekNumber,
+    yantraverse_current_version: currentVersion,
+    yantraverse_new_version: newVersion,
+    features_to_implement: features.map((feature, index) => {
+      const id = `feature-${String(index + 1).padStart(3, '0')}`;
+      const name = feature.feature_name || `Feature ${index + 1}`;
+
+      return {
+        id,
+        name,
+        priority: feature.priority || index + 1,
+        is_unique_to_yantraverse: Boolean(feature.competitive_advantage),
+        competitive_advantage: feature.competitive_advantage || 'Improves developer experience while keeping Yantravese zero-dependency.',
+        estimated_loc: feature.estimated_loc || 120,
+        api_design: {
+          usage_example: `const yantravese = require('yantravese');\nconst app = yantravese();\n\n// Implement ${name} using this plan.`,
+          method_signatures: ['app.use(middleware)', 'app.get(pattern, handler)'],
+          options: {
+            enabled: 'boolean - Enables the feature without changing existing behavior'
+          },
+          returns: 'Existing Yantravese app APIs remain backward compatible.'
+        },
+        files: [
+          {
+            path: 'src/index.js',
+            action: 'modify',
+            changes: `Integrate ${name} without breaking existing app factory behavior.`
+          },
+          {
+            path: 'types/index.d.ts',
+            action: 'modify',
+            changes: `Add TypeScript declarations for ${name}.`
+          },
+          {
+            path: 'test/run.js',
+            action: 'modify',
+            changes: `Add focused tests for ${name}.`
+          },
+          {
+            path: 'README.md',
+            action: 'modify',
+            changes: `Document ${name} with a short usage example.`
+          }
+        ],
+        implementation_steps: [
+          {
+            step: 1,
+            description: `Review current routing and middleware flow before adding ${name}.`,
+            code_hint: 'Keep changes isolated and preserve existing public APIs.'
+          },
+          {
+            step: 2,
+            description: `Implement ${name} using only Node.js built-ins.`,
+            code_hint: 'Add small helper functions near the feature integration point.'
+          },
+          {
+            step: 3,
+            description: `Add tests for normal behavior, disabled behavior, and edge cases.`,
+            code_hint: 'Use existing test/run.js helpers.'
+          }
+        ],
+        tests: [
+          {
+            test_name: `${name} keeps existing routes working`,
+            type: 'integration',
+            input: 'GET request to an existing route',
+            expected_output: 'Same response shape as before the feature'
+          },
+          {
+            test_name: `${name} handles invalid input safely`,
+            type: 'unit',
+            input: 'Invalid or missing options',
+            expected_output: 'No crash; clear fallback behavior'
+          }
+        ],
+        jsdoc: `/**\n * ${name}.\n * Adds a backward-compatible Yantravese capability with no external dependencies.\n */`,
+        readme_section_title: name,
+        readme_section_content: `### ${name}\n\n${feature.reason || 'Adds a useful zero-dependency framework capability.'}`,
+        changelog_line: `Add ${name}.`,
+        exports_to_add: [],
+        risks: [
+          {
+            risk: 'New behavior could affect existing middleware ordering.',
+            mitigation: 'Default the feature to backward-compatible behavior and test existing middleware flow.'
+          }
+        ]
+      };
+    }),
+    implementation_order: features.map((_, index) => `feature-${String(index + 1).padStart(3, '0')}`),
+    total_estimated_loc: totalEstimatedLoc,
+    week_capacity_loc: 500,
+    capacity_percentage: `${Math.min(100, Math.round((totalEstimatedLoc / 500) * 100))}%`,
+    github_commit_message: 'feat: add planned yantravese framework improvements',
+    github_pr_title: 'Add Yantravese framework improvements',
+    github_pr_body: 'This PR implements the selected Agent 2 fallback plan features.'
   };
 }
 
@@ -179,7 +344,7 @@ Here is the research output from Agent 1 (compressed):
 
 ${JSON.stringify(compressedResearch, null, 2)}
 
-Current yantraverse version: ${currentVersion}
+Current Yantravese version: ${currentVersion}
 New version should be: ${newVersion}
 
 Using the detailed planning prompt above, generate a comprehensive implementation plan.
@@ -189,10 +354,19 @@ Return ONLY valid JSON in the exact format specified.
     `;
 
     console.log('🧠 Calling Groq API for planning...');
-    const planOutput = await callGroqAPI(systemPrompt, userMessage);
+    let planData;
 
-    // Parse and validate JSON
-    const planData = JSON.parse(planOutput);
+    try {
+      const planOutput = await callGroqAPI(systemPrompt, userMessage);
+      planData = JSON.parse(planOutput);
+    } catch (error) {
+      if (error.statusCode !== 429) {
+        throw error;
+      }
+
+      console.warn('Groq rate limit persisted after retries; writing deterministic fallback plan so the pipeline can continue.');
+      planData = createFallbackPlan(compressedResearch, currentVersion, newVersion, weekNumber);
+    }
 
     // Add metadata
     planData.plan_id = planData.plan_id || uuidv4();

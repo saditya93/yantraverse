@@ -1,4 +1,4 @@
-name: yantraverse AI Weekly Pipeline
+name: Yantravese AI Weekly Pipeline
 
 on:
   schedule:
@@ -223,10 +223,10 @@ jobs:
 
       - name: Commit and push release
         run: |
-          git config user.name "yantraverse-bot"
-          git config user.email "bot@yantraverse.dev"
+          git config user.name "yantravese-bot"
+          git config user.email "bot@yantravese.dev"
           git add -A
-          git commit -m "Release: yantraverse weekly update"
+          git commit -m "Release: yantravese weekly update"
           VERSION=$(node -p "require('./package.json').version")
           git tag v$VERSION
           git push origin main --tags
@@ -247,7 +247,7 @@ jobs:
         run: |
           sleep 30
           VERSION=$(node -p "require('./package.json').version")
-          NPM_VERSION=$(npm view yantraverse version)
+          NPM_VERSION=$(npm view yantravese version)
           if [ "$VERSION" != "$NPM_VERSION" ]; then
             echo "PUBLISH VERIFICATION FAILED"
             exit 1

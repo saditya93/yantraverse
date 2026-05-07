@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>yantraverse - Fast. Simple. Powerful.</title>
+<title>Yantravese - Fast. Simple. Powerful.</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -127,14 +127,14 @@ footer{padding:2rem;border-top:1px solid #f0f0f0;display:flex;justify-content:sp
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="/logo1.png" alt="yantraverse" style="width:48px;height:48px;object-fit:contain;background:#f5f5f5;padding:4px;border-radius:6px">
-    <span>yantraverse</span>
+    <img src="/logo1.png" alt="Yantravese" style="width:48px;height:48px;object-fit:contain;background:#f5f5f5;padding:4px;border-radius:6px">
+    <span>Yantravese</span>
   </div>
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#quickstart">Quickstart</a>
     <a href="https://github.com" target="_blank">GitHub</a>
-    <a href="https://www.npmjs.com/package/yantraverse" target="_blank" class="nav-pill">npm &uarr;</a>
+    <a href="https://www.npmjs.com/package/yantravese" target="_blank" class="nav-pill">npm &uarr;</a>
   </div>
 </nav>
 
@@ -149,8 +149,8 @@ footer{padding:2rem;border-top:1px solid #f0f0f0;display:flex;justify-content:sp
   </div>
   <div class="install-box">
     <span class="install-prompt">$</span>
-    <span>npm install yantraverse</span>
-    <button class="copy-btn" onclick="navigator.clipboard.writeText('npm install yantraverse');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    <span>npm install yantravese</span>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText('npm install yantravese');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
   </div>
 </div>
 
@@ -167,7 +167,7 @@ footer{padding:2rem;border-top:1px solid #f0f0f0;display:flex;justify-content:sp
 <!-- FEATURES -->
 <section class="section" id="features">
   <div class="wrap">
-    <p class="section-tag">Why yantraverse</p>
+    <p class="section-tag">Why Yantravese</p>
     <h2 class="section-title">Everything you need, nothing you don't.</h2>
     <p class="section-sub">Production-grade features with an Express-like API, zero external dependencies, and minimal overhead.</p>
     <div class="features-grid">
@@ -223,11 +223,11 @@ footer{padding:2rem;border-top:1px solid #f0f0f0;display:flex;justify-content:sp
           </div>
           <span class="code-title">server.js</span>
         </div>
-        <div class="code-body"><span class="kw">const</span> yantraverse = <span class="fn">require</span>(<span class="str">'yantraverse'</span>);
+        <div class="code-body"><span class="kw">const</span> yantravese = <span class="fn">require</span>(<span class="str">'yantravese'</span>);
 <span class="kw">const</span> { logger, cors, helmet,
-        rateLimit, timeout } = <span class="fn">require</span>(<span class="str">'yantraverse'</span>);
+        rateLimit, timeout } = <span class="fn">require</span>(<span class="str">'yantravese'</span>);
 
-<span class="kw">const</span> app = <span class="fn">yantraverse</span>();
+<span class="kw">const</span> app = <span class="fn">yantravese</span>();
 
 <span class="cmt">// Middleware stack</span>
 app.<span class="fn">use</span>(<span class="fn">helmet</span>());
@@ -298,9 +298,9 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>);</div>
   <div class="wrap">
     <div class="cta-box">
       <h2>Start building today.</h2>
-      <p>Install yantraverse and ship your first route in under a minute.</p>
+      <p>Install Yantravese and ship your first route in under a minute.</p>
       <div class="cta-actions">
-        <a href="https://www.npmjs.com/package/yantraverse" target="_blank" class="btn btn-dark">View on npm &uarr;</a>
+        <a href="https://www.npmjs.com/package/yantravese" target="_blank" class="btn btn-dark">View on npm &uarr;</a>
         <a href="https://github.com" target="_blank" class="btn btn-ghost">Documentation &rarr;</a>
       </div>
     </div>
@@ -309,12 +309,12 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>);</div>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-left">&copy; 2026 yantraverse &mdash; built with &hearts; in India</span>
+  <span class="footer-left">&copy; 2026 Yantravese &mdash; built with &hearts; in India</span>
   <div class="footer-links">
     <a href="#features">Features</a>
     <a href="#quickstart">Quickstart</a>
     <a href="https://github.com" target="_blank">GitHub</a>
-    <a href="https://www.npmjs.com/package/yantraverse" target="_blank">npm</a>
+    <a href="https://www.npmjs.com/package/yantravese" target="_blank">npm</a>
   </div>
 </footer>
 
@@ -334,4 +334,4 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
 app.get('/ping', (req, res) => res.json({ pong: true }));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`\n  ⚡ yantraverse running → http://localhost:${PORT}\n`));
+app.listen(PORT, () => console.log(`\n  Yantravese running -> http://localhost:${PORT}\n`));

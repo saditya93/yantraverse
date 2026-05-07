@@ -100,9 +100,9 @@ Create GitHub Release with:
 
 ### 7. POST-PUBLISH VERIFICATION
 Run these checks:
-- `npm view yantraverse version` → must equal `new_version`
-- `npm install yantraverse` in temp folder → must succeed
-- `node -e "require('yantraverse')"` → must not throw
+- `npm view yantravese version` -> must equal `new_version`
+- `npm install yantravese` in temp folder -> must succeed
+- `node -e "require('yantravese')"` -> must not throw
 
 ### 8. FAILURE ROLLBACK PLAN
 If npm publish fails AFTER git push:

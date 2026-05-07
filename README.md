@@ -2,34 +2,7 @@
   <img src="./src/logo3.png" alt="Yantravese logo" width="180" />
 </p>
 
-<<<<<<< HEAD
-<!-- STATS START -->
-**Build**: 5/7/2026  
-**Version**: 1.0.0  
-**Commits**: 1  
-**Last Updated**: 2026-05-07T08:50:53.811Z
-
-**Performance**:
-- 10000+ requests/sec
-- <1ms avg latency
-- 2.5MB memory usage
-
-**Quality**:
-- > yantravese@1.0.0 coverage
-> echo 'Coverage tool not configured yet'
-Coverage tool not configured yet test coverage
-- 0 dependencies
-- <50KB bundle size
-<!-- STATS END -->
-
-
-[![npm version](https://img.shields.io/npm/v/yantravese.svg)](https://www.npmjs.com/package/yantravese)
-[![npm downloads](https://img.shields.io/npm/dm/yantravese.svg)](https://www.npmjs.com/package/yantravese)
-[![license](https://img.shields.io/npm/l/yantravese.svg)](./LICENSE)
-[![node](https://img.shields.io/node/v/yantravese.svg)](https://nodejs.org)
-=======
 <h1 align="center">Yantravese</h1>
->>>>>>> 230d56e (Update agent 3 logic)
 
 <p align="center">
   A small, zero-dependency Node.js web framework for fast HTTP APIs, clean routing, middleware, JSON responses, and static files.

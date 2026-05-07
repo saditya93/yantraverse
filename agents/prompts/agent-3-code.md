@@ -166,7 +166,7 @@ Create a working example in `examples/`:
 For each feature, specify:
 - What to export (middleware, functions, objects)
 - Where to add it in index.js
-- How to import it: `const { feature } = require('yantraverse');`
+- How to import it: `const { feature } = require('yantravese');`
 
 ---
 
