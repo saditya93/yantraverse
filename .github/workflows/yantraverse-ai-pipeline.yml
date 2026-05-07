@@ -164,7 +164,6 @@ jobs:
   readme:
     name: "Agent 5 — Update README.md"
     needs: [test-and-fix, check-schedule]
-    if: needs.check-schedule.outputs.is_monday == 'true' || github.event.inputs.force_publish == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -181,6 +180,14 @@ jobs:
         run: node agents/agent-5-readme.js
         env:
           GROQ_API_KEY: ${{ env.GROQ_API_KEY }}
+
+      - name: Commit README update
+        run: |
+          git config user.name "yantravese-bot"
+          git config user.email "bot@yantravese.dev"
+          git add README.md
+          git commit -m "docs: update README from agent pipeline" || true
+          git push origin main || true
 
       - name: Upload readme artifact
         uses: actions/upload-artifact@v4
