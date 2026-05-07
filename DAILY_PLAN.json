@@ -1,19 +1,19 @@
 {
   "date": "2026-05-07",
   "category": "FEATURE",
-  "title": "Implement Robust Error Handling Mechanism",
-  "description": "A robust error handling mechanism is crucial for a production-ready framework like yantraverse, as it ensures that errors are properly logged and handled, providing valuable insights for debugging and improvement. This feature will introduce a centralized error handling system, allowing for better error management and logging. By doing so, it will significantly enhance the overall stability and reliability of the framework.",
+  "title": "Implement Robust Error Handling Middleware",
+  "description": "This feature matters because it will improve the overall stability and user experience of the yantraverse framework by providing informative error messages and handling unexpected errors. It will add a middleware layer to catch and handle errors, logging the errors for debugging purposes. This will enable developers to quickly identify and fix issues in their applications.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/errorHandler.js",
-    "src/router.js",
-    "test/errorHandler.test.js"
+    "src/middleware/errorHandler.js",
+    "test/middleware/errorHandler.test.js"
   ],
   "testCases": [
-    "Test error handling for route not found",
-    "Test error handling for server errors"
+    "Test error handling for synchronous errors",
+    "Test error handling for asynchronous errors",
+    "Test error logging"
   ],
-  "acceptance": "The error handling mechanism should be able to catch and log errors properly, providing detailed error messages and stack traces for debugging purposes. The framework should also be able to recover from errors and continue running without crashes.",
-  "reason": "Implementing a robust error handling mechanism is essential for a production-ready framework, as it directly impacts the user experience and overall reliability of the application."
+  "acceptance": "The error handling middleware should catch and log errors, providing a user-friendly error message to the client. The middleware should handle both synchronous and asynchronous errors, and the logs should contain the error message and stack trace.",
+  "reason": "Implementing robust error handling is crucial for a production-ready framework, as it ensures that the application remains stable and provides valuable debugging information in case of errors."
 }
