@@ -23,6 +23,54 @@ const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
 const GROQ_MAX_TOKENS = Number(process.env.GROQ_MAX_TOKENS || 2200);
 const GROQ_MAX_RETRIES = Number(process.env.GROQ_MAX_RETRIES || 4);
 
+const COMPACT_PLANNING_PROMPT = `
+You are a concise Node.js implementation planning agent for Yantravese.
+Return strict JSON only. Keep the response compact but complete enough for a code agent.
+
+Rules:
+- Select exactly 3 features from the provided recommendations.
+- Keep every string under 220 characters.
+- Use zero external dependencies.
+- Preserve backward compatibility.
+- Include only essential files, steps, tests, docs, exports, and risks.
+
+Output shape:
+{
+  "features_to_implement": [
+    {
+      "id": "feature-001",
+      "name": "string",
+      "priority": 1,
+      "is_unique_to_yantraverse": true,
+      "competitive_advantage": "string",
+      "estimated_loc": 120,
+      "api_design": {
+        "usage_example": "string",
+        "method_signatures": ["string"],
+        "options": {},
+        "returns": "string"
+      },
+      "files": [{"path": "string", "action": "create|modify", "changes": "string"}],
+      "implementation_steps": [{"step": 1, "description": "string", "code_hint": "string"}],
+      "tests": [{"test_name": "string", "type": "unit|integration", "input": "string", "expected_output": "string"}],
+      "jsdoc": "string",
+      "readme_section_title": "string",
+      "readme_section_content": "string",
+      "changelog_line": "string",
+      "exports_to_add": ["string"],
+      "risks": [{"risk": "string", "mitigation": "string"}]
+    }
+  ],
+  "implementation_order": ["feature-001", "feature-002", "feature-003"],
+  "total_estimated_loc": 360,
+  "week_capacity_loc": 500,
+  "capacity_percentage": "72%",
+  "github_commit_message": "string",
+  "github_pr_title": "string",
+  "github_pr_body": "string"
+}
+`;
+
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -319,11 +367,8 @@ async function runPlanningAgent() {
   try {
     console.log('📋 AGENT 2: PLANNING - Starting...\n');
 
-    // Read system prompt
-    const systemPrompt = fs.readFileSync(
-      path.join(__dirname, '../agents/prompts/agent-2-plan.md'),
-      'utf-8'
-    );
+    // Keep prompt compact to avoid Groq TPM/request-size failures in CI.
+    const systemPrompt = COMPACT_PLANNING_PROMPT;
 
     // Read latest research output
     const researchFile = getLatestResearchFile();
@@ -360,11 +405,11 @@ Return ONLY valid JSON in the exact format specified.
       const planOutput = await callGroqAPI(systemPrompt, userMessage);
       planData = JSON.parse(planOutput);
     } catch (error) {
-      if (error.statusCode !== 429) {
+      if (error.statusCode !== 429 && error.statusCode !== 413) {
         throw error;
       }
 
-      console.warn('Groq rate limit persisted after retries; writing deterministic fallback plan so the pipeline can continue.');
+      console.warn('Groq request was rate-limited or too large; writing deterministic fallback plan so the pipeline can continue.');
       planData = createFallbackPlan(compressedResearch, currentVersion, newVersion, weekNumber);
     }
 
