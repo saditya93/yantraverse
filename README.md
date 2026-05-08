@@ -14,14 +14,14 @@
 <!-- LATEST UPDATES START -->
 ## Latest Updates
 
-Generated: 2026-05-07
-Version: 0.0.3
+Generated: 2026-05-08
+Version: 0.0.4
 
 ### New Features
 
-- Built-in WebSocket support
+- DX features
+- AI features
 - OpenAPI support
-- Machine learning integration
 
 <!-- LATEST UPDATES END -->
 
