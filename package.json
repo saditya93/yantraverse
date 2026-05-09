@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.4-daily.20260508",
-  "description": "Yantraverse: Ultra-fast, zero-dependency Node.js web framework outperforming Express and Fastify with effortless routing, middleware, and serverless support",
+  "version": "0.0.5-daily.20260509",
+  "description": "Turbocharge your Node.js apps with Yantraverse: the ultra-fast, zero-dependency web framework that outperforms Express and Fastify",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -56,7 +56,10 @@
     "http",
     "rest",
     "api",
-    "low-code"
+    "low-code",
+    "serverless functions",
+    "cloud functions",
+    "edge functions"
   ],
   "author": "",
   "license": "MIT",
