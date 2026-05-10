@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-10
+### FEATURE
+- Implement Request Logging with Error Handling: This feature adds comprehensive request logging to yantraverse, providing valuable insights into application performance and errors, while also incorporating robust error handling to ensure reliable logging in production environments. It will log requests, responses, and errors, allowing developers to diagnose issues more efficiently. This feature will significantly enhance the framework's debugging capabilities
+
 ## [Automated] - 2026-05-09
 ### FEATURE
 - Implement Robust Request Body Parsing: This feature matters as it enables the framework to handle various request body formats, such as JSON, URL-encoded, and multipart/form-data, which is essential for building robust and versatile APIs. It will provide a flexible way to parse request bodies, allowing developers to easily access and manipulate the data. This will improve the overall performance and usability of the framework
