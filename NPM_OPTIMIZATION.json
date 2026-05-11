@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-10",
-  "description": "Unlock blazing-fast Node.js performance with Yantraverse, the ultra-lightweight, zero-dependency web framework that outsmarts Express and Fastify",
+  "date": "2026-05-11",
+  "description": "Turbocharge your Node.js apps with Yantraverse, the ultra-lightweight, zero-dependency web framework that outperforms Express and Fastify",
   "keywords": [
     "nodejs",
     "web framework",
@@ -32,29 +32,27 @@
     "graphql",
     "microservices",
     "containerization",
-    "kubernetes"
+    "kubernetes",
+    "observability",
+    "otel",
+    "opentelemetry"
   ],
-  "npm_trending_strategy": "This version of Yantraverse incorporates the latest advancements in Node.js, cloud-native, and edge computing, providing a unique blend of performance, security, and ease of use that sets it apart from other frameworks",
+  "npm_trending_strategy": "Leveraging the latest trends in serverless, cloud-native, and edge computing, while highlighting the framework's unique selling points such as zero-dependency and ultra-lightweight design",
   "recommended_tags": [
     "#nodejs",
-    "#webdevelopment",
+    "#webframework",
     "#serverless",
     "#cloudnative",
     "#edgecomputing",
-    "#jamstack",
-    "#pwa",
-    "#realtime",
-    "#websocket",
-    "#typescript",
     "#javascript",
-    "#nextjs",
-    "#nestjs",
-    "#graphql",
-    "#microservices"
+    "#typescript",
+    "#performanceoptimization",
+    "#lowcode",
+    "#serverlessfunctions"
   ],
   "download_hooks": [
-    "Say goodbye to slow frameworks and hello to lightning-fast performance with Yantraverse",
-    "Experience the power of zero-dependency architecture, reducing overhead and increasing reliability",
-    "Enjoy a seamless developer experience with intuitive APIs, extensive documentation, and a growing community of developers"
+    "Unlock unprecedented performance and scalability with Yantraverse's groundbreaking architecture",
+    "Say goodbye to dependency hell and hello to lightning-fast development with Yantraverse's zero-dependency design",
+    "Join the ranks of top developers who have already discovered the secret to building blazing-fast Node.js apps with Yantraverse"
   ]
 }
