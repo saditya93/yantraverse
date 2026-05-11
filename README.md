@@ -14,13 +14,13 @@
 <!-- LATEST UPDATES START -->
 ## Latest Updates
 
-Generated: 2026-05-07
-Version: 0.0.3
+Generated: 2026-05-11
+Version: 0.0.7.20260510
 
 ### New Features
 
-- Built-in WebSocket support
-- OpenAPI support
+- Built-in support for async/await
+- Built-in support for OpenAPI
 - Machine learning integration
 
 <!-- LATEST UPDATES END -->
