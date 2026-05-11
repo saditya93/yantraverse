@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-11
+### FEATURE
+- Implement Request Logging with Error Handling: This feature provides detailed logging of incoming requests, including error handling for better debugging and issue tracking. It will enhance the framework's stability and help identify potential problems. The logging system will capture request metadata, response codes, and error messages
+
 ## [Automated] - 2026-05-10
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature adds comprehensive request logging to yantraverse, providing valuable insights into application performance and errors, while also incorporating robust error handling to ensure reliable logging in production environments. It will log requests, responses, and errors, allowing developers to diagnose issues more efficiently. This feature will significantly enhance the framework's debugging capabilities
