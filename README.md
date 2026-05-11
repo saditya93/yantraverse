@@ -15,12 +15,12 @@
 ## Latest Updates
 
 Generated: 2026-05-11
-Version: 0.0.7.20260510
+Version: 0.0.8.20260511
 
 ### New Features
 
-- Built-in support for async/await
-- Built-in support for OpenAPI
+- Built-in OpenAPI support
+- Built-in WebSocket support
 - Machine learning integration
 
 <!-- LATEST UPDATES END -->
