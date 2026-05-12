@@ -1,20 +1,18 @@
 {
-  "date": "2026-05-11",
+  "date": "2026-05-12",
   "category": "FEATURE",
-  "title": "Implement Request Logging with Error Handling",
-  "description": "This feature provides detailed logging of incoming requests, including error handling for better debugging and issue tracking. It will enhance the framework's stability and help identify potential problems. The logging system will capture request metadata, response codes, and error messages",
+  "title": "Implement Automatic HTTPS Redirect",
+  "description": "This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS. It improves security and performance by reducing the risk of data interception and eavesdropping. The feature will automatically redirect incoming HTTP requests to their HTTPS equivalents",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/logger.js",
-    "test/middleware.test.js",
-    "test/logger.test.js"
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test logging for successful requests",
-    "Test logging for failed requests with error handling"
+    "Test HTTP to HTTPS redirect",
+    "Test HTTPS request is not redirected"
   ],
-  "acceptance": "The feature is accepted when request logs are correctly written to the console or a log file, including error messages for failed requests",
-  "reason": "Improved logging and error handling will increase the framework's reliability and make it easier for developers to diagnose issues"
+  "acceptance": "The feature is accepted when all HTTP requests are successfully redirected to HTTPS without any errors or warnings, and HTTPS requests are not redirected",
+  "reason": "Implementing automatic HTTPS redirect is a high-impact feature that enhances the security and performance of the yantraverse framework, aligning with its focus on stability and production readiness"
 }

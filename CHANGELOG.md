@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-12
+### FEATURE
+- Implement Automatic HTTPS Redirect: This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS. It improves security and performance by reducing the risk of data interception and eavesdropping. The feature will automatically redirect incoming HTTP requests to their HTTPS equivalents
+
 ## [Automated] - 2026-05-11
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature provides detailed logging of incoming requests, including error handling for better debugging and issue tracking. It will enhance the framework's stability and help identify potential problems. The logging system will capture request metadata, response codes, and error messages
