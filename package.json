@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.7-daily.20260511",
-  "description": "Turbocharge your Node.js apps with Yantraverse, the ultra-lightweight, zero-dependency web framework that outperforms Express and Fastify",
+  "version": "0.0.8-daily.20260512",
+  "description": "Turbocharge your Node.js apps with Yantraverse, the blazing-fast, zero-dependency web framework that outperforms Express and Fastify with unparalleled performance and simplicity",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -68,7 +68,11 @@
     "kubernetes",
     "observability",
     "otel",
-    "opentelemetry"
+    "opentelemetry",
+    "ai",
+    "machine learning",
+    "devops",
+    "ci/cd"
   ],
   "author": "",
   "license": "MIT",
