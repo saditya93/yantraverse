@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.8-daily.20260512",
-  "description": "Turbocharge your Node.js apps with Yantraverse, the blazing-fast, zero-dependency web framework that outperforms Express and Fastify with unparalleled performance and simplicity",
+  "version": "0.0.9-daily.20260513",
+  "description": "Unlock turbocharged performance with Yantraverse, the ultra-lightweight, zero-dependency Node.js framework that shatters Express and Fastify benchmarks",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -72,7 +72,11 @@
     "ai",
     "machine learning",
     "devops",
-    "ci/cd"
+    "ci/cd",
+    "serverless architecture",
+    "cloud native applications",
+    "real-time data processing",
+    "event-driven architecture"
   ],
   "author": "",
   "license": "MIT",
