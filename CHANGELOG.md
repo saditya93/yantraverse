@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-13
+### FEATURE
+- Add Support for Route Parameter Validation: This feature adds support for validating route parameters, which is crucial for ensuring the security and reliability of yantraverse applications. It will allow developers to define validation rules for route parameters, and the framework will automatically validate them. This will prevent potential security vulnerabilities and improve the overall robustness of the framework.
+
 ## [Automated] - 2026-05-12
 ### FEATURE
 - Implement Automatic HTTPS Redirect: This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS. It improves security and performance by reducing the risk of data interception and eavesdropping. The feature will automatically redirect incoming HTTP requests to their HTTPS equivalents

@@ -1,18 +1,18 @@
 {
-  "date": "2026-05-12",
+  "date": "2026-05-13",
   "category": "FEATURE",
-  "title": "Implement Automatic HTTPS Redirect",
-  "description": "This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS. It improves security and performance by reducing the risk of data interception and eavesdropping. The feature will automatically redirect incoming HTTP requests to their HTTPS equivalents",
+  "title": "Add Support for Route Parameter Validation",
+  "description": "This feature adds support for validating route parameters, which is crucial for ensuring the security and reliability of yantraverse applications. It will allow developers to define validation rules for route parameters, and the framework will automatically validate them. This will prevent potential security vulnerabilities and improve the overall robustness of the framework.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware.js",
-    "test/middleware.test.js"
+    "src/routing.js",
+    "test/routing.test.js"
   ],
   "testCases": [
-    "Test HTTP to HTTPS redirect",
-    "Test HTTPS request is not redirected"
+    "Test case 1: Valid route parameters",
+    "Test case 2: Invalid route parameters"
   ],
-  "acceptance": "The feature is accepted when all HTTP requests are successfully redirected to HTTPS without any errors or warnings, and HTTPS requests are not redirected",
-  "reason": "Implementing automatic HTTPS redirect is a high-impact feature that enhances the security and performance of the yantraverse framework, aligning with its focus on stability and production readiness"
+  "acceptance": "The feature is accepted when route parameters are correctly validated, and errors are properly handled and logged.",
+  "reason": "Adding support for route parameter validation is a high-impact feature that improves the security and reliability of yantraverse applications, aligning with the framework's focus on stability and security."
 }
