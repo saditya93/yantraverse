@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-14
+### FEATURE
+- Implement Request Logging with Error Handling: This feature provides detailed logging of incoming requests and errors, allowing for better debugging and issue tracking. It will include logging of request method, URL, headers, and response status code, as well as error messages and stack traces. This will improve the overall stability and maintainability of the framework
+
 ## [Automated] - 2026-05-13
 ### FEATURE
 - Add Support for Route Parameter Validation: This feature adds support for validating route parameters, which is crucial for ensuring the security and reliability of yantraverse applications. It will allow developers to define validation rules for route parameters, and the framework will automatically validate them. This will prevent potential security vulnerabilities and improve the overall robustness of the framework.
