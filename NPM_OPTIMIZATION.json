@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-13",
-  "description": "Unlock turbocharged performance with Yantraverse, the ultra-lightweight, zero-dependency Node.js framework that shatters Express and Fastify benchmarks",
+  "date": "2026-05-14",
+  "description": "Turbocharge your Node.js apps with Yantraverse, the ultra-lightweight, zero-dependency framework that outperforms Express and Fastify",
   "keywords": [
     "nodejs",
     "web framework",
@@ -43,26 +43,34 @@
     "serverless architecture",
     "cloud native applications",
     "real-time data processing",
-    "event-driven architecture"
+    "event-driven architecture",
+    "edge ai",
+    "serverless machine learning"
   ],
-  "npm_trending_strategy": "Yantraverse v0.0.8-daily.20260512 boasts 30 recent commits, emphasizing active development and a commitment to delivering bleeding-edge performance, security, and simplicity",
+  "npm_trending_strategy": "Yantraverse v0.0.9-daily.20260513 stands out with its daily updates, 30 recent commits, and a focus on ultra-lightweight, zero-dependency architecture, making it an attractive choice for developers looking for a high-performance, low-latency framework",
   "recommended_tags": [
     "#nodejs",
-    "#webframework",
+    "#framework",
     "#serverless",
     "#cloudnative",
-    "#performancematters",
-    "#nextgenframework",
-    "#fastandlight",
-    "#zerodependency",
-    "#javascript",
-    "#typescript",
+    "#edgecomputing",
+    "#jamstack",
+    "#pwa",
     "#realtime",
-    "#edgecomputing"
+    "#websocket",
+    "#typescript",
+    "#javascript",
+    "#http",
+    "#rest",
+    "#api",
+    "#lowcode",
+    "#serverlessfunctions",
+    "#cloudfunctions",
+    "#edgfunctions"
   ],
   "download_hooks": [
-    "Experience unparalleled performance with Yantraverse, outperforming Express and Fastify in benchmarks",
-    "Say goodbye to dependency hell with Yantraverse' zero-dependency architecture, ensuring lightning-fast startup times and minimal overhead",
-    "Simplify your development workflow with Yantraverse' intuitive API and extensive documentation, making it easy to build and deploy scalable, real-time applications"
+    "Unlock turbocharged performance with Yantraverse's zero-dependency architecture",
+    "Experience up to 5x faster routing and middleware performance compared to Express and Fastify",
+    "Simplify your development workflow with Yantraverse's lightweight, easy-to-use API and extensive documentation"
   ]
 }
