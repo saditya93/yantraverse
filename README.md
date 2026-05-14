@@ -14,14 +14,14 @@
 <!-- LATEST UPDATES START -->
 ## Latest Updates
 
-Generated: 2026-05-13
-Version: 0.0.9.20260512
+Generated: 2026-05-14
+Version: 0.0.10.20260513
 
 ### New Features
 
-- Built-in OpenAPI support
-- AI features
-- WebSocket support
+- Built-in support for async/await
+- Built-in validation for complex data
+- Built-in support for WebSockets
 
 <!-- LATEST UPDATES END -->
 
