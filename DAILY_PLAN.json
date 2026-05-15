@@ -1,19 +1,21 @@
 {
-  "date": "2026-05-14",
+  "date": "2026-05-15",
   "category": "FEATURE",
-  "title": "Implement Request Logging with Error Handling",
-  "description": "This feature provides detailed logging of incoming requests and errors, allowing for better debugging and issue tracking. It will include logging of request method, URL, headers, and response status code, as well as error messages and stack traces. This will improve the overall stability and maintainability of the framework",
+  "title": "Implement Request Body Parsing",
+  "description": "This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of API use cases and improving overall framework usability. It will include support for parsing JSON, URL-encoded, and multipart/form-data requests. This addition will make yantraverse more competitive with other Node.js frameworks",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logging.js",
-    "test/middleware/logging.test.js"
+    "src/middleware/bodyParser.js",
+    "src/router.js",
+    "test/middleware/bodyParser.test.js",
+    "test/router.test.js"
   ],
   "testCases": [
-    "Test logging of successful requests",
-    "Test logging of error responses",
-    "Test logging of unhandled exceptions"
+    "Test JSON body parsing",
+    "Test URL-encoded body parsing",
+    "Test multipart/form-data body parsing"
   ],
-  "acceptance": "The feature is accepted when logs are correctly generated for different types of requests and errors, and when error handling does not introduce any new issues",
-  "reason": "Improved logging and error handling are essential for a production-ready framework, enabling developers to quickly identify and resolve issues in their applications"
+  "acceptance": "Request body is correctly parsed and available in the request object for all supported formats",
+  "reason": "This feature is essential for building RESTful APIs and will significantly enhance the framework's functionality and appeal to developers"
 }
