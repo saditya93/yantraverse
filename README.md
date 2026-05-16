@@ -14,14 +14,14 @@
 <!-- LATEST UPDATES START -->
 ## Latest Updates
 
-Generated: 2026-05-15
-Version: 0.0.11.20260514
+Generated: 2026-05-16
+Version: 0.0.12.20260515
 
 ### New Features
 
-- Built-in validation
-- OpenAPI support
-- Async/await support in middleware
+- Built-in websocket support
+- Openapi support
+- Async/await support
 
 <!-- LATEST UPDATES END -->
 
