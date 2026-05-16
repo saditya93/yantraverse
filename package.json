@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.11-daily.20260515",
-  "description": "Turbocharge your Node.js apps with Yantraverse, the ultra-lightweight, zero-dependency framework that outperforms Express and Fastify with unparalleled speed and ease",
+  "version": "0.0.12-daily.20260516",
+  "description": "Turbocharge your Node.js apps with Yantraverse, the ultra-lightweight, zero-dependency framework that outperforms Express and Fastify with AI-driven routing and real-time capabilities",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -82,7 +82,11 @@
     "serverless analytics",
     "cloud native security",
     "zero-trust",
-    "edge security"
+    "edge security",
+    "webassembly",
+    "graphql api",
+    "api gateway",
+    "service mesh"
   ],
   "author": "",
   "license": "MIT",
