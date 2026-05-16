@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-16
+### FEATURE
+- Implement Robust Request Body Parsing: This feature matters because it will allow yantraverse to handle complex request bodies, including JSON and form data, which is essential for building robust APIs. It will add support for parsing request bodies in middleware and route handlers. This will improve the overall performance and reliability of the framework
+
 ## [Automated] - 2026-05-15
 ### FEATURE
 - Implement Request Body Parsing: This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of API use cases and improving overall framework usability. It will include support for parsing JSON, URL-encoded, and multipart/form-data requests. This addition will make yantraverse more competitive with other Node.js frameworks

@@ -1,21 +1,21 @@
 {
-  "date": "2026-05-15",
+  "date": "2026-05-16",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing",
-  "description": "This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of API use cases and improving overall framework usability. It will include support for parsing JSON, URL-encoded, and multipart/form-data requests. This addition will make yantraverse more competitive with other Node.js frameworks",
+  "title": "Implement Robust Request Body Parsing",
+  "description": "This feature matters because it will allow yantraverse to handle complex request bodies, including JSON and form data, which is essential for building robust APIs. It will add support for parsing request bodies in middleware and route handlers. This will improve the overall performance and reliability of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
+    "src/middleware.js",
     "src/router.js",
-    "test/middleware/bodyParser.test.js",
+    "test/middleware.test.js",
     "test/router.test.js"
   ],
   "testCases": [
     "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test multipart/form-data body parsing"
+    "Test form data parsing",
+    "Test error handling for invalid request bodies"
   ],
-  "acceptance": "Request body is correctly parsed and available in the request object for all supported formats",
-  "reason": "This feature is essential for building RESTful APIs and will significantly enhance the framework's functionality and appeal to developers"
+  "acceptance": "The feature is accepted when request bodies are correctly parsed and errors are properly handled for various scenarios, including JSON and form data",
+  "reason": "This feature is technically justified because it addresses a critical need for handling complex request data, which is a common requirement in modern web applications"
 }
