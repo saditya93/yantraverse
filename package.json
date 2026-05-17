@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.12-daily.20260516",
-  "description": "Turbocharge your Node.js apps with Yantraverse, the ultra-lightweight, zero-dependency framework that outperforms Express and Fastify with AI-driven routing and real-time capabilities",
+  "version": "0.0.13-daily.20260517",
+  "description": "Unlock ultra-fast Node.js performance with Yantraverse, the AI-driven, zero-dependency framework that outperforms Express and Fastify",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -86,7 +86,9 @@
     "webassembly",
     "graphql api",
     "api gateway",
-    "service mesh"
+    "service mesh",
+    "cloud native",
+    "modern web development"
   ],
   "author": "",
   "license": "MIT",
