@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-18
+### FEATURE
+- Implement Request Body Parsing for JSON Data: This feature is crucial as it enables the framework to handle JSON data sent in the request body, making it more versatile and useful for real-world applications. It will parse JSON data and make it available to route handlers. This will improve the overall performance and usability of the framework
+
 ## [Automated] - 2026-05-17
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature will provide detailed logging of incoming requests, including errors, to aid in debugging and performance optimization. It will also include error handling to ensure logging does not disrupt the application. This will improve the overall stability and maintainability of the framework
