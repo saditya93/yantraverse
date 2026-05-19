@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-19
+### FEATURE
+- Implement Request Logging Middleware: This feature will provide detailed logging of incoming requests, allowing for better error tracking and debugging. It will include logging of request method, URL, headers, and response status code. This will greatly improve the ability to diagnose and fix issues in production
+
 ## [Automated] - 2026-05-18
 ### FEATURE
 - Implement Request Body Parsing for JSON Data: This feature is crucial as it enables the framework to handle JSON data sent in the request body, making it more versatile and useful for real-world applications. It will parse JSON data and make it available to route handlers. This will improve the overall performance and usability of the framework
