@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-19",
-  "description": "Ultra-fast, AI-driven Node.js framework with zero dependencies, outperforming Express and Fastify for real-time web applications",
+  "date": "2026-05-20",
+  "description": "Turbocharge your Node.js apps with yantravese, the AI-driven, zero-dependency framework that outperforms Express and Fastify for real-time web applications",
   "keywords": [
     "nodejs",
     "web framework",
@@ -63,35 +63,32 @@
     "serverless",
     "cloud native",
     "jamstack",
-    "pwa"
+    "pwa",
+    "nodejs 18",
+    "nodejs 20"
   ],
-  "npm_trending_strategy": "Leveraging AI-driven performance, zero dependencies, and ultra-fast routing to outshine traditional frameworks like Express and Fastify",
+  "npm_trending_strategy": "yantravese v0.0.15-daily.20260519 stands out with its AI-driven approach, zero dependencies, and ultra-fast performance, making it an attractive choice for developers looking for a lightweight and efficient Node.js framework",
   "recommended_tags": [
     "#nodejs",
     "#framework",
+    "#expressalternative",
+    "#fastifyalternative",
     "#serverless",
     "#cloudnative",
-    "#edgecomputing",
+    "#edgcomputing",
     "#jamstack",
     "#pwa",
-    "#realtime",
-    "#websocket",
-    "#typescript",
-    "#javascript",
-    "#http",
-    "#rest",
-    "#api",
-    "#lowcode",
-    "#serverlessfunctions",
-    "#cloudfirst",
+    "#realtimeweb",
     "#ai",
     "#machinelearning",
     "#devops",
-    "#cicd"
+    "#cicd",
+    "#cloudnativeapplications",
+    "#modernwebdevelopment"
   ],
   "download_hooks": [
-    "Unbeatable performance with AI-driven optimization",
-    "Zero dependencies for a lightweight and secure framework",
-    "Simplified development experience with intuitive routing and middleware"
+    "Unlock ultra-fast performance with yantravese's AI-driven optimization",
+    "Say goodbye to dependency hell with yantravese's zero-dependency architecture",
+    "Experience the future of web development with yantravese's edge computing and serverless capabilities"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.15-daily.20260519",
-  "description": "Ultra-fast, AI-driven Node.js framework with zero dependencies, outperforming Express and Fastify for real-time web applications",
+  "version": "0.0.16-daily.20260520",
+  "description": "Turbocharge your Node.js apps with yantravese, the AI-driven, zero-dependency framework that outperforms Express and Fastify for real-time web applications",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -96,7 +96,9 @@
     "serverless",
     "cloud native",
     "jamstack",
-    "pwa"
+    "pwa",
+    "nodejs 18",
+    "nodejs 20"
   ],
   "author": "",
   "license": "MIT",
