@@ -1,18 +1,19 @@
 {
-  "date": "2026-05-19",
+  "date": "2026-05-20",
   "category": "FEATURE",
-  "title": "Implement Request Logging Middleware",
-  "description": "This feature will provide detailed logging of incoming requests, allowing for better error tracking and debugging. It will include logging of request method, URL, headers, and response status code. This will greatly improve the ability to diagnose and fix issues in production",
+  "title": "Implement Request Logging with Error Handling",
+  "description": "This feature adds logging for incoming requests and errors, providing valuable insights for debugging and monitoring. It will include logging of request method, path, and response status code, as well as error messages. This will improve the overall debugging experience and help identify issues in production",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware.js",
-    "test/middleware.test.js"
+    "src/router.js",
+    "src/logger.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Test logging of successful requests",
-    "Test logging of error responses"
+    "Test logging for successful GET request",
+    "Test logging for failed POST request with error handling"
   ],
-  "acceptance": "The feature is accepted when logs contain request method, URL, headers, and response status code for both successful and failed requests",
-  "reason": "Improved logging will enable faster issue resolution and better error tracking, aligning with the framework's focus on stability and production readiness"
+  "acceptance": "Request logging should include method, path, and response status code, while error logging should include error message and stack trace",
+  "reason": "Improves debugging and monitoring capabilities, aligning with the framework's focus on production readiness and stability"
 }
