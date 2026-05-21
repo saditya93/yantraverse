@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-21
+### FEATURE
+- Implement Request Logging with Error Handling: This feature provides detailed request logging with error handling to improve debugging and monitoring capabilities. It will log each incoming request and any errors that occur during processing, allowing developers to quickly identify and resolve issues. This will significantly enhance the framework's overall reliability and maintainability
+
 ## [Automated] - 2026-05-20
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature adds logging for incoming requests and errors, providing valuable insights for debugging and monitoring. It will include logging of request method, path, and response status code, as well as error messages. This will improve the overall debugging experience and help identify issues in production
