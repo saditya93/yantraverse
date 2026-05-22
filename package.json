@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.17-daily.20260521",
-  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, zero-dependency, AI-driven framework that outperforms Express and Fastify for real-time web applications",
+  "version": "0.0.18-daily.20260522",
+  "description": "Unlock ultra-fast, AI-driven Node.js performance with yantravese, the zero-dependency framework that outperforms Express and Fastify for real-time web applications",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -92,12 +92,6 @@
     "ai-powered",
     "performance optimization",
     "latency reduction",
-    "edge computing",
-    "serverless",
-    "cloud native",
-    "jamstack",
-    "pwa",
-    "nodejs 20",
     "deno",
     "bun",
     "esm",
