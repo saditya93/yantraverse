@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.18-daily.20260522",
-  "description": "Unlock ultra-fast, AI-driven Node.js performance with yantravese, the zero-dependency framework that outperforms Express and Fastify for real-time web applications",
+  "version": "0.0.19-daily.20260523",
+  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, AI-driven, zero-dependency framework that revolutionizes real-time web development",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -95,7 +95,9 @@
     "deno",
     "bun",
     "esm",
-    "typescript 5"
+    "typescript 5",
+    "nodejs 20",
+    "javascript 2026"
   ],
   "author": "",
   "license": "MIT",

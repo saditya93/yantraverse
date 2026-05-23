@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-22",
-  "description": "Unlock ultra-fast, AI-driven Node.js performance with yantravese, the zero-dependency framework that outperforms Express and Fastify for real-time web applications",
+  "date": "2026-05-23",
+  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, AI-driven, zero-dependency framework that revolutionizes real-time web development",
   "keywords": [
     "nodejs",
     "web framework",
@@ -62,32 +62,27 @@
     "deno",
     "bun",
     "esm",
-    "typescript 5"
+    "typescript 5",
+    "nodejs 20",
+    "javascript 2026"
   ],
-  "npm_trending_strategy": "yantravese v0.0.17-daily.20260521 boasts 30 recent commits, ensuring a cutting-edge, high-performance framework that stays ahead of the curve, incorporating the latest advancements in AI, machine learning, and cloud-native technologies",
+  "npm_trending_strategy": "yantravese v0.0.18-daily.20260522 combines AI-driven performance optimization with a zero-dependency architecture, making it an attractive choice for developers seeking a fast, lightweight, and secure framework for real-time web applications",
   "recommended_tags": [
     "#nodejs",
-    "#framework",
+    "#javascript",
+    "#webdevelopment",
     "#serverless",
     "#cloudnative",
-    "#edgecomputing",
-    "#jamstack",
-    "#pwa",
-    "#realtime",
-    "#websocket",
-    "#typescript",
-    "#javascript",
     "#ai",
     "#machinelearning",
     "#devops",
-    "#cicd",
-    "#cloudnativeapplications",
-    "#realtimedataprocessing",
-    "#eventdrivenarchitecture"
+    "#performanceoptimization",
+    "#latencyreduction",
+    "#modernwebdevelopment"
   ],
   "download_hooks": [
-    "Turbocharge your Node.js apps with yantravese's ultra-fast performance and AI-driven optimization",
-    "Outperform Express and Fastify with yantravese's zero-dependency architecture and lightweight design",
-    "Simplify your development workflow with yantravese's intuitive API and extensive documentation, perfect for building real-time web applications with ease"
+    "Unlock ultra-fast performance with yantravese's AI-driven optimization",
+    "Say goodbye to dependency hell with yantravese's zero-dependency architecture",
+    "Experience the future of web development with yantravese's cutting-edge features and trending technologies"
   ]
 }
