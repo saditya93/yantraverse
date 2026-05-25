@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.20-daily.20260524",
-  "description": "Unlock ultra-fast, real-time web development with yantravese, the AI-driven, zero-dependency Node.js framework that outperforms Express and Fastify",
+  "version": "0.0.21-daily.20260525",
+  "description": "Unlock blazing-fast, real-time web development with yantravese, the AI-driven, zero-dependency Node.js framework that outperforms Express and Fastify with unparalleled performance and simplicity",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
