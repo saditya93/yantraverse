@@ -1,21 +1,18 @@
 {
-  "date": "2026-05-24",
+  "date": "2026-05-25",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature adds support for parsing JSON and URL-encoded request bodies, allowing developers to handle complex data in their routes. It improves the framework's usability and stability by providing a built-in way to handle common data formats. This feature is essential for building robust and scalable applications",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature adds a logging mechanism to track incoming requests, providing valuable insights for debugging and performance optimization. It will log key request information such as method, path, and response status. This helps identify potential issues and improves the overall reliability of the yantraverse framework.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/request.js",
-    "src/router.js",
-    "test/request.test.js",
-    "test/router.test.js"
+    "src/middleware.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test invalid request body handling"
+    "Test logging for successful requests",
+    "Test logging for failed requests with error messages"
   ],
-  "acceptance": "The feature is accepted when request bodies are correctly parsed and handled in routes, with proper error handling for invalid or malformed data",
-  "reason": "This feature is technically justified as it fills a significant gap in the framework's functionality, making it more competitive with other Node.js frameworks and improving developer experience"
+  "acceptance": "The request logging middleware should log requests with the correct method, path, and response status, and handle edge cases such as errors and large request bodies",
+  "reason": "Implementing request logging is crucial for a production-ready framework, as it enables developers to monitor and troubleshoot their applications more effectively"
 }
