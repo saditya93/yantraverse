@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-26
+### FEATURE
+- Implement Request Body Parsing: This feature adds the ability to parse JSON request bodies, allowing developers to easily access and manipulate request data. It will improve performance and simplify development by reducing the need for manual parsing. This will enable yantraverse to handle a wider range of use cases and improve overall user experience
+
 ## [Automated] - 2026-05-25
 ### FEATURE
 - Implement Request Logging Middleware: This feature adds a logging mechanism to track incoming requests, providing valuable insights for debugging and performance optimization. It will log key request information such as method, path, and response status. This helps identify potential issues and improves the overall reliability of the yantraverse framework.
