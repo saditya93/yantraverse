@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-28
+### FEATURE
+- Implement Request Logging with Error Handling: This feature adds logging for incoming requests and errors, providing valuable insights for debugging and performance optimization. It will handle logging of request metadata, response codes, and error messages, making it easier to identify and fix issues. This will improve the overall reliability and maintainability of the yantraverse framework
+
 ## [Automated] - 2026-05-27
 ### FEATURE
 - Implement Request Body Parsing: This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of use cases and improving its overall versatility. It will provide a robust way to parse request bodies, handling errors and edge cases. This will enhance the framework's usability and make it more appealing to developers
