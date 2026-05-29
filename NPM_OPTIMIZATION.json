@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-28",
-  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, AI-driven framework that outsmarts Express and Fastify with zero dependencies and unparalleled performance",
+  "date": "2026-05-29",
+  "description": "Unlock ultra-fast Node.js performance with yantravese, the AI-driven, zero-dependency framework that outsmarts Express and Fastify",
   "keywords": [
     "nodejs",
     "web framework",
@@ -71,24 +71,22 @@
     "remix",
     "solidjs"
   ],
-  "npm_trending_strategy": "yantravese v0.0.23-daily.20260527 leverages the latest advancements in AI and machine learning to provide an unparalleled developer experience, outpacing traditional frameworks like Express and Fastify",
+  "npm_trending_strategy": "Leveraging the latest Node.js 20 and TypeScript 5 features, yantravese provides unparalleled performance and a lightweight, zero-dependency architecture that sets it apart from Express and Fastify",
   "recommended_tags": [
     "#nodejs",
     "#framework",
+    "#webdevelopment",
     "#serverless",
     "#cloudnative",
-    "#aidevelopment",
+    "#ai",
     "#machinelearning",
-    "#webdevelopment",
-    "#javascript",
-    "#typescript",
     "#performanceoptimization",
     "#latencyreduction",
-    "#modernwebdev"
+    "#modernwebdevelopment"
   ],
   "download_hooks": [
-    "Unlock the full potential of your Node.js applications with yantravese's AI-driven architecture",
-    "Experience unparalleled performance and speed with yantravese's zero-dependency framework",
-    "Streamline your development workflow with yantravese's intuitive API and robust set of features"
+    "Experience the power of AI-driven performance optimization with yantravese",
+    "Say goodbye to latency with yantravese's ultra-fast, zero-dependency architecture",
+    "Streamline your development workflow with yantravese's lightweight and intuitive API"
   ]
 }
