@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-05-29
+### FEATURE
+- Implement Request Logger Middleware: This feature adds a request logger middleware to yantraverse, providing insights into incoming requests and helping with debugging and error tracking. It will log request metadata, such as method, path, and response status. This improvement enhances the framework's usability and maintainability
+
 ## [Automated] - 2026-05-28
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature adds logging for incoming requests and errors, providing valuable insights for debugging and performance optimization. It will handle logging of request metadata, response codes, and error messages, making it easier to identify and fix issues. This will improve the overall reliability and maintainability of the yantraverse framework
