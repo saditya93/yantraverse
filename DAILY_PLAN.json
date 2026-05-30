@@ -1,18 +1,21 @@
 {
-  "date": "2026-05-29",
+  "date": "2026-05-30",
   "category": "FEATURE",
-  "title": "Implement Request Logger Middleware",
-  "description": "This feature adds a request logger middleware to yantraverse, providing insights into incoming requests and helping with debugging and error tracking. It will log request metadata, such as method, path, and response status. This improvement enhances the framework's usability and maintainability",
+  "title": "Implement Request Body Parsing",
+  "description": "This feature matters because it enables Yantraverse to handle JSON and URL-encoded request bodies, allowing for more robust API development. It will parse incoming request bodies and make the data available to route handlers. This improves performance by reducing the need for manual parsing in user code.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
+    "src/router.js",
     "src/middleware.js",
+    "test/router.test.js",
     "test/middleware.test.js"
   ],
   "testCases": [
-    "Test logger with successful request",
-    "Test logger with failed request"
+    "Test JSON body parsing",
+    "Test URL-encoded body parsing",
+    "Test invalid body parsing"
   ],
-  "acceptance": "The request logger middleware logs requests correctly, including metadata, and handles edge cases without errors",
-  "reason": "Adding a request logger middleware is a high-impact feature that improves the framework's debuggability and maintainability, aligning with the current focus on feature development"
+  "acceptance": "The feature is accepted when request bodies are correctly parsed and made available to route handlers, with proper error handling for invalid or unsupported request bodies.",
+  "reason": "This feature is a key requirement for building robust APIs, and its implementation aligns with Yantraverse's goal of providing a lightweight yet fully-featured Node.js framework."
 }
