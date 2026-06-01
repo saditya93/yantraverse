@@ -1,21 +1,20 @@
 {
-  "date": "2026-05-31",
+  "date": "2026-06-01",
   "category": "FEATURE",
   "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature enables yantraverse to parse request bodies for JSON and URL-encoded data, allowing for more flexible and robust API handling. It will support common content types and handle edge cases such as malformed JSON. This improvement will enhance the overall usability of the framework for developers building RESTful APIs.",
+  "description": "This feature is crucial for handling API requests with JSON or URL-encoded payloads, enabling yantraverse to support a wider range of use cases and improve its overall usability. It will provide automatic parsing of request bodies into JavaScript objects, making it easier for developers to work with request data. This feature will also include error handling for invalid or malformed request bodies",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/router.js",
-    "src/middleware.js",
-    "test/router.test.js",
-    "test/middleware.test.js"
+    "src/middleware/bodyParser.js",
+    "test/middleware/bodyParser.test.js"
   ],
   "testCases": [
     "Test JSON body parsing",
     "Test URL-encoded body parsing",
-    "Test malformed JSON handling"
+    "Test error handling for invalid JSON",
+    "Test error handling for invalid URL-encoded data"
   ],
-  "acceptance": "The feature is accepted when the framework can successfully parse JSON and URL-encoded request bodies, and handle edge cases without errors.",
-  "reason": "This feature is crucial for building robust and scalable APIs, and its implementation aligns with the framework's focus on stability and performance."
+  "acceptance": "The feature is considered complete when all test cases pass, and the documentation is updated to reflect the new functionality. Request bodies are correctly parsed into JavaScript objects, and errors are properly handled and logged",
+  "reason": "This feature is essential for supporting common API use cases and improving the framework's overall usability and adoption rate"
 }
