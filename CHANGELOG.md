@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-02
+### FEATURE
+- Implement Robust Request Body Parsing: This feature improves performance and stability by handling various request body formats, including JSON, URL-encoded, and multipart/form-data, allowing for more flexible and robust API development. It will provide automatic parsing and error handling for invalid or malformed requests. This enhancement will significantly improve the overall user experience and API reliability.
+
 ## [Automated] - 2026-06-01
 ### FEATURE
 - Implement Request Body Parsing for JSON and URL-Encoded Data: This feature is crucial for handling API requests with JSON or URL-encoded payloads, enabling yantraverse to support a wider range of use cases and improve its overall usability. It will provide automatic parsing of request bodies into JavaScript objects, making it easier for developers to work with request data. This feature will also include error handling for invalid or malformed request bodies
