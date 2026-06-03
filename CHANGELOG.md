@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-03
+### FEATURE
+- Implement Request Logging Middleware: This feature adds a logging middleware to track incoming requests, providing valuable insights for debugging and performance optimization. It will log request metadata, such as method, path, and response status. This improvement enhances the framework's production-readiness and facilitates error diagnosis
+
 ## [Automated] - 2026-06-02
 ### FEATURE
 - Implement Robust Request Body Parsing: This feature improves performance and stability by handling various request body formats, including JSON, URL-encoded, and multipart/form-data, allowing for more flexible and robust API development. It will provide automatic parsing and error handling for invalid or malformed requests. This enhancement will significantly improve the overall user experience and API reliability.

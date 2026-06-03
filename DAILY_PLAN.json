@@ -1,21 +1,18 @@
 {
-  "date": "2026-06-02",
+  "date": "2026-06-03",
   "category": "FEATURE",
-  "title": "Implement Robust Request Body Parsing",
-  "description": "This feature improves performance and stability by handling various request body formats, including JSON, URL-encoded, and multipart/form-data, allowing for more flexible and robust API development. It will provide automatic parsing and error handling for invalid or malformed requests. This enhancement will significantly improve the overall user experience and API reliability.",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature adds a logging middleware to track incoming requests, providing valuable insights for debugging and performance optimization. It will log request metadata, such as method, path, and response status. This improvement enhances the framework's production-readiness and facilitates error diagnosis",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/router.js",
-    "test/request.test.js"
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test multipart/form-data parsing",
-    "Test error handling for invalid requests"
+    "Test logging for successful requests",
+    "Test logging for failed requests with error status"
   ],
-  "acceptance": "The feature is accepted when all test cases pass and the API can handle different request body formats without errors.",
-  "reason": "This feature is essential for a production-ready framework, as it directly impacts the reliability and flexibility of APIs built with yantraverse, aligning with the framework's focus on stability and performance."
+  "acceptance": "The logging middleware must log request metadata for all incoming requests, including method, path, and response status, and must not introduce any performance regressions",
+  "reason": "Implementing request logging middleware is a high-impact feature that improves the framework's production-readiness, allowing developers to diagnose issues and optimize performance more effectively"
 }
