@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-05
+### FEATURE
+- Enhanced Rate Limiting with IP Blocking: This feature matters as it prevents brute-force attacks and Denial-of-Service (DoS) attacks by blocking IPs that exceed the rate limit. It does this by integrating a cache-based IP blocker that stores IP addresses and their request counts. This enhancement improves the security of the yantraverse framework
+
 ## [Automated] - 2026-06-04
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature adds request logging to improve debugging and error tracking, it will log each incoming request and any errors that occur during processing, providing valuable insights for development and production environments. The logging will include request method, URL, and response status code. This will help identify and fix issues more efficiently

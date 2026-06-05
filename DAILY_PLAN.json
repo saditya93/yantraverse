@@ -1,18 +1,18 @@
 {
-  "date": "2026-06-04",
+  "date": "2026-06-05",
   "category": "FEATURE",
-  "title": "Implement Request Logging with Error Handling",
-  "description": "This feature adds request logging to improve debugging and error tracking, it will log each incoming request and any errors that occur during processing, providing valuable insights for development and production environments. The logging will include request method, URL, and response status code. This will help identify and fix issues more efficiently",
+  "title": "Enhanced Rate Limiting with IP Blocking",
+  "description": "This feature matters as it prevents brute-force attacks and Denial-of-Service (DoS) attacks by blocking IPs that exceed the rate limit. It does this by integrating a cache-based IP blocker that stores IP addresses and their request counts. This enhancement improves the security of the yantraverse framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware.js",
-    "test/middleware.test.js"
+    "src/middleware/rateLimit.js",
+    "test/middleware/rateLimit.test.js"
   ],
   "testCases": [
-    "Test logging for successful requests",
-    "Test logging for requests with errors"
+    "Test rate limiting with valid requests",
+    "Test rate limiting with excessive requests from a single IP"
   ],
-  "acceptance": "Request logging is successfully implemented and error handling is properly configured, with logs including request method, URL, and response status code",
-  "reason": "Improved debugging and error tracking capabilities will enhance the overall quality and reliability of the yantraverse framework"
+  "acceptance": "The feature is accepted when the rate limiter correctly blocks IPs that exceed the limit and allows valid requests to pass through",
+  "reason": "This feature is technically justified as it strengthens the security of the framework and is a high-impact addition that aligns with the focus on feature development and security"
 }
