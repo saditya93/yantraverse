@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-06
+### FEATURE
+- Implement Request Logging with Error Handling: This feature adds robust request logging to yantraverse, allowing for better error tracking and debugging, while also handling edge cases and incorporating logging for error handling. It will provide valuable insights into application performance and help identify potential issues. This will improve the overall reliability and maintainability of the framework
+
 ## [Automated] - 2026-06-05
 ### FEATURE
 - Enhanced Rate Limiting with IP Blocking: This feature matters as it prevents brute-force attacks and Denial-of-Service (DoS) attacks by blocking IPs that exceed the rate limit. It does this by integrating a cache-based IP blocker that stores IP addresses and their request counts. This enhancement improves the security of the yantraverse framework

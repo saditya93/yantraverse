@@ -1,18 +1,20 @@
 {
-  "date": "2026-06-05",
+  "date": "2026-06-06",
   "category": "FEATURE",
-  "title": "Enhanced Rate Limiting with IP Blocking",
-  "description": "This feature matters as it prevents brute-force attacks and Denial-of-Service (DoS) attacks by blocking IPs that exceed the rate limit. It does this by integrating a cache-based IP blocker that stores IP addresses and their request counts. This enhancement improves the security of the yantraverse framework",
+  "title": "Implement Request Logging with Error Handling",
+  "description": "This feature adds robust request logging to yantraverse, allowing for better error tracking and debugging, while also handling edge cases and incorporating logging for error handling. It will provide valuable insights into application performance and help identify potential issues. This will improve the overall reliability and maintainability of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/rateLimit.js",
-    "test/middleware/rateLimit.test.js"
+    "src/middleware/logs.js",
+    "src/utils/errors.js",
+    "test/middleware/logs.test.js",
+    "test/utils/errors.test.js"
   ],
   "testCases": [
-    "Test rate limiting with valid requests",
-    "Test rate limiting with excessive requests from a single IP"
+    "Test request logging for successful requests",
+    "Test request logging for failed requests with error handling"
   ],
-  "acceptance": "The feature is accepted when the rate limiter correctly blocks IPs that exceed the limit and allows valid requests to pass through",
-  "reason": "This feature is technically justified as it strengthens the security of the framework and is a high-impact addition that aligns with the focus on feature development and security"
+  "acceptance": "The feature is accepted when request logs are correctly generated for both successful and failed requests, and error handling is properly implemented",
+  "reason": "Implementing request logging with error handling will significantly improve the framework's ability to diagnose and fix issues, making it more attractive to developers and increasing its overall value proposition"
 }
