@@ -1,20 +1,19 @@
 {
-  "date": "2026-06-06",
+  "date": "2026-06-07",
   "category": "FEATURE",
-  "title": "Implement Request Logging with Error Handling",
-  "description": "This feature adds robust request logging to yantraverse, allowing for better error tracking and debugging, while also handling edge cases and incorporating logging for error handling. It will provide valuable insights into application performance and help identify potential issues. This will improve the overall reliability and maintainability of the framework",
+  "title": "Implement Automatic HTTPS Redirect",
+  "description": "This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS automatically. It enhances security and improves user trust. The implementation involves configuring the framework to listen for HTTP requests and redirect them to their HTTPS counterparts",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logs.js",
-    "src/utils/errors.js",
-    "test/middleware/logs.test.js",
-    "test/utils/errors.test.js"
+    "src/middleware.js",
+    "src/router.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test request logging for successful requests",
-    "Test request logging for failed requests with error handling"
+    "Test HTTP request redirect to HTTPS",
+    "Test HTTPS request is not redirected"
   ],
-  "acceptance": "The feature is accepted when request logs are correctly generated for both successful and failed requests, and error handling is properly implemented",
-  "reason": "Implementing request logging with error handling will significantly improve the framework's ability to diagnose and fix issues, making it more attractive to developers and increasing its overall value proposition"
+  "acceptance": "The feature is accepted when all HTTP requests are successfully redirected to their HTTPS equivalents without errors, and the application remains functional",
+  "reason": "Enhancing security and following best practices for web development"
 }

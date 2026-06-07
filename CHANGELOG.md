@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-07
+### FEATURE
+- Implement Automatic HTTPS Redirect: This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS automatically. It enhances security and improves user trust. The implementation involves configuring the framework to listen for HTTP requests and redirect them to their HTTPS counterparts
+
 ## [Automated] - 2026-06-06
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature adds robust request logging to yantraverse, allowing for better error tracking and debugging, while also handling edge cases and incorporating logging for error handling. It will provide valuable insights into application performance and help identify potential issues. This will improve the overall reliability and maintainability of the framework
