@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.33-daily.20260606",
-  "description": "Unlock ultra-fast Node.js performance with yantravese, the AI-driven, zero-dependency framework that outsmarts Express and Fastify",
+  "version": "0.0.34-daily.20260607",
+  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, AI-driven, zero-dependency framework that outperforms Express and Fastify",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -36,7 +36,7 @@
   },
   "keywords": [
     "nodejs",
-    "web framework",
+    "framework",
     "express alternative",
     "fastify alternative",
     "zero-dependency",
@@ -87,11 +87,6 @@
     "graphql api",
     "api gateway",
     "service mesh",
-    "cloud native",
-    "modern web development",
-    "ai-powered",
-    "performance optimization",
-    "latency reduction",
     "deno",
     "bun",
     "esm",
@@ -102,10 +97,7 @@
     "vite",
     "turbo",
     "remix",
-    "solidjs",
-    "webpack",
-    "rollup",
-    "swc"
+    "solidjs"
   ],
   "author": "",
   "license": "MIT",
