@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.34-daily.20260607",
-  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, AI-driven, zero-dependency framework that outperforms Express and Fastify",
+  "version": "0.0.35-daily.20260608",
+  "description": "Unlock turbocharged Node.js performance with yantravese, the AI-driven, zero-dependency framework that outsmarts Express and Fastify",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -97,7 +97,11 @@
     "vite",
     "turbo",
     "remix",
-    "solidjs"
+    "solidjs",
+    "nodejs 2026",
+    "javascript framework",
+    "fast nodejs",
+    "high performance nodejs"
   ],
   "author": "",
   "license": "MIT",
