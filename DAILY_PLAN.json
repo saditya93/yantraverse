@@ -1,19 +1,19 @@
 {
-  "date": "2026-06-07",
+  "date": "2026-06-08",
   "category": "FEATURE",
-  "title": "Implement Automatic HTTPS Redirect",
-  "description": "This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS automatically. It enhances security and improves user trust. The implementation involves configuring the framework to listen for HTTP requests and redirect them to their HTTPS counterparts",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature adds a logging middleware to track and record all incoming requests, providing valuable insights for debugging and performance optimization. It will log request metadata such as method, path, and response status. This will improve the overall debugging experience and help identify potential issues",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/router.js",
     "test/middleware.test.js"
   ],
   "testCases": [
-    "Test HTTP request redirect to HTTPS",
-    "Test HTTPS request is not redirected"
+    "Test logging for successful requests",
+    "Test logging for failed requests",
+    "Test logging for different HTTP methods"
   ],
-  "acceptance": "The feature is accepted when all HTTP requests are successfully redirected to their HTTPS equivalents without errors, and the application remains functional",
-  "reason": "Enhancing security and following best practices for web development"
+  "acceptance": "The logging middleware should log all incoming requests with their corresponding metadata, and the logs should be easily accessible for debugging purposes",
+  "reason": "Improves debugging capabilities and provides valuable insights for performance optimization"
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-08
+### FEATURE
+- Implement Request Logging Middleware: This feature adds a logging middleware to track and record all incoming requests, providing valuable insights for debugging and performance optimization. It will log request metadata such as method, path, and response status. This will improve the overall debugging experience and help identify potential issues
+
 ## [Automated] - 2026-06-07
 ### FEATURE
 - Implement Automatic HTTPS Redirect: This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS automatically. It enhances security and improves user trust. The implementation involves configuring the framework to listen for HTTP requests and redirect them to their HTTPS counterparts
