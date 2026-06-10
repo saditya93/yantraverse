@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-10
+### FEATURE
+- Implement Request Body Parsing: This feature is crucial for handling HTTP requests with JSON payloads, enabling the framework to parse and make the request body available to route handlers. It improves performance by reducing the need for manual parsing and solves real problems by providing a standardized way of accessing request data. This feature will enhance the overall usability of the framework
+
 ## [Automated] - 2026-06-09
 ### FEATURE
 - Implement Request Logging Middleware: This feature adds a logging middleware to track and record all incoming requests, providing valuable insights for debugging and performance optimization. It will log request method, path, headers, and response status code. This helps identify issues and improves the overall reliability of the framework.
