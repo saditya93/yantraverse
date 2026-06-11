@@ -1,21 +1,22 @@
 {
-  "date": "2026-06-10",
+  "date": "2026-06-11",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing",
-  "description": "This feature is crucial for handling HTTP requests with JSON payloads, enabling the framework to parse and make the request body available to route handlers. It improves performance by reducing the need for manual parsing and solves real problems by providing a standardized way of accessing request data. This feature will enhance the overall usability of the framework",
+  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
+  "description": "This feature is crucial for handling JSON and URL-encoded data in request bodies, enabling yantraverse to support a wider range of API use cases and improving its overall versatility. It will provide automatic parsing of JSON and URL-encoded data, making it easier for developers to handle complex requests. This feature will also include error handling for invalid JSON and malformed requests",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/router.js",
     "src/middleware.js",
-    "test/router.test.js",
-    "test/middleware.test.js"
+    "src/request.js",
+    "test/middleware.test.js",
+    "test/request.test.js"
   ],
   "testCases": [
-    "Test JSON payload parsing",
-    "Test URL-encoded payload parsing",
-    "Test invalid payload handling"
+    "Test JSON parsing with valid data",
+    "Test URL-encoded parsing with valid data",
+    "Test error handling for invalid JSON",
+    "Test error handling for malformed requests"
   ],
-  "acceptance": "Request body is correctly parsed and available to route handlers for JSON and URL-encoded payloads, with proper error handling for invalid payloads",
-  "reason": "This feature is essential for building robust and scalable applications, and its implementation aligns with the framework's focus on feature-driven development and high-quality code"
+  "acceptance": "The feature is considered complete when request bodies are correctly parsed for JSON and URL-encoded data, and error handling is properly implemented for invalid or malformed requests",
+  "reason": "This feature is essential for supporting common API use cases and improving the framework's overall usability and reliability"
 }
