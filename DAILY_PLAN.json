@@ -1,22 +1,21 @@
 {
-  "date": "2026-06-11",
+  "date": "2026-06-12",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature is crucial for handling JSON and URL-encoded data in request bodies, enabling yantraverse to support a wider range of API use cases and improving its overall versatility. It will provide automatic parsing of JSON and URL-encoded data, making it easier for developers to handle complex requests. This feature will also include error handling for invalid JSON and malformed requests",
+  "title": "Implement Request Body Parsing for JSON Data",
+  "description": "This feature enables yantraverse to parse JSON data from request bodies, allowing for more flexible and efficient handling of API requests. It will improve performance by reducing the need for manual parsing and provide better support for modern web applications. This feature will also include error handling for invalid JSON data",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
+    "src/router.js",
     "src/middleware.js",
-    "src/request.js",
-    "test/middleware.test.js",
-    "test/request.test.js"
+    "test/router.test.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
     "Test JSON parsing with valid data",
-    "Test URL-encoded parsing with valid data",
-    "Test error handling for invalid JSON",
-    "Test error handling for malformed requests"
+    "Test JSON parsing with invalid data",
+    "Test error handling for malformed JSON"
   ],
-  "acceptance": "The feature is considered complete when request bodies are correctly parsed for JSON and URL-encoded data, and error handling is properly implemented for invalid or malformed requests",
-  "reason": "This feature is essential for supporting common API use cases and improving the framework's overall usability and reliability"
+  "acceptance": "The feature is accepted when the framework can successfully parse JSON data from request bodies and handle errors for invalid data",
+  "reason": "This feature is a key requirement for many modern web applications and will significantly improve the usability and performance of yantraverse"
 }
