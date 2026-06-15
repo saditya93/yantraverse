@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-15
+### FEATURE
+- Implement Request Body Parser Middleware: This feature will allow yantraverse to parse JSON and URL-encoded request bodies, enabling developers to handle complex request data. It will provide a flexible and efficient way to process incoming requests. This middleware will be fully tested and documented to ensure production-readiness
+
 ## [Automated] - 2026-06-14
 ### FEATURE
 - Implement Robust Request Body Parsing: This feature matters as it enables yantraverse to handle various request body formats, such as JSON, URL-encoded, and multipart/form-data, which is essential for building robust and versatile APIs. It will provide a simple and efficient way to parse request bodies, improving overall performance and security. This feature will also include error handling and logging mechanisms to ensure production readiness.
