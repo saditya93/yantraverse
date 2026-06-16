@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-16
+### FEATURE
+- Implement Automatic HTTPS Redirect: This feature redirects users from HTTP to HTTPS, ensuring secure communication and protecting sensitive data. It will handle edge cases and provide clear logging for any errors. By implementing this feature, yantraverse will provide a more secure experience for its users.
+
 ## [Automated] - 2026-06-15
 ### FEATURE
 - Implement Request Body Parser Middleware: This feature will allow yantraverse to parse JSON and URL-encoded request bodies, enabling developers to handle complex request data. It will provide a flexible and efficient way to process incoming requests. This middleware will be fully tested and documented to ensure production-readiness

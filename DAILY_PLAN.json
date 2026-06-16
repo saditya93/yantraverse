@@ -1,19 +1,20 @@
 {
-  "date": "2026-06-15",
+  "date": "2026-06-16",
   "category": "FEATURE",
-  "title": "Implement Request Body Parser Middleware",
-  "description": "This feature will allow yantraverse to parse JSON and URL-encoded request bodies, enabling developers to handle complex request data. It will provide a flexible and efficient way to process incoming requests. This middleware will be fully tested and documented to ensure production-readiness",
+  "title": "Implement Automatic HTTPS Redirect",
+  "description": "This feature redirects users from HTTP to HTTPS, ensuring secure communication and protecting sensitive data. It will handle edge cases and provide clear logging for any errors. By implementing this feature, yantraverse will provide a more secure experience for its users.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "test/middleware.test.js"
+    "src/routing.js",
+    "test/routing.test.js"
   ],
   "testCases": [
-    "Test JSON parsing",
-    "Test URL-encoded parsing",
-    "Test error handling"
+    "Test redirect from HTTP to HTTPS",
+    "Test redirect with query parameters",
+    "Test redirect with HTTP headers"
   ],
-  "acceptance": "The request body parser middleware should correctly parse JSON and URL-encoded request bodies, and handle errors without crashing the application",
-  "reason": "This feature is essential for building robust and scalable APIs, and its implementation will significantly improve the usability and functionality of the yantraverse framework"
+  "acceptance": "The feature is accepted when all test cases pass, and the redirect works correctly for different scenarios. The redirect should handle common edge cases, such as query parameters and HTTP headers.",
+  "reason": "Implementing automatic HTTPS redirect is a high-impact feature that improves the security of yantraverse, aligning with the framework's focus on security and production readiness."
 }
