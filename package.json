@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.43-daily.20260616",
-  "description": "Unlock ultra-fast Node.js performance with Yantravese, the AI-driven, zero-dependency framework that outperforms Express and Fastify",
+  "version": "0.0.44-daily.20260617",
+  "description": "Turbocharge your Node.js apps with Yantravese, the ultra-fast, AI-driven framework that outperforms Express and Fastify with zero dependencies",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
