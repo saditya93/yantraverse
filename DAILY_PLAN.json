@@ -1,20 +1,19 @@
 {
-  "date": "2026-06-16",
+  "date": "2026-06-17",
   "category": "FEATURE",
-  "title": "Implement Automatic HTTPS Redirect",
-  "description": "This feature redirects users from HTTP to HTTPS, ensuring secure communication and protecting sensitive data. It will handle edge cases and provide clear logging for any errors. By implementing this feature, yantraverse will provide a more secure experience for its users.",
+  "title": "Implement Request Logging with Error Handling",
+  "description": "This feature will provide detailed logging of incoming requests, including errors, to help with debugging and issue resolution. It will also include error handling to prevent crashes and provide meaningful error messages. This will improve the overall reliability and maintainability of the yantraverse framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/routing.js",
-    "test/routing.test.js"
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test redirect from HTTP to HTTPS",
-    "Test redirect with query parameters",
-    "Test redirect with HTTP headers"
+    "Test logging with valid request",
+    "Test logging with invalid request",
+    "Test error handling with unexpected error"
   ],
-  "acceptance": "The feature is accepted when all test cases pass, and the redirect works correctly for different scenarios. The redirect should handle common edge cases, such as query parameters and HTTP headers.",
-  "reason": "Implementing automatic HTTPS redirect is a high-impact feature that improves the security of yantraverse, aligning with the framework's focus on security and production readiness."
+  "acceptance": "The feature is considered complete when all test cases pass and logging is properly configured to handle different scenarios",
+  "reason": "Improved logging and error handling will enhance the framework's overall quality and usability, making it more attractive to developers and reducing the time spent on debugging and issue resolution"
 }

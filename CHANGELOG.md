@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-17
+### FEATURE
+- Implement Request Logging with Error Handling: This feature will provide detailed logging of incoming requests, including errors, to help with debugging and issue resolution. It will also include error handling to prevent crashes and provide meaningful error messages. This will improve the overall reliability and maintainability of the yantraverse framework
+
 ## [Automated] - 2026-06-16
 ### FEATURE
 - Implement Automatic HTTPS Redirect: This feature redirects users from HTTP to HTTPS, ensuring secure communication and protecting sensitive data. It will handle edge cases and provide clear logging for any errors. By implementing this feature, yantraverse will provide a more secure experience for its users.
