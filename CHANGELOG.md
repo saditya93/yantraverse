@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-18
+### FEATURE
+- Implement Request Logging Middleware: This feature provides detailed logging of incoming requests, which is crucial for debugging and security auditing. It will record request headers, query parameters, and response status codes. This middleware will help developers identify and fix issues more efficiently
+
 ## [Automated] - 2026-06-17
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature will provide detailed logging of incoming requests, including errors, to help with debugging and issue resolution. It will also include error handling to prevent crashes and provide meaningful error messages. This will improve the overall reliability and maintainability of the yantraverse framework
