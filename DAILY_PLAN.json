@@ -1,8 +1,8 @@
 {
-  "date": "2026-06-18",
+  "date": "2026-06-19",
   "category": "FEATURE",
   "title": "Implement Request Logging Middleware",
-  "description": "This feature provides detailed logging of incoming requests, which is crucial for debugging and security auditing. It will record request headers, query parameters, and response status codes. This middleware will help developers identify and fix issues more efficiently",
+  "description": "This feature provides detailed logging of incoming requests, allowing for better debugging and monitoring of the application. It will log request method, path, headers, and response status code. This will improve the overall reliability and maintainability of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
@@ -10,9 +10,9 @@
     "test/middleware.test.js"
   ],
   "testCases": [
-    "Test logging with valid request",
-    "Test logging with invalid request"
+    "Test logging of successful GET request",
+    "Test logging of failed POST request with error"
   ],
-  "acceptance": "The request logging middleware must log all incoming requests with their corresponding headers, query parameters, and response status codes without affecting the request-response flow",
-  "reason": "Improved debugging and security auditing capabilities are essential for a production-ready framework like Yantraverse"
+  "acceptance": "The request logging middleware must log all incoming requests with their respective methods, paths, headers, and response status codes. The logs must be formatted in a clear and readable manner, and must be configurable to log different levels of detail.",
+  "reason": "Implementing request logging middleware is a high-impact feature that will improve the debugging and monitoring capabilities of the framework, making it more attractive to developers and improving overall user experience"
 }
