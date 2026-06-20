@@ -1,18 +1,21 @@
 {
-  "date": "2026-06-19",
+  "date": "2026-06-20",
   "category": "FEATURE",
-  "title": "Implement Request Logging Middleware",
-  "description": "This feature provides detailed logging of incoming requests, allowing for better debugging and monitoring of the application. It will log request method, path, headers, and response status code. This will improve the overall reliability and maintainability of the framework",
+  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
+  "description": "This feature is crucial for handling complex API requests, it enables the framework to parse JSON and URL-encoded request bodies, allowing developers to access and manipulate the data in their routes. This enhancement will improve the framework's usability and flexibility. By adding this feature, yantraverse will be more competitive with other Node.js frameworks",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
+    "src/router.js",
     "src/middleware.js",
+    "test/router.test.js",
     "test/middleware.test.js"
   ],
   "testCases": [
-    "Test logging of successful GET request",
-    "Test logging of failed POST request with error"
+    "Test JSON body parsing",
+    "Test URL-encoded body parsing",
+    "Test invalid request body handling"
   ],
-  "acceptance": "The request logging middleware must log all incoming requests with their respective methods, paths, headers, and response status codes. The logs must be formatted in a clear and readable manner, and must be configurable to log different levels of detail.",
-  "reason": "Implementing request logging middleware is a high-impact feature that will improve the debugging and monitoring capabilities of the framework, making it more attractive to developers and improving overall user experience"
+  "acceptance": "The feature is accepted when the framework can successfully parse JSON and URL-encoded request bodies, and the test cases pass without errors",
+  "reason": "This feature is technically justified as it fills a significant gap in the framework's functionality, and it is a common requirement for many web applications"
 }
