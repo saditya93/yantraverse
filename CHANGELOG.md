@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-23
+### FEATURE
+- Implement Request Body Parsing for JSON and URL-Encoded Data: This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of API use cases and improve overall framework usability. It will provide automatic parsing of request bodies into JavaScript objects. This enhancement will simplify development and improve performance for users of the framework.
+
 ## [Automated] - 2026-06-22
 ### FEATURE
 - Implement Robust Logging Mechanism: This feature matters as it allows for better error tracking and debugging, implementing a logging mechanism that handles errors and edge cases, providing clear insights into application performance. It will enable logging of critical events, such as server errors and rate limiting incidents. This will significantly improve the overall production readiness of the framework.
