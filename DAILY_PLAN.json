@@ -1,19 +1,18 @@
 {
-  "date": "2026-06-23",
+  "date": "2026-06-24",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of API use cases and improve overall framework usability. It will provide automatic parsing of request bodies into JavaScript objects. This enhancement will simplify development and improve performance for users of the framework.",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature provides detailed logging of incoming requests, enabling better debugging and error tracking. It will log request method, URL, headers, and response status code. This improves the overall debugging experience and helps identify issues in production",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "test/middleware/bodyParser.test.js"
+    "src/middleware.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test invalid request body handling"
+    "Test logging for successful requests",
+    "Test logging for failed requests with error handling"
   ],
-  "acceptance": "The feature is accepted when request bodies are correctly parsed into JavaScript objects for both JSON and URL-encoded data, and error handling is properly implemented for invalid request bodies.",
-  "reason": "Adding request body parsing will make yantraverse more competitive with other lightweight Node.js frameworks and improve the developer experience by reducing boilerplate code and increasing the ease of handling different types of request data."
+  "acceptance": "The request logging middleware must log all incoming requests with relevant details, handle errors without crashing the application, and provide clear logs for debugging purposes",
+  "reason": "Improved debugging and error tracking capabilities are essential for a production-ready framework like Yantraverse"
 }
