@@ -1,18 +1,18 @@
 {
-  "date": "2026-06-24",
+  "date": "2026-06-25",
   "category": "FEATURE",
-  "title": "Implement Request Logging Middleware",
-  "description": "This feature provides detailed logging of incoming requests, enabling better debugging and error tracking. It will log request method, URL, headers, and response status code. This improves the overall debugging experience and helps identify issues in production",
+  "title": "Implement Request Logging with Error Handling",
+  "description": "This feature adds logging capabilities to track incoming requests and errors, allowing for better debugging and issue resolution. It will include error handling to ensure that logging does not disrupt the application. This will improve the overall reliability and maintainability of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware.js",
-    "test/middleware.test.js"
+    "src/middleware/logger.js",
+    "test/middleware/logger.test.js"
   ],
   "testCases": [
     "Test logging for successful requests",
     "Test logging for failed requests with error handling"
   ],
-  "acceptance": "The request logging middleware must log all incoming requests with relevant details, handle errors without crashing the application, and provide clear logs for debugging purposes",
-  "reason": "Improved debugging and error tracking capabilities are essential for a production-ready framework like Yantraverse"
+  "acceptance": "The feature is accepted when all test cases pass and logging is successfully implemented without disrupting the application",
+  "reason": "Implementing request logging with error handling is crucial for a production-ready framework like Yantraverse, as it enables developers to identify and resolve issues efficiently, ultimately improving the user experience"
 }

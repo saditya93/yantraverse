@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-25
+### FEATURE
+- Implement Request Logging with Error Handling: This feature adds logging capabilities to track incoming requests and errors, allowing for better debugging and issue resolution. It will include error handling to ensure that logging does not disrupt the application. This will improve the overall reliability and maintainability of the framework
+
 ## [Automated] - 2026-06-24
 ### FEATURE
 - Implement Request Logging Middleware: This feature provides detailed logging of incoming requests, enabling better debugging and error tracking. It will log request method, URL, headers, and response status code. This improves the overall debugging experience and helps identify issues in production
