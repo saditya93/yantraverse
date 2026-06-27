@@ -1,21 +1,18 @@
 {
-  "date": "2026-06-26",
+  "date": "2026-06-27",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature is crucial for handling API requests with JSON or URL-encoded data, allowing yantraverse to parse and make the data available to route handlers. It will improve the framework's usability and compatibility with modern web development standards. By adding this feature, yantraverse will be able to handle a wider range of API requests",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature provides insight into incoming requests, allowing for better debugging and issue tracking. It will log key request information such as method, path, and response status. This enhances the framework's overall transparency and maintainability",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/request.js",
-    "test/middleware.test.js",
-    "test/request.test.js"
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test invalid JSON parsing error handling"
+    "Test logging for successful requests",
+    "Test logging for failed requests"
   ],
-  "acceptance": "The feature is accepted when route handlers can successfully access and use the parsed request body data for both JSON and URL-encoded requests",
-  "reason": "This feature is essential for building RESTful APIs and supporting modern web development workflows, making yantraverse more attractive to developers and improving its overall competitiveness in the market"
+  "acceptance": "The feature is accepted when logs are correctly generated for various request scenarios, including different HTTP methods and response codes",
+  "reason": "Improved request logging is essential for a production-ready framework, enabling developers to monitor and troubleshoot their applications more effectively"
 }
