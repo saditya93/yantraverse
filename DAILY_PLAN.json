@@ -1,21 +1,18 @@
 {
-  "date": "2026-06-28",
+  "date": "2026-06-29",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature adds support for parsing request bodies in JSON and URL-encoded formats, enabling yantraverse to handle a wider range of API requests and improving its usability for developers. It will include automatic detection of the request content type and parsing of the body accordingly. This enhancement is essential for building robust and flexible APIs",
+  "title": "Implement Request Logging with Error Handling",
+  "description": "This feature adds request logging to track and analyze incoming requests, improving debugging and error tracing capabilities. It also includes error handling to ensure robustness and reliability. By logging requests, developers can identify and fix issues more efficiently",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/request.js",
-    "src/router.js",
-    "test/request.test.js",
-    "test/router.test.js"
+    "src/middleware.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test invalid content type handling"
+    "Test logging for successful requests",
+    "Test logging for failed requests with error handling"
   ],
-  "acceptance": "Request body parsing works correctly for JSON and URL-encoded data, and errors are handled properly for invalid content types",
-  "reason": "This feature is high-impact as it expands yantraverse's capabilities to handle various API requests, and it is well-scoped to fit within the 100-250 lines of code criteria, making it a valuable addition to the framework"
+  "acceptance": "Request logs are correctly written to the log file, and error handling does not crash the server",
+  "reason": "Improved debugging and error tracing capabilities enhance the overall quality and reliability of the yantraverse framework"
 }
