@@ -1,18 +1,20 @@
 {
-  "date": "2026-06-29",
+  "date": "2026-06-30",
   "category": "FEATURE",
-  "title": "Implement Request Logging with Error Handling",
-  "description": "This feature adds request logging to track and analyze incoming requests, improving debugging and error tracing capabilities. It also includes error handling to ensure robustness and reliability. By logging requests, developers can identify and fix issues more efficiently",
+  "title": "Implement Support for HTTPS",
+  "description": "This feature matters because it enables yantraverse to serve secure content, protecting user data and preventing man-in-the-middle attacks, by adding support for HTTPS protocol. It does this by integrating TLS/SSL certificates and handling encryption. This improves the overall security of the framework.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware.js",
-    "test/middleware.test.js"
+    "src/server.js",
+    "src/config.js",
+    "test/server.test.js"
   ],
   "testCases": [
-    "Test logging for successful requests",
-    "Test logging for failed requests with error handling"
+    "Test HTTPS connection with valid certificate",
+    "Test HTTPS connection with invalid certificate",
+    "Test HTTP to HTTPS redirect"
   ],
-  "acceptance": "Request logs are correctly written to the log file, and error handling does not crash the server",
-  "reason": "Improved debugging and error tracing capabilities enhance the overall quality and reliability of the yantraverse framework"
+  "acceptance": "The feature is accepted when the framework can successfully serve content over HTTPS and handle TLS/SSL certificates correctly, without disrupting existing HTTP functionality.",
+  "reason": "Implementing HTTPS support is a high-impact feature that significantly improves the security and trustworthiness of yantraverse, making it more attractive to developers who require a secure production-ready framework."
 }

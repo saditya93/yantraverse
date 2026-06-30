@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-06-30
+### FEATURE
+- Implement Support for HTTPS: This feature matters because it enables yantraverse to serve secure content, protecting user data and preventing man-in-the-middle attacks, by adding support for HTTPS protocol. It does this by integrating TLS/SSL certificates and handling encryption. This improves the overall security of the framework.
+
 ## [Automated] - 2026-06-29
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature adds request logging to track and analyze incoming requests, improving debugging and error tracing capabilities. It also includes error handling to ensure robustness and reliability. By logging requests, developers can identify and fix issues more efficiently
