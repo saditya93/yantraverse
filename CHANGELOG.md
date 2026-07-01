@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-01
+### FEATURE
+- Implement Request Body Parsing: This feature is crucial as it enables the framework to handle JSON and URL-encoded request bodies, allowing for more complex and data-driven applications. It will provide a built-in way to parse request bodies, making it easier for developers to work with data. This will improve the overall usability and versatility of the yantraverse framework
+
 ## [Automated] - 2026-06-30
 ### FEATURE
 - Implement Support for HTTPS: This feature matters because it enables yantraverse to serve secure content, protecting user data and preventing man-in-the-middle attacks, by adding support for HTTPS protocol. It does this by integrating TLS/SSL certificates and handling encryption. This improves the overall security of the framework.

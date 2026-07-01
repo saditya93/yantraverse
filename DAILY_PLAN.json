@@ -1,20 +1,21 @@
 {
-  "date": "2026-06-30",
+  "date": "2026-07-01",
   "category": "FEATURE",
-  "title": "Implement Support for HTTPS",
-  "description": "This feature matters because it enables yantraverse to serve secure content, protecting user data and preventing man-in-the-middle attacks, by adding support for HTTPS protocol. It does this by integrating TLS/SSL certificates and handling encryption. This improves the overall security of the framework.",
+  "title": "Implement Request Body Parsing",
+  "description": "This feature is crucial as it enables the framework to handle JSON and URL-encoded request bodies, allowing for more complex and data-driven applications. It will provide a built-in way to parse request bodies, making it easier for developers to work with data. This will improve the overall usability and versatility of the yantraverse framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/config.js",
-    "test/server.test.js"
+    "src/request.js",
+    "src/router.js",
+    "test/request.test.js",
+    "test/router.test.js"
   ],
   "testCases": [
-    "Test HTTPS connection with valid certificate",
-    "Test HTTPS connection with invalid certificate",
-    "Test HTTP to HTTPS redirect"
+    "Test JSON body parsing",
+    "Test URL-encoded body parsing",
+    "Test invalid body parsing"
   ],
-  "acceptance": "The feature is accepted when the framework can successfully serve content over HTTPS and handle TLS/SSL certificates correctly, without disrupting existing HTTP functionality.",
-  "reason": "Implementing HTTPS support is a high-impact feature that significantly improves the security and trustworthiness of yantraverse, making it more attractive to developers who require a secure production-ready framework."
+  "acceptance": "The feature is accepted when the framework can successfully parse JSON and URL-encoded request bodies, and handle edge cases such as invalid or missing bodies",
+  "reason": "This feature is a key requirement for many modern web applications, and its absence limits the framework's adoption and usability"
 }
