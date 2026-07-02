@@ -1,21 +1,19 @@
 {
-  "date": "2026-07-01",
+  "date": "2026-07-02",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing",
-  "description": "This feature is crucial as it enables the framework to handle JSON and URL-encoded request bodies, allowing for more complex and data-driven applications. It will provide a built-in way to parse request bodies, making it easier for developers to work with data. This will improve the overall usability and versatility of the yantraverse framework",
+  "title": "Implement Automatic HTTPS Redirect",
+  "description": "This feature matters as it ensures users are always accessing the application securely, and it does this by automatically redirecting HTTP requests to HTTPS. This improves security and helps prevent potential data breaches. By implementing this feature, yantraverse can provide a more secure experience for its users",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/request.js",
+    "src/middleware.js",
     "src/router.js",
-    "test/request.test.js",
     "test/router.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test invalid body parsing"
+    "Test HTTP request is redirected to HTTPS",
+    "Test HTTPS request is not redirected"
   ],
-  "acceptance": "The feature is accepted when the framework can successfully parse JSON and URL-encoded request bodies, and handle edge cases such as invalid or missing bodies",
-  "reason": "This feature is a key requirement for many modern web applications, and its absence limits the framework's adoption and usability"
+  "acceptance": "The feature is considered complete when all HTTP requests are successfully redirected to HTTPS, and the application continues to function as expected",
+  "reason": "This feature is a high-impact improvement that aligns with the framework's focus on security and stability, and it is a common requirement for many production applications"
 }

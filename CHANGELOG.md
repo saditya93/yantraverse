@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-02
+### FEATURE
+- Implement Automatic HTTPS Redirect: This feature matters as it ensures users are always accessing the application securely, and it does this by automatically redirecting HTTP requests to HTTPS. This improves security and helps prevent potential data breaches. By implementing this feature, yantraverse can provide a more secure experience for its users
+
 ## [Automated] - 2026-07-01
 ### FEATURE
 - Implement Request Body Parsing: This feature is crucial as it enables the framework to handle JSON and URL-encoded request bodies, allowing for more complex and data-driven applications. It will provide a built-in way to parse request bodies, making it easier for developers to work with data. This will improve the overall usability and versatility of the yantraverse framework
