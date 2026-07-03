@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-03
+### FEATURE
+- Implement Request Logging Middleware: This feature adds a logging middleware to track and monitor incoming requests, providing valuable insights for debugging and performance optimization. It will log key request information such as method, path, and response status. This will improve the overall debugging experience and help identify potential issues
+
 ## [Automated] - 2026-07-02
 ### FEATURE
 - Implement Automatic HTTPS Redirect: This feature matters as it ensures users are always accessing the application securely, and it does this by automatically redirecting HTTP requests to HTTPS. This improves security and helps prevent potential data breaches. By implementing this feature, yantraverse can provide a more secure experience for its users

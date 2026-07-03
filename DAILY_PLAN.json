@@ -1,19 +1,19 @@
 {
-  "date": "2026-07-02",
+  "date": "2026-07-03",
   "category": "FEATURE",
-  "title": "Implement Automatic HTTPS Redirect",
-  "description": "This feature matters as it ensures users are always accessing the application securely, and it does this by automatically redirecting HTTP requests to HTTPS. This improves security and helps prevent potential data breaches. By implementing this feature, yantraverse can provide a more secure experience for its users",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature adds a logging middleware to track and monitor incoming requests, providing valuable insights for debugging and performance optimization. It will log key request information such as method, path, and response status. This will improve the overall debugging experience and help identify potential issues",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/router.js",
-    "test/router.test.js"
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test HTTP request is redirected to HTTPS",
-    "Test HTTPS request is not redirected"
+    "Test logging for successful requests",
+    "Test logging for failed requests",
+    "Test logging for different HTTP methods"
   ],
-  "acceptance": "The feature is considered complete when all HTTP requests are successfully redirected to HTTPS, and the application continues to function as expected",
-  "reason": "This feature is a high-impact improvement that aligns with the framework's focus on security and stability, and it is a common requirement for many production applications"
+  "acceptance": "The logging middleware should log requests with the correct information and handle different scenarios without errors",
+  "reason": "Improved debugging and performance monitoring capabilities are essential for a production-ready framework like Yantraverse"
 }
