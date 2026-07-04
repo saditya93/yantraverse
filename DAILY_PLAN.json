@@ -1,19 +1,20 @@
 {
-  "date": "2026-07-03",
+  "date": "2026-07-04",
   "category": "FEATURE",
-  "title": "Implement Request Logging Middleware",
-  "description": "This feature adds a logging middleware to track and monitor incoming requests, providing valuable insights for debugging and performance optimization. It will log key request information such as method, path, and response status. This will improve the overall debugging experience and help identify potential issues",
+  "title": "Implement Request Logging with Error Handling",
+  "description": "This feature provides detailed request logging with error handling to improve debugging and monitoring capabilities, allowing developers to track and resolve issues more efficiently. It will include logging of request metadata, response codes, and error messages. This will enhance the overall stability and maintainability of the yantraverse framework.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware.js",
-    "test/middleware.test.js"
+    "src/logger.js",
+    "src/router.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Test logging for successful requests",
-    "Test logging for failed requests",
-    "Test logging for different HTTP methods"
+    "Test logging of successful requests",
+    "Test logging of requests with errors",
+    "Test logging of requests with invalid metadata"
   ],
-  "acceptance": "The logging middleware should log requests with the correct information and handle different scenarios without errors",
-  "reason": "Improved debugging and performance monitoring capabilities are essential for a production-ready framework like Yantraverse"
+  "acceptance": "The feature is considered complete when all test cases pass and logging output is correctly formatted and includes relevant request metadata and error information.",
+  "reason": "Implementing request logging with error handling is crucial for a production-ready framework like yantraverse, as it enables developers to identify and troubleshoot issues quickly, ensuring high-quality and reliable performance."
 }
