@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-05
+### FEATURE
+- Implement Automatic Route Caching for Improved Performance: This feature matters as it will improve the performance of the yantraverse framework by reducing the time it takes to resolve routes. It will achieve this by caching the results of route resolution, so that subsequent requests to the same route can be served more quickly. This will have a significant impact on the overall responsiveness of applications built with yantraverse
+
 ## [Automated] - 2026-07-04
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature provides detailed request logging with error handling to improve debugging and monitoring capabilities, allowing developers to track and resolve issues more efficiently. It will include logging of request metadata, response codes, and error messages. This will enhance the overall stability and maintainability of the yantraverse framework.
