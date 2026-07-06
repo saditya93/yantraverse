@@ -1,18 +1,20 @@
 {
-  "date": "2026-07-05",
+  "date": "2026-07-06",
   "category": "FEATURE",
-  "title": "Implement Automatic Route Caching for Improved Performance",
-  "description": "This feature matters as it will improve the performance of the yantraverse framework by reducing the time it takes to resolve routes. It will achieve this by caching the results of route resolution, so that subsequent requests to the same route can be served more quickly. This will have a significant impact on the overall responsiveness of applications built with yantraverse",
+  "title": "Implement Automatic HTTPS Redirect",
+  "description": "This feature matters as it improves security by automatically redirecting HTTP requests to HTTPS, ensuring encrypted communication between the client and server. It does this by checking the request protocol and redirecting to the corresponding HTTPS URL. This enhances the overall security of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/routing.js",
-    "test/routing.test.js"
+    "src/middleware.js",
+    "src/router.js",
+    "test/middleware.test.js",
+    "test/router.test.js"
   ],
   "testCases": [
-    "Test route caching with multiple requests to the same route",
-    "Test route caching with requests to different routes"
+    "Test HTTP request redirect to HTTPS",
+    "Test HTTPS request no redirect"
   ],
-  "acceptance": "Route caching is successfully implemented and improves performance by at least 20%",
-  "reason": "Technical justification: Route caching is a common optimization technique used in many frameworks to improve performance, and its implementation will bring yantraverse more in line with industry standards"
+  "acceptance": "The feature is accepted when all HTTP requests are automatically redirected to their corresponding HTTPS URLs without affecting existing HTTPS requests",
+  "reason": "Enhancing security is a high-impact improvement that aligns with the framework's focus on stability and security"
 }

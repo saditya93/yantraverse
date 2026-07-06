@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-06
+### FEATURE
+- Implement Automatic HTTPS Redirect: This feature matters as it improves security by automatically redirecting HTTP requests to HTTPS, ensuring encrypted communication between the client and server. It does this by checking the request protocol and redirecting to the corresponding HTTPS URL. This enhances the overall security of the framework
+
 ## [Automated] - 2026-07-05
 ### FEATURE
 - Implement Automatic Route Caching for Improved Performance: This feature matters as it will improve the performance of the yantraverse framework by reducing the time it takes to resolve routes. It will achieve this by caching the results of route resolution, so that subsequent requests to the same route can be served more quickly. This will have a significant impact on the overall responsiveness of applications built with yantraverse
