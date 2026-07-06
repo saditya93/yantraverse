@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-05",
-  "description": "Yantravese: Turbocharged, Zero-Dependency Node.js Framework Outperforming Express and Fastify for Serverless, Edge, and Real-Time Applications",
+  "date": "2026-07-06",
+  "description": "Turbocharge your Node.js applications with Yantravese, the ultra-lightweight, zero-dependency framework outperforming Express and Fastify for serverless, edge, and real-time use cases",
   "keywords": [
     "nodejs",
     "framework",
@@ -69,7 +69,7 @@
     "cloud native 2026",
     "serverless 2026"
   ],
-  "npm_trending_strategy": "Leveraging 30 recent commits to showcase active development and a focus on serverless, edge, and real-time technologies, while highlighting performance and security advantages over Express and Fastify",
+  "npm_trending_strategy": "Regular updates with 30+ commits, emphasizing zero-dependency, performance, and real-time capabilities for modern serverless and edge applications",
   "recommended_tags": [
     "#nodejs",
     "#framework",
@@ -77,46 +77,17 @@
     "#edgecomputing",
     "#cloudnative",
     "#jamstack",
-    "#pwa",
     "#realtime",
     "#typescript",
     "#javascript",
-    "#nextjs",
-    "#nestjs",
-    "#graphql",
-    "#microservices",
-    "#kubernetes",
-    "#devops",
-    "#cicd",
-    "#serverlessarchitecture",
-    "#cloudnativeapplications",
-    "#realtimedataprocessing",
-    "#eventdrivenarchitecture",
-    "#edgeai",
-    "#serverlessmachinelearning",
-    "#serverlessanalytics",
-    "#cloudnativesecurity",
-    "#zerotrust",
-    "#edgeseurity",
-    "#webassembly",
-    "#graphqapi",
-    "#apigateway",
-    "#servicemesh",
-    "#deno",
-    "#bun",
-    "#esm",
-    "#typescript5",
-    "#nodejs20",
-    "#javascript2026",
-    "#nx",
-    "#vite",
-    "#turbo",
-    "#remix",
-    "#solidjs"
+    "#webdevelopment",
+    "#cloudnative2026",
+    "#serverless2026",
+    "#edgetech"
   ],
   "download_hooks": [
-    "Achieve unparalleled performance with Yantravese's zero-dependency architecture, perfect for serverless, edge, and real-time applications",
-    "Say goodbye to latency with Yantravese's ultra-fast routing and middleware, outperforming Express and Fastify in every benchmark",
-    "Simplify your development workflow with Yantravese's low-code approach, streamlining your path to production-ready serverless and edge applications"
+    "Achieve unparalleled performance with our turbocharged, zero-dependency architecture",
+    "Simplify your development workflow with our lightweight, easy-to-use framework",
+    "Future-proof your applications with our cutting-edge support for serverless, edge, and real-time technologies"
   ]
 }
