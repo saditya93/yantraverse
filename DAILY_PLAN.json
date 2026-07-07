@@ -1,8 +1,8 @@
 {
-  "date": "2026-07-06",
+  "date": "2026-07-07",
   "category": "FEATURE",
   "title": "Implement Automatic HTTPS Redirect",
-  "description": "This feature matters as it improves security by automatically redirecting HTTP requests to HTTPS, ensuring encrypted communication between the client and server. It does this by checking the request protocol and redirecting to the corresponding HTTPS URL. This enhances the overall security of the framework",
+  "description": "This feature matters because it ensures users are always accessing the application securely, improving security and trust. It automatically redirects HTTP requests to HTTPS, providing a seamless experience. This feature is essential for production environments",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
@@ -12,9 +12,9 @@
     "test/router.test.js"
   ],
   "testCases": [
-    "Test HTTP request redirect to HTTPS",
-    "Test HTTPS request no redirect"
+    "Test HTTP request redirects to HTTPS",
+    "Test HTTPS request is not redirected"
   ],
-  "acceptance": "The feature is accepted when all HTTP requests are automatically redirected to their corresponding HTTPS URLs without affecting existing HTTPS requests",
-  "reason": "Enhancing security is a high-impact improvement that aligns with the framework's focus on stability and security"
+  "acceptance": "The feature is accepted when all HTTP requests are automatically redirected to HTTPS, and HTTPS requests are not redirected",
+  "reason": "Implementing automatic HTTPS redirect is a high-impact feature that improves security and is a common requirement for production-ready applications"
 }
