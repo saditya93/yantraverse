@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-08
+### FEATURE
+- Implement Request Body Parsing for JSON Data: This feature enables yantraverse to parse JSON data from request bodies, allowing for more flexible and efficient handling of API requests. It will provide a built-in middleware to automatically parse JSON data, making it easier for developers to work with JSON-based APIs. This improvement will enhance the overall performance and usability of the framework.
+
 ## [Automated] - 2026-07-07
 ### FEATURE
 - Implement Automatic HTTPS Redirect: This feature matters because it ensures users are always accessing the application securely, improving security and trust. It automatically redirects HTTP requests to HTTPS, providing a seamless experience. This feature is essential for production environments
