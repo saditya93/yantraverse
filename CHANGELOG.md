@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-11
+### FEATURE
+- Implement Automatic HTTPS Redirection: This feature matters as it ensures secure communication between the client and server by automatically redirecting HTTP requests to HTTPS, improving security and preventing mixed content warnings. It does this by adding a middleware function that checks the request protocol and redirects to HTTPS if necessary. This enhances the overall security of the yantraverse framework
+
 ## [Automated] - 2026-07-10
 ### FEATURE
 - Implement Request Logging Middleware: This feature adds a logging middleware to track incoming requests, providing valuable insights for debugging and analytics. It will log request method, URL, headers, and response status code. This enhances the framework's production readiness and troubleshooting capabilities
