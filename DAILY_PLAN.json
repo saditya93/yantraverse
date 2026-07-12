@@ -1,19 +1,21 @@
 {
-  "date": "2026-07-11",
+  "date": "2026-07-12",
   "category": "FEATURE",
-  "title": "Implement Automatic HTTPS Redirection",
-  "description": "This feature matters as it ensures secure communication between the client and server by automatically redirecting HTTP requests to HTTPS, improving security and preventing mixed content warnings. It does this by adding a middleware function that checks the request protocol and redirects to HTTPS if necessary. This enhances the overall security of the yantraverse framework",
+  "title": "Implement Request Body Parsing",
+  "description": "This feature adds support for parsing request bodies in JSON, URL-encoded, and multipart formats, enabling yantraverse to handle a wide range of HTTP requests and improve its usability. It will provide a robust way to handle request data, making it easier for developers to build APIs and web applications. This feature is essential for a production-ready framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware.js",
     "src/router.js",
+    "src/middleware.js",
+    "test/router.test.js",
     "test/middleware.test.js"
   ],
   "testCases": [
-    "Test HTTP request redirects to HTTPS",
-    "Test HTTPS request is not redirected"
+    "Test JSON body parsing",
+    "Test URL-encoded body parsing",
+    "Test multipart body parsing"
   ],
-  "acceptance": "The feature is accepted when all test cases pass and the redirection works as expected for both HTTP and HTTPS requests",
-  "reason": "Implementing automatic HTTPS redirection is a high-impact feature that improves the security and usability of the yantraverse framework, aligning with the framework's focus on security and stability"
+  "acceptance": "The feature is accepted when all test cases pass, and the framework can correctly parse request bodies in different formats",
+  "reason": "Adding request body parsing is a high-impact feature that improves the framework's usability and makes it more competitive with other Node.js frameworks"
 }

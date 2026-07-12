@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-12
+### FEATURE
+- Implement Request Body Parsing: This feature adds support for parsing request bodies in JSON, URL-encoded, and multipart formats, enabling yantraverse to handle a wide range of HTTP requests and improve its usability. It will provide a robust way to handle request data, making it easier for developers to build APIs and web applications. This feature is essential for a production-ready framework
+
 ## [Automated] - 2026-07-11
 ### FEATURE
 - Implement Automatic HTTPS Redirection: This feature matters as it ensures secure communication between the client and server by automatically redirecting HTTP requests to HTTPS, improving security and preventing mixed content warnings. It does this by adding a middleware function that checks the request protocol and redirects to HTTPS if necessary. This enhances the overall security of the yantraverse framework
