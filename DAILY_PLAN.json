@@ -1,21 +1,19 @@
 {
-  "date": "2026-07-18",
+  "date": "2026-07-19",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature allows yantraverse to handle JSON and URL-encoded request bodies, enabling support for a wider range of APIs and improving overall framework usability. It will include automatic detection of request body type and parsing into a JavaScript object. This enhancement is crucial for building robust and versatile APIs",
+  "title": "Implement Request Body Parsing",
+  "description": "This feature is crucial for handling JSON and URL-encoded request bodies, allowing developers to easily access and manipulate request data. It will provide a robust way to parse request bodies, handling various content types and edge cases. By including this feature, yantraverse will become more versatile and user-friendly",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/request.js",
-    "src/router.js",
-    "test/request.test.js",
-    "test/router.test.js"
+    "test/request.test.js"
   ],
   "testCases": [
-    "Test JSON request body parsing",
-    "Test URL-encoded request body parsing",
-    "Test invalid request body handling"
+    "Test JSON body parsing",
+    "Test URL-encoded body parsing",
+    "Test invalid content type handling"
   ],
-  "acceptance": "Request body parsing works correctly for JSON and URL-encoded data, and errors are properly handled and logged",
-  "reason": "Enhancing request body parsing capabilities is essential for a production-ready framework like yantraverse, as it directly impacts the framework's ability to handle various API use cases and provides a better developer experience"
+  "acceptance": "The feature is considered complete when request bodies are correctly parsed for JSON and URL-encoded content types, and error handling is implemented for invalid or unsupported content types",
+  "reason": "Adding request body parsing will significantly improve the framework's usability and functionality, making it more competitive with other Node.js frameworks"
 }
