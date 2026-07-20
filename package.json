@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.76-daily.20260719",
-  "description": "Turbocharge Node.js with Yantravese: The 0-Dependency, Cloud-Native Framework for Lightning-Fast Serverless, Edge, and Real-Time Apps",
+  "version": "0.0.77-daily.20260720",
+  "description": "Yantravese: Ultra-Lightweight, 0-Dependency Node.js Framework for Lightning-Fast Serverless, Edge, and Real-Time Apps with Unmatched Performance and Simplicity",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
