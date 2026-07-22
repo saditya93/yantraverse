@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.78-daily.20260721",
-  "description": "Yantravese: 0-Dependency, Ultra-Fast Node.js Framework for Serverless, Edge, and Real-Time Apps with Unbeatable Performance and Simplicity",
+  "version": "0.0.79-daily.20260722",
+  "description": "Ultra-Light, 0-Dependency Node.js Framework for Serverless, Edge, and Real-Time Apps with Unbeatable Performance, Simplicity, and Next-Gen Features",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -60,8 +60,6 @@
     "serverless functions",
     "cloud functions",
     "edge functions",
-    "nextjs",
-    "nestjs",
     "graphql",
     "microservices",
     "containerization",
