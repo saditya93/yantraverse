@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-24
+### FEATURE
+- Implement Automatic Retry Mechanism for Failed Requests: This feature matters because it improves the overall user experience by automatically retrying failed requests, reducing the need for manual retries and enhancing the framework's reliability. It does this by integrating a retry mechanism that can be configured to retry failed requests a specified number of times with a backoff delay. This enhances the framework's resilience and performance.
+
 ## [Automated] - 2026-07-23
 ### FEATURE
 - Implement Request Body Parsing for JSON and URL-Encoded Data: This feature adds the ability to parse JSON and URL-encoded request bodies, allowing for more flexibility in handling user input and improving overall framework usability. It will handle errors and edge cases, such as invalid JSON or exceeded payload limits. By adding this feature, yantraverse will be more competitive with other frameworks and better suited for real-world applications
