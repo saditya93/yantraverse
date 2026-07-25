@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-24",
-  "description": "Unlock blazing-fast Node.js performance with Yantravese, the 0-dependency, ultra-light framework that outsmarts Express and Fastify for serverless, edge, and real-time applications",
+  "date": "2026-07-25",
+  "description": "Turbocharge your Node.js apps with Yantravese, the 0-dependency, ultra-light framework that outperforms Express and Fastify for serverless, edge, and real-time applications",
   "keywords": [
     "nodejs",
     "framework",
@@ -67,23 +67,35 @@
     "cloud native 2026",
     "serverless 2026"
   ],
-  "npm_trending_strategy": "Yantravese v0.0.80-daily.20260723 stands out with its 0-dependency architecture, providing unparalleled performance, security, and ease of use for modern Node.js applications, with 30 recent commits ensuring it stays at the bleeding edge of technology",
+  "npm_trending_strategy": "Leveraging 30 recent commits, Yantravese stays ahead of the curve with the latest Node.js 20 and TypeScript 5 features, ensuring unparalleled performance and security for modern serverless and edge applications",
   "recommended_tags": [
     "#nodejs",
     "#framework",
     "#serverless",
     "#edgecomputing",
     "#cloudnative",
-    "#javascript",
+    "#jamstack",
+    "#pwa",
+    "#realtime",
     "#typescript",
-    "#webdevelopment",
-    "#performancematters",
-    "#zerodependency",
-    "#lightweight"
+    "#javascript",
+    "#http",
+    "#rest",
+    "#api",
+    "#lowcode",
+    "#cloudfunctions",
+    "#edgefunctions",
+    "#graphql",
+    "#microservices",
+    "#kubernetes",
+    "#devops",
+    "#cicd",
+    "#serverlessarchitecture",
+    "#cloudnativeapplications"
   ],
   "download_hooks": [
-    "Say goodbye to dependency hell and hello to blazing-fast performance with Yantravese",
-    "Experience the power of a 0-dependency framework, optimized for real-time and serverless applications",
-    "Join the ranks of developers who have already discovered the secret to ultra-light, high-performance Node.js applications with Yantravese"
+    "Achieve blazing-fast performance with a 0-dependency framework",
+    "Boost development speed with an ultra-light and modular architecture",
+    "Simplify your workflow with streamlined routing, middleware, and API management"
   ]
 }
