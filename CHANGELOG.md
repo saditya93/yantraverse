@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-25
+### FEATURE
+- Implement Request Body Parsing for JSON and URL-Encoded Data: This feature is crucial for handling requests with JSON or URL-encoded payloads, allowing developers to easily access and manipulate the request data. It will parse the request body into a JavaScript object, making it readily available for use in middleware and route handlers. This enhancement will significantly improve the framework's usability and versatility
+
 ## [Automated] - 2026-07-24
 ### FEATURE
 - Implement Automatic Retry Mechanism for Failed Requests: This feature matters because it improves the overall user experience by automatically retrying failed requests, reducing the need for manual retries and enhancing the framework's reliability. It does this by integrating a retry mechanism that can be configured to retry failed requests a specified number of times with a backoff delay. This enhances the framework's resilience and performance.
