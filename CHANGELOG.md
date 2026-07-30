@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-30
+### FEATURE
+- Implement Request Logging Middleware: This feature adds a logging middleware to track and record incoming requests, providing valuable insights for debugging and performance optimization. It will log request metadata such as method, URL, and response status. This enhancement will improve the overall debugging experience and help identify potential issues
+
 ## [Automated] - 2026-07-29
 ### FEATURE
 - Implement Request Body Parsing: This feature is crucial for handling POST requests with JSON payloads, enabling yantraverse to support a wider range of use cases and improving its usability. It will parse the request body into a JavaScript object, making it easily accessible to route handlers. This enhancement will significantly improve the framework's functionality and versatility

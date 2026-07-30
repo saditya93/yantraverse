@@ -1,21 +1,19 @@
 {
-  "date": "2026-07-29",
+  "date": "2026-07-30",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing",
-  "description": "This feature is crucial for handling POST requests with JSON payloads, enabling yantraverse to support a wider range of use cases and improving its usability. It will parse the request body into a JavaScript object, making it easily accessible to route handlers. This enhancement will significantly improve the framework's functionality and versatility",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature adds a logging middleware to track and record incoming requests, providing valuable insights for debugging and performance optimization. It will log request metadata such as method, URL, and response status. This enhancement will improve the overall debugging experience and help identify potential issues",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/request.js",
-    "src/router.js",
-    "test/request.test.js",
-    "test/router.test.js"
+    "src/middleware.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test invalid JSON handling"
+    "Test logging for successful requests",
+    "Test logging for failed requests",
+    "Test logging for requests with query parameters"
   ],
-  "acceptance": "The request body is correctly parsed into a JavaScript object and made available to route handlers, with proper error handling for invalid JSON and other edge cases",
-  "reason": "This feature is essential for building robust and functional APIs, and its implementation will significantly enhance yantraverse's capabilities and appeal to developers"
+  "acceptance": "The logging middleware should log request metadata correctly and handle different types of requests without errors",
+  "reason": "Implementing request logging will improve the framework's debuggability and help developers identify performance bottlenecks, aligning with the framework's focus on stability and performance"
 }
