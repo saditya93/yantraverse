@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-29",
-  "description": "Unlock blazing-fast Node.js performance with Yantravese, the ultra-lightweight 0-dependency framework that outperforms Express and Fastify for serverless, edge, and real-time applications",
+  "date": "2026-07-30",
+  "description": "Turbocharge your Node.js apps with Yantravese, the 0-dependency, ultra-lightweight framework that outperforms Express and Fastify in serverless, edge, and real-time applications",
   "keywords": [
     "nodejs",
     "framework",
@@ -67,31 +67,25 @@
     "cloud native 2026",
     "serverless 2026"
   ],
-  "npm_trending_strategy": "Yantravese stands out with its 0-dependency architecture, providing unparalleled performance and security for modern Node.js applications, while supporting the latest trends in serverless, edge computing, and cloud native development",
+  "npm_trending_strategy": "With 30 recent commits, Yantravese is actively maintained and optimized for the latest Node.js 20 and TypeScript 5, ensuring the best performance and security for your applications",
   "recommended_tags": [
     "#nodejs",
     "#framework",
     "#serverless",
     "#edgecomputing",
     "#cloudnative",
-    "#performancematters",
-    "#zerodependency",
-    "#lightweight",
-    "#fast",
-    "#realtime",
-    "#typescript",
     "#javascript",
-    "#webdevelopment",
-    "#cloudnativeapplications",
-    "#serverlessarchitecture",
-    "#edgeai",
+    "#typescript",
+    "#performance",
+    "#security",
     "#machinelearning",
+    "#ai",
     "#devops",
-    "#cicd"
+    "#ci/cd"
   ],
   "download_hooks": [
-    "Get lightning-fast performance with Yantravese's 0-dependency framework, perfect for real-time and serverless applications",
-    "Say goodbye to dependency hell and hello to unparalleled security with Yantravese's unique architecture",
-    "Develop with confidence using Yantravese's intuitive API and robust support for the latest Node.js features and trends"
+    "Unlock unparalleled performance with Yantravese's 0-dependency architecture",
+    "Say goodbye to latency with Yantravese's optimized routing and middleware",
+    "Focus on writing code, not configuring dependencies, with Yantravese's ultra-lightweight framework"
   ]
 }
