@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-07-31
+### FEATURE
+- Implement Request Body Parsing for JSON and URL-Encoded Data: This feature will enable yantraverse to handle JSON and URL-encoded request bodies, allowing developers to easily parse and access request data. It will improve performance and solve real problems for users who need to handle complex request data. By adding this feature, yantraverse will become a more robust and production-ready framework
+
 ## [Automated] - 2026-07-30
 ### FEATURE
 - Implement Request Logging Middleware: This feature adds a logging middleware to track and record incoming requests, providing valuable insights for debugging and performance optimization. It will log request metadata such as method, URL, and response status. This enhancement will improve the overall debugging experience and help identify potential issues
