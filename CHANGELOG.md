@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-02
+### FEATURE
+- Implement Request Body Parsing for JSON Data: This feature is crucial for handling JSON data sent in request bodies, enabling the framework to parse and make it available for route handlers, thus improving support for RESTful APIs and modern web applications. It will handle JSON parsing errors and provide a configurable option for maximum payload size. This enhancement will increase the framework's usability and versatility
+
 ## [Automated] - 2026-08-01
 ### FEATURE
 - Implement Request Body Parsing: This feature adds support for parsing JSON request bodies, allowing developers to easily handle complex data in their routes. It will provide a straightforward way to access request data, improving overall framework usability. By including this feature, yantraverse will be more competitive with other frameworks
