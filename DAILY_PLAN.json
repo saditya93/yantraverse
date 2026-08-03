@@ -1,21 +1,18 @@
 {
-  "date": "2026-08-02",
+  "date": "2026-08-03",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON Data",
-  "description": "This feature is crucial for handling JSON data sent in request bodies, enabling the framework to parse and make it available for route handlers, thus improving support for RESTful APIs and modern web applications. It will handle JSON parsing errors and provide a configurable option for maximum payload size. This enhancement will increase the framework's usability and versatility",
+  "title": "Implement Automatic HTTPS Redirect",
+  "description": "This feature redirects HTTP requests to HTTPS, ensuring a secure connection for users and protecting against man-in-the-middle attacks. It will be implemented using a middleware function that checks the request protocol and redirects to HTTPS if necessary. This improves the overall security of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/router.js",
-    "test/middleware.test.js",
-    "test/router.test.js"
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON parsing with valid data",
-    "Test JSON parsing with invalid data",
-    "Test JSON parsing with large payload"
+    "Test HTTP request redirect to HTTPS",
+    "Test HTTPS request no redirect"
   ],
-  "acceptance": "The feature is considered complete when the framework can successfully parse JSON request bodies, handle parsing errors, and enforce a configurable maximum payload size",
-  "reason": "This feature is a key requirement for building robust and scalable RESTful APIs, and its implementation will significantly enhance the framework's capabilities and appeal to developers"
+  "acceptance": "The feature is accepted when all HTTP requests are successfully redirected to HTTPS and no redirects occur for existing HTTPS requests",
+  "reason": "Enhancing security is a high-impact improvement for the framework, aligning with the recent stability-focused development and the need for feature development"
 }

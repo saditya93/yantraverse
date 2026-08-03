@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-03
+### FEATURE
+- Implement Automatic HTTPS Redirect: This feature redirects HTTP requests to HTTPS, ensuring a secure connection for users and protecting against man-in-the-middle attacks. It will be implemented using a middleware function that checks the request protocol and redirects to HTTPS if necessary. This improves the overall security of the framework
+
 ## [Automated] - 2026-08-02
 ### FEATURE
 - Implement Request Body Parsing for JSON Data: This feature is crucial for handling JSON data sent in request bodies, enabling the framework to parse and make it available for route handlers, thus improving support for RESTful APIs and modern web applications. It will handle JSON parsing errors and provide a configurable option for maximum payload size. This enhancement will increase the framework's usability and versatility
