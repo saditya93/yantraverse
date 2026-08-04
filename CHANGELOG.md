@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-04
+### FEATURE
+- Implement Request Logging with Error Handling: This feature provides detailed logging of incoming requests and any errors that occur during processing, allowing for better debugging and issue tracking. It will include logging of request metadata and error messages, and will be configurable to meet different logging needs. This improves the overall reliability and maintainability of the framework.
+
 ## [Automated] - 2026-08-03
 ### FEATURE
 - Implement Automatic HTTPS Redirect: This feature redirects HTTP requests to HTTPS, ensuring a secure connection for users and protecting against man-in-the-middle attacks. It will be implemented using a middleware function that checks the request protocol and redirects to HTTPS if necessary. This improves the overall security of the framework
