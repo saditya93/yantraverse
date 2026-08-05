@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-05
+### FEATURE
+- Implement Request Body Parsing: This feature is crucial for handling HTTP requests with bodies, such as POST and PUT requests, allowing yantraverse to parse JSON and URL-encoded data. It will enable developers to easily access request data in their routes. This feature will improve the overall usability and versatility of the framework
+
 ## [Automated] - 2026-08-04
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature provides detailed logging of incoming requests and any errors that occur during processing, allowing for better debugging and issue tracking. It will include logging of request metadata and error messages, and will be configurable to meet different logging needs. This improves the overall reliability and maintainability of the framework.

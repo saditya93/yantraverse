@@ -1,19 +1,21 @@
 {
-  "date": "2026-08-04",
+  "date": "2026-08-05",
   "category": "FEATURE",
-  "title": "Implement Request Logging with Error Handling",
-  "description": "This feature provides detailed logging of incoming requests and any errors that occur during processing, allowing for better debugging and issue tracking. It will include logging of request metadata and error messages, and will be configurable to meet different logging needs. This improves the overall reliability and maintainability of the framework.",
+  "title": "Implement Request Body Parsing",
+  "description": "This feature is crucial for handling HTTP requests with bodies, such as POST and PUT requests, allowing yantraverse to parse JSON and URL-encoded data. It will enable developers to easily access request data in their routes. This feature will improve the overall usability and versatility of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "test/middleware/logger.test.js"
+    "src/router.js",
+    "src/middleware.js",
+    "test/router.test.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test logging of successful requests",
-    "Test logging of requests with errors",
-    "Test logging configuration options"
+    "Test JSON body parsing",
+    "Test URL-encoded body parsing",
+    "Test invalid body parsing"
   ],
-  "acceptance": "Logging is correctly implemented and configurable, with clear and detailed log messages for both successful requests and errors, and does not introduce any performance issues.",
-  "reason": "Improved logging and error handling are essential for a production-ready framework, enabling developers to quickly identify and resolve issues, and enhancing the overall quality and reliability of the application."
+  "acceptance": "The feature is accepted when request bodies are correctly parsed and made available to route handlers, with proper error handling for invalid or missing bodies",
+  "reason": "This feature is essential for building RESTful APIs and handling complex HTTP requests, making yantraverse more competitive with other Node.js frameworks"
 }
