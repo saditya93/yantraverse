@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.93-daily.20260805",
-  "description": "Ultra-fast, 0-dependency Node.js framework for serverless, edge, and real-time applications, outperforming Express and Fastify with unparalleled simplicity and speed",
+  "version": "0.0.94-daily.20260806",
+  "description": "Turbocharge your Node.js applications with yantravese, the ultra-fast, 0-dependency framework that outperforms Express and Fastify with simplicity and speed",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
