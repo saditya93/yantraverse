@@ -1,21 +1,21 @@
 {
-  "date": "2026-08-05",
+  "date": "2026-08-06",
   "category": "FEATURE",
   "title": "Implement Request Body Parsing",
-  "description": "This feature is crucial for handling HTTP requests with bodies, such as POST and PUT requests, allowing yantraverse to parse JSON and URL-encoded data. It will enable developers to easily access request data in their routes. This feature will improve the overall usability and versatility of the framework",
+  "description": "This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of APIs and applications. It will provide a built-in way to parse request bodies, making it easier for developers to work with data. This feature will improve the overall usability and flexibility of the framework",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/router.js",
     "src/middleware.js",
-    "test/router.test.js",
-    "test/middleware.test.js"
+    "src/router.js",
+    "test/middleware.test.js",
+    "test/router.test.js"
   ],
   "testCases": [
     "Test JSON body parsing",
     "Test URL-encoded body parsing",
-    "Test invalid body parsing"
+    "Test error handling for invalid request bodies"
   ],
-  "acceptance": "The feature is accepted when request bodies are correctly parsed and made available to route handlers, with proper error handling for invalid or missing bodies",
-  "reason": "This feature is essential for building RESTful APIs and handling complex HTTP requests, making yantraverse more competitive with other Node.js frameworks"
+  "acceptance": "Request body parsing should work correctly for JSON and URL-encoded bodies, and error handling should be implemented for invalid request bodies",
+  "reason": "This feature is essential for supporting real-world use cases and improving the framework's competitiveness with other Node.js frameworks"
 }
