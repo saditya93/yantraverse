@@ -1,21 +1,18 @@
 {
-  "date": "2026-08-06",
+  "date": "2026-08-07",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing",
-  "description": "This feature is crucial for handling JSON and URL-encoded request bodies, enabling yantraverse to support a wider range of APIs and applications. It will provide a built-in way to parse request bodies, making it easier for developers to work with data. This feature will improve the overall usability and flexibility of the framework",
+  "title": "Implement Request Logging Middleware",
+  "description": "This feature adds a logging middleware to track and record all incoming requests, providing valuable insights for debugging and monitoring purposes. It will log request metadata such as method, path, and response status. This feature is essential for production environments to ensure visibility into system activity",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware.js",
-    "src/router.js",
-    "test/middleware.test.js",
-    "test/router.test.js"
+    "test/middleware.test.js"
   ],
   "testCases": [
-    "Test JSON body parsing",
-    "Test URL-encoded body parsing",
-    "Test error handling for invalid request bodies"
+    "Test logging for successful GET request",
+    "Test logging for failed POST request"
   ],
-  "acceptance": "Request body parsing should work correctly for JSON and URL-encoded bodies, and error handling should be implemented for invalid request bodies",
-  "reason": "This feature is essential for supporting real-world use cases and improving the framework's competitiveness with other Node.js frameworks"
+  "acceptance": "The logging middleware must log all incoming requests with correct metadata and handle edge cases such as malformed requests",
+  "reason": "Improved monitoring and debugging capabilities are crucial for a production-ready framework like Yantraverse"
 }
