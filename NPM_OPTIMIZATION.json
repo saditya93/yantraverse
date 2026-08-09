@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-08",
-  "description": "Unlock ultra-fast Node.js performance with yantravese, the 0-dependency framework that outperforms Express and Fastify in simplicity, speed, and scalability",
+  "date": "2026-08-09",
+  "description": "Unlock blistering Node.js performance with yantravese, the ultra-lightweight, 0-dependency framework that shatters Express and Fastify speed records",
   "keywords": [
     "nodejs",
     "framework",
@@ -55,51 +55,27 @@
     "deno",
     "bun",
     "esm",
-    "typescript 5",
-    "nodejs 20",
-    "javascript 2026",
     "nx",
     "vite",
     "turbo",
     "remix",
-    "solidjs",
-    "edge computing 2026",
-    "cloud native 2026",
-    "serverless 2026"
+    "solidjs"
   ],
-  "npm_trending_strategy": "yantravese v0.0.95-daily.20260807 stands out with its 0-dependency architecture, ultra-fast performance, and recent 30 commits, making it an attractive choice for developers looking for a lightweight and scalable Node.js framework",
+  "npm_trending_strategy": "This daily version of yantravese incorporates the latest Node.js 20 and TypeScript 5 features, ensuring developers stay ahead of the curve with the most modern and high-performance framework available",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#expressalternative",
-    "#fastifyalternative",
     "#serverless",
     "#edgecomputing",
     "#cloudnative",
-    "#jamstack",
-    "#pwa",
-    "#realtime",
-    "#websocket",
     "#typescript",
     "#javascript",
-    "#http",
-    "#rest",
-    "#api",
-    "#lowcode",
-    "#serverlessfunctions",
-    "#cloudfunctions",
-    "#edgefunctions",
-    "#graphql",
-    "#microservices",
-    "#containerization",
-    "#kubernetes",
-    "#observability",
-    "#otel",
-    "#opentelemetry"
+    "#performancematters",
+    "#零依赖"
   ],
   "download_hooks": [
-    "Say goodbye to dependency hell with yantravese's 0-dependency architecture",
-    "Experience ultra-fast performance with yantravese, outperforming Express and Fastify",
-    "Simplify your development workflow with yantravese's lightweight and scalable framework"
+    "Experience the fastest Node.js framework with unparalleled simplicity and scalability",
+    "Outperform Express and Fastify with yantravese's ultra-lightweight, 0-dependency architecture",
+    "Focus on writing code, not managing dependencies, with yantravese's streamlined developer experience"
   ]
 }

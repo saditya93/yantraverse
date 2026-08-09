@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.96-daily.20260808",
-  "description": "Unlock ultra-fast Node.js performance with yantravese, the 0-dependency framework that outperforms Express and Fastify in simplicity, speed, and scalability",
+  "version": "0.0.97-daily.20260809",
+  "description": "Unlock blistering Node.js performance with yantravese, the ultra-lightweight, 0-dependency framework that shatters Express and Fastify speed records",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -88,17 +88,11 @@
     "deno",
     "bun",
     "esm",
-    "typescript 5",
-    "nodejs 20",
-    "javascript 2026",
     "nx",
     "vite",
     "turbo",
     "remix",
-    "solidjs",
-    "edge computing 2026",
-    "cloud native 2026",
-    "serverless 2026"
+    "solidjs"
   ],
   "author": "",
   "license": "MIT",
