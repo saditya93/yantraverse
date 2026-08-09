@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-09
+### FEATURE
+- Implement Automatic HTTPS Redirect: This feature matters as it ensures users are always accessing the application securely, redirecting HTTP requests to HTTPS. It improves security and user trust by providing encryption for data in transit. This feature will handle the redirect logic and provide options for customization
+
 ## [Automated] - 2026-08-08
 ### FEATURE
 - Implement Request Body Parsing: This feature is crucial for handling JSON and URL-encoded request bodies, enabling the framework to support a wider range of use cases and improving overall performance. It will provide a simple and efficient way to parse request bodies, allowing developers to focus on building their applications. This feature will be fully tested and documented to ensure production readiness
