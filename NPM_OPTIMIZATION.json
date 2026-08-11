@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-10",
-  "description": "Turbocharge your Node.js apps with yantravese, the 0-dependency, ultra-lightweight framework that outruns Express and Fastify",
+  "date": "2026-08-11",
+  "description": "Ultra-lightweight, 0-dependency Node.js framework that turbocharges performance, outruns Express and Fastify, and simplifies serverless, edge, and cloud-native development",
   "keywords": [
     "nodejs",
     "framework",
@@ -61,7 +61,7 @@
     "remix",
     "solidjs"
   ],
-  "npm_trending_strategy": "yantravese v0.0.97-daily.20260809 stands out with its daily updates, showcasing a strong commitment to innovation and performance, making it an attractive choice for developers seeking the latest and greatest in Node.js frameworks",
+  "npm_trending_strategy": "Leveraging 30 recent commits to showcase a commitment to continuous improvement, while highlighting the framework's unique selling points: 0-dependency architecture, ultra-lightweight design, and exceptional performance",
   "recommended_tags": [
     "#nodejs",
     "#framework",
@@ -116,8 +116,8 @@
     "#solidjs"
   ],
   "download_hooks": [
-    "Unlock unparalleled Node.js performance with yantravese's 0-dependency architecture",
-    "Say goodbye to performance bottlenecks with yantravese's ultra-lightweight design",
-    "Experience the future of Node.js development with yantravese's cutting-edge features and daily updates"
+    "Experience the power of a 0-dependency framework, designed to simplify and accelerate your development workflow",
+    "Achieve unparalleled performance with yantravese, the ultra-lightweight framework that outruns Express and Fastify",
+    "Enjoy a seamless developer experience with yantravese, featuring a low-code approach, real-time data processing, and event-driven architecture"
   ]
 }
