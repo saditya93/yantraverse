@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.99-daily.20260811",
-  "description": "Ultra-lightweight, 0-dependency Node.js framework that turbocharges performance, outruns Express and Fastify, and simplifies serverless, edge, and cloud-native development",
+  "version": "0.0.100-daily.20260812",
+  "description": "Unlock turbocharged performance with yantravese, the 0-dependency Node.js framework that outpaces Express and Fastify for serverless, edge, and cloud-native development",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -92,7 +92,10 @@
     "vite",
     "turbo",
     "remix",
-    "solidjs"
+    "solidjs",
+    "cloudflare",
+    "vercel",
+    "netlify"
   ],
   "author": "",
   "license": "MIT",

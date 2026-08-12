@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-11",
-  "description": "Ultra-lightweight, 0-dependency Node.js framework that turbocharges performance, outruns Express and Fastify, and simplifies serverless, edge, and cloud-native development",
+  "date": "2026-08-12",
+  "description": "Unlock turbocharged performance with yantravese, the 0-dependency Node.js framework that outpaces Express and Fastify for serverless, edge, and cloud-native development",
   "keywords": [
     "nodejs",
     "framework",
@@ -59,9 +59,12 @@
     "vite",
     "turbo",
     "remix",
-    "solidjs"
+    "solidjs",
+    "cloudflare",
+    "vercel",
+    "netlify"
   ],
-  "npm_trending_strategy": "Leveraging 30 recent commits to showcase a commitment to continuous improvement, while highlighting the framework's unique selling points: 0-dependency architecture, ultra-lightweight design, and exceptional performance",
+  "npm_trending_strategy": "By leveraging the latest advancements in Node.js and cloud-native technologies, yantravese stays ahead of the curve, offering a unique blend of performance, simplicity, and flexibility that sets it apart from traditional frameworks like Express and Fastify",
   "recommended_tags": [
     "#nodejs",
     "#framework",
@@ -91,33 +94,11 @@
     "#ai",
     "#machinelearning",
     "#devops",
-    "#cicd",
-    "#serverlessarchitecture",
-    "#cloudnativeapplications",
-    "#realtimedataprocessing",
-    "#eventdrivenarchitecture",
-    "#edgeai",
-    "#serverlessmachinelearning",
-    "#serverlessanalytics",
-    "#cloudnativesecurity",
-    "#zerotrust",
-    "#edgesecurity",
-    "#webassembly",
-    "#graphqlapi",
-    "#apigateway",
-    "#servicemesh",
-    "#deno",
-    "#bun",
-    "#esm",
-    "#nx",
-    "#vite",
-    "#turbo",
-    "#remix",
-    "#solidjs"
+    "#cicd"
   ],
   "download_hooks": [
-    "Experience the power of a 0-dependency framework, designed to simplify and accelerate your development workflow",
-    "Achieve unparalleled performance with yantravese, the ultra-lightweight framework that outruns Express and Fastify",
-    "Enjoy a seamless developer experience with yantravese, featuring a low-code approach, real-time data processing, and event-driven architecture"
+    "Experience the power of a 0-dependency framework, designed to simplify your development workflow and turbocharge your application's performance",
+    "Say goodbye to latency and hello to lightning-fast response times, with yantravese's optimized routing and middleware capabilities",
+    "Join the community of developers who have already discovered the benefits of yantravese, including improved productivity, reduced complexity, and enhanced security"
   ]
 }
