@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-13
+### FEATURE
+- Implement Request Body Parsing for JSON and URL-Encoded Data: This feature is crucial for handling API requests with JSON or URL-encoded payloads, enabling yantraverse to support a wider range of use cases and improving its overall usability. It will add support for parsing request bodies into JavaScript objects, making it easier to work with API requests. This will enhance the framework's functionality and make it more appealing to developers
+
 ## [Automated] - 2026-08-12
 ### FEATURE
 - Implement Robust Error Handling Middleware: This feature matters because it will provide a standardized way to handle errors in the framework, improving overall reliability and user experience. It will catch and log errors, returning user-friendly error messages. This will also help with debugging and issue tracking.
