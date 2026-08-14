@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-13",
-  "description": "Turbocharge your Node.js development with yantravese, the ultra-lightweight, 0-dependency framework that outperforms Express and Fastify for serverless, edge, and cloud-native applications",
+  "date": "2026-08-14",
+  "description": "Unlock ultra-fast, 0-dependency serverless & edge applications with yantravese, the Node.js framework that outperforms Express & Fastify",
   "keywords": [
     "nodejs",
     "framework",
@@ -68,9 +68,12 @@
     "cloud native platform",
     "javascript framework",
     "nodejs framework",
-    "typescript framework"
+    "typescript framework",
+    "serverless framework",
+    "edge framework",
+    "cloud native framework"
   ],
-  "npm_trending_strategy": "yantravese stands out with its 0-dependency architecture, making it an attractive choice for developers looking for a lightweight and performant framework for serverless, edge, and cloud-native development. Recent commits (30) demonstrate active maintenance and a commitment to innovation.",
+  "npm_trending_strategy": "yantravese v0.0.101-daily.20260813 stands out with its ultra-lightweight, 0-dependency architecture, delivering unparalleled performance for serverless, edge, and cloud-native applications, while supporting the latest trends in Node.js development, including Deno, Bun, and WebAssembly",
   "recommended_tags": [
     "#nodejs",
     "#framework",
@@ -112,7 +115,7 @@
     "#zerotrust",
     "#edgesecurity",
     "#webassembly",
-    "#graphqlapi",
+    "#graphqldb",
     "#apigateway",
     "#servicemesh",
     "#deno",
@@ -128,8 +131,8 @@
     "#netlify"
   ],
   "download_hooks": [
-    "Unlock unparalleled performance with yantravese's 0-dependency architecture, perfect for serverless, edge, and cloud-native applications",
-    "Say goodbye to bloated dependencies and hello to lightning-fast development with yantravese, the ultimate Node.js framework",
-    "Experience the future of Node.js development with yantravese, featuring a lightweight, modular design and unparalleled support for real-time data processing and event-driven architecture"
+    "Experience the fastest serverless and edge applications with yantravese's 0-dependency framework",
+    "Say goodbye to performance bottlenecks with yantravese's ultra-lightweight architecture",
+    "Streamline your development workflow with yantravese's simple, intuitive API and extensive support for Node.js, TypeScript, and WebAssembly"
   ]
 }
