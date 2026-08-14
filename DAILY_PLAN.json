@@ -1,21 +1,19 @@
 {
-  "date": "2026-08-13",
+  "date": "2026-08-14",
   "category": "FEATURE",
-  "title": "Implement Request Body Parsing for JSON and URL-Encoded Data",
-  "description": "This feature is crucial for handling API requests with JSON or URL-encoded payloads, enabling yantraverse to support a wider range of use cases and improving its overall usability. It will add support for parsing request bodies into JavaScript objects, making it easier to work with API requests. This will enhance the framework's functionality and make it more appealing to developers",
+  "title": "Implement Request Body Parsing",
+  "description": "This feature matters because it enables the framework to handle JSON and URL-encoded request bodies, improving its usability and versatility. It will add a middleware function to parse request bodies and make the data available to route handlers. This will simplify the development process for users and make the framework more competitive",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/request.js",
-    "src/router.js",
-    "test/request.test.js",
-    "test/router.test.js"
+    "src/middleware.js",
+    "test/middleware.test.js"
   ],
   "testCases": [
     "Test JSON body parsing",
     "Test URL-encoded body parsing",
-    "Test invalid request body handling"
+    "Test body parsing error handling"
   ],
-  "acceptance": "Request body parsing should work correctly for both JSON and URL-encoded data, and error handling should be implemented for invalid or malformed request bodies",
-  "reason": "Adding request body parsing will significantly improve yantraverse's ability to handle real-world API scenarios, making it a more competitive and attractive choice for developers building RESTful APIs and other web applications"
+  "acceptance": "Request body parsing works correctly for JSON and URL-encoded data, and errors are handled properly",
+  "reason": "This feature is a key requirement for many web applications, and its implementation will significantly enhance the framework's functionality and appeal to developers"
 }

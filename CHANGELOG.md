@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-14
+### FEATURE
+- Implement Request Body Parsing: This feature matters because it enables the framework to handle JSON and URL-encoded request bodies, improving its usability and versatility. It will add a middleware function to parse request bodies and make the data available to route handlers. This will simplify the development process for users and make the framework more competitive
+
 ## [Automated] - 2026-08-13
 ### FEATURE
 - Implement Request Body Parsing for JSON and URL-Encoded Data: This feature is crucial for handling API requests with JSON or URL-encoded payloads, enabling yantraverse to support a wider range of use cases and improving its overall usability. It will add support for parsing request bodies into JavaScript objects, making it easier to work with API requests. This will enhance the framework's functionality and make it more appealing to developers
