@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.102-daily.20260814",
-  "description": "Unlock ultra-fast, 0-dependency serverless & edge applications with yantravese, the Node.js framework that outperforms Express & Fastify",
+  "version": "0.0.103-daily.20260815",
+  "description": "Build ultra-fast, scalable, and secure serverless & edge applications with yantravese, the 0-dependency Node.js framework that outperforms Express & Fastify",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -104,7 +104,11 @@
     "typescript framework",
     "serverless framework",
     "edge framework",
-    "cloud native framework"
+    "cloud native framework",
+    "serverless edge",
+    "edge ai",
+    "ai powered",
+    "real-time analytics"
   ],
   "author": "",
   "license": "MIT",
