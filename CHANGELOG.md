@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-15
+### FEATURE
+- Implement Robust Error Handling for Route Handlers: This feature introduces a centralized error handling mechanism for route handlers, providing a more robust and reliable way to manage errors and exceptions. It will allow developers to define custom error handlers and provide informative error messages. This improvement will significantly enhance the overall stability and user experience of applications built with yantraverse.
+
 ## [Automated] - 2026-08-14
 ### FEATURE
 - Implement Request Body Parsing: This feature matters because it enables the framework to handle JSON and URL-encoded request bodies, improving its usability and versatility. It will add a middleware function to parse request bodies and make the data available to route handlers. This will simplify the development process for users and make the framework more competitive
