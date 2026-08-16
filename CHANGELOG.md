@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-16
+### FEATURE
+- Implement Request Logging with Error Handling: This feature adds detailed logging for incoming requests, including error handling for better debugging and issue tracking. It will provide valuable insights into application performance and help identify potential security threats. By including error handling, it ensures robustness and reliability in production environments
+
 ## [Automated] - 2026-08-15
 ### FEATURE
 - Implement Robust Error Handling for Route Handlers: This feature introduces a centralized error handling mechanism for route handlers, providing a more robust and reliable way to manage errors and exceptions. It will allow developers to define custom error handlers and provide informative error messages. This improvement will significantly enhance the overall stability and user experience of applications built with yantraverse.

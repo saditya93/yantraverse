@@ -1,21 +1,19 @@
 {
-  "date": "2026-08-15",
+  "date": "2026-08-16",
   "category": "FEATURE",
-  "title": "Implement Robust Error Handling for Route Handlers",
-  "description": "This feature introduces a centralized error handling mechanism for route handlers, providing a more robust and reliable way to manage errors and exceptions. It will allow developers to define custom error handlers and provide informative error messages. This improvement will significantly enhance the overall stability and user experience of applications built with yantraverse.",
+  "title": "Implement Request Logging with Error Handling",
+  "description": "This feature adds detailed logging for incoming requests, including error handling for better debugging and issue tracking. It will provide valuable insights into application performance and help identify potential security threats. By including error handling, it ensures robustness and reliability in production environments",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/router.js",
     "src/middleware.js",
-    "test/router.test.js",
     "test/middleware.test.js"
   ],
   "testCases": [
-    "Test error handling for synchronous route handlers",
-    "Test error handling for asynchronous route handlers",
-    "Test error handling for middleware functions"
+    "Test logging for successful requests",
+    "Test logging for requests with errors",
+    "Test error handling for logging failures"
   ],
-  "acceptance": "Error handling mechanism should catch and log errors, and return user-friendly error messages to the client. Custom error handlers should be callable and override default error handling behavior.",
-  "reason": "Implementing robust error handling is crucial for a production-ready framework like yantraverse, as it directly impacts the reliability and maintainability of applications built on top of it."
+  "acceptance": "Logging should be enabled by default, with options for customization, and error handling should prevent application crashes due to logging issues",
+  "reason": "Improves debugging, security, and overall application reliability"
 }
