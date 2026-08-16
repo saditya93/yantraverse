@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-15",
-  "description": "Build ultra-fast, scalable, and secure serverless & edge applications with yantravese, the 0-dependency Node.js framework that outperforms Express & Fastify",
+  "date": "2026-08-16",
+  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, 0-dependency framework that outperforms Express & Fastify for serverless, edge, and cloud-native development",
   "keywords": [
     "nodejs",
     "framework",
@@ -75,9 +75,13 @@
     "serverless edge",
     "edge ai",
     "ai powered",
-    "real-time analytics"
+    "real-time analytics",
+    "serverless deployment",
+    "edge deployment",
+    "kubernetes deployment",
+    "cloud native deployment"
   ],
-  "npm_trending_strategy": "Leveraging the latest trends in serverless, edge computing, and cloud native applications, yantravese stands out with its 0-dependency architecture, ultra-fast performance, and robust security features, making it an attractive choice for developers looking to build scalable and secure applications",
+  "npm_trending_strategy": "yantravese v0.0.103-daily.20260815 stands out with its 30 recent commits, emphasizing its active development and commitment to delivering high-performance, scalable, and secure serverless and edge applications, while its 0-dependency architecture reduces vulnerabilities and boosts speed",
   "recommended_tags": [
     "#nodejs",
     "#framework",
@@ -111,32 +115,11 @@
     "#serverlessarchitecture",
     "#cloudnativeapplications",
     "#realtimedataprocessing",
-    "#eventdrivenarchitecture",
-    "#edgeai",
-    "#serverlessmachinelearning",
-    "#serverlessanalytics",
-    "#cloudnativesecurity",
-    "#zerotrust",
-    "#edgesecurity",
-    "#webassembly",
-    "#graphqlapi",
-    "#apigateway",
-    "#servicemesh",
-    "#deno",
-    "#bun",
-    "#esm",
-    "#nx",
-    "#vite",
-    "#turbo",
-    "#remix",
-    "#solidjs",
-    "#cloudflare",
-    "#vercel",
-    "#netlify"
+    "#eventdrivenarchitecture"
   ],
   "download_hooks": [
-    "Unlock ultra-fast performance with yantravese's 0-dependency architecture",
-    "Experience seamless developer experience with yantravese's intuitive API and robust documentation",
-    "Discover how yantravese's unique architecture enables real-time data processing, event-driven architecture, and edge AI capabilities"
+    "Unlock ultra-fast performance with yantravese's 0-dependency architecture, perfect for serverless and edge applications",
+    "Say goodbye to dependency hell and hello to lightning-fast deployment with yantravese's lightweight framework",
+    "Focus on writing code, not managing dependencies, with yantravese's streamlined developer experience and extensive documentation"
   ]
 }
