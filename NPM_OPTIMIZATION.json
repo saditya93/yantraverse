@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-16",
-  "description": "Turbocharge your Node.js apps with yantravese, the ultra-fast, 0-dependency framework that outperforms Express & Fastify for serverless, edge, and cloud-native development",
+  "date": "2026-08-17",
+  "description": "Ultra-fast, 0-dependency Node.js framework outperforming Express & Fastify for serverless, edge, and cloud-native development with AI-powered real-time analytics",
   "keywords": [
     "nodejs",
     "framework",
@@ -81,7 +81,7 @@
     "kubernetes deployment",
     "cloud native deployment"
   ],
-  "npm_trending_strategy": "yantravese v0.0.103-daily.20260815 stands out with its 30 recent commits, emphasizing its active development and commitment to delivering high-performance, scalable, and secure serverless and edge applications, while its 0-dependency architecture reduces vulnerabilities and boosts speed",
+  "npm_trending_strategy": "Leveraging the latest trends in serverless, edge, and cloud-native development with a focus on AI-powered real-time analytics and ultra-fast performance",
   "recommended_tags": [
     "#nodejs",
     "#framework",
@@ -91,35 +91,24 @@
     "#jamstack",
     "#pwa",
     "#realtime",
-    "#websocket",
-    "#typescript",
-    "#javascript",
-    "#http",
-    "#rest",
-    "#api",
-    "#lowcode",
-    "#serverlessfunctions",
-    "#cloudfunctions",
-    "#edgefunctions",
-    "#graphql",
-    "#microservices",
-    "#containerization",
-    "#kubernetes",
-    "#observability",
-    "#otel",
-    "#opentelemetry",
     "#ai",
     "#machinelearning",
     "#devops",
     "#cicd",
     "#serverlessarchitecture",
     "#cloudnativeapplications",
-    "#realtimedataprocessing",
-    "#eventdrivenarchitecture"
+    "#realtimedata",
+    "#eventdriven",
+    "#edgeai",
+    "#serverlessml",
+    "#serverlessanalytics",
+    "#cloudnativesecurity",
+    "#zerotrust",
+    "#edgesecurity"
   ],
   "download_hooks": [
-    "Unlock ultra-fast performance with yantravese's 0-dependency architecture, perfect for serverless and edge applications",
-    "Say goodbye to dependency hell and hello to lightning-fast deployment with yantravese's lightweight framework",
-    "Focus on writing code, not managing dependencies, with yantravese's streamlined developer experience and extensive documentation"
+    "Unlock unparalleled performance with our ultra-fast, 0-dependency framework",
+    "Say goodbye to dependency hell and hello to simplified development with yantravese",
+    "Join the serverless revolution with our cutting-edge framework designed for real-time analytics and AI-powered applications"
   ]
 }
