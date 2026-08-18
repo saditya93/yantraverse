@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-18
+### FEATURE
+- Add built‑in graceful shutdown handling for HTTP server: Ensures the framework can safely terminate on SIGINT/SIGTERM by stopping new connections, waiting for in‑flight requests, and releasing resources. This improves production stability and prevents data loss during deployments or container restarts.
+
 ## [Automated] - 2026-08-17
 ### FEATURE
 - Implement Request Logging with Error Handling: This feature provides detailed request logging with error handling, allowing for better debugging and issue tracking. It will log each incoming request and any errors that occur during processing, improving the overall reliability of the framework. This logging mechanism will be configurable to meet different production needs

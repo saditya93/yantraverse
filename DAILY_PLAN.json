@@ -1,19 +1,18 @@
 {
-  "date": "2026-08-17",
+  "date": "2026-08-18",
   "category": "FEATURE",
-  "title": "Implement Request Logging with Error Handling",
-  "description": "This feature provides detailed request logging with error handling, allowing for better debugging and issue tracking. It will log each incoming request and any errors that occur during processing, improving the overall reliability of the framework. This logging mechanism will be configurable to meet different production needs",
+  "title": "Add built‑in graceful shutdown handling for HTTP server",
+  "description": "Ensures the framework can safely terminate on SIGINT/SIGTERM by stopping new connections, waiting for in‑flight requests, and releasing resources. This improves production stability and prevents data loss during deployments or container restarts.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "test/middleware/logger.test.js"
+    "src/server.js",
+    "test/server.graceful-shutdown.test.js"
   ],
   "testCases": [
-    "Test logging for successful requests",
-    "Test logging for requests with errors",
-    "Test logging configuration options"
+    "When SIGTERM is sent, the server stops accepting new requests within the configured timeout.",
+    "Pending requests are allowed to finish before the server fully closes."
   ],
-  "acceptance": "The feature is considered complete when all test cases pass and logging is successfully implemented with error handling for different request scenarios",
-  "reason": "Improved debugging and issue tracking capabilities are essential for a production-ready framework like yantraverse"
+  "acceptance": "Calling `app.enableGracefulShutdown({ timeout: 5000 })` registers signal handlers. After `app.listen`, sending SIGTERM triggers a shutdown sequence: no new connections are accepted, existing connections are given up to 5 s to finish, then the process exits with code 0. The promise returned by `enableGracefulShutdown` resolves only after the server is fully closed.",
+  "reason": "Production environments require clean termination to avoid abrupt request aborts, resource leaks, and inconsistent state, making this a critical feature for any deployment pipeline."
 }
