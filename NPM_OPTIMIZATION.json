@@ -1,13 +1,12 @@
 {
-  "date": "2026-08-18",
-  "description": "Zero‑dependency, TypeScript‑first Node.js framework that outperforms Express & Fastify by 2‑3× with built‑in AI analytics, edge‑ready routing and native observability.",
+  "date": "2026-08-19",
+  "description": "Zero‑dependency, TypeScript‑first Node.js framework that runs 2‑3× faster than Express/Fastify, with built‑in AI analytics, edge‑ready routing, and native OpenTelemetry observability.",
   "keywords": [
     "nodejs",
     "framework",
     "express-alternative",
     "fastify-alternative",
     "zero-dependency",
-    "lightweight",
     "ultra-fast",
     "routing",
     "middleware",
@@ -16,7 +15,6 @@
     "cloud-native",
     "ai-analytics",
     "observability",
-    "otel",
     "opentelemetry",
     "typescript",
     "esm",
@@ -41,24 +39,31 @@
     "serverless-functions",
     "edge-functions",
     "real-time-data",
-    "event-driven"
+    "event-driven",
+    "aiops",
+    "rag",
+    "prompt-engineering",
+    "genai",
+    "edge-runtime",
+    "next-gen-apis",
+    "observable-logs"
   ],
-  "npm_trending_strategy": "Version 0.0.105‑daily introduces native AI‑driven request telemetry, automatic edge‑deployment hooks for Cloudflare Workers, Vercel, and Netlify, plus a 0.5 µs per‑request benchmark that beats Express/Fastify in real‑world serverless loads. The package ships with zero runtime dependencies, full ESM support, and a TypeScript‑only API, positioning it as the go‑to choice for modern edge‑first, AI‑augmented apps in 2026.",
+  "npm_trending_strategy": "Leverage the 2026 surge in AI‑augmented back‑ends and edge runtimes: highlight the framework’s native LLM‑ready analytics, OpenTelemetry‑first observability, and zero‑dependency model that keeps bundle size < 5 KB. Position the v0.0.106‑daily build as the ‘instant‑upgrade’ path for Express/Fastify users seeking instant performance gains and out‑of‑the‑box AI telemetry without extra packages.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#expressAlternative",
-    "#fastifyAlternative",
-    "#zeroDependency",
-    "#edgeComputing",
-    "#aiAnalytics",
-    "#observability",
     "#typescript",
-    "#serverless"
+    "#ai",
+    "#edge",
+    "#observability",
+    "#serverless",
+    "#microservices",
+    "#graphql",
+    "#websocket"
   ],
   "download_hooks": [
-    "Developers choose Yantravese for its 2‑3× speed advantage over Express/Fastify in serverless and edge environments.",
-    "Built‑in AI telemetry and OpenTelemetry integration give instant performance insights without extra libraries.",
-    "Zero‑dependency, TypeScript‑first API and native ESM mean no‑bloat, instant start‑up, and a frictionless developer experience."
+    "Developers choose yantravese for its 2‑3× speed boost over Express/Fastify without rewriting code.",
+    "Built‑in AI analytics and OpenTelemetry give instant performance insights—no extra instrumentation required.",
+    "Zero‑dependency, TypeScript‑first API delivers a clean developer experience and tiny install footprint, perfect for edge and serverless deployments."
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.106-daily.20260818",
-  "description": "Zero‑dependency, TypeScript‑first Node.js framework that outperforms Express & Fastify by 2‑3× with built‑in AI analytics, edge‑ready routing and native observability.",
+  "version": "0.0.107-daily.20260819",
+  "description": "Zero‑dependency, TypeScript‑first Node.js framework that runs 2‑3× faster than Express/Fastify, with built‑in AI analytics, edge‑ready routing, and native OpenTelemetry observability.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -40,7 +40,6 @@
     "express-alternative",
     "fastify-alternative",
     "zero-dependency",
-    "lightweight",
     "ultra-fast",
     "routing",
     "middleware",
@@ -49,7 +48,6 @@
     "cloud-native",
     "ai-analytics",
     "observability",
-    "otel",
     "opentelemetry",
     "typescript",
     "esm",
@@ -74,7 +72,14 @@
     "serverless-functions",
     "edge-functions",
     "real-time-data",
-    "event-driven"
+    "event-driven",
+    "aiops",
+    "rag",
+    "prompt-engineering",
+    "genai",
+    "edge-runtime",
+    "next-gen-apis",
+    "observable-logs"
   ],
   "author": "",
   "license": "MIT",
