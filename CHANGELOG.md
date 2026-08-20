@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-20
+### FEATURE
+- Add Request ID & Structured Logging Middleware: Introduces a lightweight middleware that generates a unique request ID for every incoming request, attaches it to the request object, adds it to the response header, and logs request/response details in a structured format. This improves traceability, debugging, and observability in production environments.
+
 ## [Automated] - 2026-08-19
 ### FEATURE
 - Graceful shutdown with signal handling and request draining: Adds support for clean termination of the server on SIGINT/SIGTERM, allowing in‑flight requests to finish and releasing resources. This prevents abrupt disconnects in production and improves reliability during deployments and scaling events.

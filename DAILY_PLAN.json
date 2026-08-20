@@ -1,19 +1,20 @@
 {
-  "date": "2026-08-19",
+  "date": "2026-08-20",
   "category": "FEATURE",
-  "title": "Graceful shutdown with signal handling and request draining",
-  "description": "Adds support for clean termination of the server on SIGINT/SIGTERM, allowing in‑flight requests to finish and releasing resources. This prevents abrupt disconnects in production and improves reliability during deployments and scaling events.",
+  "title": "Add Request ID & Structured Logging Middleware",
+  "description": "Introduces a lightweight middleware that generates a unique request ID for every incoming request, attaches it to the request object, adds it to the response header, and logs request/response details in a structured format. This improves traceability, debugging, and observability in production environments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/requestLogger.js",
+    "test/requestLogger.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while a long‑running request is active and verify the server stops accepting new connections but completes the pending request before exit",
-    "Trigger SIGINT during idle state and confirm the process exits with code 0 and all listeners are removed"
+    "Middleware attaches a UUID v4 request ID to req.id and sets X-Request-Id header on the response",
+    "Middleware logs a JSON object containing method, url, status, duration, and request ID for successful requests",
+    "Middleware correctly logs error responses and includes the request ID",
+    "Middleware does not interfere with routes that do not call next() (e.g., early response)"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops accepting new connections, waits up to 30 seconds for active requests to finish, then closes all sockets and exits cleanly. No requests are dropped, and the exit code is 0. All event listeners are deregistered to avoid memory leaks.",
-  "reason": "Production deployments and container orchestration platforms (Kubernetes, Docker) rely on graceful termination to avoid client errors and ensure zero‑downtime rollouts. Implementing this feature now eliminates a common source of runtime failures and aligns yantraverse with enterprise‑grade reliability standards."
+  "acceptance": "When the server receives any HTTP request, a unique request ID is generated, added to req.id, sent back in the X-Request-Id header, and a structured log entry is emitted containing method, url, status, duration, and the request ID. The middleware must work with async route handlers, not alter response bodies, and must not break existing functionality.",
+  "reason": "Observability is critical for production-ready services. A request‑ID based logging system enables correlation across distributed logs, speeds up incident response, and meets common compliance requirements without adding external dependencies."
 }

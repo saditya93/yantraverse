@@ -1,1 +1,53 @@
- // Import required modules const winston = require('winston') const express = require('express') // Create a logger instance /**  * Initialize the request logger  * @param {Object} options - Logger options  */ function initRequestLogger(options = {}) {   const logger = winston.createLogger({     level: options.level || 'info',     format: winston.format.combine(       winston.format.timestamp(),       winston.format.json()     ),     transports: [       new winston.transports.Console()     ]   })   // Create an express middleware for request logging   /**    * Express middleware for logging incoming requests    * @param {Object} req - Express request object    * @param {Object} res - Express response object    * @param {Function} next - Express next function    */   function requestLogger(req, res, next) {     try {       // Log the request       logger.info({         method: req.method,         url: req.url,         headers: req.headers,         query: req.query,         body: req.body       })       // Call the next middleware       next()     } catch (error) {       // Handle logging errors       logger.error({         message: 'Error logging request',         error: error.message       })       // Prevent application crashes due to logging issues       next()     }   }   return requestLogger } // Create an express app const app = express() app.use(initRequestLogger()) // Error handling middleware /**  * Express error handling middleware  * @param {Object} err - Error object  * @param {Object} req - Express request object  * @param {Object} res - Express response object  * @param {Function} next - Express next function  */ function errorHandler(err, req, res, next) {   try {     // Log the error     logger.error({       message: 'Error handling request',       error: err.message     })     // Return a error response     res.status(500).send({       message: 'Internal Server Error'     })   } catch (error) {     // Handle logging errors     logger.error({       message: 'Error logging error',       error: error.message     })     // Prevent application crashes due to logging issues     res.status(500).send({       message: 'Internal Server Error'     })   } } app.use(errorHandler) 
+// src/requestLogger.js
+/**
+ * Middleware that generates a unique request ID, attaches it to the request,
+ * adds it to the response header and logs request/response details in a
+ * structured JSON format.
+ *
+ * The middleware is safe for async route handlers and does not modify the
+ * response body. It logs after the response is finished, regardless of the
+ * outcome (success or error).
+ *
+ * @returns {import('express').RequestHandler}
+ */
+function requestIdAndLogger () {
+  const onFinished = require('on-finished')
+  const crypto = require('crypto')
+
+  return function (req, res, next) {
+    // generate a UUID v4 request id – fallback to random bytes if unavailable
+    const requestId = (typeof crypto.randomUUID === 'function')
+      ? crypto.randomUUID()
+      : crypto.randomBytes(16).toString('hex')
+    // expose on request object for downstream handlers
+    req.id = requestId
+    // expose on response header for clients / tracing tools
+    res.setHeader('X-Request-Id', requestId)
+
+    const start = process.hrtime.bigint()
+    // ensure logging runs after response is sent (including early responses)
+    onFinished(res, () => {
+      const end = process.hrtime.bigint()
+      const durationMs = Number(end - start) / 1e6
+      const logEntry = {
+        requestId,
+        method: req.method,
+        url: req.originalUrl || req.url,
+        status: res.statusCode,
+        durationMs: Number(durationMs.toFixed(2))
+      }
+      // structured log – stringified JSON for easy ingestion by log systems
+      console.log(JSON.stringify(logEntry))
+    })
+
+    // continue to next middleware / route handler
+    try {
+      next()
+    } catch (err) {
+      // synchronous errors – let Express handle them after logging
+      next(err)
+    }
+  }
+}
+
+module.exports = requestIdAndLogger
