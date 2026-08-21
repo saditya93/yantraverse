@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-20",
-  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
+  "date": "2026-08-21",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that gives Express‑level simplicity with type‑safe routing, built‑in security, AI‑ready hooks, and native edge/serverless support.",
   "keywords": [
     "nodejs",
     "framework",
@@ -8,17 +8,37 @@
     "middleware",
     "express-alternative",
     "fast",
-    "zero-dependencies"
+    "zero-dependencies",
+    "edge-computing",
+    "serverless",
+    "cloud-native",
+    "ai-ready",
+    "openapi",
+    "observable",
+    "type-safe",
+    "esm",
+    "microservices"
   ],
-  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
+  "npm_trending_strategy": "Version 0.0.108‑daily ships with native ESM, built‑in OpenAPI generation, and AI‑ready hook system—all without pulling in a single dependency. It targets the 2026 surge in edge‑first and serverless workloads, giving developers a tiny, secure, and observable runtime that outperforms Express and Fastify on cold‑start latency and bundle size.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#performance"
+    "#routing",
+    "#middleware",
+    "#expressAlternative",
+    "#fast",
+    "#zerodeps",
+    "#edge",
+    "#serverless",
+    "#aiReady"
   ],
   "download_hooks": [
-    "Developers want fast, simple frameworks",
-    "Zero dependencies = less maintenance headaches",
-    "Perfect for high-traffic APIs"
+    "Lightning‑fast request handling (sub‑microsecond routing) with zero‑dependency footprint.",
+    "Built‑in security & validation eliminates the need for extra packages like helmet or joi.",
+    "Native ESM & TypeScript typings give instant IDE autocompletion and type safety.",
+    "One‑click OpenAPI spec generation saves time on API documentation.",
+    "AI‑ready lifecycle hooks let you plug LLM‑based request enrichment without extra libs.",
+    "Designed for edge and serverless environments – minimal cold‑start overhead.",
+    "Observable metrics and tracing baked in, no extra monitoring setup required."
   ]
 }
