@@ -1,20 +1,18 @@
 {
-  "date": "2026-08-20",
+  "date": "2026-08-21",
   "category": "FEATURE",
-  "title": "Add Request ID & Structured Logging Middleware",
-  "description": "Introduces a lightweight middleware that generates a unique request ID for every incoming request, attaches it to the request object, adds it to the response header, and logs request/response details in a structured format. This improves traceability, debugging, and observability in production environments.",
+  "title": "Add Graceful Shutdown and Signal Handling",
+  "description": "Implements graceful shutdown on SIGINT/SIGTERM to stop accepting new connections, finish in‑flight requests, and cleanly close resources. Enhances production stability and supports zero‑downtime deployments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/requestLogger.js",
-    "test/requestLogger.test.js"
+    "src/server.js",
+    "test/server.test.js"
   ],
   "testCases": [
-    "Middleware attaches a UUID v4 request ID to req.id and sets X-Request-Id header on the response",
-    "Middleware logs a JSON object containing method, url, status, duration, and request ID for successful requests",
-    "Middleware correctly logs error responses and includes the request ID",
-    "Middleware does not interfere with routes that do not call next() (e.g., early response)"
+    "Simulate SIGTERM while handling active requests and verify the server stops accepting new connections and exits with code 0 after completing in‑flight requests",
+    "Trigger SIGINT during idle state and ensure the server closes immediately and logs shutdown messages"
   ],
-  "acceptance": "When the server receives any HTTP request, a unique request ID is generated, added to req.id, sent back in the X-Request-Id header, and a structured log entry is emitted containing method, url, status, duration, and the request ID. The middleware must work with async route handlers, not alter response bodies, and must not break existing functionality.",
-  "reason": "Observability is critical for production-ready services. A request‑ID based logging system enables correlation across distributed logs, speeds up incident response, and meets common compliance requirements without adding external dependencies."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the server must stop accepting new connections, allow existing requests to complete within a configurable timeout (default 10s), close all listeners, release resources, log shutdown steps, and exit with status 0. If the timeout expires, the process should force exit with status 1.",
+  "reason": "Production environments require reliable termination to prevent data loss and ensure clean restarts. Adding graceful shutdown removes a common source of instability during deployments and scaling events, aligning with the framework's stability focus."
 }

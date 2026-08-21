@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-21
+### FEATURE
+- Add Graceful Shutdown and Signal Handling: Implements graceful shutdown on SIGINT/SIGTERM to stop accepting new connections, finish in‑flight requests, and cleanly close resources. Enhances production stability and supports zero‑downtime deployments.
+
 ## [Automated] - 2026-08-20
 ### FEATURE
 - Add Request ID & Structured Logging Middleware: Introduces a lightweight middleware that generates a unique request ID for every incoming request, attaches it to the request object, adds it to the response header, and logs request/response details in a structured format. This improves traceability, debugging, and observability in production environments.
