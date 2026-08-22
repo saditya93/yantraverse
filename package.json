@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.109-daily.20260821",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework that gives Express‑level simplicity with type‑safe routing, built‑in security, AI‑ready hooks, and native edge/serverless support.",
+  "version": "0.0.110-daily.20260822",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that delivers Express‑level simplicity with type‑safe routing, built‑in security, AI‑ready hooks, and native edge/serverless support.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -50,7 +50,14 @@
     "observable",
     "type-safe",
     "esm",
-    "microservices"
+    "microservices",
+    "llm",
+    "reactive",
+    "webhooks",
+    "zero-config",
+    "graphql",
+    "cloudflare-workers",
+    "deno-compat"
   ],
   "author": "",
   "license": "MIT",
