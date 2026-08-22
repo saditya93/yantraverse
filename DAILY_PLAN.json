@@ -1,18 +1,19 @@
 {
-  "date": "2026-08-21",
+  "date": "2026-08-22",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown and Signal Handling",
-  "description": "Implements graceful shutdown on SIGINT/SIGTERM to stop accepting new connections, finish in‑flight requests, and cleanly close resources. Enhances production stability and supports zero‑downtime deployments.",
+  "title": "Add JSON Schema Request Validation Middleware",
+  "description": "Introduce a zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This reduces boiler‑plate validation code, prevents malformed data from reaching route handlers, and improves overall API reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "test/server.test.js"
+    "src/middleware/validation.js",
+    "src/utils/schemaCache.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while handling active requests and verify the server stops accepting new connections and exits with code 0 after completing in‑flight requests",
-    "Trigger SIGINT during idle state and ensure the server closes immediately and logs shutdown messages"
+    "Validate that a request with a valid payload passes through and reaches the handler",
+    "Validate that a request with an invalid payload returns a 400 response with detailed error messages"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the server must stop accepting new connections, allow existing requests to complete within a configurable timeout (default 10s), close all listeners, release resources, log shutdown steps, and exit with status 0. If the timeout expires, the process should force exit with status 1.",
-  "reason": "Production environments require reliable termination to prevent data loss and ensure clean restarts. Adding graceful shutdown removes a common source of instability during deployments and scaling events, aligning with the framework's stability focus."
+  "acceptance": "When a route registers a schema, the middleware must reject non‑conforming requests with a 400 status and a JSON error object, while allowing compliant requests to proceed unchanged. Errors should be logged at 'warn' level without crashing the server.",
+  "reason": "Many Yantraverse users manually validate request data, leading to duplicated code and potential security gaps. A built‑in, schema‑driven validator provides a standardized, high‑performance solution, aligning with the framework's zero‑dependency and production‑ready goals."
 }
