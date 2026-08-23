@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-23
+### FEATURE
+- Unified Error Handling Middleware with Structured JSON Responses: Introduce a centralized error handling system that captures thrown errors, maps them to appropriate HTTP status codes, and returns a consistent JSON payload. This improves client debugging, simplifies middleware error propagation, and enhances production reliability.
+
 ## [Automated] - 2026-08-22
 ### FEATURE
 - Add JSON Schema Request Validation Middleware: Introduce a zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This reduces boiler‑plate validation code, prevents malformed data from reaching route handlers, and improves overall API reliability.

@@ -1,19 +1,19 @@
 {
-  "date": "2026-08-22",
+  "date": "2026-08-23",
   "category": "FEATURE",
-  "title": "Add JSON Schema Request Validation Middleware",
-  "description": "Introduce a zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This reduces boiler‑plate validation code, prevents malformed data from reaching route handlers, and improves overall API reliability.",
+  "title": "Unified Error Handling Middleware with Structured JSON Responses",
+  "description": "Introduce a centralized error handling system that captures thrown errors, maps them to appropriate HTTP status codes, and returns a consistent JSON payload. This improves client debugging, simplifies middleware error propagation, and enhances production reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validation.js",
-    "src/utils/schemaCache.js",
-    "test/validation.test.js"
+    "src/middleware/errorHandler.js",
+    "src/errors/HttpError.js",
+    "test/errorHandler.test.js"
   ],
   "testCases": [
-    "Validate that a request with a valid payload passes through and reaches the handler",
-    "Validate that a request with an invalid payload returns a 400 response with detailed error messages"
+    "Verify that a thrown HttpError with status 404 returns a JSON response { error: { status:404, message:'Not Found' } } and sets the correct HTTP status code",
+    "Verify that an uncaught generic Error results in a 500 response with a generic message and does not expose stack traces"
   ],
-  "acceptance": "When a route registers a schema, the middleware must reject non‑conforming requests with a 400 status and a JSON error object, while allowing compliant requests to proceed unchanged. Errors should be logged at 'warn' level without crashing the server.",
-  "reason": "Many Yantraverse users manually validate request data, leading to duplicated code and potential security gaps. A built‑in, schema‑driven validator provides a standardized, high‑performance solution, aligning with the framework's zero‑dependency and production‑ready goals."
+  "acceptance": "All existing tests continue to pass; new tests for error handling succeed; error responses are consistent JSON with status and message; no stack traces leaked in production mode; middleware logs errors appropriately",
+  "reason": "Standardizing error responses reduces client-side ambiguity, aids monitoring, and aligns the framework with production best‑practice patterns, addressing a critical gap in the current lightweight stack."
 }
