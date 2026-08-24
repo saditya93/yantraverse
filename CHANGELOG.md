@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-24
+### FEATURE
+- Add built-in structured request logging middleware: Provides developers with a zero‑dependency, configurable logger that captures method, URL, status, response time and optional request ID. This improves observability, aids debugging in production, and aligns with the framework's lightweight philosophy.
+
 ## [Automated] - 2026-08-23
 ### FEATURE
 - Unified Error Handling Middleware with Structured JSON Responses: Introduce a centralized error handling system that captures thrown errors, maps them to appropriate HTTP status codes, and returns a consistent JSON payload. This improves client debugging, simplifies middleware error propagation, and enhances production reliability.

@@ -1,19 +1,19 @@
 {
-  "date": "2026-08-23",
+  "date": "2026-08-24",
   "category": "FEATURE",
-  "title": "Unified Error Handling Middleware with Structured JSON Responses",
-  "description": "Introduce a centralized error handling system that captures thrown errors, maps them to appropriate HTTP status codes, and returns a consistent JSON payload. This improves client debugging, simplifies middleware error propagation, and enhances production reliability.",
+  "title": "Add built-in structured request logging middleware",
+  "description": "Provides developers with a zero‑dependency, configurable logger that captures method, URL, status, response time and optional request ID. This improves observability, aids debugging in production, and aligns with the framework's lightweight philosophy.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/errorHandler.js",
-    "src/errors/HttpError.js",
-    "test/errorHandler.test.js"
+    "src/middleware/logger.js",
+    "src/utils/formatLog.js",
+    "test/logger.middleware.test.js"
   ],
   "testCases": [
-    "Verify that a thrown HttpError with status 404 returns a JSON response { error: { status:404, message:'Not Found' } } and sets the correct HTTP status code",
-    "Verify that an uncaught generic Error results in a 500 response with a generic message and does not expose stack traces"
+    "Verify that a request passing through the logger middleware outputs a correctly formatted log line containing method, URL, status code, and response time",
+    "Verify that custom log format options (e.g., JSON output, inclusion of request ID) are respected and that disabling the logger results in no output"
   ],
-  "acceptance": "All existing tests continue to pass; new tests for error handling succeed; error responses are consistent JSON with status and message; no stack traces leaked in production mode; middleware logs errors appropriately",
-  "reason": "Standardizing error responses reduces client-side ambiguity, aids monitoring, and aligns the framework with production best‑practice patterns, addressing a critical gap in the current lightweight stack."
+  "acceptance": "When the logger middleware is registered, each incoming request generates a log entry matching the default format; custom options alter the output accordingly; disabling the middleware produces no logs. No request payloads or responses are altered, and response times remain within 5 ms overhead on average.",
+  "reason": "Observability is critical for production services. A built‑in, zero‑dependency logger eliminates the need for external packages, reduces bundle size, and provides a consistent, configurable way to monitor traffic and troubleshoot issues across all yantraverse applications."
 }
