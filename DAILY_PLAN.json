@@ -1,19 +1,19 @@
 {
-  "date": "2026-08-24",
+  "date": "2026-08-25",
   "category": "FEATURE",
-  "title": "Add built-in structured request logging middleware",
-  "description": "Provides developers with a zero‑dependency, configurable logger that captures method, URL, status, response time and optional request ID. This improves observability, aids debugging in production, and aligns with the framework's lightweight philosophy.",
+  "title": "Add graceful shutdown with signal handling and request draining",
+  "description": "Implements proper SIGINT/SIGTERM handling so the server stops accepting new connections, waits for in‑flight requests to finish, and exits cleanly after a configurable timeout. This improves reliability in containerized and production environments by preventing abrupt termination of active requests.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/utils/formatLog.js",
-    "test/logger.middleware.test.js"
+    "src/gracefulShutdown.js",
+    "src/server.js",
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Verify that a request passing through the logger middleware outputs a correctly formatted log line containing method, URL, status code, and response time",
-    "Verify that custom log format options (e.g., JSON output, inclusion of request ID) are respected and that disabling the logger results in no output"
+    "Simulate SIGTERM while a long‑running request is in progress and verify the server stops accepting new connections, allows the request to complete, then exits within the timeout",
+    "Trigger SIGINT with no active requests and ensure the server shuts down immediately and logs the shutdown sequence"
   ],
-  "acceptance": "When the logger middleware is registered, each incoming request generates a log entry matching the default format; custom options alter the output accordingly; disabling the middleware produces no logs. No request payloads or responses are altered, and response times remain within 5 ms overhead on average.",
-  "reason": "Observability is critical for production services. A built‑in, zero‑dependency logger eliminates the need for external packages, reduces bundle size, and provides a consistent, configurable way to monitor traffic and troubleshoot issues across all yantraverse applications."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the framework logs a shutdown message, stops accepting new connections, waits up to the configured timeout for active requests to finish, then exits with code 0. If the timeout expires, it forcefully terminates remaining connections and exits with code 1. All logs follow the existing logging format and no unhandled promise rejections occur.",
+  "reason": "Production deployments (especially in containers and serverless platforms) require deterministic shutdown behavior to avoid data loss and improve uptime. Adding graceful shutdown aligns Yantraverse with industry best practices and enhances its zero‑dependency, production‑ready promise."
 }

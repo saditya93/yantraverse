@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-25
+### FEATURE
+- Add graceful shutdown with signal handling and request draining: Implements proper SIGINT/SIGTERM handling so the server stops accepting new connections, waits for in‑flight requests to finish, and exits cleanly after a configurable timeout. This improves reliability in containerized and production environments by preventing abrupt termination of active requests.
+
 ## [Automated] - 2026-08-24
 ### FEATURE
 - Add built-in structured request logging middleware: Provides developers with a zero‑dependency, configurable logger that captures method, URL, status, response time and optional request ID. This improves observability, aids debugging in production, and aligns with the framework's lightweight philosophy.
