@@ -1,19 +1,21 @@
 {
-  "date": "2026-08-25",
+  "date": "2026-08-26",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with signal handling and request draining",
-  "description": "Implements proper SIGINT/SIGTERM handling so the server stops accepting new connections, waits for in‑flight requests to finish, and exits cleanly after a configurable timeout. This improves reliability in containerized and production environments by preventing abrupt termination of active requests.",
+  "title": "Add JSON Schema Request Validation Middleware",
+  "description": "Introduces a zero‑dependency middleware that validates incoming request bodies, query strings, and params against user‑provided JSON Schemas. This reduces boilerplate validation code, catches malformed input early, and improves overall API robustness.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/validation.js",
+    "src/app.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while a long‑running request is in progress and verify the server stops accepting new connections, allows the request to complete, then exits within the timeout",
-    "Trigger SIGINT with no active requests and ensure the server shuts down immediately and logs the shutdown sequence"
+    "Valid request passes when body matches schema",
+    "Invalid request returns 400 with detailed error messages",
+    "Validation works for query parameters and URL params",
+    "Middleware skips validation when no schema is provided"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the framework logs a shutdown message, stops accepting new connections, waits up to the configured timeout for active requests to finish, then exits with code 0. If the timeout expires, it forcefully terminates remaining connections and exits with code 1. All logs follow the existing logging format and no unhandled promise rejections occur.",
-  "reason": "Production deployments (especially in containers and serverless platforms) require deterministic shutdown behavior to avoid data loss and improve uptime. Adding graceful shutdown aligns Yantraverse with industry best practices and enhances its zero‑dependency, production‑ready promise."
+  "acceptance": "All new tests pass, existing test suite remains green, validation middleware can be attached to a route via app.use('/users', validate({body: userSchema}), handler) and returns 400 on schema violations with a JSON error payload.",
+  "reason": "Provides a production‑ready, reusable way to enforce input contracts without external dependencies, addressing a common pain point for developers and preventing runtime errors caused by bad client data."
 }
