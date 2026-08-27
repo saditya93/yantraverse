@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-27
+### FEATURE
+- Add Built-in Request Body Validation Middleware: Introduces a lightweight, schema‑based request body validator that integrates with existing routing. It prevents malformed payloads early, reduces boilerplate validation code, and improves security and reliability of APIs built with yantraverse.
+
 ## [Automated] - 2026-08-26
 ### FEATURE
 - Add JSON Schema Request Validation Middleware: Introduces a zero‑dependency middleware that validates incoming request bodies, query strings, and params against user‑provided JSON Schemas. This reduces boilerplate validation code, catches malformed input early, and improves overall API robustness.

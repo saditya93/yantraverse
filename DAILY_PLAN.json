@@ -1,21 +1,22 @@
 {
-  "date": "2026-08-26",
+  "date": "2026-08-27",
   "category": "FEATURE",
-  "title": "Add JSON Schema Request Validation Middleware",
-  "description": "Introduces a zero‑dependency middleware that validates incoming request bodies, query strings, and params against user‑provided JSON Schemas. This reduces boilerplate validation code, catches malformed input early, and improves overall API robustness.",
+  "title": "Add Built-in Request Body Validation Middleware",
+  "description": "Introduces a lightweight, schema‑based request body validator that integrates with existing routing. It prevents malformed payloads early, reduces boilerplate validation code, and improves security and reliability of APIs built with yantraverse.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validation.js",
-    "src/app.js",
-    "test/validation.test.js"
+    "src/middleware/validateBody.js",
+    "src/router.js",
+    "test/validateBody.test.js"
   ],
   "testCases": [
-    "Valid request passes when body matches schema",
-    "Invalid request returns 400 with detailed error messages",
-    "Validation works for query parameters and URL params",
-    "Middleware skips validation when no schema is provided"
+    "Should accept a request with a valid JSON body matching the schema",
+    "Should reject a request with missing required fields and return 400 with error details",
+    "Should reject a request with fields of wrong type and return 400",
+    "Should skip validation for routes without a schema",
+    "Should handle async schema functions without crashing"
   ],
-  "acceptance": "All new tests pass, existing test suite remains green, validation middleware can be attached to a route via app.use('/users', validate({body: userSchema}), handler) and returns 400 on schema violations with a JSON error payload.",
-  "reason": "Provides a production‑ready, reusable way to enforce input contracts without external dependencies, addressing a common pain point for developers and preventing runtime errors caused by bad client data."
+  "acceptance": "When a route is defined with a validation schema, incoming requests are automatically validated; valid payloads proceed to the handler, invalid payloads receive a 400 response with a clear error message. No regression in existing routing or middleware behavior.",
+  "reason": "Validating request payloads is a common source of bugs and security issues. Providing first‑class, zero‑dependency validation directly in the framework eliminates the need for external libraries, aligns with yantraverse's zero‑dependency goal, and speeds up development of robust APIs."
 }
