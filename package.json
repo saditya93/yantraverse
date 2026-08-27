@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.114-daily.20260826",
-  "description": "Zero‑dependency, type‑safe Node.js framework that delivers Express‑level simplicity with edge‑scale speed, AI‑first hooks, and native serverless deployment.",
+  "version": "0.0.115-daily.20260827",
+  "description": "Zero‑dependency, type‑safe Node.js framework that delivers Express‑level simplicity with AI‑first hooks, edge‑scale speed, and native serverless deployment.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -53,14 +53,18 @@
     "cloudflare-workers",
     "deno-compat",
     "bun-compatible",
-    "webassembly",
+    "wasm",
     "webgpu",
     "observable-api",
     "reactive-streams",
     "open-telemetry",
     "ai-hooks",
     "prompt-engineering",
-    "edge-ai"
+    "edge-ai",
+    "copilot-friendly",
+    "low-code",
+    "devops",
+    "runtimes"
   ],
   "author": "",
   "license": "MIT",
