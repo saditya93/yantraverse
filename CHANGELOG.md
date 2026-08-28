@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-28
+### FEATURE
+- Unified Error Handling & Structured Logging Middleware: Introduce a global error‑handling middleware that captures synchronous and asynchronous errors, normalises them into a consistent JSON format, and logs them with structured context. This reduces duplicated try/catch blocks, improves observability, and provides clients with clear error responses.
+
 ## [Automated] - 2026-08-27
 ### FEATURE
 - Add Built-in Request Body Validation Middleware: Introduces a lightweight, schema‑based request body validator that integrates with existing routing. It prevents malformed payloads early, reduces boilerplate validation code, and improves security and reliability of APIs built with yantraverse.
