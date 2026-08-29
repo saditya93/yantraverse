@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-29
+### FEATURE
+- Add Structured Request Logging Middleware with Request ID Propagation: Provides automatic JSON‑structured logging for every incoming request, including method, URL, status, response time and a unique request ID that is attached to the request and response objects. This improves observability, simplifies tracing across services, and meets compliance requirements without adding external dependencies.
+
 ## [Automated] - 2026-08-28
 ### FEATURE
 - Unified Error Handling & Structured Logging Middleware: Introduce a global error‑handling middleware that captures synchronous and asynchronous errors, normalises them into a consistent JSON format, and logs them with structured context. This reduces duplicated try/catch blocks, improves observability, and provides clients with clear error responses.

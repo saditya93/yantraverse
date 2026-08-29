@@ -1,19 +1,21 @@
 {
-  "date": "2026-08-28",
+  "date": "2026-08-29",
   "category": "FEATURE",
-  "title": "Unified Error Handling & Structured Logging Middleware",
-  "description": "Introduce a global error‑handling middleware that captures synchronous and asynchronous errors, normalises them into a consistent JSON format, and logs them with structured context. This reduces duplicated try/catch blocks, improves observability, and provides clients with clear error responses.",
+  "title": "Add Structured Request Logging Middleware with Request ID Propagation",
+  "description": "Provides automatic JSON‑structured logging for every incoming request, including method, URL, status, response time and a unique request ID that is attached to the request and response objects. This improves observability, simplifies tracing across services, and meets compliance requirements without adding external dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/errorHandler.js",
-    "src/util/logger.js",
-    "test/middleware/errorHandler.test.js"
+    "src/logger.js",
+    "src/middleware/requestLogger.js",
+    "src/utils/requestId.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "When a route throws a standard Error, the response status is 500 and the JSON body contains { code: \"INTERNAL_ERROR\", message: <error.message> }. The logger records an entry with level \"error\" and the stack trace.",
-    "When a route throws a custom HttpError (e.g., new HttpError(404, \"NOT_FOUND\", \"Resource missing\")), the response status matches the error code and the JSON body mirrors the error properties. No stack trace is logged for client errors (4xx)."
+    "Verify that each request generates a unique request ID and that the ID is accessible via req.id and res.setHeader('X-Request-Id')",
+    "Confirm that the logger outputs a single JSON line containing method, url, status, responseTime, and requestId for successful and error responses",
+    "Ensure that disabling the logger via configuration results in no log output but does not affect request handling"
   ],
-  "acceptance": "All existing tests pass. New tests verify both generic and custom error flows, confirm response shape, status codes, and that logger is called with appropriate severity and payload. The middleware integrates seamlessly with the existing router without breaking static file serving or other middleware.",
-  "reason": "Consistent error responses and centralized logging are essential for production stability and debugging. This feature eliminates repetitive error handling code, provides developers with actionable logs, and aligns yantraverse with industry best practices for API frameworks."
+  "acceptance": "When the middleware is enabled, every HTTP request results in a single well‑formed JSON log line containing the required fields; the same request ID appears in the log, the response header, and is reachable via req.id. Disabling the middleware produces no logs and does not alter response behavior. All tests pass and existing routing/middleware functionality remains unaffected.",
+  "reason": "Production systems need reliable, structured logs for monitoring, debugging, and traceability. Adding built‑in request logging eliminates the need for third‑party logging libraries, aligns with the framework's zero‑dependency philosophy, and provides immediate value to developers using yantraverse."
 }
