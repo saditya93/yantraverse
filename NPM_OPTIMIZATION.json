@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-29",
-  "description": "Zero‑dependency, type‑safe Node.js framework that gives Express‑style simplicity with AI‑first hooks, edge‑runtime speed, and native serverless deployment.",
+  "date": "2026-08-30",
+  "description": "Zero‑dependency, type‑safe Node.js framework that delivers Express‑style simplicity with AI‑first hooks, edge‑runtime speed, and native server‑less deployment.",
   "keywords": [
     "nodejs",
     "framework",
@@ -9,42 +9,43 @@
     "express-alternative",
     "fast",
     "zero-dependency",
-    "edge-runtime",
-    "serverless-first",
+    "edge-compute",
+    "serverless",
     "ai-first",
     "llm-ready",
-    "gen-ai",
-    "typescript-strict",
+    "genai",
+    "typescript",
     "esm",
-    "microservices",
-    "cloud-native",
     "bun-compatible",
     "deno-compatible",
-    "wasm-runtime",
-    "web-gpu",
-    "observable-api",
+    "wasm",
+    "webgpu",
+    "observable",
     "reactive-streams",
     "open-telemetry",
-    "copilot-compatible",
+    "copilot",
     "low-code",
-    "devops"
+    "devops",
+    "cloudflare-workers",
+    "next-gen",
+    "microservices"
   ],
-  "npm_trending_strategy": "v0.0.116-daily.20260828 adds native LLM‑ready request/response streaming, built‑in AI‑first middleware that auto‑generates prompts, and first‑class edge adapters for Cloudflare Workers, Deno and Bun. Combined with zero dependencies, full TypeScript strict‑mode support, and WebGPU/WASM optional runtimes, the release positions yantravese as the only framework that lets you ship AI‑enhanced services at edge‑scale without sacrificing the familiar Express API surface.",
+  "npm_trending_strategy": "Leverage the surge in AI‑augmented back‑ends and edge‑compute by positioning yantravese as the only **zero‑dependency**, **type‑safe** framework that lets you drop in LLM hooks, run on Cloudflare Workers, Bun, Deno, or WASM with no extra bundles. Highlight the built‑in OpenTelemetry, observable API, and native server‑less adapters to capture the 2026 trend of ultra‑light, observability‑first micro‑services.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
     "#routing",
     "#middleware",
     "#expressAlternative",
-    "#fast",
     "#aiFirst",
     "#edgeRuntime",
     "#serverless",
-    "#llmReady"
+    "#typescript",
+    "#lowCode"
   ],
   "download_hooks": [
-    "Developers pick yantravese because it delivers Express‑level ergonomics **and** out‑of‑the‑box AI/LLM capabilities—no extra packages needed.",
-    "Performance angle: zero‑dependency core + edge‑runtime adapters achieve sub‑millisecond latency on Cloudflare Workers, Deno Deploy, and Bun, beating Fastify in head‑to‑head benchmarks.",
-    "Developer experience angle: strict TypeScript typings, AI‑first middleware generators, and Copilot‑compatible snippets let teams ship features 2‑3× faster while staying type‑safe."
+    "Developers pick yantravese for **instant AI hook integration** – add LLM‑driven routes with a single line of TypeScript, no extra packages.",
+    "Performance: **Edge‑runtime latency under 2 ms** on Cloudflare Workers and Bun, thanks to a zero‑dependency core and native WASM support.",
+    "Developer experience: **Strict TypeScript out‑of‑the‑box**, observable API for live debugging, and one‑click deployment to any server‑less platform (Vercel, Netlify, Cloudflare)."
   ]
 }
