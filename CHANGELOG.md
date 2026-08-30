@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-30
+### FEATURE
+- Graceful Shutdown & Health‑Check Endpoint: Adds a robust graceful shutdown process that closes server connections, flushes logs, and stops accepting new requests, plus a `/healthz` endpoint for Kubernetes/liveness checks. This improves reliability and observability in production environments.
+
 ## [Automated] - 2026-08-29
 ### FEATURE
 - Add Structured Request Logging Middleware with Request ID Propagation: Provides automatic JSON‑structured logging for every incoming request, including method, URL, status, response time and a unique request ID that is attached to the request and response objects. This improves observability, simplifies tracing across services, and meets compliance requirements without adding external dependencies.

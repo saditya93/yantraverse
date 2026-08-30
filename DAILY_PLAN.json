@@ -1,21 +1,19 @@
 {
-  "date": "2026-08-29",
+  "date": "2026-08-30",
   "category": "FEATURE",
-  "title": "Add Structured Request Logging Middleware with Request ID Propagation",
-  "description": "Provides automatic JSON‑structured logging for every incoming request, including method, URL, status, response time and a unique request ID that is attached to the request and response objects. This improves observability, simplifies tracing across services, and meets compliance requirements without adding external dependencies.",
+  "title": "Graceful Shutdown & Health‑Check Endpoint",
+  "description": "Adds a robust graceful shutdown process that closes server connections, flushes logs, and stops accepting new requests, plus a `/healthz` endpoint for Kubernetes/liveness checks. This improves reliability and observability in production environments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/logger.js",
-    "src/middleware/requestLogger.js",
-    "src/utils/requestId.js",
-    "test/logger.test.js"
+    "src/server.js",
+    "src/middleware/healthCheck.js",
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Verify that each request generates a unique request ID and that the ID is accessible via req.id and res.setHeader('X-Request-Id')",
-    "Confirm that the logger outputs a single JSON line containing method, url, status, responseTime, and requestId for successful and error responses",
-    "Ensure that disabling the logger via configuration results in no log output but does not affect request handling"
+    "Server responds with 200 and JSON {status:\"ok\"} on GET /healthz",
+    "Server stops accepting new connections after SIGTERM and existing connections finish before process exit"
   ],
-  "acceptance": "When the middleware is enabled, every HTTP request results in a single well‑formed JSON log line containing the required fields; the same request ID appears in the log, the response header, and is reachable via req.id. Disabling the middleware produces no logs and does not alter response behavior. All tests pass and existing routing/middleware functionality remains unaffected.",
-  "reason": "Production systems need reliable, structured logs for monitoring, debugging, and traceability. Adding built‑in request logging eliminates the need for third‑party logging libraries, aligns with the framework's zero‑dependency philosophy, and provides immediate value to developers using yantraverse."
+  "acceptance": "- `/healthz` returns HTTP 200 with `{ \"status\": \"ok\" }` within 50 ms.\n- On SIGTERM, the server stops listening, waits for all active requests to complete (max 10 s), then exits with code 0.\n- Logs appropriate shutdown messages.\n- No unhandled promise rejections or open handles after shutdown.",
+  "reason": "Ensures the framework can be safely deployed in container orchestration platforms and reduces downtime during deployments or crashes, addressing a critical production‑readiness gap."
 }
