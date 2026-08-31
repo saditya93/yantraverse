@@ -1,19 +1,20 @@
 {
-  "date": "2026-08-30",
+  "date": "2026-08-31",
   "category": "FEATURE",
-  "title": "Graceful Shutdown & Health‑Check Endpoint",
-  "description": "Adds a robust graceful shutdown process that closes server connections, flushes logs, and stops accepting new requests, plus a `/healthz` endpoint for Kubernetes/liveness checks. This improves reliability and observability in production environments.",
+  "title": "Add Built‑in Request/Response Logging Middleware",
+  "description": "Introduce a lightweight, configurable logger that records each incoming request and its corresponding response status, duration, and IP. This improves observability in production without adding external dependencies, helping developers diagnose performance issues and security incidents faster.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/middleware/healthCheck.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/logger.js",
+    "src/app.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Server responds with 200 and JSON {status:\"ok\"} on GET /healthz",
-    "Server stops accepting new connections after SIGTERM and existing connections finish before process exit"
+    "Should log request method, url, and timestamp for a GET request",
+    "Should log response status and elapsed time after the response is sent",
+    "Should respect user‑provided options to disable logging or change log format"
   ],
-  "acceptance": "- `/healthz` returns HTTP 200 with `{ \"status\": \"ok\" }` within 50 ms.\n- On SIGTERM, the server stops listening, waits for all active requests to complete (max 10 s), then exits with code 0.\n- Logs appropriate shutdown messages.\n- No unhandled promise rejections or open handles after shutdown.",
-  "reason": "Ensures the framework can be safely deployed in container orchestration platforms and reduces downtime during deployments or crashes, addressing a critical production‑readiness gap."
+  "acceptance": "A new logger middleware is exported and can be added via app.use(logger(options)). When enabled, it writes a single line JSON log to stdout for every request, includes method, url, status, response time, and client IP. All test cases pass and no existing tests regress.",
+  "reason": "Observability is a critical production need; adding native logging eliminates reliance on external packages, aligns with the framework's zero‑dependency philosophy, and provides immediate value for debugging and monitoring."
 }

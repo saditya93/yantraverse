@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-08-31
+### FEATURE
+- Add Built‑in Request/Response Logging Middleware: Introduce a lightweight, configurable logger that records each incoming request and its corresponding response status, duration, and IP. This improves observability in production without adding external dependencies, helping developers diagnose performance issues and security incidents faster.
+
 ## [Automated] - 2026-08-30
 ### FEATURE
 - Graceful Shutdown & Health‑Check Endpoint: Adds a robust graceful shutdown process that closes server connections, flushes logs, and stops accepting new requests, plus a `/healthz` endpoint for Kubernetes/liveness checks. This improves reliability and observability in production environments.

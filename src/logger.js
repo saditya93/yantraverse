@@ -1,1 +1,61 @@
- // Import required modules const winston = require('winston') const express = require('express') // Define the logger /**  * Request logger with error handling  * @module logger  */ const logger = winston.createLogger({   level: 'info',   format: winston.format.json(),   transports: [     new winston.transports.Console()   ] }) // Define the logging middleware /**  * Logging middleware for incoming requests  * @param {express.Request} req  * @param {express.Response} res  * @param {express.NextFunction} next  */ const loggingMiddleware = (req, res, next) => {   const start = Date.now()   const originalSend = res.send   // Override the send method to log the response   res.send = (data) => {     const duration = Date.now() - start     const response = {       status: res.statusCode,       method: req.method,       path: req.path,       duration: `${duration}ms`     }     // Log the response     logger.info(response)     // Call the original send method     originalSend.call(res, data)   }   // Call the next middleware   next() } // Define the error handling middleware /**  * Error handling middleware for incoming requests  * @param {express.ErrorRequestHandler} err  * @param {express.Request} req  * @param {express.Response} res  * @param {express.NextFunction} next  */ const errorHandlingMiddleware = (err, req, res, next) => {   const error = {     status: err.status || 500,     method: req.method,     path: req.path,     message: err.message   }   // Log the error   logger.error(error)   // Send the error response   res.status(error.status).send({ message: error.message }) } // Create an Express app const app = express() // Use the logging and error handling middlewares app.use(loggingMiddleware) app.use(errorHandlingMiddleware) // Define a route for testing app.get('/test', (req, res) => {   res.send('Test successful') }) // Define a route for testing errors app.get('/error', (req, res) => {   throw new Error('Test error') }) 
+// src/logger.js
+/**
+ * Built‑in request/response logging middleware.
+ * Logs a single line JSON object to stdout for each request.
+ *
+ * @param {Object} [options={}] Configuration options
+ * @param {boolean} [options.enabled=true] Enable or disable logging
+ * @param {function(Object):string} [options.format] Custom formatter that receives the log object and returns a string
+ * @returns {function} Express middleware function
+ */
+function logger (options = {}) {
+  const {
+    enabled = true,
+    format
+  } = options
+
+  // If logging is disabled, return a no‑op middleware
+  if (!enabled) {
+    return function noOp (req, res, next) {
+      next()
+    }
+  }
+
+  return function middleware (req, res, next) {
+    const start = process.hrtime()
+    const { method, originalUrl } = req
+    const ip = req.ip || req.connection?.remoteAddress || ''
+
+    // When response finishes, calculate duration and log
+    const onFinish = () => {
+      const diff = process.hrtime(start)
+      const responseTime = (diff[0] * 1e3) + (diff[1] / 1e6) // ms with fractions
+      const logEntry = {
+        timestamp: new Date().toISOString(),
+        method,
+        url: originalUrl,
+        status: res.statusCode,
+        responseTime: Number(responseTime.toFixed(3)),
+        ip
+      }
+
+      let output
+      try {
+        output = typeof format === 'function' ? format(logEntry) : JSON.stringify(logEntry)
+      } catch (e) {
+        // Fallback to JSON if custom formatter throws
+        output = JSON.stringify(logEntry)
+      }
+
+      // Ensure a newline for line‑delimited logs
+      process.stdout.write(output + '\n')
+    }
+
+    res.on('finish', onFinish)
+    // In case of error, also log when the response is closed
+    res.on('close', onFinish)
+    next()
+  }
+}
+
+module.exports = logger
