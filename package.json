@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.119-daily.20260831",
-  "description": "Zero‑dependency, type‑safe Node.js framework that gives you Express‑style simplicity with AI‑first hooks, edge‑runtime speed, and native serverless deployment.",
+  "version": "0.0.120-daily.20260901",
+  "description": "Zero‑dependency, type‑safe Node.js framework that delivers Express‑style simplicity with AI‑first hooks, edge‑runtime speed, and native serverless deployment.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -66,7 +66,15 @@
     "edge-runtime",
     "next-gen",
     "aiops",
-    "foundation-models"
+    "foundation-models",
+    "ai‑routing",
+    "prompt‑middleware",
+    "edge‑ai",
+    "serverless‑edge",
+    "ai‑devtools",
+    "llm‑hooks",
+    "genai‑framework",
+    "observable‑routing"
   ],
   "author": "",
   "license": "MIT",
