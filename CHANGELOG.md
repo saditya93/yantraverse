@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-01
+### FEATURE
+- Add request ID middleware for traceability: Generates a unique request identifier for every incoming HTTP request, attaches it to the request object, and propagates it via an X-Request-Id response header. This enables consistent tracing across logs, external services, and debugging sessions without adding external dependencies.
+
 ## [Automated] - 2026-08-31
 ### FEATURE
 - Add Built‑in Request/Response Logging Middleware: Introduce a lightweight, configurable logger that records each incoming request and its corresponding response status, duration, and IP. This improves observability in production without adding external dependencies, helping developers diagnose performance issues and security incidents faster.

@@ -1,20 +1,19 @@
 {
-  "date": "2026-08-31",
+  "date": "2026-09-01",
   "category": "FEATURE",
-  "title": "Add Built‑in Request/Response Logging Middleware",
-  "description": "Introduce a lightweight, configurable logger that records each incoming request and its corresponding response status, duration, and IP. This improves observability in production without adding external dependencies, helping developers diagnose performance issues and security incidents faster.",
+  "title": "Add request ID middleware for traceability",
+  "description": "Generates a unique request identifier for every incoming HTTP request, attaches it to the request object, and propagates it via an X-Request-Id response header. This enables consistent tracing across logs, external services, and debugging sessions without adding external dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
+    "src/middleware/requestId.js",
     "src/app.js",
-    "test/logger.test.js"
+    "test/requestId.test.js"
   ],
   "testCases": [
-    "Should log request method, url, and timestamp for a GET request",
-    "Should log response status and elapsed time after the response is sent",
-    "Should respect user‑provided options to disable logging or change log format"
+    "Verify that a UUIDv4 is added to req.id and the X-Request-Id header for a standard GET request",
+    "Verify that the same request ID is accessible in downstream middleware and logger output, and that missing or malformed IDs are regenerated correctly"
   ],
-  "acceptance": "A new logger middleware is exported and can be added via app.use(logger(options)). When enabled, it writes a single line JSON log to stdout for every request, includes method, url, status, response time, and client IP. All test cases pass and no existing tests regress.",
-  "reason": "Observability is a critical production need; adding native logging eliminates reliance on external packages, aligns with the framework's zero‑dependency philosophy, and provides immediate value for debugging and monitoring."
+  "acceptance": "All incoming requests receive a valid UUIDv4 stored on req.id and sent back in the X-Request-Id header; downstream middleware can read req.id; logger includes the request ID; no performance regression or unhandled errors are introduced.",
+  "reason": "Provides essential observability for production deployments, simplifies debugging, and aligns with modern tracing practices while keeping the framework zero‑dependency and lightweight."
 }
