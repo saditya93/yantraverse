@@ -1,19 +1,19 @@
 {
-  "date": "2026-09-01",
+  "date": "2026-09-02",
   "category": "FEATURE",
-  "title": "Add request ID middleware for traceability",
-  "description": "Generates a unique request identifier for every incoming HTTP request, attaches it to the request object, and propagates it via an X-Request-Id response header. This enables consistent tracing across logs, external services, and debugging sessions without adding external dependencies.",
+  "title": "Add JSON Schema Request Validation Middleware",
+  "description": "Introduces a zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/requestId.js",
-    "src/app.js",
-    "test/requestId.test.js"
+    "src/middleware/validateSchema.js",
+    "src/index.js",
+    "test/validateSchema.test.js"
   ],
   "testCases": [
-    "Verify that a UUIDv4 is added to req.id and the X-Request-Id header for a standard GET request",
-    "Verify that the same request ID is accessible in downstream middleware and logger output, and that missing or malformed IDs are regenerated correctly"
+    "Validate that a request with a valid payload passes through the middleware unchanged",
+    "Validate that a request with an invalid payload returns a 400 response with a detailed error message"
   ],
-  "acceptance": "All incoming requests receive a valid UUIDv4 stored on req.id and sent back in the X-Request-Id header; downstream middleware can read req.id; logger includes the request ID; no performance regression or unhandled errors are introduced.",
-  "reason": "Provides essential observability for production deployments, simplifies debugging, and aligns with modern tracing practices while keeping the framework zero‑dependency and lightweight."
+  "acceptance": "When a route registers a schema, the middleware must reject non‑conforming requests with HTTP 400 and allow conforming requests to reach the handler; error messages must include the failing property path and reason.",
+  "reason": "Ensures data integrity across the framework, cuts down on boilerplate validation code in applications, and aligns with the stability‑focused roadmap for yantraverse."
 }

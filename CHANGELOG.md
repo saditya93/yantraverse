@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-02
+### FEATURE
+- Add JSON Schema Request Validation Middleware: Introduces a zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.
+
 ## [Automated] - 2026-09-01
 ### FEATURE
 - Add request ID middleware for traceability: Generates a unique request identifier for every incoming HTTP request, attaches it to the request object, and propagates it via an X-Request-Id response header. This enables consistent tracing across logs, external services, and debugging sessions without adding external dependencies.
