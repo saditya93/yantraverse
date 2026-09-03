@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-03
+### FEATURE
+- Add Graceful Shutdown Handling for Production Stability: Implements a zero‑dependency graceful shutdown system that intercepts SIGTERM, SIGINT, uncaught exceptions and unhandled rejections. It stops accepting new connections, waits for in‑flight requests to finish, and then exits cleanly, preventing data loss and improving container orchestration reliability.
+
 ## [Automated] - 2026-09-02
 ### FEATURE
 - Add JSON Schema Request Validation Middleware: Introduces a zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.

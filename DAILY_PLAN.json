@@ -1,19 +1,19 @@
 {
-  "date": "2026-09-02",
+  "date": "2026-09-03",
   "category": "FEATURE",
-  "title": "Add JSON Schema Request Validation Middleware",
-  "description": "Introduces a zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.",
+  "title": "Add Graceful Shutdown Handling for Production Stability",
+  "description": "Implements a zero‑dependency graceful shutdown system that intercepts SIGTERM, SIGINT, uncaught exceptions and unhandled rejections. It stops accepting new connections, waits for in‑flight requests to finish, and then exits cleanly, preventing data loss and improving container orchestration reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateSchema.js",
-    "src/index.js",
-    "test/validateSchema.test.js"
+    "src/gracefulShutdown.js",
+    "src/server.js",
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Validate that a request with a valid payload passes through the middleware unchanged",
-    "Validate that a request with an invalid payload returns a 400 response with a detailed error message"
+    "Start the yantraverse server, issue a long‑running request, trigger SIGTERM and verify the server stops accepting new connections while the in‑flight request completes before the process exits",
+    "Trigger an uncaughtException while the server is idle and ensure the graceful shutdown sequence runs, logs the error, and exits with code 1"
   ],
-  "acceptance": "When a route registers a schema, the middleware must reject non‑conforming requests with HTTP 400 and allow conforming requests to reach the handler; error messages must include the failing property path and reason.",
-  "reason": "Ensures data integrity across the framework, cuts down on boilerplate validation code in applications, and aligns with the stability‑focused roadmap for yantraverse."
+  "acceptance": "When a termination signal or fatal error occurs, the framework must (1) stop accepting new HTTP connections within 100 ms, (2) allow all active requests to finish up to a configurable timeout (default 5 s), (3) close the underlying HTTP server, (4) flush any pending logs, and (5) exit the process with the appropriate exit code (0 for SIGTERM/SIGINT, 1 for uncaught errors). All tests must pass and no resource leaks should be detected.",
+  "reason": "Containers and serverless platforms rely on graceful termination to avoid dropped requests and corrupted state. Adding this feature directly addresses production reliability concerns, aligns with the recent stability focus, and requires minimal code while delivering high business value."
 }
