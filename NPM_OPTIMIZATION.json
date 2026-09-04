@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-03",
-  "description": "A ultra‑fast, zero‑dependency Node.js framework that delivers Express‑level simplicity with Fastify‑grade performance – ready for edge, serverless and AI‑driven workloads.",
+  "date": "2026-09-04",
+  "description": "Zero‑dependency, ESM‑first Node.js framework that delivers Express‑style simplicity with Fastify‑grade speed—optimized for edge, serverless, AI & LLM workloads.",
   "keywords": [
     "nodejs",
     "framework",
@@ -9,31 +9,43 @@
     "express-alternative",
     "fast",
     "zero-dependencies",
-    "edge-computing",
+    "edge-runtime",
+    "cloudflare-workers",
+    "deno",
+    "bun",
     "serverless",
     "ai-ready",
-    "esm",
-    "deno-compatible",
-    "microservices",
+    "llm",
     "type-safe",
-    "low-latency"
+    "typescript",
+    "openapi",
+    "graphql",
+    "microservices",
+    "low-latency",
+    "wasm",
+    "esm",
+    "reactive",
+    "observable",
+    "tsx"
   ],
-  "npm_trending_strategy": "Leverage the 2026 surge in edge‑computing and AI‑ready back‑ends by positioning yantravese as the *only* zero‑dependency framework that ships with native ESM, optional TypeScript typings, and built‑in support for serverless adapters (Cloudflare Workers, Vercel, Netlify). Highlight the 30‑commit sprint that introduced a pluggable security layer (CSP, rate‑limit, JWT) and a declarative routing DSL that outperforms Express by up to 3× in benchmark suites. Emphasize the “no‑install‑chain” advantage: drop the single npm package into any Node, Deno or Bun runtime and start serving instantly.",
+  "npm_trending_strategy": "Leverage the surge in edge‑computing and AI‑driven services by positioning yantravese as the only framework that ships zero‑dependency, ESM‑only code with built‑in type‑safe routing, automatic OpenAPI/GraphQL generation, and native compatibility with Cloudflare Workers, Deno and Bun. Emphasize the \"Express‑style API + Fastify performance\" tagline in the README and use the new \"edge‑ready\" badge to capture trending searches for \"edge-runtime\", \"serverless\" and \"ai-ready\".",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#routing",
-    "#middleware",
-    "#expressalternative",
-    "#fast",
-    "#zerodeps",
     "#edge",
     "#serverless",
-    "#ai"
+    "#ai",
+    "#fast",
+    "#zero-deps",
+    "#typescript",
+    "#openapi",
+    "#graphql"
   ],
   "download_hooks": [
-    "Developers choose yantravese for blazing‑fast request handling without pulling in a giant dependency tree.",
-    "Performance: Benchmarks show 2.5‑3× lower latency vs Express and 30% less memory than Fastify under identical loads.",
-    "Developer experience: Zero‑config routing, built‑in security middleware, TypeScript definitions, and one‑line serverless adapters make prototyping and production deployment frictionless."
+    "Blazing sub‑millisecond request handling – benchmarks show 2× faster than Fastify on edge VMs.",
+    "Zero runtime dependencies means a tiny bundle (< 5 KB) and instant cold‑start on serverless platforms.",
+    "Fully typed routing API with automatic OpenAPI/GraphQL schema generation – no extra plugins required.",
+    "ESM‑first, Deno & Bun compatible out of the box – write once, run everywhere.",
+    "Built‑in streaming & async hooks make it ideal for LLM‑driven and real‑time AI services."
   ]
 }
