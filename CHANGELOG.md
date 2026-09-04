@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-04
+### FEATURE
+- Automatic async error handling wrapper for route handlers: Provides a built‑in wrapper that catches rejected promises from async route handlers and forwards them to the framework’s error middleware. This eliminates repetitive try/catch boilerplate and prevents unhandled promise rejections in production.
+
 ## [Automated] - 2026-09-03
 ### FEATURE
 - Add Graceful Shutdown Handling for Production Stability: Implements a zero‑dependency graceful shutdown system that intercepts SIGTERM, SIGINT, uncaught exceptions and unhandled rejections. It stops accepting new connections, waits for in‑flight requests to finish, and then exits cleanly, preventing data loss and improving container orchestration reliability.

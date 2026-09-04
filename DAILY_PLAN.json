@@ -1,19 +1,19 @@
 {
-  "date": "2026-09-03",
+  "date": "2026-09-04",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown Handling for Production Stability",
-  "description": "Implements a zero‑dependency graceful shutdown system that intercepts SIGTERM, SIGINT, uncaught exceptions and unhandled rejections. It stops accepting new connections, waits for in‑flight requests to finish, and then exits cleanly, preventing data loss and improving container orchestration reliability.",
+  "title": "Automatic async error handling wrapper for route handlers",
+  "description": "Provides a built‑in wrapper that catches rejected promises from async route handlers and forwards them to the framework’s error middleware. This eliminates repetitive try/catch boilerplate and prevents unhandled promise rejections in production.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/router.js",
+    "src/middleware/asyncWrapper.js",
+    "test/router.asyncWrapper.test.js"
   ],
   "testCases": [
-    "Start the yantraverse server, issue a long‑running request, trigger SIGTERM and verify the server stops accepting new connections while the in‑flight request completes before the process exits",
-    "Trigger an uncaughtException while the server is idle and ensure the graceful shutdown sequence runs, logs the error, and exits with code 1"
+    "Async route that throws an error results in the error middleware being invoked with the correct error object",
+    "Async route that resolves successfully returns the expected response without invoking the error middleware"
   ],
-  "acceptance": "When a termination signal or fatal error occurs, the framework must (1) stop accepting new HTTP connections within 100 ms, (2) allow all active requests to finish up to a configurable timeout (default 5 s), (3) close the underlying HTTP server, (4) flush any pending logs, and (5) exit the process with the appropriate exit code (0 for SIGTERM/SIGINT, 1 for uncaught errors). All tests must pass and no resource leaks should be detected.",
-  "reason": "Containers and serverless platforms rely on graceful termination to avoid dropped requests and corrupted state. Adding this feature directly addresses production reliability concerns, aligns with the recent stability focus, and requires minimal code while delivering high business value."
+  "acceptance": "All existing and new tests pass; no unhandled promise rejections appear in logs when async routes throw; documentation includes usage example and changelog entry.",
+  "reason": "Improves developer ergonomics and production stability by ensuring all async route errors are consistently handled, reducing boiler‑plate and the risk of silent failures."
 }
