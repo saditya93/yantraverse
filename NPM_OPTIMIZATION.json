@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-04",
-  "description": "Zero‑dependency, ESM‑first Node.js framework that delivers Express‑style simplicity with Fastify‑grade speed—optimized for edge, serverless, AI & LLM workloads.",
+  "date": "2026-09-05",
+  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
   "keywords": [
     "nodejs",
     "framework",
@@ -8,44 +8,17 @@
     "middleware",
     "express-alternative",
     "fast",
-    "zero-dependencies",
-    "edge-runtime",
-    "cloudflare-workers",
-    "deno",
-    "bun",
-    "serverless",
-    "ai-ready",
-    "llm",
-    "type-safe",
-    "typescript",
-    "openapi",
-    "graphql",
-    "microservices",
-    "low-latency",
-    "wasm",
-    "esm",
-    "reactive",
-    "observable",
-    "tsx"
+    "zero-dependencies"
   ],
-  "npm_trending_strategy": "Leverage the surge in edge‑computing and AI‑driven services by positioning yantravese as the only framework that ships zero‑dependency, ESM‑only code with built‑in type‑safe routing, automatic OpenAPI/GraphQL generation, and native compatibility with Cloudflare Workers, Deno and Bun. Emphasize the \"Express‑style API + Fastify performance\" tagline in the README and use the new \"edge‑ready\" badge to capture trending searches for \"edge-runtime\", \"serverless\" and \"ai-ready\".",
+  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#edge",
-    "#serverless",
-    "#ai",
-    "#fast",
-    "#zero-deps",
-    "#typescript",
-    "#openapi",
-    "#graphql"
+    "#performance"
   ],
   "download_hooks": [
-    "Blazing sub‑millisecond request handling – benchmarks show 2× faster than Fastify on edge VMs.",
-    "Zero runtime dependencies means a tiny bundle (< 5 KB) and instant cold‑start on serverless platforms.",
-    "Fully typed routing API with automatic OpenAPI/GraphQL schema generation – no extra plugins required.",
-    "ESM‑first, Deno & Bun compatible out of the box – write once, run everywhere.",
-    "Built‑in streaming & async hooks make it ideal for LLM‑driven and real‑time AI services."
+    "Developers want fast, simple frameworks",
+    "Zero dependencies = less maintenance headaches",
+    "Perfect for high-traffic APIs"
   ]
 }
