@@ -1,19 +1,19 @@
 {
-  "date": "2026-09-04",
+  "date": "2026-09-05",
   "category": "FEATURE",
-  "title": "Automatic async error handling wrapper for route handlers",
-  "description": "Provides a built‑in wrapper that catches rejected promises from async route handlers and forwards them to the framework’s error middleware. This eliminates repetitive try/catch boilerplate and prevents unhandled promise rejections in production.",
+  "title": "Graceful shutdown with signal handling and pending request draining",
+  "description": "Adds built‑in support for graceful shutdown on SIGINT/SIGTERM, ensuring the HTTP server stops accepting new connections while allowing in‑flight requests to finish. This improves reliability in production deployments and prevents abrupt termination of client requests.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/router.js",
-    "src/middleware/asyncWrapper.js",
-    "test/router.asyncWrapper.test.js"
+    "src/gracefulShutdown.js",
+    "src/server.js",
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Async route that throws an error results in the error middleware being invoked with the correct error object",
-    "Async route that resolves successfully returns the expected response without invoking the error middleware"
+    "Simulate SIGTERM signal and verify server stops accepting new connections after existing ones complete",
+    "Send multiple concurrent requests, trigger shutdown, and assert that all responses are received before the process exits"
   ],
-  "acceptance": "All existing and new tests pass; no unhandled promise rejections appear in logs when async routes throw; documentation includes usage example and changelog entry.",
-  "reason": "Improves developer ergonomics and production stability by ensuring all async route errors are consistently handled, reducing boiler‑plate and the risk of silent failures."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the framework stops accepting new requests within 100 ms, waits up to 5 seconds for active requests to finish, then exits with code 0. If requests exceed the timeout, they are force‑closed and the process exits with code 1. Logging indicates shutdown steps.",
+  "reason": "Production environments require reliable termination to avoid data loss and improve uptime; adding graceful shutdown eliminates the need for external wrappers and aligns yantraverse with best‑practice Node.js server behavior."
 }

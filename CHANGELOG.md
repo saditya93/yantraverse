@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-05
+### FEATURE
+- Graceful shutdown with signal handling and pending request draining: Adds built‑in support for graceful shutdown on SIGINT/SIGTERM, ensuring the HTTP server stops accepting new connections while allowing in‑flight requests to finish. This improves reliability in production deployments and prevents abrupt termination of client requests.
+
 ## [Automated] - 2026-09-04
 ### FEATURE
 - Automatic async error handling wrapper for route handlers: Provides a built‑in wrapper that catches rejected promises from async route handlers and forwards them to the framework’s error middleware. This eliminates repetitive try/catch boilerplate and prevents unhandled promise rejections in production.
