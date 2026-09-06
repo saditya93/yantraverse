@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-06
+### FEATURE
+- Add Built‑in Request Body Validation Middleware: Introduce a lightweight, schema‑based request body validator that integrates with existing routing. It automatically returns 400 with detailed error messages when payloads don't match the defined schema, improving security and developer ergonomics.
+
 ## [Automated] - 2026-09-05
 ### FEATURE
 - Graceful shutdown with signal handling and pending request draining: Adds built‑in support for graceful shutdown on SIGINT/SIGTERM, ensuring the HTTP server stops accepting new connections while allowing in‑flight requests to finish. This improves reliability in production deployments and prevents abrupt termination of client requests.

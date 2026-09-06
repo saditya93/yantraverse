@@ -1,19 +1,22 @@
 {
-  "date": "2026-09-05",
+  "date": "2026-09-06",
   "category": "FEATURE",
-  "title": "Graceful shutdown with signal handling and pending request draining",
-  "description": "Adds built‑in support for graceful shutdown on SIGINT/SIGTERM, ensuring the HTTP server stops accepting new connections while allowing in‑flight requests to finish. This improves reliability in production deployments and prevents abrupt termination of client requests.",
+  "title": "Add Built‑in Request Body Validation Middleware",
+  "description": "Introduce a lightweight, schema‑based request body validator that integrates with existing routing. It automatically returns 400 with detailed error messages when payloads don't match the defined schema, improving security and developer ergonomics.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/validateBody.js",
+    "src/router.js",
+    "test/validateBody.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM signal and verify server stops accepting new connections after existing ones complete",
-    "Send multiple concurrent requests, trigger shutdown, and assert that all responses are received before the process exits"
+    "Should pass when request body matches the schema",
+    "Should reject with 400 and a descriptive error when required fields are missing",
+    "Should reject with 400 when field types are incorrect",
+    "Should allow optional fields to be omitted",
+    "Should work with async validation functions"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the framework stops accepting new requests within 100 ms, waits up to 5 seconds for active requests to finish, then exits with code 0. If requests exceed the timeout, they are force‑closed and the process exits with code 1. Logging indicates shutdown steps.",
-  "reason": "Production environments require reliable termination to avoid data loss and improve uptime; adding graceful shutdown eliminates the need for external wrappers and aligns yantraverse with best‑practice Node.js server behavior."
+  "acceptance": "All new tests pass, existing test suite remains green, and validation middleware can be attached to any route via router.use or per‑route options without breaking current functionality.",
+  "reason": "Ensures data integrity at the edge of the application, reduces boilerplate validation code, and prevents malformed input from reaching business logic, aligning with yantraverse's stability‑focused roadmap."
 }
