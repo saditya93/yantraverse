@@ -1,22 +1,19 @@
 {
-  "date": "2026-09-06",
+  "date": "2026-09-07",
   "category": "FEATURE",
-  "title": "Add Built‑in Request Body Validation Middleware",
-  "description": "Introduce a lightweight, schema‑based request body validator that integrates with existing routing. It automatically returns 400 with detailed error messages when payloads don't match the defined schema, improving security and developer ergonomics.",
+  "title": "Add structured request/response logging middleware",
+  "description": "Introduce a built‑in logger that records incoming requests and outgoing responses in a structured JSON format. This gives developers real‑time visibility into traffic, aids debugging, and supports integration with log aggregation services.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateBody.js",
-    "src/router.js",
-    "test/validateBody.test.js"
+    "src/middleware/logger.js",
+    "src/app.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Should pass when request body matches the schema",
-    "Should reject with 400 and a descriptive error when required fields are missing",
-    "Should reject with 400 when field types are incorrect",
-    "Should allow optional fields to be omitted",
-    "Should work with async validation functions"
+    "Verify that a GET request logs method, url, status, response time, and optional request ID in JSON to the configured output",
+    "Verify that logger can be disabled via configuration and that disabling does not affect request handling or response times"
   ],
-  "acceptance": "All new tests pass, existing test suite remains green, and validation middleware can be attached to any route via router.use or per‑route options without breaking current functionality.",
-  "reason": "Ensures data integrity at the edge of the application, reduces boilerplate validation code, and prevents malformed input from reaching business logic, aligning with yantraverse's stability‑focused roadmap."
+  "acceptance": "When the logger is enabled, each request results in a single JSON line written to the console (or configured stream) containing method, url, status code, response time, and a unique request ID. The logger can be toggled off via a config flag without throwing errors or altering response payloads. All existing tests continue to pass.",
+  "reason": "Production systems need reliable observability. A zero‑dependency, configurable logger aligns with yantraverse’s lightweight ethos while solving a common operational pain point, improving debugging speed and enabling seamless integration with monitoring pipelines."
 }

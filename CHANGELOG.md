@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-07
+### FEATURE
+- Add structured request/response logging middleware: Introduce a built‑in logger that records incoming requests and outgoing responses in a structured JSON format. This gives developers real‑time visibility into traffic, aids debugging, and supports integration with log aggregation services.
+
 ## [Automated] - 2026-09-06
 ### FEATURE
 - Add Built‑in Request Body Validation Middleware: Introduce a lightweight, schema‑based request body validator that integrates with existing routing. It automatically returns 400 with detailed error messages when payloads don't match the defined schema, improving security and developer ergonomics.
