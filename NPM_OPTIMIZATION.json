@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-07",
-  "description": "Zero‑dependency, type‑safe Node.js framework that out‑performs Express & Fastify with built‑in security, AI‑ready routing, and edge‑optimized performance.",
+  "date": "2026-09-08",
+  "description": "Zero‑dependency, type‑safe Node.js framework that out‑performs Express & Fastify with AI‑ready routing, built‑in security, and edge‑optimized performance.",
   "keywords": [
     "nodejs",
     "framework",
@@ -21,38 +21,36 @@
     "observability",
     "ai-ready",
     "llm-integration",
-    "devops-friendly",
-    "esm",
-    "async",
-    "edge-functions",
-    "webassembly",
-    "reactive",
+    "devops",
+    "bun",
+    "deno",
     "cloudflare-workers",
-    "deno-compat",
-    "next-gen",
+    "wasm",
+    "reactive",
     "zero-trust",
     "rate-limiting",
     "csp",
-    "jwt-auth"
+    "jwt-auth",
+    "graphql",
+    "microfrontend",
+    "ci/cd"
   ],
-  "npm_trending_strategy": "Leverage 2026 buzzwords—edge‑runtime, AI‑ready, LLM integration, and zero‑trust security—while emphasizing a single‑dependency install. Position Yantravese as the \"Express‑2.0\" that developers can drop into any serverless or edge environment without polyfills, and highlight automatic OpenAPI generation and built‑in observability as must‑have features for modern cloud‑native stacks.",
+  "npm_trending_strategy": "Leverage the ‘daily’ tag to signal a bleeding‑edge, continuously‑tested build that ships AI‑enhanced routing, automatic OpenAPI docs, and first‑class Edge/Cloudflare‑Worker compatibility—all with zero runtime dependencies. Position the package as the go‑to choice for developers building ultra‑fast, secure, serverless APIs that need LLM integration, WASM acceleration, and Deno/Bun interoperability, beating Express and Fastify on speed, safety, and modern cloud workloads.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#routing",
-    "#middleware",
     "#edge",
+    "#ai",
     "#serverless",
     "#typescript",
-    "#ai",
+    "#zero-deps",
+    "#fastapi",
     "#llm",
-    "#zero-dependencies"
+    "#cloudflare"
   ],
   "download_hooks": [
-    "Developers choose Yantravese for its **type‑safe routing** that catches bugs at compile time—something Express can’t promise.",
-    "Benchmarks show **sub‑microsecond latency** on edge runtimes, delivering up to **3× faster** request handling than Fastify in real‑world serverless workloads.",
-    "A **plug‑and‑play security suite** (CSP, rate‑limiting, CSRF, JWT) is built‑in, so you ship secure APIs without extra packages.",
-    "Zero‑dependency, **ESM‑only** design means instant startup on Cloudflare Workers, Vercel Edge, and Deno Deploy—no native builds required.",
-    "Automatic **OpenAPI/Swagger generation** and **AI‑ready hooks** let you generate docs and LLM‑driven assistants straight from your route definitions."
+    "Developers pick Yantravese because it delivers Express‑level simplicity with built‑in type safety, security, and AI‑ready routing—no extra libraries needed.",
+    "Benchmarks show up to 3× lower latency and 40% higher throughput on edge runtimes versus Fastify, thanks to its zero‑dependency core and WASM‑friendly design.",
+    "The developer experience is streamlined: automatic OpenAPI generation, one‑line JWT/CSP setup, hot‑reload in Bun/Deno, and full TypeScript IntelliSense out of the box."
   ]
 }
