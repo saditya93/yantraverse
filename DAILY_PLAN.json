@@ -1,19 +1,21 @@
 {
-  "date": "2026-09-07",
+  "date": "2026-09-08",
   "category": "FEATURE",
-  "title": "Add structured request/response logging middleware",
-  "description": "Introduce a built‑in logger that records incoming requests and outgoing responses in a structured JSON format. This gives developers real‑time visibility into traffic, aids debugging, and supports integration with log aggregation services.",
+  "title": "Add Graceful Shutdown & Health‑Check Endpoints",
+  "description": "Introduce process signal handling for graceful shutdown and expose /health and /ready endpoints. This improves reliability in production environments by allowing orchestrators to detect service health and shut down without dropping in‑flight requests.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/app.js",
-    "test/logger.test.js"
+    "src/server.js",
+    "src/health.js",
+    "test/health.test.js"
   ],
   "testCases": [
-    "Verify that a GET request logs method, url, status, response time, and optional request ID in JSON to the configured output",
-    "Verify that logger can be disabled via configuration and that disabling does not affect request handling or response times"
+    "Simulate SIGTERM and verify server stops accepting new connections while completing ongoing requests",
+    "Send GET /health and expect 200 with {status:'ok'}",
+    "Send GET /ready before server starts listening and expect 503, after listening expect 200",
+    "Verify that pending requests complete before the process exits"
   ],
-  "acceptance": "When the logger is enabled, each request results in a single JSON line written to the console (or configured stream) containing method, url, status code, response time, and a unique request ID. The logger can be toggled off via a config flag without throwing errors or altering response payloads. All existing tests continue to pass.",
-  "reason": "Production systems need reliable observability. A zero‑dependency, configurable logger aligns with yantraverse’s lightweight ethos while solving a common operational pain point, improving debugging speed and enabling seamless integration with monitoring pipelines."
+  "acceptance": "Graceful shutdown is triggered on SIGINT/SIGTERM, pending requests finish, and the process exits with code 0. /health returns 200 with JSON {status:'ok'}. /ready returns 503 before server is ready and 200 after. All new tests pass and existing test suite remains green.",
+  "reason": "Production deployments (Kubernetes, Docker Swarm, etc.) require health checks and clean termination to avoid downtime and request loss. Adding this feature directly addresses operational stability, a top priority for yantraverse users."
 }

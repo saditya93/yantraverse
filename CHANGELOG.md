@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-08
+### FEATURE
+- Add Graceful Shutdown & Health‑Check Endpoints: Introduce process signal handling for graceful shutdown and expose /health and /ready endpoints. This improves reliability in production environments by allowing orchestrators to detect service health and shut down without dropping in‑flight requests.
+
 ## [Automated] - 2026-09-07
 ### FEATURE
 - Add structured request/response logging middleware: Introduce a built‑in logger that records incoming requests and outgoing responses in a structured JSON format. This gives developers real‑time visibility into traffic, aids debugging, and supports integration with log aggregation services.
