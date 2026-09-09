@@ -1,21 +1,19 @@
 {
-  "date": "2026-09-08",
+  "date": "2026-09-09",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown & Health‑Check Endpoints",
-  "description": "Introduce process signal handling for graceful shutdown and expose /health and /ready endpoints. This improves reliability in production environments by allowing orchestrators to detect service health and shut down without dropping in‑flight requests.",
+  "title": "Add graceful shutdown with in‑flight request handling",
+  "description": "Ensures the framework can terminate cleanly in production by stopping new connections, waiting for ongoing requests to finish, and exiting with proper logging. Prevents abrupt termination that can corrupt data or drop client responses.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
+    "src/gracefulShutdown.js",
     "src/server.js",
-    "src/health.js",
-    "test/health.test.js"
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM and verify server stops accepting new connections while completing ongoing requests",
-    "Send GET /health and expect 200 with {status:'ok'}",
-    "Send GET /ready before server starts listening and expect 503, after listening expect 200",
-    "Verify that pending requests complete before the process exits"
+    "When SIGTERM is received, server stops accepting new connections but continues processing existing ones until they finish or timeout.",
+    "If in‑flight requests exceed the configured timeout, they are force‑closed and the process exits with status 0."
   ],
-  "acceptance": "Graceful shutdown is triggered on SIGINT/SIGTERM, pending requests finish, and the process exits with code 0. /health returns 200 with JSON {status:'ok'}. /ready returns 503 before server is ready and 200 after. All new tests pass and existing test suite remains green.",
-  "reason": "Production deployments (Kubernetes, Docker Swarm, etc.) require health checks and clean termination to avoid downtime and request loss. Adding this feature directly addresses operational stability, a top priority for yantraverse users."
+  "acceptance": "The server logs \"Shutdown initiated\", stops listening on the port, waits up to the configured timeout for all active requests, logs \"Shutdown complete\" and exits. No new requests are accepted after shutdown begins, and all pending requests either complete successfully or are terminated after the timeout.",
+  "reason": "Production deployments need reliable termination to avoid data loss, improve uptime during rolling updates, and meet SLA requirements for graceful service restarts."
 }
