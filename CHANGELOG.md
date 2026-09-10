@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-10
+### FEATURE
+- Add Structured Request Logging Middleware with Correlation IDs: Introduces a lightweight logging middleware that assigns a unique correlation ID to each incoming request and logs method, URL, status, response time, and error details in JSON format. This improves observability, aids debugging, and integrates with existing logging infrastructure without adding dependencies.
+
 ## [Automated] - 2026-09-09
 ### FEATURE
 - Add graceful shutdown with in‑flight request handling: Ensures the framework can terminate cleanly in production by stopping new connections, waiting for ongoing requests to finish, and exiting with proper logging. Prevents abrupt termination that can corrupt data or drop client responses.

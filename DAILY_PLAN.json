@@ -1,19 +1,20 @@
 {
-  "date": "2026-09-09",
+  "date": "2026-09-10",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with in‑flight request handling",
-  "description": "Ensures the framework can terminate cleanly in production by stopping new connections, waiting for ongoing requests to finish, and exiting with proper logging. Prevents abrupt termination that can corrupt data or drop client responses.",
+  "title": "Add Structured Request Logging Middleware with Correlation IDs",
+  "description": "Introduces a lightweight logging middleware that assigns a unique correlation ID to each incoming request and logs method, URL, status, response time, and error details in JSON format. This improves observability, aids debugging, and integrates with existing logging infrastructure without adding dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/logger.js",
+    "src/utils/correlationId.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "When SIGTERM is received, server stops accepting new connections but continues processing existing ones until they finish or timeout.",
-    "If in‑flight requests exceed the configured timeout, they are force‑closed and the process exits with status 0."
+    "Verify that each request receives a unique correlation ID header (X-Correlation-ID) and that the ID is attached to the request object",
+    "Confirm that logs are emitted as valid JSON containing method, url, status, responseTime, and correlationId",
+    "Ensure that error responses still include the correlation ID and are logged with error details"
   ],
-  "acceptance": "The server logs \"Shutdown initiated\", stops listening on the port, waits up to the configured timeout for all active requests, logs \"Shutdown complete\" and exits. No new requests are accepted after shutdown begins, and all pending requests either complete successfully or are terminated after the timeout.",
-  "reason": "Production deployments need reliable termination to avoid data loss, improve uptime during rolling updates, and meet SLA requirements for graceful service restarts."
+  "acceptance": "All tests pass; middleware adds X-Correlation-ID header, logs correctly formatted JSON for successful and error responses, and does not affect existing route handling or performance benchmarks.",
+  "reason": "Enhanced observability is critical for production stability and faster incident resolution. Providing correlation IDs across services enables end‑to‑end tracing, while structured logs simplify log aggregation and analysis, aligning with the framework's stability focus."
 }
