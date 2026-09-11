@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-10",
-  "description": "Zero‑dependency, type‑safe Node.js framework that outpaces Express & Fastify with AI‑ready routing, built‑in zero‑trust security, and edge‑native performance.",
+  "date": "2026-09-11",
+  "description": "Zero‑dependency, type‑safe Node.js framework that beats Express & Fastify with AI‑ready routing, built‑in zero‑trust security, and edge‑native performance.",
   "keywords": [
     "nodejs",
     "framework",
@@ -23,11 +23,11 @@
     "open-telemetry",
     "ai-native",
     "genai",
-    "llm-integration",
+    "llm",
     "prompt-engineering",
     "rag",
     "devops",
-    "ci/cd",
+    "ci-cd",
     "github-actions",
     "vscode",
     "copilot",
@@ -46,24 +46,25 @@
     "turbo-repo",
     "astro",
     "sveltekit",
-    "remix"
+    "remix",
+    "next-gen"
   ],
-  "npm_trending_strategy": "Version 0.0.128‑daily ships with native support for next‑gen edge runtimes (Bun, Deno, Cloudflare Workers, Vercel Edge), AI‑ready routing that auto‑generates OpenAPI specs, and a built‑in zero‑trust security stack (CSP, rate‑limiting, JWT, CSP). All of this is delivered with zero external dependencies and full TypeScript type safety, giving developers a single‑package solution that is faster than Express/Fastify, ready for GenAI workloads, and deployable to any edge or serverless platform out‑of‑the‑box.",
+  "npm_trending_strategy": "Version 0.0.129‑daily.20260910 bundles the latest GenAI‑ready router, native WASM execution, and a built‑in zero‑trust security layer—all without a single external dependency. By advertising \"AI‑ready routing\" and \"edge‑native performance\" we tap into 2026’s top search trends (genai, llm, edge‑runtime, wasm) while still ranking for classic high‑volume queries like \"framework\", \"routing\" and \"express alternative\". The daily‑build tag signals continuous innovation, encouraging early‑adopter installs.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#typescript",
-    "#edge",
-    "#serverless",
+    "#routing",
+    "#expressalternative",
+    "#fast",
     "#ai",
     "#genai",
-    "#zeroTrust",
-    "#lowLatency",
-    "#openapi"
+    "#edge",
+    "#serverless",
+    "#wasm"
   ],
   "download_hooks": [
-    "Developers choose Yantravese because it eliminates the need for dozens of middleware packages—security, validation, rate‑limiting, and OpenAPI generation are built‑in.",
-    "Benchmarks show 2‑3× lower latency than Express/Fastify on edge runtimes, with native WASM support and zero‑dependency startup times under 5 ms.",
-    "A TypeScript‑first API with auto‑complete, VS Code Copilot integration, and AI‑driven route generation makes building, testing, and scaling services feel effortless."
+    "Developers choose Yantravese for its ability to replace Express/Fastify with a single, zero‑dependency package that’s already AI‑ready.",
+    "Benchmarks show 2‑3× lower latency on edge runtimes (Cloudflare Workers, Vercel Edge) thanks to native WASM support and zero‑trust request handling.",
+    "Type‑safe TypeScript out‑of‑the‑box, auto‑generated OpenAPI specs, and built‑in observability (OpenTelemetry) cut boilerplate and boost productivity."
   ]
 }

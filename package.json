@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.129-daily.20260910",
-  "description": "Zero‑dependency, type‑safe Node.js framework that outpaces Express & Fastify with AI‑ready routing, built‑in zero‑trust security, and edge‑native performance.",
+  "version": "0.0.130-daily.20260911",
+  "description": "Zero‑dependency, type‑safe Node.js framework that beats Express & Fastify with AI‑ready routing, built‑in zero‑trust security, and edge‑native performance.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -56,11 +56,11 @@
     "open-telemetry",
     "ai-native",
     "genai",
-    "llm-integration",
+    "llm",
     "prompt-engineering",
     "rag",
     "devops",
-    "ci/cd",
+    "ci-cd",
     "github-actions",
     "vscode",
     "copilot",
@@ -79,7 +79,8 @@
     "turbo-repo",
     "astro",
     "sveltekit",
-    "remix"
+    "remix",
+    "next-gen"
   ],
   "author": "",
   "license": "MIT",
