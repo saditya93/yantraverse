@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-11
+### FEATURE
+- Add graceful shutdown with signal handling and connection draining: Graceful shutdown ensures the application can stop without dropping in‑flight requests, improving reliability during deployments and container restarts. This feature adds signal listeners, stops accepting new connections, waits for active requests to finish (with a timeout), and logs each step before exiting.
+
 ## [Automated] - 2026-09-10
 ### FEATURE
 - Add Structured Request Logging Middleware with Correlation IDs: Introduces a lightweight logging middleware that assigns a unique correlation ID to each incoming request and logs method, URL, status, response time, and error details in JSON format. This improves observability, aids debugging, and integrates with existing logging infrastructure without adding dependencies.

@@ -1,20 +1,19 @@
 {
-  "date": "2026-09-10",
+  "date": "2026-09-11",
   "category": "FEATURE",
-  "title": "Add Structured Request Logging Middleware with Correlation IDs",
-  "description": "Introduces a lightweight logging middleware that assigns a unique correlation ID to each incoming request and logs method, URL, status, response time, and error details in JSON format. This improves observability, aids debugging, and integrates with existing logging infrastructure without adding dependencies.",
+  "title": "Add graceful shutdown with signal handling and connection draining",
+  "description": "Graceful shutdown ensures the application can stop without dropping in‑flight requests, improving reliability during deployments and container restarts. This feature adds signal listeners, stops accepting new connections, waits for active requests to finish (with a timeout), and logs each step before exiting.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/utils/correlationId.js",
-    "test/logger.test.js"
+    "src/server.js",
+    "test/server.shutdown.test.js"
   ],
   "testCases": [
-    "Verify that each request receives a unique correlation ID header (X-Correlation-ID) and that the ID is attached to the request object",
-    "Confirm that logs are emitted as valid JSON containing method, url, status, responseTime, and correlationId",
-    "Ensure that error responses still include the correlation ID and are logged with error details"
+    "Server closes existing connections on SIGTERM and exits with code 0",
+    "Server returns HTTP 503 for new requests after shutdown is initiated",
+    "Shutdown logs contain start, draining, and complete messages"
   ],
-  "acceptance": "All tests pass; middleware adds X-Correlation-ID header, logs correctly formatted JSON for successful and error responses, and does not affect existing route handling or performance benchmarks.",
-  "reason": "Enhanced observability is critical for production stability and faster incident resolution. Providing correlation IDs across services enables end‑to‑end tracing, while structured logs simplify log aggregation and analysis, aligning with the framework's stability focus."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops accepting new connections, waits up to the configured timeout for active requests to finish, logs each shutdown phase, and then exits with status 0. New requests during draining receive a 503 response. All logs are emitted to the configured logger.",
+  "reason": "Provides production‑grade reliability for deployments, prevents request loss, and aligns the framework with industry best practices for Node.js services."
 }
