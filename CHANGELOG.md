@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-12
+### FEATURE
+- Add Graceful Shutdown Middleware for Production Stability: Implements a graceful shutdown mechanism that handles SIGTERM/SIGINT signals, stops accepting new requests, waits for ongoing requests to finish, and performs cleanup. This improves reliability during deployments and reduces risk of dropped connections.
+
 ## [Automated] - 2026-09-11
 ### FEATURE
 - Add graceful shutdown with signal handling and connection draining: Graceful shutdown ensures the application can stop without dropping in‑flight requests, improving reliability during deployments and container restarts. This feature adds signal listeners, stops accepting new connections, waits for active requests to finish (with a timeout), and logs each step before exiting.

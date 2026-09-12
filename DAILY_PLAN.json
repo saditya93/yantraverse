@@ -1,19 +1,19 @@
 {
-  "date": "2026-09-11",
+  "date": "2026-09-12",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with signal handling and connection draining",
-  "description": "Graceful shutdown ensures the application can stop without dropping in‑flight requests, improving reliability during deployments and container restarts. This feature adds signal listeners, stops accepting new connections, waits for active requests to finish (with a timeout), and logs each step before exiting.",
+  "title": "Add Graceful Shutdown Middleware for Production Stability",
+  "description": "Implements a graceful shutdown mechanism that handles SIGTERM/SIGINT signals, stops accepting new requests, waits for ongoing requests to finish, and performs cleanup. This improves reliability during deployments and reduces risk of dropped connections.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
+    "src/gracefulShutdown.js",
     "src/server.js",
-    "test/server.shutdown.test.js"
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Server closes existing connections on SIGTERM and exits with code 0",
-    "Server returns HTTP 503 for new requests after shutdown is initiated",
-    "Shutdown logs contain start, draining, and complete messages"
+    "Simulate SIGTERM while handling active requests and verify server stops accepting new connections but completes in‑flight requests before exiting",
+    "Trigger SIGINT during idle state and ensure cleanup hooks are called and process exits with code 0"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops accepting new connections, waits up to the configured timeout for active requests to finish, logs each shutdown phase, and then exits with status 0. New requests during draining receive a 503 response. All logs are emitted to the configured logger.",
-  "reason": "Provides production‑grade reliability for deployments, prevents request loss, and aligns the framework with industry best practices for Node.js services."
+  "acceptance": "When the process receives SIGTERM or SIGINT, the server must stop accepting new connections, wait up to a configurable timeout for active requests to complete, execute registered cleanup callbacks, and then exit with status 0. If the timeout expires, the process should force‑exit with status 1. All logs should indicate each shutdown step.",
+  "reason": "Production deployments and container orchestration platforms rely on graceful termination to avoid 5xx errors and data loss. Adding this feature aligns with the framework's stability focus and provides a critical reliability improvement for users."
 }
