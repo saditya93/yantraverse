@@ -1,19 +1,20 @@
 {
-  "date": "2026-09-12",
+  "date": "2026-09-13",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown Middleware for Production Stability",
-  "description": "Implements a graceful shutdown mechanism that handles SIGTERM/SIGINT signals, stops accepting new requests, waits for ongoing requests to finish, and performs cleanup. This improves reliability during deployments and reduces risk of dropped connections.",
+  "title": "Add Request ID & Trace Middleware",
+  "description": "Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the response headers, and logs the ID with request details. This improves observability, simplifies debugging, and enables correlation across logs and external monitoring tools.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/requestTrace.js",
+    "src/app.js",
+    "test/requestTrace.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while handling active requests and verify server stops accepting new connections but completes in‑flight requests before exiting",
-    "Trigger SIGINT during idle state and ensure cleanup hooks are called and process exits with code 0"
+    "Should assign a UUIDv4 request ID header (X-Request-Id) to every response",
+    "Should include the same request ID in the structured log entry for the request",
+    "Should propagate the request ID through subsequent middlewares and route handlers"
   ],
-  "acceptance": "When the process receives SIGTERM or SIGINT, the server must stop accepting new connections, wait up to a configurable timeout for active requests to complete, execute registered cleanup callbacks, and then exit with status 0. If the timeout expires, the process should force‑exit with status 1. All logs should indicate each shutdown step.",
-  "reason": "Production deployments and container orchestration platforms rely on graceful termination to avoid 5xx errors and data loss. Adding this feature aligns with the framework's stability focus and provides a critical reliability improvement for users."
+  "acceptance": "All tests pass, the X-Request-Id header is present and unique per request, and logs contain the matching ID without affecting existing functionality or performance thresholds.",
+  "reason": "Observability is critical for production stability; a request trace middleware provides immediate value for debugging, performance monitoring, and integrates with log aggregation services without adding external dependencies."
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-13
+### FEATURE
+- Add Request ID & Trace Middleware: Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the response headers, and logs the ID with request details. This improves observability, simplifies debugging, and enables correlation across logs and external monitoring tools.
+
 ## [Automated] - 2026-09-12
 ### FEATURE
 - Add Graceful Shutdown Middleware for Production Stability: Implements a graceful shutdown mechanism that handles SIGTERM/SIGINT signals, stops accepting new requests, waits for ongoing requests to finish, and performs cleanup. This improves reliability during deployments and reduces risk of dropped connections.
