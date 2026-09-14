@@ -1,20 +1,19 @@
 {
-  "date": "2026-09-13",
+  "date": "2026-09-14",
   "category": "FEATURE",
-  "title": "Add Request ID & Trace Middleware",
-  "description": "Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the response headers, and logs the ID with request details. This improves observability, simplifies debugging, and enables correlation across logs and external monitoring tools.",
+  "title": "Add graceful shutdown with signal handling and in‑flight request draining",
+  "description": "Implement process signal listeners (SIGINT, SIGTERM) that trigger a controlled shutdown of the yantraverse server, stop accepting new connections, and wait for ongoing requests to finish or timeout. This prevents abrupt termination, protects data integrity, and improves reliability in containerized production environments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/requestTrace.js",
-    "src/app.js",
-    "test/requestTrace.test.js"
+    "src/server.js",
+    "src/shutdown.js",
+    "test/shutdown.test.js"
   ],
   "testCases": [
-    "Should assign a UUIDv4 request ID header (X-Request-Id) to every response",
-    "Should include the same request ID in the structured log entry for the request",
-    "Should propagate the request ID through subsequent middlewares and route handlers"
+    "Simulate SIGTERM while a long‑running request is in flight and verify the server stops accepting new connections but allows the request to complete before exiting",
+    "Trigger SIGINT with no active requests and confirm the server closes immediately and exits with code 0"
   ],
-  "acceptance": "All tests pass, the X-Request-Id header is present and unique per request, and logs contain the matching ID without affecting existing functionality or performance thresholds.",
-  "reason": "Observability is critical for production stability; a request trace middleware provides immediate value for debugging, performance monitoring, and integrates with log aggregation services without adding external dependencies."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops accepting new requests, waits up to 30 seconds for active requests to finish, then exits with status 0. If the timeout elapses, it forces shutdown with status 1. All unit and integration tests pass.",
+  "reason": "Production deployments (Kubernetes, Docker) rely on graceful termination to avoid dropped requests and corrupted state. Adding this feature eliminates a common source of runtime errors and aligns yantraverse with best‑practice lifecycle management."
 }

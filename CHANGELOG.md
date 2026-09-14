@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-14
+### FEATURE
+- Add graceful shutdown with signal handling and in‑flight request draining: Implement process signal listeners (SIGINT, SIGTERM) that trigger a controlled shutdown of the yantraverse server, stop accepting new connections, and wait for ongoing requests to finish or timeout. This prevents abrupt termination, protects data integrity, and improves reliability in containerized production environments.
+
 ## [Automated] - 2026-09-13
 ### FEATURE
 - Add Request ID & Trace Middleware: Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the response headers, and logs the ID with request details. This improves observability, simplifies debugging, and enables correlation across logs and external monitoring tools.
