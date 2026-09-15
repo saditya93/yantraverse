@@ -1,19 +1,19 @@
 {
-  "date": "2026-09-14",
+  "date": "2026-09-15",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with signal handling and in‑flight request draining",
-  "description": "Implement process signal listeners (SIGINT, SIGTERM) that trigger a controlled shutdown of the yantraverse server, stop accepting new connections, and wait for ongoing requests to finish or timeout. This prevents abrupt termination, protects data integrity, and improves reliability in containerized production environments.",
+  "title": "Add built‑in request validation middleware",
+  "description": "Introduces a lightweight, zero‑dependency validation layer that checks request bodies, query strings, and params against user‑defined schemas before they reach route handlers. This prevents malformed data from propagating, reduces boilerplate validation code, and improves security and developer ergonomics.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/shutdown.js",
-    "test/shutdown.test.js"
+    "src/middleware/validate.js",
+    "src/index.js",
+    "test/validate.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while a long‑running request is in flight and verify the server stops accepting new connections but allows the request to complete before exiting",
-    "Trigger SIGINT with no active requests and confirm the server closes immediately and exits with code 0"
+    "Validate that a request with a valid JSON body passes through and reaches the handler",
+    "Validate that a request with an invalid body returns a 400 response with detailed error information"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops accepting new requests, waits up to 30 seconds for active requests to finish, then exits with status 0. If the timeout elapses, it forces shutdown with status 1. All unit and integration tests pass.",
-  "reason": "Production deployments (Kubernetes, Docker) rely on graceful termination to avoid dropped requests and corrupted state. Adding this feature eliminates a common source of runtime errors and aligns yantraverse with best‑practice lifecycle management."
+  "acceptance": "When the middleware is registered with a schema, valid requests are processed normally, while invalid requests receive a 400 Bad Request with a JSON error payload; middleware integrates seamlessly with existing routing and does not affect performance beyond negligible overhead.",
+  "reason": "Current framework lacks systematic input validation, leading developers to write repetitive checks or rely on external libraries, increasing code size and risk of bugs. Adding native validation aligns with the framework's zero‑dependency ethos while delivering high‑impact safety and productivity gains."
 }

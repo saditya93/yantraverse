@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-15
+### FEATURE
+- Add built‑in request validation middleware: Introduces a lightweight, zero‑dependency validation layer that checks request bodies, query strings, and params against user‑defined schemas before they reach route handlers. This prevents malformed data from propagating, reduces boilerplate validation code, and improves security and developer ergonomics.
+
 ## [Automated] - 2026-09-14
 ### FEATURE
 - Add graceful shutdown with signal handling and in‑flight request draining: Implement process signal listeners (SIGINT, SIGTERM) that trigger a controlled shutdown of the yantraverse server, stop accepting new connections, and wait for ongoing requests to finish or timeout. This prevents abrupt termination, protects data integrity, and improves reliability in containerized production environments.
