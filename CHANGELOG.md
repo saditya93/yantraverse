@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-16
+### FEATURE
+- Add built‑in request body parser middleware: Provides first‑class support for parsing JSON and URL‑encoded request bodies without external dependencies. The middleware auto‑detects Content‑Type, populates ctx.body, and integrates with existing routing and error handling, reducing boilerplate for developers.
+
 ## [Automated] - 2026-09-15
 ### FEATURE
 - Add built‑in request validation middleware: Introduces a lightweight, zero‑dependency validation layer that checks request bodies, query strings, and params against user‑defined schemas before they reach route handlers. This prevents malformed data from propagating, reduces boilerplate validation code, and improves security and developer ergonomics.

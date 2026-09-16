@@ -1,19 +1,23 @@
 {
-  "date": "2026-09-15",
+  "date": "2026-09-16",
   "category": "FEATURE",
-  "title": "Add built‑in request validation middleware",
-  "description": "Introduces a lightweight, zero‑dependency validation layer that checks request bodies, query strings, and params against user‑defined schemas before they reach route handlers. This prevents malformed data from propagating, reduces boilerplate validation code, and improves security and developer ergonomics.",
+  "title": "Add built‑in request body parser middleware",
+  "description": "Provides first‑class support for parsing JSON and URL‑encoded request bodies without external dependencies. The middleware auto‑detects Content‑Type, populates ctx.body, and integrates with existing routing and error handling, reducing boilerplate for developers.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validate.js",
-    "src/index.js",
-    "test/validate.test.js"
+    "src/middleware/bodyParser.js",
+    "src/app.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Validate that a request with a valid JSON body passes through and reaches the handler",
-    "Validate that a request with an invalid body returns a 400 response with detailed error information"
+    "Parse a valid JSON payload and verify ctx.body contains the parsed object",
+    "Parse a valid application/x-www-form-urlencoded payload and verify ctx.body contains key/value pairs",
+    "Reject malformed JSON with a 400 Bad Request error",
+    "Ignore bodies for GET/HEAD requests and leave ctx.body undefined",
+    "Handle empty body gracefully without throwing",
+    "Respect custom limit option (e.g., 1kb) and return 413 Payload Too Large when exceeded"
   ],
-  "acceptance": "When the middleware is registered with a schema, valid requests are processed normally, while invalid requests receive a 400 Bad Request with a JSON error payload; middleware integrates seamlessly with existing routing and does not affect performance beyond negligible overhead.",
-  "reason": "Current framework lacks systematic input validation, leading developers to write repetitive checks or rely on external libraries, increasing code size and risk of bugs. Adding native validation aligns with the framework's zero‑dependency ethos while delivering high‑impact safety and productivity gains."
+  "acceptance": "When the middleware is registered, POST/PUT/PATCH requests with Content‑Type 'application/json' or 'application/x-www-form-urlencoded' are parsed into ctx.body; malformed payloads result in a 400 response; payloads exceeding the configurable size limit result in a 413 response; non‑body methods leave ctx.body untouched; all tests pass and existing routes continue to work unchanged.",
+  "reason": "Body parsing is a core requirement for any HTTP API. Currently users must pull in third‑party parsers, increasing bundle size and setup complexity. A zero‑dependency, built‑in parser aligns with yantraverse's lightweight philosophy, improves developer experience, and removes a common source of bugs and security issues (e.g., unvalidated payload size)."
 }
