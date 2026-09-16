@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.134-daily.20260915",
-  "description": "AI‑enhanced, zero‑dependency Node.js framework that outpaces Express & Fastify with instant edge deployment, built‑in zero‑trust security, and type‑safe routing.",
+  "version": "0.0.135-daily.20260916",
+  "description": "AI‑powered, zero‑dependency Node.js framework that beats Express & Fastify with instant edge deployment, type‑safe routing, and built‑in zero‑trust security.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -83,7 +83,8 @@
     "prompt-routing",
     "microfrontend",
     "edge-ai",
-    "ai-agent"
+    "llmops",
+    "zero-knowledge"
   ],
   "author": "",
   "license": "MIT",
