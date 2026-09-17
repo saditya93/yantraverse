@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-17
+### FEATURE
+- Add built‑in body parser middleware (JSON & URL‑encoded): Provides first‑class support for parsing request bodies without external dependencies, improving developer experience and keeping the framework zero‑dependency. Handles JSON and URL‑encoded payloads, enforces configurable size limits, and returns clear 400 errors on malformed input.
+
 ## [Automated] - 2026-09-16
 ### FEATURE
 - Add built‑in request body parser middleware: Provides first‑class support for parsing JSON and URL‑encoded request bodies without external dependencies. The middleware auto‑detects Content‑Type, populates ctx.body, and integrates with existing routing and error handling, reducing boilerplate for developers.
