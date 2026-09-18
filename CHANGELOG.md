@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-18
+### FEATURE
+- Add graceful shutdown with in‑flight request draining: Implements a production‑ready shutdown sequence that stops accepting new connections, waits for ongoing requests to finish, and runs registered cleanup hooks (e.g., DB disconnect, logger flush). This prevents dropped requests and resource leaks during deployments or crashes.
+
 ## [Automated] - 2026-09-17
 ### FEATURE
 - Add built‑in body parser middleware (JSON & URL‑encoded): Provides first‑class support for parsing request bodies without external dependencies, improving developer experience and keeping the framework zero‑dependency. Handles JSON and URL‑encoded payloads, enforces configurable size limits, and returns clear 400 errors on malformed input.

@@ -1,22 +1,20 @@
 {
-  "date": "2026-09-17",
+  "date": "2026-09-18",
   "category": "FEATURE",
-  "title": "Add built‑in body parser middleware (JSON & URL‑encoded)",
-  "description": "Provides first‑class support for parsing request bodies without external dependencies, improving developer experience and keeping the framework zero‑dependency. Handles JSON and URL‑encoded payloads, enforces configurable size limits, and returns clear 400 errors on malformed input.",
+  "title": "Add graceful shutdown with in‑flight request draining",
+  "description": "Implements a production‑ready shutdown sequence that stops accepting new connections, waits for ongoing requests to finish, and runs registered cleanup hooks (e.g., DB disconnect, logger flush). This prevents dropped requests and resource leaks during deployments or crashes.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "src/app.js",
-    "test/bodyParser.test.js"
+    "src/gracefulShutdown.js",
+    "src/server.js",
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Parse a valid JSON payload and verify req.body contains the object",
-    "Parse a valid URL‑encoded payload and verify req.body contains the key/value pairs",
-    "Send malformed JSON and expect a 400 response with an error message",
-    "Send a payload exceeding the size limit and expect a 413 response",
-    "Ensure the middleware does not interfere with routes that do not have a body"
+    "Simulate a server receiving multiple concurrent requests, trigger shutdown, and verify that new connections are refused while existing ones complete successfully",
+    "Register a mock cleanup hook, invoke shutdown, and assert that the hook is called after all requests have drained",
+    "Force an error during cleanup and ensure the process exits with a non‑zero code and logs the error without hanging"
   ],
-  "acceptance": "The framework exposes a `bodyParser(options)` middleware that can be added via `app.use`. When enabled, JSON and URL‑encoded bodies up to the configured limit are parsed into `req.body`. Invalid JSON returns HTTP 400 with a descriptive error, and oversized payloads return HTTP 413. All tests pass and documentation is updated with usage examples.",
-  "reason": "Body parsing is a core requirement for any API. Adding it natively removes the need for third‑party packages, aligns with the zero‑dependency goal, and reduces boilerplate for developers, directly boosting adoption and production readiness."
+  "acceptance": "- Server stops accepting new connections immediately after shutdown signal\n- All in‑flight requests are allowed to finish before the process exits\n- All registered cleanup callbacks are executed exactly once\n- Errors in cleanup are logged and cause the process to exit with code 1\n- Test suite passes with 100% coverage for the new module",
+  "reason": "Ensures zero‑downtime deployments and protects against data loss or corrupted state, a critical requirement for production services using yantraverse."
 }
