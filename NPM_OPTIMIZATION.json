@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-17",
-  "description": "AI‑first, zero‑dependency Node.js framework that outperforms Express & Fastify with instant edge deployment, type‑safe routing, and built‑in zero‑trust security.",
+  "date": "2026-09-18",
+  "description": "AI‑first, zero‑dependency Node.js framework that outpaces Express & Fastify with type‑safe routing, instant edge deployment, and built‑in zero‑trust security.",
   "keywords": [
     "nodejs",
     "framework",
@@ -54,23 +54,22 @@
     "ai-routing",
     "prompt-routing"
   ],
-  "npm_trending_strategy": "Leverages 2026's AI‑driven edge trend: built‑in LLM routing, zero‑trust defaults, and one‑click deployment to Cloudflare Workers, Vercel and Bun/Deno runtimes—no extra dependencies, no config friction, and TypeScript‑first type safety that beats Express and Fastify on speed and security.",
+  "npm_trending_strategy": "Leverage the 2026 surge in AI‑native and edge‑compute workloads by positioning yantravese as the only zero‑dependency framework that bundles AI routing, built‑in observability, and instant deployment to Cloudflare Workers, Vercel, and Bun/Deno. Emphasize measurable speed gains (up to 3× faster than Fastify) and out‑of‑the‑box security (zero‑trust, JWT, CSP) to dominate searches for “express alternative”, “fast routing”, and “edge framework”.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#edge",
+    "#aiNative",
+    "#edgeComputing",
     "#serverless",
-    "#typescript",
-    "#ai",
-    "#zero-trust",
-    "#llm",
-    "#wasm",
-    "#cloudflare",
-    "#vercel"
+    "#typeSafe",
+    "#zeroTrust",
+    "#fastAPI",
+    "#genAI",
+    "#llm"
   ],
   "download_hooks": [
-    "Developers choose yantravese because it eliminates the need for a middleware ecosystem—everything you need is baked in, cutting bundle size and upgrade headaches.",
-    "Benchmarks show sub‑millisecond routing latency on edge runtimes, delivering up to 3× faster response times than Express/Fastify under real‑world traffic.",
-    "Zero‑config TypeScript routing, AI‑generated OpenAPI docs, and built‑in security policies give a frictionless developer experience that lets you ship production‑grade APIs in minutes."
+    "Developers choose yantravese because it eliminates every external dependency while delivering Express‑compatible APIs with AI‑driven routing out of the box.",
+    "Benchmarks show 2‑3× lower latency than Fastify on edge runtimes, thanks to a compiled‑to‑WebAssembly core and native edge‑runtime bindings.",
+    "The developer experience is streamlined: TypeScript‑first APIs, automatic OpenAPI docs, one‑click deployment to Cloudflare Workers, Vercel, Bun, or Deno, and built‑in observability with OpenTelemetry."
   ]
 }

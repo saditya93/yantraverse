@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.136-daily.20260917",
-  "description": "AI‑first, zero‑dependency Node.js framework that outperforms Express & Fastify with instant edge deployment, type‑safe routing, and built‑in zero‑trust security.",
+  "version": "0.0.137-daily.20260918",
+  "description": "AI‑first, zero‑dependency Node.js framework that outpaces Express & Fastify with type‑safe routing, instant edge deployment, and built‑in zero‑trust security.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
