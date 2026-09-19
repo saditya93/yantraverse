@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-19
+### FEATURE
+- Add Structured Request Logging Middleware with Correlation ID: Introduce a lightweight middleware that generates a unique request ID, logs inbound request details (method, path, headers) and outbound response data (status, duration). This improves observability, aids debugging, and aligns with production monitoring requirements without adding dependencies.
+
 ## [Automated] - 2026-09-18
 ### FEATURE
 - Add graceful shutdown with in‑flight request draining: Implements a production‑ready shutdown sequence that stops accepting new connections, waits for ongoing requests to finish, and runs registered cleanup hooks (e.g., DB disconnect, logger flush). This prevents dropped requests and resource leaks during deployments or crashes.

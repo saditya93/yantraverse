@@ -1,20 +1,19 @@
 {
-  "date": "2026-09-18",
+  "date": "2026-09-19",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with in‑flight request draining",
-  "description": "Implements a production‑ready shutdown sequence that stops accepting new connections, waits for ongoing requests to finish, and runs registered cleanup hooks (e.g., DB disconnect, logger flush). This prevents dropped requests and resource leaks during deployments or crashes.",
+  "title": "Add Structured Request Logging Middleware with Correlation ID",
+  "description": "Introduce a lightweight middleware that generates a unique request ID, logs inbound request details (method, path, headers) and outbound response data (status, duration). This improves observability, aids debugging, and aligns with production monitoring requirements without adding dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/logger.js",
+    "src/app.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Simulate a server receiving multiple concurrent requests, trigger shutdown, and verify that new connections are refused while existing ones complete successfully",
-    "Register a mock cleanup hook, invoke shutdown, and assert that the hook is called after all requests have drained",
-    "Force an error during cleanup and ensure the process exits with a non‑zero code and logs the error without hanging"
+    "Verify that each incoming request receives a unique `X-Request-Id` header and that the same ID appears in the log output",
+    "Confirm that the middleware logs method, url, status code, and response time with correct formatting and without throwing errors for edge cases (e.g., missing headers)"
   ],
-  "acceptance": "- Server stops accepting new connections immediately after shutdown signal\n- All in‑flight requests are allowed to finish before the process exits\n- All registered cleanup callbacks are executed exactly once\n- Errors in cleanup are logged and cause the process to exit with code 1\n- Test suite passes with 100% coverage for the new module",
-  "reason": "Ensures zero‑downtime deployments and protects against data loss or corrupted state, a critical requirement for production services using yantraverse."
+  "acceptance": "All tests pass; logs contain the request ID, method, url, status, and duration; `X-Request-Id` header is present on responses; no performance regression detected in benchmark suite",
+  "reason": "Production teams need reliable request tracing for debugging and compliance. Adding built‑in structured logging eliminates the need for external packages, keeps the framework zero‑dependency, and enhances error investigation while maintaining the lightweight ethos of yantraverse."
 }
