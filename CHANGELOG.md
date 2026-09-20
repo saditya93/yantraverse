@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-20
+### FEATURE
+- Graceful Shutdown with Signal Handling and In‑Flight Request Drain: Adds support for SIGINT, SIGTERM and SIGQUIT to allow the server to stop accepting new connections while waiting for in‑flight requests to finish. This prevents abrupt termination, protects data integrity and improves reliability in production environments.
+
 ## [Automated] - 2026-09-19
 ### FEATURE
 - Add Structured Request Logging Middleware with Correlation ID: Introduce a lightweight middleware that generates a unique request ID, logs inbound request details (method, path, headers) and outbound response data (status, duration). This improves observability, aids debugging, and aligns with production monitoring requirements without adding dependencies.
