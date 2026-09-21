@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-21
+### FEATURE
+- Add Structured Request Logging Middleware with Correlation IDs: Introduce a lightweight, zero‑dependency middleware that assigns a unique correlation ID to each incoming request, logs request/response details in a structured JSON format, and propagates the ID downstream. This improves observability, aids debugging, and integrates with existing logging pipelines without adding runtime overhead.
+
 ## [Automated] - 2026-09-20
 ### FEATURE
 - Graceful Shutdown with Signal Handling and In‑Flight Request Drain: Adds support for SIGINT, SIGTERM and SIGQUIT to allow the server to stop accepting new connections while waiting for in‑flight requests to finish. This prevents abrupt termination, protects data integrity and improves reliability in production environments.

@@ -1,19 +1,22 @@
 {
-  "date": "2026-09-20",
+  "date": "2026-09-21",
   "category": "FEATURE",
-  "title": "Graceful Shutdown with Signal Handling and In‑Flight Request Drain",
-  "description": "Adds support for SIGINT, SIGTERM and SIGQUIT to allow the server to stop accepting new connections while waiting for in‑flight requests to finish. This prevents abrupt termination, protects data integrity and improves reliability in production environments.",
+  "title": "Add Structured Request Logging Middleware with Correlation IDs",
+  "description": "Introduce a lightweight, zero‑dependency middleware that assigns a unique correlation ID to each incoming request, logs request/response details in a structured JSON format, and propagates the ID downstream. This improves observability, aids debugging, and integrates with existing logging pipelines without adding runtime overhead.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/shutdown.js",
-    "test/shutdown.test.js"
+    "src/middleware/logger.js",
+    "src/utils/correlationId.js",
+    "src/app.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM and verify server stops accepting new connections but completes existing ones before exit",
-    "Trigger SIGINT during a long‑running request and ensure the request resolves successfully before process exits"
+    "Should generate a unique correlation ID per request and attach it to the request object",
+    "Should log request method, URL, status code, response time, and correlation ID in JSON format",
+    "Should preserve existing request properties and not interfere with other middleware",
+    "Should handle errors gracefully and still output a log entry"
   ],
-  "acceptance": "Server must log shutdown initiation, stop accepting new requests within 100 ms, wait up to 5 seconds for active requests to finish, then exit with code 0; if timeout expires, force exit with code 1. All related tests pass and no regressions in existing test suite.",
-  "reason": "Production deployments need reliable termination to avoid data loss and abrupt client errors, especially in container orchestration platforms where pods are frequently stopped and restarted."
+  "acceptance": "When the server runs, every HTTP request results in a single JSON log line containing at least: timestamp, correlationId, method, url, status, responseTimeMs, and client IP. Correlation IDs are unique (no collisions in 10,000 rapid requests). Existing routes and middleware continue to function unchanged, and test suite passes with 100% coverage for the new middleware.",
+  "reason": "Observability is a critical production need; without structured logs, troubleshooting latency or error spikes is time‑consuming. Adding this middleware delivers immediate operational value, aligns with the framework's zero‑dependency philosophy, and leverages the current routing/middleware architecture."
 }
