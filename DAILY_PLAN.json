@@ -1,22 +1,19 @@
 {
-  "date": "2026-09-21",
+  "date": "2026-09-22",
   "category": "FEATURE",
-  "title": "Add Structured Request Logging Middleware with Correlation IDs",
-  "description": "Introduce a lightweight, zero‑dependency middleware that assigns a unique correlation ID to each incoming request, logs request/response details in a structured JSON format, and propagates the ID downstream. This improves observability, aids debugging, and integrates with existing logging pipelines without adding runtime overhead.",
+  "title": "Implement graceful shutdown with in‑flight request handling",
+  "description": "Adds a production‑ready shutdown sequence that stops accepting new connections, waits for ongoing requests to finish, and then closes the server. This prevents dropped requests during deployments or crashes and improves reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/utils/correlationId.js",
-    "src/app.js",
-    "test/logger.test.js"
+    "src/server.js",
+    "src/shutdown.js",
+    "test/shutdown.test.js"
   ],
   "testCases": [
-    "Should generate a unique correlation ID per request and attach it to the request object",
-    "Should log request method, URL, status code, response time, and correlation ID in JSON format",
-    "Should preserve existing request properties and not interfere with other middleware",
-    "Should handle errors gracefully and still output a log entry"
+    "Verify that new connections are rejected after shutdown is initiated",
+    "Verify that existing requests complete successfully before the process exits"
   ],
-  "acceptance": "When the server runs, every HTTP request results in a single JSON log line containing at least: timestamp, correlationId, method, url, status, responseTimeMs, and client IP. Correlation IDs are unique (no collisions in 10,000 rapid requests). Existing routes and middleware continue to function unchanged, and test suite passes with 100% coverage for the new middleware.",
-  "reason": "Observability is a critical production need; without structured logs, troubleshooting latency or error spikes is time‑consuming. Adding this middleware delivers immediate operational value, aligns with the framework's zero‑dependency philosophy, and leverages the current routing/middleware architecture."
+  "acceptance": "When the shutdown endpoint or SIGTERM is triggered, the server stops accepting new connections, waits up to a configurable timeout for active requests to finish, then exits with code 0. If the timeout elapses, pending requests are terminated and the process exits with code 1. All logs reflect each step of the shutdown process.",
+  "reason": "Production deployments and auto‑scaling require reliable termination to avoid 5xx errors. A graceful shutdown feature eliminates request loss, improves uptime metrics, and aligns yantraverse with enterprise‑grade expectations."
 }

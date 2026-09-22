@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-22
+### FEATURE
+- Implement graceful shutdown with in‑flight request handling: Adds a production‑ready shutdown sequence that stops accepting new connections, waits for ongoing requests to finish, and then closes the server. This prevents dropped requests during deployments or crashes and improves reliability.
+
 ## [Automated] - 2026-09-21
 ### FEATURE
 - Add Structured Request Logging Middleware with Correlation IDs: Introduce a lightweight, zero‑dependency middleware that assigns a unique correlation ID to each incoming request, logs request/response details in a structured JSON format, and propagates the ID downstream. This improves observability, aids debugging, and integrates with existing logging pipelines without adding runtime overhead.
