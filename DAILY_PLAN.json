@@ -1,19 +1,19 @@
 {
-  "date": "2026-09-22",
+  "date": "2026-09-23",
   "category": "FEATURE",
-  "title": "Implement graceful shutdown with in‑flight request handling",
-  "description": "Adds a production‑ready shutdown sequence that stops accepting new connections, waits for ongoing requests to finish, and then closes the server. This prevents dropped requests during deployments or crashes and improves reliability.",
+  "title": "Add Graceful Shutdown & Health‑Check Endpoint",
+  "description": "Introduces a `/health` route that returns a simple JSON status and implements graceful shutdown handling for SIGINT/SIGTERM. This ensures the framework can be safely stopped in production environments and provides an easy liveness probe for orchestrators.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/server.js",
-    "src/shutdown.js",
-    "test/shutdown.test.js"
+    "src/graceful.js",
+    "test/graceful.test.js"
   ],
   "testCases": [
-    "Verify that new connections are rejected after shutdown is initiated",
-    "Verify that existing requests complete successfully before the process exits"
+    "Request GET /health returns 200 and JSON {\"status\":\"ok\"}",
+    "Simulate SIGTERM signal and verify server.close is called, pending connections are allowed to finish, and process exits with code 0"
   ],
-  "acceptance": "When the shutdown endpoint or SIGTERM is triggered, the server stops accepting new connections, waits up to a configurable timeout for active requests to finish, then exits with code 0. If the timeout elapses, pending requests are terminated and the process exits with code 1. All logs reflect each step of the shutdown process.",
-  "reason": "Production deployments and auto‑scaling require reliable termination to avoid 5xx errors. A graceful shutdown feature eliminates request loss, improves uptime metrics, and aligns yantraverse with enterprise‑grade expectations."
+  "acceptance": "- `/health` endpoint responds with HTTP 200 and body {\"status\":\"ok\"} within 50 ms.\n- When the process receives SIGINT or SIGTERM, the server stops accepting new connections, waits up to 5 seconds for active requests to complete, then exits with code 0.\n- No unhandled promise rejections or errors are logged during shutdown.\n- All existing tests continue to pass.",
+  "reason": "Production deployments need reliable liveness checks and clean termination to avoid dropped requests and resource leaks. Adding this built‑in capability removes the need for custom shutdown code in each app, improving stability and observability."
 }
