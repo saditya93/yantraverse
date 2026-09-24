@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-24
+### FEATURE
+- Add Request ID Middleware for Traceability: Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the request and response objects, and adds it to response headers. This enables consistent tracing across logs and downstream services, improving debugging and observability.
+
 ## [Automated] - 2026-09-23
 ### FEATURE
 - Add Graceful Shutdown & Health‑Check Endpoint: Introduces a `/health` route that returns a simple JSON status and implements graceful shutdown handling for SIGINT/SIGTERM. This ensures the framework can be safely stopped in production environments and provides an easy liveness probe for orchestrators.

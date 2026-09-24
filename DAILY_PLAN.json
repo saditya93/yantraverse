@@ -1,19 +1,20 @@
 {
-  "date": "2026-09-23",
+  "date": "2026-09-24",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown & Health‑Check Endpoint",
-  "description": "Introduces a `/health` route that returns a simple JSON status and implements graceful shutdown handling for SIGINT/SIGTERM. This ensures the framework can be safely stopped in production environments and provides an easy liveness probe for orchestrators.",
+  "title": "Add Request ID Middleware for Traceability",
+  "description": "Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the request and response objects, and adds it to response headers. This enables consistent tracing across logs and downstream services, improving debugging and observability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/graceful.js",
-    "test/graceful.test.js"
+    "src/middleware/requestId.js",
+    "src/app.js",
+    "test/requestId.test.js"
   ],
   "testCases": [
-    "Request GET /health returns 200 and JSON {\"status\":\"ok\"}",
-    "Simulate SIGTERM signal and verify server.close is called, pending connections are allowed to finish, and process exits with code 0"
+    "Should generate a UUID v4 request ID and attach it to req.id and res.setHeader('X-Request-Id')",
+    "Should preserve an existing X-Request-Id header from the client instead of generating a new one",
+    "Should make the request ID available in the logger via a global context or request object"
   ],
-  "acceptance": "- `/health` endpoint responds with HTTP 200 and body {\"status\":\"ok\"} within 50 ms.\n- When the process receives SIGINT or SIGTERM, the server stops accepting new connections, waits up to 5 seconds for active requests to complete, then exits with code 0.\n- No unhandled promise rejections or errors are logged during shutdown.\n- All existing tests continue to pass.",
-  "reason": "Production deployments need reliable liveness checks and clean termination to avoid dropped requests and resource leaks. Adding this built‑in capability removes the need for custom shutdown code in each app, improving stability and observability."
+  "acceptance": "All tests pass, request IDs are unique per request, existing client-supplied IDs are respected, and the ID is included in response headers and accessible to downstream middleware/loggers without breaking existing routes or error handling.",
+  "reason": "Provides essential observability for production deployments, simplifies debugging, and aligns yantraverse with best‑practice tracing patterns without adding external dependencies."
 }
