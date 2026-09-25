@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-25
+### FEATURE
+- Add Built‑in Request Validation Middleware: Introduces a declarative validation layer for route handlers, allowing developers to define schemas for query, params, body, and headers. This reduces boilerplate, prevents invalid data from reaching business logic, and improves security and reliability of APIs.
+
 ## [Automated] - 2026-09-24
 ### FEATURE
 - Add Request ID Middleware for Traceability: Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the request and response objects, and adds it to response headers. This enables consistent tracing across logs and downstream services, improving debugging and observability.

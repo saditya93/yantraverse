@@ -1,20 +1,19 @@
 {
-  "date": "2026-09-24",
+  "date": "2026-09-25",
   "category": "FEATURE",
-  "title": "Add Request ID Middleware for Traceability",
-  "description": "Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request, attaches it to the request and response objects, and adds it to response headers. This enables consistent tracing across logs and downstream services, improving debugging and observability.",
+  "title": "Add Built‑in Request Validation Middleware",
+  "description": "Introduces a declarative validation layer for route handlers, allowing developers to define schemas for query, params, body, and headers. This reduces boilerplate, prevents invalid data from reaching business logic, and improves security and reliability of APIs.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/requestId.js",
-    "src/app.js",
-    "test/requestId.test.js"
+    "src/middleware/validation.js",
+    "src/router.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Should generate a UUID v4 request ID and attach it to req.id and res.setHeader('X-Request-Id')",
-    "Should preserve an existing X-Request-Id header from the client instead of generating a new one",
-    "Should make the request ID available in the logger via a global context or request object"
+    "Validate that a request with a missing required body field returns 400 with a descriptive error message",
+    "Validate that a request with an invalid query parameter type returns 400 and does not invoke the route handler"
   ],
-  "acceptance": "All tests pass, request IDs are unique per request, existing client-supplied IDs are respected, and the ID is included in response headers and accessible to downstream middleware/loggers without breaking existing routes or error handling.",
-  "reason": "Provides essential observability for production deployments, simplifies debugging, and aligns yantraverse with best‑practice tracing patterns without adding external dependencies."
+  "acceptance": "When a route registers a validation schema, any request not conforming to the schema results in a 400 response with a JSON error payload; valid requests proceed normally. The middleware must support JSON schema definitions for body, query, params, and headers, and integrate seamlessly with existing middleware chain without breaking current tests.",
+  "reason": "Ensures data integrity at the edge of the application, cutting down on repetitive validation code and potential bugs. This high‑impact addition aligns with Yantraverse's goal of being a production‑ready, zero‑dependency framework while keeping the API surface minimal."
 }
