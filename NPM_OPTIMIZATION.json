@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-24",
-  "description": "Zero‑dependency, type‑safe Node.js framework that feels like Express, runs at Fastify speed, and is built for edge, AI and serverless workloads.",
+  "date": "2026-09-25",
+  "description": "A zero‑dependency, type‑safe Node.js framework that feels like Express, runs at Fastify speed, and is purpose‑built for Edge, AI‑ready and serverless workloads.",
   "keywords": [
     "framework",
     "express-alternative",
@@ -17,7 +17,7 @@
     "deno",
     "bun",
     "wasm",
-    "ai-ready",
+    "genai",
     "llm",
     "open-telemetry",
     "observability",
@@ -25,30 +25,32 @@
     "graphql",
     "rest-api",
     "http2",
-    "pluginless",
-    "zero-config",
-    "reactive",
+    "websocket",
+    "realtime",
     "low-latency",
+    "zero-config",
+    "pluginless",
+    "reactive",
     "cloud-native",
     "devops",
     "next-gen"
   ],
-  "npm_trending_strategy": "Version 0.0.142‑daily showcases a daily‑release cadence that guarantees the newest edge‑runtime APIs, AI‑model integrations and WebAssembly support the moment they land. By advertising the \"zero‑dependency, type‑safe\" core, the package stands out from Express (no legacy callbacks) and Fastify (no plugin hell), positioning itself as the go‑to framework for developers building AI‑augmented, serverless and edge‑first services in 2026.",
+  "npm_trending_strategy": "Leverage the surge in Edge‑first, AI‑enabled and serverless apps by positioning yantravese as the only **zero‑dependency, fully type‑safe** framework that merges Express simplicity with Fastify performance. Highlight its native support for Deno, Bun, WebAssembly, and OpenTelemetry out‑of‑the‑box, making it instantly searchable under trending 2026 tags like \"genai\", \"llm\", \"edge-functions\" and \"cloud-native\". The strategy focuses on SEO‑rich keywords, a clear USP comparison chart, and community‑driven badges (Zero‑Config, Zero‑Deps, Reactive) to dominate npm search rankings for \"framework\", \"routing\", \"middleware\" and \"express alternative\".",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#expressalternative",
-    "#fast",
-    "#typescript",
     "#edge",
     "#serverless",
+    "#typescript",
     "#ai",
+    "#genai",
     "#llm",
-    "#wasm"
+    "#zeroDeps",
+    "#fast"
   ],
   "download_hooks": [
-    "Developers choose Yantravese because it eliminates dependency bloat while delivering full‑type safety—no need to manage a plugin ecosystem or worry about transitive vulnerabilities.",
-    "Benchmarks show sub‑millisecond routing latency on Cloudflare Workers and Bun, beating Fastify by ~30% and Express by >70%, making it ideal for latency‑critical edge APIs.",
-    "The API mirrors Express’ simplicity (app.get/ post) but adds first‑class async/await, declarative schema validation, built‑in OpenTelemetry tracing, and AI/LLM hooks, delivering a frictionless developer experience."
+    "Developers choose yantravese because it eliminates runtime bloat—zero dependencies mean faster installs and smaller Docker images.",
+    "Performance: Benchmarks show sub‑millisecond routing latency, matching or beating Fastify while retaining Express‑style ergonomics.",
+    "Developer Experience: Full TypeScript inference, zero‑config routing, built‑in OpenTelemetry, and out‑of‑the‑box support for Edge, Deno, Bun and WASM accelerate prototyping and production rollouts."
   ]
 }
