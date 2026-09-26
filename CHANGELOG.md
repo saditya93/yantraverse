@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-26
+### FEATURE
+- Add built‑in response compression middleware: Provides transparent gzip/deflate compression for response bodies when the client supports it, reducing bandwidth and latency without external dependencies. The middleware auto‑detects content types, respects already‑compressed streams, and integrates with existing routing and error handling.
+
 ## [Automated] - 2026-09-25
 ### FEATURE
 - Add Built‑in Request Validation Middleware: Introduces a declarative validation layer for route handlers, allowing developers to define schemas for query, params, body, and headers. This reduces boilerplate, prevents invalid data from reaching business logic, and improves security and reliability of APIs.
