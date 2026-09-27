@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-27
+### FEATURE
+- Add Graceful Shutdown with Signal Handling: Implements graceful shutdown for the yantraverse HTTP server, handling SIGTERM/SIGINT to stop accepting new requests, finish in‑flight requests, and run cleanup hooks. This reduces abrupt terminations, prevents data loss, and improves reliability in production environments.
+
 ## [Automated] - 2026-09-26
 ### FEATURE
 - Add built‑in response compression middleware: Provides transparent gzip/deflate compression for response bodies when the client supports it, reducing bandwidth and latency without external dependencies. The middleware auto‑detects content types, respects already‑compressed streams, and integrates with existing routing and error handling.
