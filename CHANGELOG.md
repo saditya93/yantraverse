@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-28
+### FEATURE
+- Add built‑in request body parser (JSON & URL‑encoded): Many applications need to read request bodies, but yantraverse currently only exposes raw streams. This feature introduces a lightweight, zero‑dependency parser that automatically populates ctx.body for JSON and URL‑encoded payloads, with configurable size limits and error handling. It reduces boilerplate and aligns yantraverse with other production‑grade frameworks.
+
 ## [Automated] - 2026-09-27
 ### FEATURE
 - Add Graceful Shutdown with Signal Handling: Implements graceful shutdown for the yantraverse HTTP server, handling SIGTERM/SIGINT to stop accepting new requests, finish in‑flight requests, and run cleanup hooks. This reduces abrupt terminations, prevents data loss, and improves reliability in production environments.

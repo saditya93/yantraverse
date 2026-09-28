@@ -1,19 +1,21 @@
 {
-  "date": "2026-09-27",
+  "date": "2026-09-28",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown with Signal Handling",
-  "description": "Implements graceful shutdown for the yantraverse HTTP server, handling SIGTERM/SIGINT to stop accepting new requests, finish in‑flight requests, and run cleanup hooks. This reduces abrupt terminations, prevents data loss, and improves reliability in production environments.",
+  "title": "Add built‑in request body parser (JSON & URL‑encoded)",
+  "description": "Many applications need to read request bodies, but yantraverse currently only exposes raw streams. This feature introduces a lightweight, zero‑dependency parser that automatically populates ctx.body for JSON and URL‑encoded payloads, with configurable size limits and error handling. It reduces boilerplate and aligns yantraverse with other production‑grade frameworks.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/gracefulShutdown.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/bodyParser.js",
+    "src/app.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while the server processes a long‑running request and verify the request completes before the process exits",
-    "Trigger SIGINT and ensure all registered cleanup callbacks are invoked exactly once and the server closes without errors"
+    "Parse a valid JSON payload and verify ctx.body contains the expected object",
+    "Parse a valid URL‑encoded payload and verify ctx.body contains the expected key/value pairs",
+    "Reject payloads exceeding the configured size limit with a 413 response",
+    "Return 415 for unsupported Content‑Type headers"
   ],
-  "acceptance": "When the process receives SIGTERM or SIGINT, the server stops accepting new connections, waits for all active requests to finish (with a configurable timeout), executes all registered cleanup functions, and exits with code 0. If the timeout expires, the process exits with code 1. All tests pass and no unhandled promise rejections occur.",
-  "reason": "Production deployments need reliable termination to avoid dropped requests and resource leaks. Adding built‑in graceful shutdown aligns with the framework’s stability focus, eliminates the need for external scripts, and provides a ready‑to‑use pattern for users."
+  "acceptance": "The middleware correctly parses JSON and URL‑encoded bodies up to the default 1 MB limit, populates ctx.body, returns appropriate HTTP error codes for oversized or unsupported content types, and integrates seamlessly with existing routing and error handling without breaking current tests.",
+  "reason": "Body parsing is a core requirement for APIs; providing it out‑of‑the‑box eliminates the need for external packages, keeps the framework zero‑dependency, and improves developer productivity and security by enforcing size limits and content‑type validation."
 }
