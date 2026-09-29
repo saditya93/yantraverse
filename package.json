@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.147-daily.20260928",
-  "description": "⚡️ Ultra‑fast, zero‑dependency Node.js framework – the Express‑compatible, TypeScript‑first alternative that scales from edge functions to massive micro‑services.",
+  "version": "0.0.148-daily.20260929",
+  "description": "⚡️ Lightning‑fast, zero‑dependency TypeScript‑first framework that drops in from Express and scales to edge‑compute micro‑services with built‑in observability.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -43,15 +43,19 @@
     "fast",
     "zero-dependencies",
     "serverless",
-    "edge",
+    "edge-compute",
     "cloud-native",
     "microservices",
     "typescript-first",
     "esm",
     "ai-ready",
     "observability",
-    "openapi",
-    "zero-config"
+    "openapi3.1",
+    "graphql",
+    "otel",
+    "bun-compatible",
+    "zero-config",
+    "type-safe"
   ],
   "author": "",
   "license": "MIT",

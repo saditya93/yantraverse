@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-28",
-  "description": "⚡️ Ultra‑fast, zero‑dependency Node.js framework – the Express‑compatible, TypeScript‑first alternative that scales from edge functions to massive micro‑services.",
+  "date": "2026-09-29",
+  "description": "⚡️ Lightning‑fast, zero‑dependency TypeScript‑first framework that drops in from Express and scales to edge‑compute micro‑services with built‑in observability.",
   "keywords": [
     "nodejs",
     "framework",
@@ -10,32 +10,36 @@
     "fast",
     "zero-dependencies",
     "serverless",
-    "edge",
+    "edge-compute",
     "cloud-native",
     "microservices",
     "typescript-first",
     "esm",
     "ai-ready",
     "observability",
-    "openapi",
-    "zero-config"
+    "openapi3.1",
+    "graphql",
+    "otel",
+    "bun-compatible",
+    "zero-config",
+    "type-safe"
   ],
-  "npm_trending_strategy": "Leverage the surge in serverless & edge computing by positioning Yantravese as the *only* zero‑dependency framework that works out‑of‑the‑box on Vercel, Cloudflare Workers, and AWS Lambda. Emphasize TypeScript‑first ergonomics, built‑in OpenAPI generation, and native ESM support to capture the 2026 developer‑experience wave. Highlight benchmark numbers (e.g., 2‑3× faster than Fastify on typical CRUD routes) and a tiny bundle size (< 5 KB) to dominate searches for “fast framework”, “express alternative”, and “edge routing”.",
+  "npm_trending_strategy": "Version 0.0.147‑daily bundles the latest edge‑runtime tweaks (Cloudflare Workers, Bun, Deno compatibility) while staying 100 % zero‑dependency. It ships a type‑safe, Express‑compatible API, auto‑generated OpenAPI 3.1 docs, and out‑of‑the‑box OpenTelemetry tracing—features that competitors like Fastify or Express only offer via extra plugins. The daily release cadence guarantees developers always get the newest performance patches and AI‑ready integrations, keeping the package at the top of npm’s “trending” feed for keywords such as edge, AI, observability, and Bun.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
     "#typescript",
-    "#serverless",
     "#edge",
-    "#microservices",
-    "#fast",
-    "#zero-dependencies"
+    "#serverless",
+    "#observability",
+    "#openapi",
+    "#ai",
+    "#bun",
+    "#microservices"
   ],
   "download_hooks": [
-    "Developers pick Yantravese for its **blazing‑fast routing** – benchmarks show up to 3× lower latency vs Express/Fastify on identical workloads.",
-    "Zero‑dependency, **< 5 KB** runtime footprint means instant cold‑starts on edge platforms and minimal bundle size for serverless deployments.",
-    "Fully **TypeScript‑first** with built‑in type‑safe middleware, OpenAPI auto‑generation, and ESM support – no extra configuration needed.",
-    "Designed for **cloud‑native & micro‑service architectures**: native request‑scoping, graceful shutdown, and built‑in observability hooks (metrics, tracing).",
-    "Ready for the **AI era** – simple plugin API for AI‑powered middleware (auth, validation, content‑generation) without pulling in heavy libraries."
+    "Developers choose Yantravese for its **sub‑millisecond routing** and **zero‑dependency footprint**, delivering the fastest cold‑start times on edge platforms.",
+    "The **type‑safe, Express‑compatible API** eliminates boilerplate while giving instant access to built‑in OpenAPI docs and OpenTelemetry tracing—no extra middleware needed.",
+    "Designed for modern workflows: works out‑of‑the‑box with **Bun, Cloudflare Workers, and Deno**, supports **AI‑ready plugins**, and provides **zero‑config observability**, making it the go‑to framework for high‑performance, future‑proof services."
   ]
 }
