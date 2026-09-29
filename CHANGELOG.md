@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-29
+### FEATURE
+- Add Configurable Request Logger Middleware: Provides built‑in request logging with customizable formats, log levels and optional file output with rotation. Improves observability and debugging without adding external dependencies, fitting yantraverse's zero‑dependency philosophy.
+
 ## [Automated] - 2026-09-28
 ### FEATURE
 - Add built‑in request body parser (JSON & URL‑encoded): Many applications need to read request bodies, but yantraverse currently only exposes raw streams. This feature introduces a lightweight, zero‑dependency parser that automatically populates ctx.body for JSON and URL‑encoded payloads, with configurable size limits and error handling. It reduces boilerplate and aligns yantraverse with other production‑grade frameworks.

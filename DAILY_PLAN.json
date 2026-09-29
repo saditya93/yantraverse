@@ -1,21 +1,21 @@
 {
-  "date": "2026-09-28",
+  "date": "2026-09-29",
   "category": "FEATURE",
-  "title": "Add built‑in request body parser (JSON & URL‑encoded)",
-  "description": "Many applications need to read request bodies, but yantraverse currently only exposes raw streams. This feature introduces a lightweight, zero‑dependency parser that automatically populates ctx.body for JSON and URL‑encoded payloads, with configurable size limits and error handling. It reduces boilerplate and aligns yantraverse with other production‑grade frameworks.",
+  "title": "Add Configurable Request Logger Middleware",
+  "description": "Provides built‑in request logging with customizable formats, log levels and optional file output with rotation. Improves observability and debugging without adding external dependencies, fitting yantraverse's zero‑dependency philosophy.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "src/app.js",
-    "test/bodyParser.test.js"
+    "src/middleware/logger.js",
+    "src/utils/logger.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Parse a valid JSON payload and verify ctx.body contains the expected object",
-    "Parse a valid URL‑encoded payload and verify ctx.body contains the expected key/value pairs",
-    "Reject payloads exceeding the configured size limit with a 413 response",
-    "Return 415 for unsupported Content‑Type headers"
+    "Verify that the logger outputs the default combined format to console for a GET request",
+    "Verify that custom format and log level settings produce the expected log string",
+    "Verify that file logging creates/rotates log files when a filePath is provided",
+    "Verify that the logger does not interfere with other middleware and correctly passes control to next handler"
   ],
-  "acceptance": "The middleware correctly parses JSON and URL‑encoded bodies up to the default 1 MB limit, populates ctx.body, returns appropriate HTTP error codes for oversized or unsupported content types, and integrates seamlessly with existing routing and error handling without breaking current tests.",
-  "reason": "Body parsing is a core requirement for APIs; providing it out‑of‑the‑box eliminates the need for external packages, keeps the framework zero‑dependency, and improves developer productivity and security by enforcing size limits and content‑type validation."
+  "acceptance": "All tests pass; logger writes correct output to console or file per configuration; no unhandled errors; performance impact is negligible (<1 ms per request on average); documentation updated with usage examples and changelog entry.",
+  "reason": "Enhanced logging is critical for production monitoring and troubleshooting, directly addressing operational needs while maintaining the framework's lightweight, zero‑dependency design."
 }
