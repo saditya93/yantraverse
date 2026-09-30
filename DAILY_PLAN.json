@@ -1,21 +1,18 @@
 {
-  "date": "2026-09-29",
+  "date": "2026-09-30",
   "category": "FEATURE",
-  "title": "Add Configurable Request Logger Middleware",
-  "description": "Provides built‑in request logging with customizable formats, log levels and optional file output with rotation. Improves observability and debugging without adding external dependencies, fitting yantraverse's zero‑dependency philosophy.",
+  "title": "Add request‑body validation middleware",
+  "description": "Introduces a lightweight, zero‑dependency validation middleware that checks incoming JSON bodies against a developer‑provided schema and returns a 400 error on mismatch. This reduces boiler‑plate validation code and prevents malformed data from reaching route handlers, improving security and reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/utils/logger.js",
-    "test/logger.test.js"
+    "src/middleware/validation.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Verify that the logger outputs the default combined format to console for a GET request",
-    "Verify that custom format and log level settings produce the expected log string",
-    "Verify that file logging creates/rotates log files when a filePath is provided",
-    "Verify that the logger does not interfere with other middleware and correctly passes control to next handler"
+    "Valid payload matching schema passes through to the handler",
+    "Invalid payload returns 400 with descriptive error message"
   ],
-  "acceptance": "All tests pass; logger writes correct output to console or file per configuration; no unhandled errors; performance impact is negligible (<1 ms per request on average); documentation updated with usage examples and changelog entry.",
-  "reason": "Enhanced logging is critical for production monitoring and troubleshooting, directly addressing operational needs while maintaining the framework's lightweight, zero‑dependency design."
+  "acceptance": "When a route registers the validation middleware with a schema, any request whose JSON body conforms to the schema proceeds to the next handler; otherwise the response status is 400 and the body contains an error detailing the first failing rule. Middleware must not interfere with other middlewares, works with async handlers, and logs validation errors at debug level.",
+  "reason": "Ensures data integrity across the framework without adding external dependencies, addressing a common pain point for developers and reducing runtime errors in production."
 }

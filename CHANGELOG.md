@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-09-30
+### FEATURE
+- Add request‑body validation middleware: Introduces a lightweight, zero‑dependency validation middleware that checks incoming JSON bodies against a developer‑provided schema and returns a 400 error on mismatch. This reduces boiler‑plate validation code and prevents malformed data from reaching route handlers, improving security and reliability.
+
 ## [Automated] - 2026-09-29
 ### FEATURE
 - Add Configurable Request Logger Middleware: Provides built‑in request logging with customizable formats, log levels and optional file output with rotation. Improves observability and debugging without adding external dependencies, fitting yantraverse's zero‑dependency philosophy.
