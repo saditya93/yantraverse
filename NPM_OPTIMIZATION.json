@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-29",
-  "description": "⚡️ Lightning‑fast, zero‑dependency TypeScript‑first framework that drops in from Express and scales to edge‑compute micro‑services with built‑in observability.",
+  "date": "2026-09-30",
+  "description": "⚡️ Zero‑dependency, TypeScript‑first framework that outpaces Express & Fastify, drops into any Node/Bun/Deno project and scales to edge‑compute with built‑in observability.",
   "keywords": [
     "nodejs",
     "framework",
@@ -10,36 +10,40 @@
     "fast",
     "zero-dependencies",
     "serverless",
-    "edge-compute",
+    "edge",
     "cloud-native",
     "microservices",
-    "typescript-first",
+    "typescript",
     "esm",
     "ai-ready",
     "observability",
-    "openapi3.1",
+    "openapi3.2",
     "graphql",
     "otel",
-    "bun-compatible",
+    "bun",
+    "deno",
+    "cloudflare-workers",
+    "llm",
     "zero-config",
-    "type-safe"
+    "type-safe",
+    "low-latency",
+    "performance"
   ],
-  "npm_trending_strategy": "Version 0.0.147‑daily bundles the latest edge‑runtime tweaks (Cloudflare Workers, Bun, Deno compatibility) while staying 100 % zero‑dependency. It ships a type‑safe, Express‑compatible API, auto‑generated OpenAPI 3.1 docs, and out‑of‑the‑box OpenTelemetry tracing—features that competitors like Fastify or Express only offer via extra plugins. The daily release cadence guarantees developers always get the newest performance patches and AI‑ready integrations, keeping the package at the top of npm’s “trending” feed for keywords such as edge, AI, observability, and Bun.",
+  "npm_trending_strategy": "Version 0.0.148‑daily.20260929 adds daily‑release edge‑runtime bundles, automatic OpenTelemetry instrumentation, AI‑ready middleware hooks, and full compatibility with Node, Bun, and Deno. The zero‑config setup, built‑in OpenAPI 3.2 generation and GraphQL federation let teams ship micro‑services instantly, making it a top‑pick for modern serverless and edge deployments.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
     "#typescript",
     "#edge",
     "#serverless",
-    "#observability",
-    "#openapi",
     "#ai",
-    "#bun",
-    "#microservices"
+    "#observability",
+    "#fast",
+    "#zeroDependency"
   ],
   "download_hooks": [
-    "Developers choose Yantravese for its **sub‑millisecond routing** and **zero‑dependency footprint**, delivering the fastest cold‑start times on edge platforms.",
-    "The **type‑safe, Express‑compatible API** eliminates boilerplate while giving instant access to built‑in OpenAPI docs and OpenTelemetry tracing—no extra middleware needed.",
-    "Designed for modern workflows: works out‑of‑the‑box with **Bun, Cloudflare Workers, and Deno**, supports **AI‑ready plugins**, and provides **zero‑config observability**, making it the go‑to framework for high‑performance, future‑proof services."
+    "Developers choose Yantravese for sub‑millisecond routing latency that beats Express and Fastify out‑of‑the‑box.",
+    "Built‑in OpenTelemetry and AI‑ready hooks give instant observability and LLM integration without extra packages.",
+    "Zero‑dependency, zero‑config TypeScript first experience accelerates onboarding and eliminates version‑conflict headaches."
   ]
 }
