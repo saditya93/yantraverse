@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-30",
-  "description": "⚡️ Zero‑dependency, TypeScript‑first framework that outpaces Express & Fastify, drops into any Node/Bun/Deno project and scales to edge‑compute with built‑in observability.",
+  "date": "2026-10-01",
+  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
   "keywords": [
     "nodejs",
     "framework",
@@ -8,42 +8,17 @@
     "middleware",
     "express-alternative",
     "fast",
-    "zero-dependencies",
-    "serverless",
-    "edge",
-    "cloud-native",
-    "microservices",
-    "typescript",
-    "esm",
-    "ai-ready",
-    "observability",
-    "openapi3.2",
-    "graphql",
-    "otel",
-    "bun",
-    "deno",
-    "cloudflare-workers",
-    "llm",
-    "zero-config",
-    "type-safe",
-    "low-latency",
-    "performance"
+    "zero-dependencies"
   ],
-  "npm_trending_strategy": "Version 0.0.148‑daily.20260929 adds daily‑release edge‑runtime bundles, automatic OpenTelemetry instrumentation, AI‑ready middleware hooks, and full compatibility with Node, Bun, and Deno. The zero‑config setup, built‑in OpenAPI 3.2 generation and GraphQL federation let teams ship micro‑services instantly, making it a top‑pick for modern serverless and edge deployments.",
+  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#typescript",
-    "#edge",
-    "#serverless",
-    "#ai",
-    "#observability",
-    "#fast",
-    "#zeroDependency"
+    "#performance"
   ],
   "download_hooks": [
-    "Developers choose Yantravese for sub‑millisecond routing latency that beats Express and Fastify out‑of‑the‑box.",
-    "Built‑in OpenTelemetry and AI‑ready hooks give instant observability and LLM integration without extra packages.",
-    "Zero‑dependency, zero‑config TypeScript first experience accelerates onboarding and eliminates version‑conflict headaches."
+    "Developers want fast, simple frameworks",
+    "Zero dependencies = less maintenance headaches",
+    "Perfect for high-traffic APIs"
   ]
 }
