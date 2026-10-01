@@ -1,18 +1,19 @@
 {
-  "date": "2026-09-30",
+  "date": "2026-10-01",
   "category": "FEATURE",
-  "title": "Add request‑body validation middleware",
-  "description": "Introduces a lightweight, zero‑dependency validation middleware that checks incoming JSON bodies against a developer‑provided schema and returns a 400 error on mismatch. This reduces boiler‑plate validation code and prevents malformed data from reaching route handlers, improving security and reliability.",
+  "title": "Add Graceful Shutdown & Health‑Check Endpoint",
+  "description": "Provides a /health endpoint that reports service status and integrates a graceful shutdown sequence for SIGINT/SIGTERM. This improves observability in production and prevents abrupt termination of in‑flight requests, reducing error spikes during deployments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validation.js",
-    "test/validation.test.js"
+    "src/server.js",
+    "src/health.js",
+    "test/health.test.js"
   ],
   "testCases": [
-    "Valid payload matching schema passes through to the handler",
-    "Invalid payload returns 400 with descriptive error message"
+    "Verify GET /health returns 200 with {status:\"ok\"} and uptime in seconds",
+    "Simulate SIGTERM, ensure server stops accepting new connections, finishes ongoing requests, and logs shutdown complete"
   ],
-  "acceptance": "When a route registers the validation middleware with a schema, any request whose JSON body conforms to the schema proceeds to the next handler; otherwise the response status is 400 and the body contains an error detailing the first failing rule. Middleware must not interfere with other middlewares, works with async handlers, and logs validation errors at debug level.",
-  "reason": "Ensures data integrity across the framework without adding external dependencies, addressing a common pain point for developers and reducing runtime errors in production."
+  "acceptance": "A GET request to /health returns a JSON payload with status \"ok\" and a numeric uptime; when the process receives SIGINT or SIGTERM the server stops accepting new connections, waits up to 10 seconds for active requests to finish, then exits with code 0 and logs a shutdown message.",
+  "reason": "Production deployments need reliable health monitoring and clean termination to avoid dropped requests and to satisfy orchestrators (K8s, Docker). Implementing this now eliminates a common source of downtime and aligns yantraverse with modern DevOps practices."
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-01
+### FEATURE
+- Add Graceful Shutdown & Health‑Check Endpoint: Provides a /health endpoint that reports service status and integrates a graceful shutdown sequence for SIGINT/SIGTERM. This improves observability in production and prevents abrupt termination of in‑flight requests, reducing error spikes during deployments.
+
 ## [Automated] - 2026-09-30
 ### FEATURE
 - Add request‑body validation middleware: Introduces a lightweight, zero‑dependency validation middleware that checks incoming JSON bodies against a developer‑provided schema and returns a 400 error on mismatch. This reduces boiler‑plate validation code and prevents malformed data from reaching route handlers, improving security and reliability.
