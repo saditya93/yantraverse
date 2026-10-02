@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-02
+### FEATURE
+- Add JSON Schema Request Validation Middleware: Introduces a lightweight, zero‑dependency middleware that validates request bodies, query strings, and params against JSON Schema definitions. This reduces boiler‑plate validation code, prevents malformed data from reaching handlers, and improves overall API robustness.
+
 ## [Automated] - 2026-10-01
 ### FEATURE
 - Add Graceful Shutdown & Health‑Check Endpoint: Provides a /health endpoint that reports service status and integrates a graceful shutdown sequence for SIGINT/SIGTERM. This improves observability in production and prevents abrupt termination of in‑flight requests, reducing error spikes during deployments.

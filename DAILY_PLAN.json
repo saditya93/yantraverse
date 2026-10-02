@@ -1,19 +1,20 @@
 {
-  "date": "2026-10-01",
+  "date": "2026-10-02",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown & Health‑Check Endpoint",
-  "description": "Provides a /health endpoint that reports service status and integrates a graceful shutdown sequence for SIGINT/SIGTERM. This improves observability in production and prevents abrupt termination of in‑flight requests, reducing error spikes during deployments.",
+  "title": "Add JSON Schema Request Validation Middleware",
+  "description": "Introduces a lightweight, zero‑dependency middleware that validates request bodies, query strings, and params against JSON Schema definitions. This reduces boiler‑plate validation code, prevents malformed data from reaching handlers, and improves overall API robustness.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/health.js",
-    "test/health.test.js"
+    "src/middleware/validation.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Verify GET /health returns 200 with {status:\"ok\"} and uptime in seconds",
-    "Simulate SIGTERM, ensure server stops accepting new connections, finishes ongoing requests, and logs shutdown complete"
+    "Valid request body that matches schema proceeds to next middleware and returns expected response",
+    "Invalid request body returns 400 with detailed validation errors in JSON format",
+    "Query string validation works: missing required query param triggers 400 error",
+    "Custom error formatter can be injected and is used for error responses"
   ],
-  "acceptance": "A GET request to /health returns a JSON payload with status \"ok\" and a numeric uptime; when the process receives SIGINT or SIGTERM the server stops accepting new connections, waits up to 10 seconds for active requests to finish, then exits with code 0 and logs a shutdown message.",
-  "reason": "Production deployments need reliable health monitoring and clean termination to avoid dropped requests and to satisfy orchestrators (K8s, Docker). Implementing this now eliminates a common source of downtime and aligns yantraverse with modern DevOps practices."
+  "acceptance": "When a route registers a schema, incoming requests are automatically validated. Valid data passes unchanged; invalid data results in a 400 response containing an array of error messages. Middleware integrates with existing error‑handling and logging without breaking existing routes.",
+  "reason": "Input validation is a common source of bugs and security issues. Providing a first‑class, zero‑dependency validator saves developers time, enforces data contracts, and aligns with Yantraverse's goal of being a production‑ready, lightweight framework."
 }
