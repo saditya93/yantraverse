@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-03
+### FEATURE
+- Add built‑in request validation middleware: Provides a zero‑dependency, declarative way to validate request bodies, query strings, and params against JSON‑schema‑like definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.
+
 ## [Automated] - 2026-10-02
 ### FEATURE
 - Add JSON Schema Request Validation Middleware: Introduces a lightweight, zero‑dependency middleware that validates request bodies, query strings, and params against JSON Schema definitions. This reduces boiler‑plate validation code, prevents malformed data from reaching handlers, and improves overall API robustness.

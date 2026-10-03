@@ -1,20 +1,19 @@
 {
-  "date": "2026-10-02",
+  "date": "2026-10-03",
   "category": "FEATURE",
-  "title": "Add JSON Schema Request Validation Middleware",
-  "description": "Introduces a lightweight, zero‑dependency middleware that validates request bodies, query strings, and params against JSON Schema definitions. This reduces boiler‑plate validation code, prevents malformed data from reaching handlers, and improves overall API robustness.",
+  "title": "Add built‑in request validation middleware",
+  "description": "Provides a zero‑dependency, declarative way to validate request bodies, query strings, and params against JSON‑schema‑like definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validation.js",
-    "test/validation.test.js"
+    "src/middleware/validate.js",
+    "src/index.js",
+    "test/validate.test.js"
   ],
   "testCases": [
-    "Valid request body that matches schema proceeds to next middleware and returns expected response",
-    "Invalid request body returns 400 with detailed validation errors in JSON format",
-    "Query string validation works: missing required query param triggers 400 error",
-    "Custom error formatter can be injected and is used for error responses"
+    "Validate that a request with a valid JSON body passes through and the handler receives the parsed object",
+    "Validate that a request with an invalid body returns 400 with a clear error message and does not invoke the route handler"
   ],
-  "acceptance": "When a route registers a schema, incoming requests are automatically validated. Valid data passes unchanged; invalid data results in a 400 response containing an array of error messages. Middleware integrates with existing error‑handling and logging without breaking existing routes.",
-  "reason": "Input validation is a common source of bugs and security issues. Providing a first‑class, zero‑dependency validator saves developers time, enforces data contracts, and aligns with Yantraverse's goal of being a production‑ready, lightweight framework."
+  "acceptance": "When the middleware is applied to a route, any request that does not conform to the defined schema receives a 400 response with an error description, and valid requests proceed unchanged. The middleware must work for body, query, and params, be fully covered by unit tests, and not introduce external dependencies.",
+  "reason": "Ensuring data integrity at the edge is a common pain point for API developers. Adding native validation eliminates the need for third‑party libraries, aligns with the framework’s zero‑dependency goal, and improves security and stability for production deployments."
 }
