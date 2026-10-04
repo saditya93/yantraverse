@@ -1,19 +1,21 @@
 {
-  "date": "2026-10-03",
+  "date": "2026-10-04",
   "category": "FEATURE",
-  "title": "Add built‑in request validation middleware",
-  "description": "Provides a zero‑dependency, declarative way to validate request bodies, query strings, and params against JSON‑schema‑like definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.",
+  "title": "Add Built‑in Request Validation Middleware",
+  "description": "Introduce a lightweight validation layer that lets developers define schema objects for query, params, headers, and body. The middleware validates incoming requests against the schema, returns a 400 with detailed errors, and prevents downstream handlers from receiving malformed data, improving security and reducing boilerplate.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validate.js",
-    "src/index.js",
-    "test/validate.test.js"
+    "src/middleware/validation.js",
+    "src/app.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Validate that a request with a valid JSON body passes through and the handler receives the parsed object",
-    "Validate that a request with an invalid body returns 400 with a clear error message and does not invoke the route handler"
+    "Should pass validation when request matches schema",
+    "Should return 400 with error details when any field is missing or of wrong type",
+    "Should ignore unknown fields when `allowUnknown` option is false",
+    "Should work with async custom validators"
   ],
-  "acceptance": "When the middleware is applied to a route, any request that does not conform to the defined schema receives a 400 response with an error description, and valid requests proceed unchanged. The middleware must work for body, query, and params, be fully covered by unit tests, and not introduce external dependencies.",
-  "reason": "Ensuring data integrity at the edge is a common pain point for API developers. Adding native validation eliminates the need for third‑party libraries, aligns with the framework’s zero‑dependency goal, and improves security and stability for production deployments."
+  "acceptance": "All new tests pass, existing test suite remains green, validation middleware can be registered via app.useValidation(schema) and correctly blocks invalid requests while allowing valid ones.",
+  "reason": "Validating input is a common source of bugs and security issues; providing a first‑class, zero‑dependency validator reduces repetitive code, speeds up development, and aligns with the framework's goal of being production‑ready out of the box."
 }

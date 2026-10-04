@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-04
+### FEATURE
+- Add Built‑in Request Validation Middleware: Introduce a lightweight validation layer that lets developers define schema objects for query, params, headers, and body. The middleware validates incoming requests against the schema, returns a 400 with detailed errors, and prevents downstream handlers from receiving malformed data, improving security and reducing boilerplate.
+
 ## [Automated] - 2026-10-03
 ### FEATURE
 - Add built‑in request validation middleware: Provides a zero‑dependency, declarative way to validate request bodies, query strings, and params against JSON‑schema‑like definitions. This prevents malformed data from reaching route handlers, reducing runtime errors and improving API reliability.
