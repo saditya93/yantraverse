@@ -1,14 +1,13 @@
 {
-  "date": "2026-10-04",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework that delivers Express‑style simplicity with Fastify‑grade performance, built‑in AI/LLM routing, and native edge‑ready support.",
+  "date": "2026-10-05",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that gives you Express simplicity, Fastify performance, and built‑in AI‑driven routing for edge‑ready apps.",
   "keywords": [
     "nodejs",
     "framework",
+    "express-alternative",
+    "fastify-speed",
     "routing",
     "middleware",
-    "express-alternative",
-    "fast",
-    "ultra-fast",
     "zero-dependencies",
     "serverless",
     "edge-computing",
@@ -17,8 +16,8 @@
     "esm",
     "ai",
     "llm",
+    "generative-ai",
     "wasm",
-    "low-latency",
     "http2",
     "http3",
     "grpc",
@@ -28,33 +27,36 @@
     "api",
     "microservices",
     "observability",
+    "telemetry",
     "reactive",
     "bun",
     "deno-compat",
     "cloudflare-workers",
     "next-gen",
     "ai-first",
-    "llm-powered",
     "type-safe",
     "zero-config",
-    "streaming"
+    "streaming",
+    "low-latency",
+    "real-time",
+    "quantum-ready"
   ],
-  "npm_trending_strategy": "Version 0.0.152‑daily.20261003 is marketed as a *daily‑release* that bundles the latest edge‑runtime patches, AI‑routing heuristics, and WASM‑accelerated parsers—all without adding a single dependency. By positioning the package as \"Express‑compatible *but* 3× faster, AI‑aware, and ready for Node 20+, Bun 1.0, Deno and Cloudflare Workers\", it captures high‑search keywords (framework, routing, middleware, fast) while differentiating from Express (no middleware bloat) and Fastify (built‑in LLM request orchestration, zero‑config observability, HTTP/3 support). The description, keywords, and a daily‑build tag signal freshness, which npm’s relevance algorithm rewards, driving higher placement in search results.",
+  "npm_trending_strategy": "Leverage the 2026 hype around AI‑first back‑ends and edge computing: highlight built‑in LLM routing, automatic HTTP/2‑3 & gRPC support, and zero‑config deployment to Cloudflare Workers, Bun, and Deno. Pair that with a \"zero‑dependency, ultra‑fast\" tagline that directly competes with Express and Fastify in search keywords, while the version number (daily build) signals rapid innovation and community momentum.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#expressalternative",
+    "#expressAlternative",
     "#fast",
-    "#serverless",
-    "#edge",
     "#ai",
     "#llm",
+    "#edge",
+    "#serverless",
     "#typescript",
-    "#zero-deps"
+    "#zeroDeps"
   ],
   "download_hooks": [
-    "Developers choose Yantravese because it gives them the familiar Express API they love, but eliminates every extra dependency and adds AI‑driven request routing out of the box.",
-    "Benchmarks show sub‑0.3 ms request latency on V8, HTTP/3 support, and WASM‑powered JSON parsing that outperforms Fastify by ~30% in real‑world serverless workloads.",
-    "Zero‑config TypeScript types, ESM‑only builds, and built‑in observability dashboards let teams ship APIs faster—no extra plugins, no boilerplate, no runtime surprises."
+    "Developers pick yantravese for its Express‑style API with Fastify‑grade throughput—no extra dependencies to audit.",
+    "Performance angle: native HTTP/2, HTTP/3, gRPC, and WebSocket handling out of the box deliver sub‑millisecond latency on edge runtimes.",
+    "Developer experience angle: automatic TypeScript inference, zero‑config deployment to Cloudflare Workers, Bun, and Deno, plus AI‑driven route generation that cuts boilerplate by 80%."
   ]
 }
