@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-05
+### FEATURE
+- Add Built‑in Request Logging Middleware with Configurable Levels: Provides automatic, structured logging of each incoming request and response, helping developers diagnose issues and monitor performance in production. The middleware can be toggled per environment and supports customizable log levels, request IDs, and optional masking of sensitive headers.
+
 ## [Automated] - 2026-10-04
 ### FEATURE
 - Add Built‑in Request Validation Middleware: Introduce a lightweight validation layer that lets developers define schema objects for query, params, headers, and body. The middleware validates incoming requests against the schema, returns a 400 with detailed errors, and prevents downstream handlers from receiving malformed data, improving security and reducing boilerplate.
