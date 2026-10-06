@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-06
+### FEATURE
+- Built-in Request ID & Response-Time Middleware: Generates a unique request ID for every incoming request and adds a X-Response-Time header. This enables end‑to‑end tracing, simplifies debugging, and helps with performance monitoring without external dependencies.
+
 ## [Automated] - 2026-10-05
 ### FEATURE
 - Add Built‑in Request Logging Middleware with Configurable Levels: Provides automatic, structured logging of each incoming request and response, helping developers diagnose issues and monitor performance in production. The middleware can be toggled per environment and supports customizable log levels, request IDs, and optional masking of sensitive headers.

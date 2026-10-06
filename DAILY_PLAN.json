@@ -1,21 +1,21 @@
 {
-  "date": "2026-10-05",
+  "date": "2026-10-06",
   "category": "FEATURE",
-  "title": "Add Built‑in Request Logging Middleware with Configurable Levels",
-  "description": "Provides automatic, structured logging of each incoming request and response, helping developers diagnose issues and monitor performance in production. The middleware can be toggled per environment and supports customizable log levels, request IDs, and optional masking of sensitive headers.",
+  "title": "Built-in Request ID & Response-Time Middleware",
+  "description": "Generates a unique request ID for every incoming request and adds a X-Response-Time header. This enables end‑to‑end tracing, simplifies debugging, and helps with performance monitoring without external dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
+    "src/middleware/request-id.js",
+    "src/middleware/response-time.js",
     "src/app.js",
-    "test/logger.test.js"
+    "test/middleware/request-id.test.js",
+    "test/middleware/response-time.test.js"
   ],
   "testCases": [
-    "Logs request method, URL, status code, and response time at INFO level when LOG_LEVEL=info",
-    "Skips logging when LOG_LEVEL=none",
-    "Generates a unique request ID and includes it in both request and response logs",
-    "Masks configured sensitive headers (e.g., Authorization) in the log output"
+    "When a request is received, `req.id` is a non‑empty string and the response includes an `X-Request-ID` header matching it",
+    "When the response finishes, the `X-Response-Time` header is present and its value is a positive number followed by 'ms'"
   ],
-  "acceptance": "When the logger middleware is enabled, each request generates a correctly formatted JSON log line containing method, url, status, response time, requestId, and masked headers; logging respects the LOG_LEVEL setting and does not interfere with existing routes or error handling.",
-  "reason": "Improves observability and debugging for production deployments, reduces reliance on external logging libraries, and aligns with the framework’s zero‑dependency, security‑first philosophy."
+  "acceptance": "All unit tests pass, middleware can be toggled via `app.useRequestId()` and `app.useResponseTime()`, request IDs are unique per request, and response‑time header accurately reflects elapsed time (±5ms).",
+  "reason": "Improves observability and debugging in production environments, a common requirement for micro‑service APIs, while keeping the framework zero‑dependency and lightweight."
 }
