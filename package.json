@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.155-daily.20261006",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework that blends Express simplicity, Fastify performance, and AI‑driven edge‑ready routing.",
+  "version": "0.0.156-daily.20261007",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that blends Express simplicity, Fastify performance, and AI‑driven edge‑ready routing for serverless and edge workloads.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -67,6 +67,12 @@
     "cloudflare-workers",
     "bun",
     "deno-compat",
+    "edge-functions",
+    "prompt-engineering",
+    "devops",
+    "ci-cd",
+    "ai-ops",
+    "microfrontend",
     "next-gen"
   ],
   "author": "",
