@@ -1,21 +1,20 @@
 {
-  "date": "2026-10-06",
+  "date": "2026-10-07",
   "category": "FEATURE",
-  "title": "Built-in Request ID & Response-Time Middleware",
-  "description": "Generates a unique request ID for every incoming request and adds a X-Response-Time header. This enables end‑to‑end tracing, simplifies debugging, and helps with performance monitoring without external dependencies.",
+  "title": "Add Request ID & Structured Logging Middleware",
+  "description": "Introduce a lightweight middleware that generates a unique request ID for every incoming request and logs structured request/response data (method, path, status, duration). This improves traceability, debugging, and integrates with existing logging without adding dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/request-id.js",
-    "src/middleware/response-time.js",
-    "src/app.js",
-    "test/middleware/request-id.test.js",
-    "test/middleware/response-time.test.js"
+    "src/middleware/logger.js",
+    "src/utils/requestId.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "When a request is received, `req.id` is a non‑empty string and the response includes an `X-Request-ID` header matching it",
-    "When the response finishes, the `X-Response-Time` header is present and its value is a positive number followed by 'ms'"
+    "Verify that each request receives a unique `X-Request-Id` header and that the ID is attached to the request object",
+    "Confirm that the logger outputs a JSON line containing request ID, method, path, status code, and response time",
+    "Ensure that the middleware does not interfere with existing routes, static file serving, or error handling"
   ],
-  "acceptance": "All unit tests pass, middleware can be toggled via `app.useRequestId()` and `app.useResponseTime()`, request IDs are unique per request, and response‑time header accurately reflects elapsed time (±5ms).",
-  "reason": "Improves observability and debugging in production environments, a common requirement for micro‑service APIs, while keeping the framework zero‑dependency and lightweight."
+  "acceptance": "All new tests pass, existing test suite remains green, and manual verification shows a unique X-Request-Id header and correctly formatted log line for each request. No performance regression (>5% latency increase) is observed.",
+  "reason": "Production services need reliable request tracing for debugging and monitoring. Adding built‑in request IDs and structured logs eliminates the need for third‑party solutions, aligns with the framework's zero‑dependency goal, and provides immediate operational value."
 }

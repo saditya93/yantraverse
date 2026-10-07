@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-07
+### FEATURE
+- Add Request ID & Structured Logging Middleware: Introduce a lightweight middleware that generates a unique request ID for every incoming request and logs structured request/response data (method, path, status, duration). This improves traceability, debugging, and integrates with existing logging without adding dependencies.
+
 ## [Automated] - 2026-10-06
 ### FEATURE
 - Built-in Request ID & Response-Time Middleware: Generates a unique request ID for every incoming request and adds a X-Response-Time header. This enables end‑to‑end tracing, simplifies debugging, and helps with performance monitoring without external dependencies.
