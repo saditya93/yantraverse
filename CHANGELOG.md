@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-08
+### FEATURE
+- Add configurable request logging middleware: Introduce a lightweight, configurable request logger that records method, URL, status, response time, and optional headers. This enhances observability in production without adding external dependencies, aligning with yantraverse's zero‑dependency ethos.
+
 ## [Automated] - 2026-10-07
 ### FEATURE
 - Add Request ID & Structured Logging Middleware: Introduce a lightweight middleware that generates a unique request ID for every incoming request and logs structured request/response data (method, path, status, duration). This improves traceability, debugging, and integrates with existing logging without adding dependencies.
