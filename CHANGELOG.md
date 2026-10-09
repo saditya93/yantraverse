@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-09
+### FEATURE
+- Add built‑in bodyParser middleware with content‑type detection: Parsing request bodies is a common need that currently forces developers to add external packages. This middleware will automatically handle JSON, URL‑encoded, and multipart/form‑data payloads, exposing a parsed `req.body` while keeping the framework zero‑dependency.
+
 ## [Automated] - 2026-10-08
 ### FEATURE
 - Add configurable request logging middleware: Introduce a lightweight, configurable request logger that records method, URL, status, response time, and optional headers. This enhances observability in production without adding external dependencies, aligning with yantraverse's zero‑dependency ethos.

@@ -1,21 +1,19 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-09",
   "category": "FEATURE",
-  "title": "Add configurable request logging middleware",
-  "description": "Introduce a lightweight, configurable request logger that records method, URL, status, response time, and optional headers. This enhances observability in production without adding external dependencies, aligning with yantraverse's zero‑dependency ethos.",
+  "title": "Add built‑in bodyParser middleware with content‑type detection",
+  "description": "Parsing request bodies is a common need that currently forces developers to add external packages. This middleware will automatically handle JSON, URL‑encoded, and multipart/form‑data payloads, exposing a parsed `req.body` while keeping the framework zero‑dependency.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/app.js",
-    "test/middleware/logger.test.js"
+    "src/middleware/bodyParser.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Logs method, URL, status and response time for a successful GET request",
-    "Respects logger configuration: disables logging when 'enabled' is false",
-    "Includes custom header fields when 'extraHeaders' array is provided",
-    "Does not interfere with async route handlers or error propagation"
+    "Parse a JSON POST request and verify req.body contains the expected object",
+    "Parse an application/x-www-form-urlencoded POST and verify key/value pairs are correctly decoded",
+    "Parse a multipart/form-data request with a file upload and ensure fields and file metadata are accessible"
   ],
-  "acceptance": "When enabled, the middleware outputs a correctly formatted log line for each request, includes configured extra headers, can be toggled off via config, and never alters the request/response flow or error handling.",
-  "reason": "Production services need reliable request tracing for debugging and performance monitoring. Providing an out‑of‑the‑box logger eliminates the need for users to integrate third‑party tools, preserving the framework's lightweight and zero‑dependency promise while delivering high‑impact observability."
+  "acceptance": "The middleware correctly populates req.body for JSON, URL‑encoded, and multipart requests, returns a 415 error for unsupported content types, and does not interfere with existing routes or other middleware.",
+  "reason": "Provides essential request‑body handling out‑of‑the‑box, reduces external dependencies, improves developer experience, and aligns with the framework’s goal of being production‑ready with minimal setup."
 }
