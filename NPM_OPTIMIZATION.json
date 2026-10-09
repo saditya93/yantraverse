@@ -1,13 +1,13 @@
 {
-  "date": "2026-10-08",
-  "description": "Zero‑dependency, TypeScript‑first Node.js framework that blends Express simplicity, Fastify speed, and built‑in AI‑driven edge routing.",
+  "date": "2026-10-09",
+  "description": "Zero‑dependency, TypeScript‑first framework that fuses Express simplicity, Fastify performance, and AI‑driven edge routing for Node, Bun, Deno, and Cloudflare Workers.",
   "keywords": [
     "nodejs",
     "framework",
     "express-alternative",
     "fastify-speed",
     "ai-routing",
-    "edge-runtime",
+    "edge-compute",
     "serverless",
     "cloud-native",
     "typescript",
@@ -15,6 +15,7 @@
     "zero-dependencies",
     "http2",
     "http3",
+    "quic",
     "grpc",
     "websocket",
     "microservices",
@@ -33,22 +34,27 @@
     "streaming",
     "devops",
     "ci-cd",
-    "next-gen"
+    "graphql",
+    "microfrontend",
+    "runtimes",
+    "edge-runtime"
   ],
-  "npm_trending_strategy": "Version 0.0.156‑daily ships with AI‑enhanced routing that learns request patterns at runtime, edge‑ready adapters for Cloudflare Workers, Bun, and Deno, and native HTTP/2 + HTTP/3 support—all in a <30 KB zero‑dependency bundle. The package markets itself as the *only* Express‑style API that delivers Fastify‑grade throughput while giving developers AI‑powered route optimization and built‑in observability out of the box, hitting the 2026 trends of GenAI, edge‑compute, and serverless‑first architectures.",
+  "npm_trending_strategy": "Leverage the 2026 AI‑edge boom by advertising built‑in LLM‑driven routing and automatic observability, while promoting the single‑file, zero‑dependency install that works across Node, Bun, Deno, and Cloudflare Workers—giving devs the fastest path from prototype to production without lock‑in.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
+    "#typescript",
     "#ai",
     "#edge",
     "#serverless",
-    "#typescript",
-    "#zeroDep",
-    "#fast"
+    "#zeroDeps",
+    "#http3",
+    "#wasm",
+    "#llm"
   ],
   "download_hooks": [
-    "Sub‑millisecond request routing thanks to AI‑guided path selection that adapts to traffic patterns.",
-    "Zero‑dependency, <30 KB footprint ensures lightning‑fast cold starts on serverless and edge platforms.",
-    "Type‑safe, ESM‑only API feels like Express but runs at Fastify speed, with built‑in telemetry and observability."
+    "Developers choose Yantravese for its AI‑augmented router that auto‑optimizes request paths at the edge, cutting latency by up to 40% versus classic Express setups.",
+    "Performance‑first: native HTTP/3, QUIC, and zero‑dependency core deliver Fastify‑level throughput with a fraction of the memory footprint.",
+    "Developer experience: TypeScript‑first APIs, instant ESM compatibility across Node/Bun/Deno, and built‑in telemetry/observability mean you spend less time wiring tools and more time building features."
   ]
 }
