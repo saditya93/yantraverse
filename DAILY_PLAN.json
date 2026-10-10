@@ -1,19 +1,20 @@
 {
-  "date": "2026-10-09",
+  "date": "2026-10-10",
   "category": "FEATURE",
-  "title": "Add built‑in bodyParser middleware with content‑type detection",
-  "description": "Parsing request bodies is a common need that currently forces developers to add external packages. This middleware will automatically handle JSON, URL‑encoded, and multipart/form‑data payloads, exposing a parsed `req.body` while keeping the framework zero‑dependency.",
+  "title": "Add built-in response compression middleware",
+  "description": "Introduce a middleware that automatically compresses HTTP responses using gzip when the payload exceeds a configurable size and the client supports it. This reduces bandwidth usage and improves load times without adding external dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "test/bodyParser.test.js"
+    "src/middleware/compression.js",
+    "src/app.js",
+    "test/compression.test.js"
   ],
   "testCases": [
-    "Parse a JSON POST request and verify req.body contains the expected object",
-    "Parse an application/x-www-form-urlencoded POST and verify key/value pairs are correctly decoded",
-    "Parse a multipart/form-data request with a file upload and ensure fields and file metadata are accessible"
+    "Compresses response when payload > threshold and client Accept-Encoding includes gzip",
+    "Does not compress when payload <= threshold",
+    "Falls back gracefully when client does not support gzip"
   ],
-  "acceptance": "The middleware correctly populates req.body for JSON, URL‑encoded, and multipart requests, returns a 415 error for unsupported content types, and does not interfere with existing routes or other middleware.",
-  "reason": "Provides essential request‑body handling out‑of‑the‑box, reduces external dependencies, improves developer experience, and aligns with the framework’s goal of being production‑ready with minimal setup."
+  "acceptance": "The compression middleware can be enabled via app.use(compression({threshold: 1024})), correctly sets Content‑Encoding header, streams compressed data, respects client Accept‑Encoding, and does not alter non‑compressible responses. All existing tests pass and new compression tests pass.",
+  "reason": "Reducing response size directly improves user experience and server cost, addressing a common performance bottleneck while keeping the framework lightweight and dependency‑free."
 }

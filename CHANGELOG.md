@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-10
+### FEATURE
+- Add built-in response compression middleware: Introduce a middleware that automatically compresses HTTP responses using gzip when the payload exceeds a configurable size and the client supports it. This reduces bandwidth usage and improves load times without adding external dependencies.
+
 ## [Automated] - 2026-10-09
 ### FEATURE
 - Add built‑in bodyParser middleware with content‑type detection: Parsing request bodies is a common need that currently forces developers to add external packages. This middleware will automatically handle JSON, URL‑encoded, and multipart/form‑data payloads, exposing a parsed `req.body` while keeping the framework zero‑dependency.
