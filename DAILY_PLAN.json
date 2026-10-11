@@ -1,20 +1,22 @@
 {
-  "date": "2026-10-10",
+  "date": "2026-10-11",
   "category": "FEATURE",
-  "title": "Add built-in response compression middleware",
-  "description": "Introduce a middleware that automatically compresses HTTP responses using gzip when the payload exceeds a configurable size and the client supports it. This reduces bandwidth usage and improves load times without adding external dependencies.",
+  "title": "Add Built-in Request Body Validation Middleware",
+  "description": "Provides a declarative way to validate JSON request bodies against a schema, preventing malformed data from reaching route handlers. This reduces boiler‑plate validation code, improves security, and catches client errors early.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/compression.js",
-    "src/app.js",
-    "test/compression.test.js"
+    "src/middleware/validateBody.js",
+    "src/index.js",
+    "test/validateBody.test.js"
   ],
   "testCases": [
-    "Compresses response when payload > threshold and client Accept-Encoding includes gzip",
-    "Does not compress when payload <= threshold",
-    "Falls back gracefully when client does not support gzip"
+    "Valid payload passes and next() is called",
+    "Invalid payload returns 400 with detailed error message",
+    "Missing Content-Type header returns 415",
+    "Schema with nested objects validates correctly",
+    "Custom error formatter can be injected"
   ],
-  "acceptance": "The compression middleware can be enabled via app.use(compression({threshold: 1024})), correctly sets Content‑Encoding header, streams compressed data, respects client Accept‑Encoding, and does not alter non‑compressible responses. All existing tests pass and new compression tests pass.",
-  "reason": "Reducing response size directly improves user experience and server cost, addressing a common performance bottleneck while keeping the framework lightweight and dependency‑free."
+  "acceptance": "When a route registers the validation middleware with a JSON schema, any incoming request whose body does not conform returns a 400 response containing a clear error description; compliant requests proceed to the next handler without alteration. All new tests pass and existing test suite remains green.",
+  "reason": "Ensures data integrity at the framework level, eliminating repetitive validation code in applications and reducing runtime errors, which directly improves developer productivity and application reliability."
 }

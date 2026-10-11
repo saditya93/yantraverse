@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-11
+### FEATURE
+- Add Built-in Request Body Validation Middleware: Provides a declarative way to validate JSON request bodies against a schema, preventing malformed data from reaching route handlers. This reduces boiler‑plate validation code, improves security, and catches client errors early.
+
 ## [Automated] - 2026-10-10
 ### FEATURE
 - Add built-in response compression middleware: Introduce a middleware that automatically compresses HTTP responses using gzip when the payload exceeds a configurable size and the client supports it. This reduces bandwidth usage and improves load times without adding external dependencies.
