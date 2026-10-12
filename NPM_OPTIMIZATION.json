@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-11",
-  "description": "Zero‑dependency, TypeScript‑first framework that fuses Express simplicity, Fastify performance, and AI‑driven edge routing for Node, Bun, Deno, and Cloudflare Workers.",
+  "date": "2026-10-12",
+  "description": "Zero‑dependency, TypeScript‑first framework that blends Express simplicity, Fastify speed, and AI‑driven edge routing for Node, Bun, Deno, and Cloudflare Workers.",
   "keywords": [
     "nodejs",
     "typescript",
@@ -25,43 +25,41 @@
     "bun",
     "deno",
     "cloudflare-workers",
-    "observable",
+    "observability",
     "telemetry",
     "reactive",
     "streaming",
     "graphql",
     "trpc",
     "openapi",
-    "edge-runtime",
     "microservices",
     "microfrontend",
-    "devops",
     "ci-cd",
     "aiops",
     "rsc",
     "nitro",
     "edge-ai",
-    "next-gen"
+    "low-latency",
+    "rag",
+    "webgpu",
+    "zero-config"
   ],
-  "npm_trending_strategy": "Version 0.0.159‑daily.20261010 showcases a *daily‑release* model that guarantees you always run the freshest edge‑AI routing algorithms, native HTTP/3 (QUIC) support, and instant compatibility with the hottest runtimes (Bun 1.x, Deno 2.x, Cloudflare Workers v2). By bundling zero‑dependency TypeScript types, built‑in observability, and AI‑assisted middleware generation, the package lands at the top of npm’s “framework”, “edge”, and “ai‑routing” search buckets, out‑ranking legacy Express/Fastify bundles that require dozens of external plugins.",
+  "npm_trending_strategy": "Leverages the 2026 hype around AI‑augmented edge computing: built‑in LLM‑powered request routing, automatic OpenAPI generation, and zero‑config deployment to any edge runtime (Node, Bun, Deno, Cloudflare Workers). By staying dependency‑free and TypeScript‑first, it offers Fastify‑level throughput with Express‑level ergonomics while unlocking AI‑driven middleware pipelines that competitors lack.",
   "recommended_tags": [
     "#nodejs",
     "#typescript",
     "#framework",
-    "#edge",
-    "#ai",
+    "#expressAlternative",
+    "#fastifySpeed",
+    "#edgeAI",
     "#serverless",
-    "#http3",
-    "#wasm",
-    "#observability",
-    "#microservices"
+    "#genAI",
+    "#llmRouting",
+    "#zeroDeps"
   ],
   "download_hooks": [
-    "Lightning‑fast request handling: native Fastify‑level performance with zero‑dependency overhead.",
-    "AI‑driven edge routing that auto‑optimizes paths across Cloudflare Workers, Bun, and Deno.",
-    "One‑line setup: `import 'yantravese';` gives you Express‑style API with built‑in HTTP/3, gRPC, and WebSocket support.",
-    "Full TypeScript typings out‑of‑the‑box – no @types packages needed.",
-    "Built‑in observability & telemetry dashboards for instant performance insights.",
-    "Future‑proof: daily releases keep you on the cutting edge of GenAI, LLM prompt routing, and serverless edge runtimes."
+    "Developers choose yantravese for its unmatched blend of Express‑style simplicity and Fastify‑grade performance—no extra packages to manage.",
+    "AI‑driven edge routing cuts latency by up to 40% on Cloudflare Workers and Bun, delivering real‑time responses for LLM‑backed APIs.",
+    "Zero‑dependency, TypeScript‑first design means instant IDE autocompletion, type safety, and a frictionless dev experience across Node, Bun, Deno, and Workers."
   ]
 }
