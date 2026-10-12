@@ -1,22 +1,20 @@
 {
-  "date": "2026-10-11",
+  "date": "2026-10-12",
   "category": "FEATURE",
-  "title": "Add Built-in Request Body Validation Middleware",
-  "description": "Provides a declarative way to validate JSON request bodies against a schema, preventing malformed data from reaching route handlers. This reduces boiler‑plate validation code, improves security, and catches client errors early.",
+  "title": "Add built-in request body parsing middleware (JSON & URL‑encoded)",
+  "description": "Many applications need to read request payloads. This middleware parses JSON and URL‑encoded bodies, populates `req.body`, and returns a 400 error for malformed JSON, eliminating the need for external parsers and improving developer ergonomics.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateBody.js",
-    "src/index.js",
-    "test/validateBody.test.js"
+    "src/middleware/bodyParser.js",
+    "src/app.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Valid payload passes and next() is called",
-    "Invalid payload returns 400 with detailed error message",
-    "Missing Content-Type header returns 415",
-    "Schema with nested objects validates correctly",
-    "Custom error formatter can be injected"
+    "Parse valid JSON payload and verify req.body contains expected object",
+    "Parse valid URL‑encoded payload and verify req.body contains expected key/value pairs",
+    "Send malformed JSON and expect a 400 response with appropriate error message"
   ],
-  "acceptance": "When a route registers the validation middleware with a JSON schema, any incoming request whose body does not conform returns a 400 response containing a clear error description; compliant requests proceed to the next handler without alteration. All new tests pass and existing test suite remains green.",
-  "reason": "Ensures data integrity at the framework level, eliminating repetitive validation code in applications and reducing runtime errors, which directly improves developer productivity and application reliability."
+  "acceptance": "The middleware correctly parses JSON and URL‑encoded bodies, attaches the parsed object to `req.body`, and gracefully handles errors by responding with a 400 status and clear error message. It integrates seamlessly with existing routing and middleware chain without breaking current tests.",
+  "reason": "Providing native body parsing removes a common external dependency, aligns with the framework's zero‑dependency goal, and solves a frequent pain point for developers, boosting adoption and production readiness."
 }

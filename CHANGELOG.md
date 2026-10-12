@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-12
+### FEATURE
+- Add built-in request body parsing middleware (JSON & URL‑encoded): Many applications need to read request payloads. This middleware parses JSON and URL‑encoded bodies, populates `req.body`, and returns a 400 error for malformed JSON, eliminating the need for external parsers and improving developer ergonomics.
+
 ## [Automated] - 2026-10-11
 ### FEATURE
 - Add Built-in Request Body Validation Middleware: Provides a declarative way to validate JSON request bodies against a schema, preventing malformed data from reaching route handlers. This reduces boiler‑plate validation code, improves security, and catches client errors early.
