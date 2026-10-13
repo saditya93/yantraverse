@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-13
+### FEATURE
+- Graceful shutdown with signal handling and connection draining: Adds built‑in support for graceful shutdown on SIGINT/SIGTERM, allowing ongoing requests to finish and resources to be cleaned up before the process exits. This prevents dropped connections and data loss in production deployments.
+
 ## [Automated] - 2026-10-12
 ### FEATURE
 - Add built-in request body parsing middleware (JSON & URL‑encoded): Many applications need to read request payloads. This middleware parses JSON and URL‑encoded bodies, populates `req.body`, and returns a 400 error for malformed JSON, eliminating the need for external parsers and improving developer ergonomics.

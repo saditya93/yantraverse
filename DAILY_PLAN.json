@@ -1,20 +1,19 @@
 {
-  "date": "2026-10-12",
+  "date": "2026-10-13",
   "category": "FEATURE",
-  "title": "Add built-in request body parsing middleware (JSON & URL‑encoded)",
-  "description": "Many applications need to read request payloads. This middleware parses JSON and URL‑encoded bodies, populates `req.body`, and returns a 400 error for malformed JSON, eliminating the need for external parsers and improving developer ergonomics.",
+  "title": "Graceful shutdown with signal handling and connection draining",
+  "description": "Adds built‑in support for graceful shutdown on SIGINT/SIGTERM, allowing ongoing requests to finish and resources to be cleaned up before the process exits. This prevents dropped connections and data loss in production deployments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "src/app.js",
-    "test/bodyParser.test.js"
+    "src/gracefulShutdown.js",
+    "src/server.js",
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Parse valid JSON payload and verify req.body contains expected object",
-    "Parse valid URL‑encoded payload and verify req.body contains expected key/value pairs",
-    "Send malformed JSON and expect a 400 response with appropriate error message"
+    "Simulate SIGTERM during active requests and verify that the server stops accepting new connections but completes in‑flight requests before exiting",
+    "Trigger SIGINT when no requests are pending and ensure the process exits with status 0 after cleanup callbacks run"
   ],
-  "acceptance": "The middleware correctly parses JSON and URL‑encoded bodies, attaches the parsed object to `req.body`, and gracefully handles errors by responding with a 400 status and clear error message. It integrates seamlessly with existing routing and middleware chain without breaking current tests.",
-  "reason": "Providing native body parsing removes a common external dependency, aligns with the framework's zero‑dependency goal, and solves a frequent pain point for developers, boosting adoption and production readiness."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops accepting new connections, waits up to a configurable timeout for active requests to complete, runs registered cleanup hooks, and then exits with code 0. If the timeout expires, the process force‑exits with code 1. All tests pass and no unhandled promise rejections occur.",
+  "reason": "Production services need reliable termination to avoid client errors and resource leaks; implementing graceful shutdown directly in yantraverse eliminates the need for external wrappers and improves operational stability."
 }
