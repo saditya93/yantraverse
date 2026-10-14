@@ -1,1 +1,83 @@
- // test/errorHandler.test.js const ErrorHandler = require('../src/errorHandler') const logger = {   error: jest.fn() } describe('ErrorHandler', () => {   it('should handle error and log it', () => {     const errorHandler = new ErrorHandler(logger)     const error = new Error('Test error')     errorHandler.handleError(error)     expect(logger.error).toHaveBeenCalledTimes(2)   })   it('should handle route not found error', () => {     const errorHandler = new ErrorHandler(logger)     const req = {}     const res = {       status: jest.fn(),       json: jest.fn()     }     errorHandler.handleRouteNotFound(req, res)     expect(logger.error).toHaveBeenCalledTimes(1)     expect(res.status).toHaveBeenCalledTimes(1)     expect(res.json).toHaveBeenCalledTimes(1)   }) }) // test/app.test.js const App = require('../src/app') const logger = {   error: jest.fn() } const errorHandler = {   handleError: jest.fn() } describe('App', () => {   it('should start the app and handle error', () => {     const app = new App(logger, errorHandler)     app.start()     expect(errorHandler.handleError).toHaveBeenCalledTimes(1)   }) }) // test/server.test.js const Server = require('../src/server') const app = {   errorHandler: {     handleError: jest.fn()   } } describe('Server', () => {   it('should handle server error', () => {     const server = new Server(app)     const error = new Error('Test error')     const req = {}     const res = {}     server.handleServerError(error, req, res)     expect(app.errorHandler.handleError).toHaveBeenCalledTimes(1)   }) }) 
+// test/server.test.js
+const { spawn } = require('child_process')
+const path = require('path')
+const http = require('http')
+
+/**
+ * Helper to perform an HTTP GET request returning a promise.
+ * @param {number} port - Port where the server is listening.
+ * @returns {Promise<{statusCode:number, body:string}>}
+ */
+function httpGet (port) {
+  return new Promise((resolve, reject) => {
+    const req = http.get({ hostname: '127.0.0.1', port, path: '/', timeout: 5000 }, res => {
+      let data = ''
+      res.on('data', chunk => { data += chunk })
+      res.on('end', () => {
+        resolve({ statusCode: res.statusCode, body: data })
+      })
+    })
+    req.on('error', reject)
+  })
+}
+
+describe('Graceful shutdown behavior', () => {
+  const serverScript = path.resolve(__dirname, '../src/server.js')
+  const port = 4000
+  let serverProcess = null
+
+  beforeEach(done => {
+    // Spawn a separate Node process that starts the server
+    serverProcess = spawn('node', [serverScript, port], {
+      stdio: ['ignore', 'pipe', 'pipe']
+    })
+    // Wait for the server to start listening (simple delay)
+    setTimeout(done, 500)
+  })
+
+  afterEach(() => {
+    if (serverProcess && !serverProcess.killed) {
+      serverProcess.kill('SIGKILL')
+    }
+    serverProcess = null
+  })
+
+  test('completes in‑flight request after SIGTERM', async () => {
+    // Start a long request (simulated by a custom handler that delays 2 seconds)
+    // Send a request that will take ~2 seconds to respond
+    const longRequest = httpGet(port)
+    // Give the request a moment to reach the server, then send SIGTERM
+    setTimeout(() => {
+      serverProcess.kill('SIGTERM')
+    }, 100)
+    const response = await longRequest
+    expect(response.statusCode).toBe(200)
+    expect(response.body).toBe('OK')
+    // Ensure the process exits with code 0
+    const exitCode = await new Promise(resolve => {
+      serverProcess.on('exit', (code) => resolve(code))
+    })
+    expect(exitCode).toBe(0)
+  })
+
+  test('drains multiple concurrent requests on SIGINT', async () => {
+    const requestPromises = []
+    // Fire 5 concurrent requests
+    for (let i = 0; i < 5; i++) {
+      requestPromises.push(httpGet(port))
+    }
+    // After a short delay, send SIGINT
+    setTimeout(() => {
+      serverProcess.kill('SIGINT')
+    }, 100)
+    const responses = await Promise.all(requestPromises)
+    responses.forEach(r => {
+      expect(r.statusCode).toBe(200)
+      expect(r.body).toBe('OK')
+    })
+    const exitCode = await new Promise(resolve => {
+      serverProcess.on('exit', (code) => resolve(code))
+    })
+    expect(exitCode).toBe(0)
+  })
+})
