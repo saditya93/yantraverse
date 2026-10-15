@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.163-daily.20261014",
-  "description": "Zero‑dependency, TypeScript‑first framework that blends Express simplicity, Fastify performance, and AI‑driven routing for Node, Bun, Deno & Cloudflare Workers—ready for the edge‑first era.",
+  "version": "0.0.164-daily.20261015",
+  "description": "Zero‑dependency, TypeScript‑first edge‑ready framework that fuses Express simplicity, Fastify speed, and AI‑driven routing for Node, Bun, Deno & Cloudflare Workers.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -59,6 +59,7 @@
     "wasm",
     "webgpu",
     "observability",
+    "otel",
     "telemetry",
     "graphql",
     "trpc",
@@ -68,7 +69,11 @@
     "ci-cd",
     "devops",
     "low-latency",
-    "edge-ai"
+    "edge-ai",
+    "aiops",
+    "edge-runtime",
+    "nitro",
+    "v8-isolate"
   ],
   "author": "",
   "license": "MIT",
