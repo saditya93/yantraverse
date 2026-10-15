@@ -1,18 +1,21 @@
 {
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "category": "FEATURE",
-  "title": "Graceful shutdown with signal handling and request draining",
-  "description": "Adds support for SIGINT/SIGTERM handling so the server can stop accepting new connections, wait for in‑flight requests to finish, then close resources cleanly. This prevents abrupt termination, improves reliability in container orchestration and reduces the risk of corrupted responses.",
+  "title": "Add Built-in Request Body Validation Middleware",
+  "description": "Introduces a lightweight, schema‑based request body validator that integrates with existing routing. It prevents malformed payloads early, reduces boiler‑plate validation code, and improves security and error consistency across the framework.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "test/server.test.js"
+    "src/middleware/validateBody.js",
+    "src/router.js",
+    "test/validateBody.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM during an active request and verify the server stops accepting new connections but completes the ongoing request before exiting",
-    "Send multiple concurrent requests, trigger SIGINT, and ensure all responses are received and the process exits with code 0"
+    "Valid JSON payload matching schema passes and reaches the handler",
+    "Invalid payload (missing required field) returns 400 with descriptive error",
+    "Invalid data type in payload returns 400 with field‑specific message",
+    "Validator correctly skips non‑JSON content‑type requests"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops accepting new connections, waits up to 30 seconds for all active requests to finish, then closes the HTTP server and exits with code 0. No new connections are accepted after the signal, and all pending responses are delivered correctly.",
-  "reason": "Production deployments (Kubernetes, Docker, PM2) rely on graceful shutdown to avoid dropped requests and ensure clean resource cleanup. Implementing this feature enhances stability, aligns with the framework's zero‑dependency, production‑ready ethos, and addresses a common operational pain point."
+  "acceptance": "When a route registers a validation schema, incoming requests are automatically checked; valid requests proceed to the handler, while invalid requests receive a 400 response with a clear error object. All existing tests remain passing and new validation tests pass.",
+  "reason": "Ensures data integrity and reduces repetitive validation code in user applications, addressing a common pain point and enhancing the framework’s security and developer ergonomics."
 }

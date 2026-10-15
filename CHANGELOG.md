@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-15
+### FEATURE
+- Add Built-in Request Body Validation Middleware: Introduces a lightweight, schema‑based request body validator that integrates with existing routing. It prevents malformed payloads early, reduces boiler‑plate validation code, and improves security and error consistency across the framework.
+
 ## [Automated] - 2026-10-14
 ### FEATURE
 - Graceful shutdown with signal handling and request draining: Adds support for SIGINT/SIGTERM handling so the server can stop accepting new connections, wait for in‑flight requests to finish, then close resources cleanly. This prevents abrupt termination, improves reliability in container orchestration and reduces the risk of corrupted responses.
