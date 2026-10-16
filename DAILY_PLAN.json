@@ -1,21 +1,18 @@
 {
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "category": "FEATURE",
-  "title": "Add Built-in Request Body Validation Middleware",
-  "description": "Introduces a lightweight, schema‑based request body validator that integrates with existing routing. It prevents malformed payloads early, reduces boiler‑plate validation code, and improves security and error consistency across the framework.",
+  "title": "Add Graceful Shutdown with Signal Handling",
+  "description": "Implements graceful shutdown on SIGINT/SIGTERM to close existing connections, stop accepting new requests, and clean up resources. This improves stability and prevents abrupt termination in production environments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateBody.js",
-    "src/router.js",
-    "test/validateBody.test.js"
+    "src/server.js",
+    "test/server.test.js"
   ],
   "testCases": [
-    "Valid JSON payload matching schema passes and reaches the handler",
-    "Invalid payload (missing required field) returns 400 with descriptive error",
-    "Invalid data type in payload returns 400 with field‑specific message",
-    "Validator correctly skips non‑JSON content‑type requests"
+    "Verify that on SIGTERM the server stops accepting new connections and returns 503 for incoming requests",
+    "Ensure all existing connections are allowed to finish within a configurable timeout before the process exits"
   ],
-  "acceptance": "When a route registers a validation schema, incoming requests are automatically checked; valid requests proceed to the handler, while invalid requests receive a 400 response with a clear error object. All existing tests remain passing and new validation tests pass.",
-  "reason": "Ensures data integrity and reduces repetitive validation code in user applications, addressing a common pain point and enhancing the framework’s security and developer ergonomics."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops listening, responds with 503 to new requests, waits up to the configured shutdown timeout for active requests to complete, then exits with code 0, and logs appropriate shutdown messages.",
+  "reason": "Production deployments need reliable termination to avoid data loss, resource leaks, and to comply with orchestration platforms (e.g., Kubernetes) that expect graceful shutdown behavior."
 }

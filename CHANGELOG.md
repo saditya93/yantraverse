@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-16
+### FEATURE
+- Add Graceful Shutdown with Signal Handling: Implements graceful shutdown on SIGINT/SIGTERM to close existing connections, stop accepting new requests, and clean up resources. This improves stability and prevents abrupt termination in production environments.
+
 ## [Automated] - 2026-10-15
 ### FEATURE
 - Add Built-in Request Body Validation Middleware: Introduces a lightweight, schema‑based request body validator that integrates with existing routing. It prevents malformed payloads early, reduces boiler‑plate validation code, and improves security and error consistency across the framework.
