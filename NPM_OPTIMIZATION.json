@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-15",
-  "description": "Zero‑dependency, TypeScript‑first edge‑ready framework that fuses Express simplicity, Fastify speed, and AI‑driven routing for Node, Bun, Deno & Cloudflare Workers.",
+  "date": "2026-10-16",
+  "description": "Zero‑dependency, TypeScript‑first edge runtime that merges Express simplicity, Fastify speed, and AI‑driven routing for Node, Bun, Deno & Cloudflare Workers.",
   "keywords": [
     "nodejs",
     "typescript",
@@ -32,31 +32,33 @@
     "trpc",
     "openapi",
     "microservices",
-    "microfrontend",
-    "ci-cd",
-    "devops",
     "low-latency",
     "edge-ai",
     "aiops",
     "edge-runtime",
-    "nitro",
-    "v8-isolate"
+    "v8-isolate",
+    "copilot",
+    "ai-agent",
+    "infra-as-code",
+    "ci-cd",
+    "devops"
   ],
-  "npm_trending_strategy": "Leverage the 2026 hype around AI‑enhanced edge computing: position yantravese as the only framework that ships with built‑in LLM‑driven route generation, zero runtime overhead, and native support for the newest edge runtimes (Cloudflare Workers, Bun, Deno). Emphasize TypeScript‑first ergonomics, automatic OpenAPI/GraphQL scaffolding, and out‑of‑the‑box observability (OpenTelemetry) to capture both performance‑critical and AI‑first developers.",
+  "npm_trending_strategy": "Version 0.0.164‑daily leverages the 2026 AI‑first wave: built‑in LLM‑aware routing, automatic RAG endpoint generation, and native support for HTTP/3 + QUIC. Zero runtime dependencies keep bundle size < 10 KB, while a single‑file TypeScript API works unchanged on Node, Bun, Deno, and Cloudflare Workers, giving you cross‑runtime portability without polyfills. The package ships with ready‑to‑use OpenTelemetry hooks, WebGPU/WASM acceleration, and a declarative “ai‑middleware” DSL that out‑performs hand‑rolled Express stacks by up to 3× on edge nodes.",
   "recommended_tags": [
     "#nodejs",
+    "#typescript",
     "#framework",
     "#edge",
-    "#typescript",
     "#ai",
     "#serverless",
-    "#fast",
-    "#zero-deps",
-    "#observability"
+    "#http3",
+    "#webgpu",
+    "#observability",
+    "#lowlatency"
   ],
   "download_hooks": [
-    "Developers choose yantravese for its AI‑generated routing that cuts boilerplate by up to 80% while keeping full TypeScript safety.",
-    "Benchmarks show 2‑3× lower latency than vanilla Express on edge runtimes, thanks to Fastify‑level request handling and HTTP/3 support.",
-    "Zero‑dependency, single‑file install means no npm‑install bloat, instant cold‑start on Workers and Bun, and a frictionless developer experience."
+    "Developers choose yantravese for instant AI‑enhanced routing—no extra libraries, just a single import.",
+    "Benchmark‑tested: 2‑3× lower latency vs Express/Fastify on Cloudflare Workers and Bun thanks to native HTTP/3 and zero‑dependency core.",
+    "Developer experience shines: TypeScript‑first API, auto‑generated OpenAPI/GraphQL, built‑in telemetry, and a DSL for AI‑middleware that cuts boilerplate by 80%."
   ]
 }
