@@ -1,18 +1,21 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-17",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown with Signal Handling",
-  "description": "Implements graceful shutdown on SIGINT/SIGTERM to close existing connections, stop accepting new requests, and clean up resources. This improves stability and prevents abrupt termination in production environments.",
+  "title": "Add Structured Request Logging with Correlation IDs",
+  "description": "Introduce a lightweight logging middleware that emits structured JSON logs for each request, including a unique correlation ID, request method, URL, status, response time, and client IP. This improves observability, aids debugging in production, and enables easy correlation across distributed services.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "test/server.test.js"
+    "src/middleware/logger.js",
+    "src/utils/correlationId.js",
+    "src/app.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Verify that on SIGTERM the server stops accepting new connections and returns 503 for incoming requests",
-    "Ensure all existing connections are allowed to finish within a configurable timeout before the process exits"
+    "Logs contain a correlationId that matches the value set on req.correlationId",
+    "JSON log includes method, url, status, responseTime, and clientIp fields",
+    "Middleware does not alter response body or status code"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the server stops listening, responds with 503 to new requests, waits up to the configured shutdown timeout for active requests to complete, then exits with code 0, and logs appropriate shutdown messages.",
-  "reason": "Production deployments need reliable termination to avoid data loss, resource leaks, and to comply with orchestration platforms (e.g., Kubernetes) that expect graceful shutdown behavior."
+  "acceptance": "When the server receives a request, a JSON log entry is written to stdout with all required fields, a unique correlationId is attached to the request object, and the original response behavior remains unchanged.",
+  "reason": "Enhanced observability is critical for production stability; structured logs and correlation IDs enable rapid issue triage, performance monitoring, and seamless integration with log aggregation platforms, directly supporting the framework's stability-focused roadmap."
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-17
+### FEATURE
+- Add Structured Request Logging with Correlation IDs: Introduce a lightweight logging middleware that emits structured JSON logs for each request, including a unique correlation ID, request method, URL, status, response time, and client IP. This improves observability, aids debugging in production, and enables easy correlation across distributed services.
+
 ## [Automated] - 2026-10-16
 ### FEATURE
 - Add Graceful Shutdown with Signal Handling: Implements graceful shutdown on SIGINT/SIGTERM to close existing connections, stop accepting new requests, and clean up resources. This improves stability and prevents abrupt termination in production environments.
