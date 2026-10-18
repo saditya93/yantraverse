@@ -1,21 +1,22 @@
 {
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "category": "FEATURE",
-  "title": "Add Structured Request Logging with Correlation IDs",
-  "description": "Introduce a lightweight logging middleware that emits structured JSON logs for each request, including a unique correlation ID, request method, URL, status, response time, and client IP. This improves observability, aids debugging in production, and enables easy correlation across distributed services.",
+  "title": "Add Structured Request Logger with Correlation IDs",
+  "description": "Provides automatic request/response logging with a unique correlation ID per request, improving observability and debugging in production. The logger is configurable, can be injected with a custom logger, and skips static asset routes to reduce noise.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/utils/correlationId.js",
+    "src/middleware/requestLogger.js",
+    "src/util/correlationId.js",
     "src/app.js",
-    "test/logger.test.js"
+    "test/requestLogger.test.js"
   ],
   "testCases": [
-    "Logs contain a correlationId that matches the value set on req.correlationId",
-    "JSON log includes method, url, status, responseTime, and clientIp fields",
-    "Middleware does not alter response body or status code"
+    "Verify that each incoming request receives a X-Correlation-ID header when none is supplied",
+    "Verify that the logger outputs a JSON line containing method, url, status, response time, and correlation ID",
+    "Ensure that static file routes are excluded from logging when configured",
+    "Confirm that a custom logger injected via app.useLogger() receives the same log entries"
   ],
-  "acceptance": "When the server receives a request, a JSON log entry is written to stdout with all required fields, a unique correlationId is attached to the request object, and the original response behavior remains unchanged.",
-  "reason": "Enhanced observability is critical for production stability; structured logs and correlation IDs enable rapid issue triage, performance monitoring, and seamless integration with log aggregation platforms, directly supporting the framework's stability-focused roadmap."
+  "acceptance": "All test cases pass; the middleware adds a correlation ID header if missing, logs structured JSON entries for each request (excluding configured skip paths), and allows injection of a custom logger without affecting existing routing or error handling.",
+  "reason": "Improves production monitoring and traceability, reduces time to diagnose issues, and aligns yantraverse with modern observability best practices without adding external dependencies."
 }

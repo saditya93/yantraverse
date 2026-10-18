@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-18
+### FEATURE
+- Add Structured Request Logger with Correlation IDs: Provides automatic request/response logging with a unique correlation ID per request, improving observability and debugging in production. The logger is configurable, can be injected with a custom logger, and skips static asset routes to reduce noise.
+
 ## [Automated] - 2026-10-17
 ### FEATURE
 - Add Structured Request Logging with Correlation IDs: Introduce a lightweight logging middleware that emits structured JSON logs for each request, including a unique correlation ID, request method, URL, status, response time, and client IP. This improves observability, aids debugging in production, and enables easy correlation across distributed services.
