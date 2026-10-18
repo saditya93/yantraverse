@@ -1,14 +1,13 @@
 {
-  "date": "2026-10-17",
-  "description": "Zero‑dependency, TypeScript‑first edge runtime that blends Express simplicity, Fastify speed, and AI‑driven routing for Node, Bun, Deno & Cloudflare Workers.",
+  "date": "2026-10-18",
+  "description": "Zero‑dependency, TypeScript‑first edge runtime that fuses Express‑style simplicity, Fastify‑grade performance, and AI‑driven routing for Node, Bun, Deno & Cloudflare Workers.",
   "keywords": [
-    "nodejs",
     "typescript",
+    "nodejs",
     "edge-runtime",
     "ai-routing",
     "genai",
     "llm",
-    "rag",
     "vector-search",
     "prompt-engineering",
     "serverless",
@@ -24,9 +23,9 @@
     "streaming",
     "wasm",
     "webgpu",
-    "observability",
     "otel",
     "telemetry",
+    "observability",
     "graphql",
     "trpc",
     "openapi",
@@ -34,14 +33,19 @@
     "low-latency",
     "edge-ai",
     "aiops",
-    "infra-as-code",
-    "ci-cd",
+    "cloud-native",
+    "micro-frontends",
+    "low-code",
     "devops",
-    "ai-agent",
-    "copilot",
-    "next-gen"
+    "ci-cd",
+    "next-gen",
+    "framework",
+    "routing",
+    "middleware",
+    "express-alternative",
+    "fast"
   ],
-  "npm_trending_strategy": "Leverage the 2026 surge in AI‑augmented edge computing by positioning yantravese as the *only* framework that ships with built‑in LLM routing, zero runtime overhead, and native support for Node, Bun, Deno, and Cloudflare Workers—all without a single dependency. Emphasize the TypeScript‑first API, HTTP/3 + QUIC readiness, and out‑of‑the‑box observability (OTel, telemetry) to capture search traffic for keywords like “edge‑runtime”, “ai‑routing”, and “serverless”. Highlight the daily‑release cadence (v0.0.165‑daily) to signal rapid innovation, which drives SEO relevance and keeps the package at the top of npm’s “framework”, “routing”, and “middleware” results.",
+  "npm_trending_strategy": "Leverage the surge in AI‑augmented edge computing by positioning yantravese as the *only* zero‑dependency runtime that combines TypeScript‑first ergonomics, built‑in LLM‑ready routing, and native support for HTTP/3, QUIC, and WebGPU. Highlight the cross‑platform reach (Node, Bun, Deno, Cloudflare Workers) and the ability to drop‑in replace Express/Fastify without rewriting code, while gaining AI‑powered request handling, ultra‑low latency, and full observability (OTel, telemetry). Emphasize the daily‑release cadence (v0.0.166‑daily) to convey active innovation and community responsiveness.",
   "recommended_tags": [
     "#nodejs",
     "#typescript",
@@ -51,14 +55,17 @@
     "#framework",
     "#routing",
     "#middleware",
-    "#fast",
-    "#zero-deps"
+    "#expressalternative",
+    "#fastify",
+    "#genai",
+    "#llm",
+    "#http3",
+    "#webgpu",
+    "#observability"
   ],
   "download_hooks": [
-    "Blazing‑fast request handling: benchmarks show <1 ms latency on edge nodes, beating Express by 12× and Fastify by 4×.",
-    "AI‑driven routing: define routes with natural‑language intents; the runtime auto‑maps LLM‑generated paths to handlers.",
-    "Zero‑dependency, single‑file install: no package‑lock bloat, instant start‑up in <200 ms on any platform.",
-    "Universal runtime: write once, run everywhere—Node, Bun, Deno, Cloudflare Workers, and future V8 isolates.",
-    "Built‑in observability: OpenTelemetry, metrics, and tracing out of the box for production‑grade monitoring."
+    "Developers choose yantravese for instant AI‑driven routing that turns natural‑language intents into endpoint handlers—no extra libraries needed.",
+    "Benchmarks show sub‑millisecond request latency on Cloudflare Workers and Bun, thanks to a zero‑dependency core and native HTTP/3 support.",
+    "The TypeScript‑first API, built‑in OpenAPI/GraphQL generation, and out‑of‑the‑box OTEL telemetry give a frictionless developer experience from prototype to production."
   ]
 }
