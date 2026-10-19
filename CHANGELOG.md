@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-19
+### FEATURE
+- Graceful Shutdown with In-Flight Request Drain: Adds a production‑ready graceful shutdown mechanism that stops accepting new connections, waits for ongoing requests to complete, and then exits the process. This prevents dropped requests during deployments or restarts, improving reliability and user experience.
+
 ## [Automated] - 2026-10-18
 ### FEATURE
 - Add Structured Request Logger with Correlation IDs: Provides automatic request/response logging with a unique correlation ID per request, improving observability and debugging in production. The logger is configurable, can be injected with a custom logger, and skips static asset routes to reduce noise.

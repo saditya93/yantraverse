@@ -1,22 +1,19 @@
 {
-  "date": "2026-10-18",
+  "date": "2026-10-19",
   "category": "FEATURE",
-  "title": "Add Structured Request Logger with Correlation IDs",
-  "description": "Provides automatic request/response logging with a unique correlation ID per request, improving observability and debugging in production. The logger is configurable, can be injected with a custom logger, and skips static asset routes to reduce noise.",
+  "title": "Graceful Shutdown with In-Flight Request Drain",
+  "description": "Adds a production‑ready graceful shutdown mechanism that stops accepting new connections, waits for ongoing requests to complete, and then exits the process. This prevents dropped requests during deployments or restarts, improving reliability and user experience.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/requestLogger.js",
-    "src/util/correlationId.js",
-    "src/app.js",
-    "test/requestLogger.test.js"
+    "src/server.js",
+    "src/shutdown.js",
+    "test/shutdown.test.js"
   ],
   "testCases": [
-    "Verify that each incoming request receives a X-Correlation-ID header when none is supplied",
-    "Verify that the logger outputs a JSON line containing method, url, status, response time, and correlation ID",
-    "Ensure that static file routes are excluded from logging when configured",
-    "Confirm that a custom logger injected via app.useLogger() receives the same log entries"
+    "Verify that new requests are rejected after SIGTERM is received while existing requests continue processing",
+    "Confirm the process exits with code 0 after all in‑flight requests finish or a timeout is reached"
   ],
-  "acceptance": "All test cases pass; the middleware adds a correlation ID header if missing, logs structured JSON entries for each request (excluding configured skip paths), and allows injection of a custom logger without affecting existing routing or error handling.",
-  "reason": "Improves production monitoring and traceability, reduces time to diagnose issues, and aligns yantraverse with modern observability best practices without adding external dependencies."
+  "acceptance": "When a SIGTERM or SIGINT signal is sent, the server stops accepting new connections, allows up to 10 seconds for active requests to complete, then exits cleanly. If requests exceed the timeout, they are terminated and the process still exits. All related unit and integration tests pass.",
+  "reason": "Ensures zero‑downtime deployments and protects against abrupt termination of client requests, a critical requirement for production services using yantraverse."
 }
