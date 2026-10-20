@@ -1,19 +1,21 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "category": "FEATURE",
-  "title": "Graceful Shutdown with In-Flight Request Drain",
-  "description": "Adds a production‑ready graceful shutdown mechanism that stops accepting new connections, waits for ongoing requests to complete, and then exits the process. This prevents dropped requests during deployments or restarts, improving reliability and user experience.",
+  "title": "Configurable Request Logging Middleware with Log Rotation",
+  "description": "Adds a built‑in request logger that captures method, URL, status, response time and optional request body. Logs are written to a rotating file (daily) and can be disabled or customized via framework config, improving observability and troubleshooting in production.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/shutdown.js",
-    "test/shutdown.test.js"
+    "src/middleware/requestLogger.js",
+    "src/utils/logger.js",
+    "test/requestLogger.test.js"
   ],
   "testCases": [
-    "Verify that new requests are rejected after SIGTERM is received while existing requests continue processing",
-    "Confirm the process exits with code 0 after all in‑flight requests finish or a timeout is reached"
+    "Should log a formatted line for each incoming request with correct method, URL, status and response time",
+    "Should rotate log files daily and create a new file when the date changes",
+    "Should respect configuration flags to disable logging or change log level",
+    "Should handle errors in the logging stream without crashing the server"
   ],
-  "acceptance": "When a SIGTERM or SIGINT signal is sent, the server stops accepting new connections, allows up to 10 seconds for active requests to complete, then exits cleanly. If requests exceed the timeout, they are terminated and the process still exits. All related unit and integration tests pass.",
-  "reason": "Ensures zero‑downtime deployments and protects against abrupt termination of client requests, a critical requirement for production services using yantraverse."
+  "acceptance": "When the middleware is enabled, every request generates a log entry in the configured log file, the file rotates at midnight, and any logging errors are caught and reported without affecting request processing. All test cases pass and existing test suite remains green.",
+  "reason": "Observability is essential for production services; a zero‑dependency, configurable logger gives developers immediate insight into traffic patterns and errors, reducing mean‑time‑to‑detect and -resolve issues without adding external dependencies."
 }

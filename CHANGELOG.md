@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-20
+### FEATURE
+- Configurable Request Logging Middleware with Log Rotation: Adds a built‑in request logger that captures method, URL, status, response time and optional request body. Logs are written to a rotating file (daily) and can be disabled or customized via framework config, improving observability and troubleshooting in production.
+
 ## [Automated] - 2026-10-19
 ### FEATURE
 - Graceful Shutdown with In-Flight Request Drain: Adds a production‑ready graceful shutdown mechanism that stops accepting new connections, waits for ongoing requests to complete, and then exits the process. This prevents dropped requests during deployments or restarts, improving reliability and user experience.
