@@ -1,21 +1,19 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "category": "FEATURE",
-  "title": "Configurable Request Logging Middleware with Log Rotation",
-  "description": "Adds a built‑in request logger that captures method, URL, status, response time and optional request body. Logs are written to a rotating file (daily) and can be disabled or customized via framework config, improving observability and troubleshooting in production.",
+  "title": "Add graceful shutdown with health‑check endpoint",
+  "description": "Implements a production‑grade graceful shutdown that stops accepting new requests on SIGTERM while allowing in‑flight requests to finish, and adds a /health endpoint that reflects server readiness. This reduces downtime during deployments and improves observability for load balancers and orchestrators.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/requestLogger.js",
-    "src/utils/logger.js",
-    "test/requestLogger.test.js"
+    "src/server.js",
+    "src/middleware/healthCheck.js",
+    "test/server.gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Should log a formatted line for each incoming request with correct method, URL, status and response time",
-    "Should rotate log files daily and create a new file when the date changes",
-    "Should respect configuration flags to disable logging or change log level",
-    "Should handle errors in the logging stream without crashing the server"
+    "Verify that GET /health returns 200 and JSON {status:\"ok\"} while the server is running",
+    "Send a SIGTERM to the process, ensure new connections receive 503 and existing connections complete before the process exits"
   ],
-  "acceptance": "When the middleware is enabled, every request generates a log entry in the configured log file, the file rotates at midnight, and any logging errors are caught and reported without affecting request processing. All test cases pass and existing test suite remains green.",
-  "reason": "Observability is essential for production services; a zero‑dependency, configurable logger gives developers immediate insight into traffic patterns and errors, reducing mean‑time‑to‑detect and -resolve issues without adding external dependencies."
+  "acceptance": "When the process receives SIGTERM, the server stops listening for new connections, responds with 503 to any new request, waits for all active requests to finish (with a configurable timeout), then exits. The /health endpoint returns 200 when the server is ready and 503 after shutdown has begun. All tests pass and no regression in existing routing or middleware.",
+  "reason": "Enables zero‑downtime deployments and reliable health monitoring in containerized environments, addressing a critical production need for stability and observability."
 }

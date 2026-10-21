@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-21
+### FEATURE
+- Add graceful shutdown with health‑check endpoint: Implements a production‑grade graceful shutdown that stops accepting new requests on SIGTERM while allowing in‑flight requests to finish, and adds a /health endpoint that reflects server readiness. This reduces downtime during deployments and improves observability for load balancers and orchestrators.
+
 ## [Automated] - 2026-10-20
 ### FEATURE
 - Configurable Request Logging Middleware with Log Rotation: Adds a built‑in request logger that captures method, URL, status, response time and optional request body. Logs are written to a rotating file (daily) and can be disabled or customized via framework config, improving observability and troubleshooting in production.
