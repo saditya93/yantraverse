@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-20",
-  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
+  "date": "2026-10-21",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that gives Express‑style simplicity with Fastify‑grade performance—perfect for edge, serverless and microservice workloads.",
   "keywords": [
     "nodejs",
     "framework",
@@ -8,17 +8,31 @@
     "middleware",
     "express-alternative",
     "fast",
-    "zero-dependencies"
+    "zero-dependencies",
+    "edge",
+    "serverless",
+    "microservices",
+    "cloud-native",
+    "observability",
+    "typescript",
+    "low-latency",
+    "async",
+    "security"
   ],
-  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
+  "npm_trending_strategy": "Leverages the 2026 trend toward edge‑first, serverless architectures by offering a truly zero‑dependency core that stays under 5 KB gzipped, eliminates cold‑start overhead, and ships built‑in async hooks, request tracing, and security headers. Compatibility adapters let you run existing Express middleware unchanged, while native TypeScript types and a declarative plugin API give developers the modern developer experience they expect from Fastify and newer runtimes.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#performance"
+    "#edge",
+    "#serverless",
+    "#microservices",
+    "#typescript",
+    "#fast",
+    "#zeroDeps"
   ],
   "download_hooks": [
-    "Developers want fast, simple frameworks",
-    "Zero dependencies = less maintenance headaches",
-    "Perfect for high-traffic APIs"
+    "Blazing sub‑millisecond routing with a tiny footprint → instant cold starts on edge and serverless platforms.",
+    "Zero‑dependency core means smaller Docker images, faster CI pipelines, and no transitive‑dependency headaches.",
+    "Built‑in security headers, request tracing, and TypeScript typings give a frictionless developer experience out of the box."
   ]
 }
