@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-22
+### FEATURE
+- Add graceful shutdown with signal handling: Implements process signal listeners (SIGINT, SIGTERM) to stop accepting new connections and wait for in‑flight requests to finish before exiting. This prevents dropped requests during deployments and improves reliability in production environments.
+
 ## [Automated] - 2026-10-21
 ### FEATURE
 - Add graceful shutdown with health‑check endpoint: Implements a production‑grade graceful shutdown that stops accepting new requests on SIGTERM while allowing in‑flight requests to finish, and adds a /health endpoint that reflects server readiness. This reduces downtime during deployments and improves observability for load balancers and orchestrators.
