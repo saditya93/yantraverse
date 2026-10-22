@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-21",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework that gives Express‑style simplicity with Fastify‑grade performance—perfect for edge, serverless and microservice workloads.",
+  "date": "2026-10-22",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that delivers Express‑style simplicity with Fastify‑grade performance—ideal for edge, serverless, AI‑powered microservices.",
   "keywords": [
     "nodejs",
     "framework",
@@ -9,7 +9,7 @@
     "express-alternative",
     "fast",
     "zero-dependencies",
-    "edge",
+    "edge-compute",
     "serverless",
     "microservices",
     "cloud-native",
@@ -17,9 +17,13 @@
     "typescript",
     "low-latency",
     "async",
-    "security"
+    "security",
+    "ai-ml",
+    "edge-runtime",
+    "cloudflare-workers",
+    "deno-compat"
   ],
-  "npm_trending_strategy": "Leverages the 2026 trend toward edge‑first, serverless architectures by offering a truly zero‑dependency core that stays under 5 KB gzipped, eliminates cold‑start overhead, and ships built‑in async hooks, request tracing, and security headers. Compatibility adapters let you run existing Express middleware unchanged, while native TypeScript types and a declarative plugin API give developers the modern developer experience they expect from Fastify and newer runtimes.",
+  "npm_trending_strategy": "Leverages the 2026 surge in edge‑compute and AI‑enhanced services by positioning Yantravese as the only zero‑dependency framework that ships with built‑in observability hooks, TypeScript‑first APIs, and native compatibility with Cloudflare Workers, Vercel Edge Functions, and Deno. The \"daily\" release tag signals rapid iteration and freshness, attracting early adopters looking for bleeding‑edge performance without the baggage of heavy dependencies.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
@@ -27,12 +31,13 @@
     "#serverless",
     "#microservices",
     "#typescript",
-    "#fast",
-    "#zeroDeps"
+    "#lowlatency",
+    "#ai",
+    "#observability"
   ],
   "download_hooks": [
-    "Blazing sub‑millisecond routing with a tiny footprint → instant cold starts on edge and serverless platforms.",
-    "Zero‑dependency core means smaller Docker images, faster CI pipelines, and no transitive‑dependency headaches.",
-    "Built‑in security headers, request tracing, and TypeScript typings give a frictionless developer experience out of the box."
+    "Developers pick Yantravese for its **sub‑millisecond routing** benchmark that consistently outpaces Express and Fastify in edge environments.",
+    "The **zero‑dependency** design means smaller bundles, faster cold starts, and no transitive security risks—crucial for serverless functions.",
+    "A **developer‑first API** with full TypeScript typings, async/await middleware pipelines, and built‑in request tracing makes onboarding and debugging a breeze."
   ]
 }
