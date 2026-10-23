@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-23
+### FEATURE
+- Graceful shutdown with signal handling and request draining: Adds support for SIGTERM/SIGINT handling so the server can stop accepting new connections, finish in‑flight requests, and close resources cleanly. This reduces abrupt termination errors and improves reliability in containerized deployments.
+
 ## [Automated] - 2026-10-22
 ### FEATURE
 - Add graceful shutdown with signal handling: Implements process signal listeners (SIGINT, SIGTERM) to stop accepting new connections and wait for in‑flight requests to finish before exiting. This prevents dropped requests during deployments and improves reliability in production environments.
