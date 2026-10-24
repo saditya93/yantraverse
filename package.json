@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.172-daily.20261023",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework that gives you Express‑style simplicity with Fastify‑grade performance for edge, serverless, and AI‑native workloads.",
+  "version": "0.0.173-daily.20261024",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that delivers Express‑style simplicity with Fastify‑grade performance—built for edge, serverless, and AI‑native workloads.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -60,7 +60,15 @@
     "llm",
     "ai-native",
     "zero-trust",
-    "edge-ai"
+    "edge-ai",
+    "aiops",
+    "generative-ai",
+    "rag",
+    "next-gen-api",
+    "web‑assembly",
+    "edge‑functions",
+    "server‑less‑api",
+    "observable‑metrics"
   ],
   "author": "",
   "license": "MIT",
