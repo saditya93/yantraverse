@@ -1,19 +1,19 @@
 {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "category": "FEATURE",
-  "title": "Graceful shutdown with signal handling and request draining",
-  "description": "Adds support for SIGTERM/SIGINT handling so the server can stop accepting new connections, finish in‑flight requests, and close resources cleanly. This reduces abrupt termination errors and improves reliability in containerized deployments.",
+  "title": "Graceful Shutdown & Signal Handling",
+  "description": "Adds built‑in handling for SIGINT, SIGTERM and unhandled promise rejections, ensuring all active connections are closed and pending middleware completes before the process exits. This prevents data loss and improves reliability in production environments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
     "src/shutdown.js",
+    "src/server.js",
     "test/shutdown.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while requests are pending and verify that new connections are rejected but existing ones complete before process exit",
-    "Trigger SIGINT during idle state and ensure the server closes all listeners and releases resources without errors"
+    "Simulate SIGTERM while a request is in flight and verify the server stops accepting new connections but finishes the ongoing request before exiting",
+    "Trigger an unhandled promise rejection and ensure the shutdown sequence logs the error and exits with a non‑zero code"
   ],
-  "acceptance": "When the process receives SIGTERM or SIGINT, the framework stops accepting new requests, waits up to a configurable timeout for active requests to finish, then closes all listeners and resolves a shutdown promise. All tests pass and no unhandled promise rejections occur.",
-  "reason": "Production environments (Docker, Kubernetes, serverless) rely on graceful termination to avoid data loss and 5xx spikes during redeploys. Implementing this feature makes yantraverse ready for enterprise‑grade deployments without external tooling."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the framework stops accepting new requests, waits up to 30 seconds for active requests to finish, then closes the HTTP server and exits with code 0. Unhandled promise rejections are caught, logged, and trigger the same graceful shutdown with exit code 1. All tests pass and no resource leaks are detected.",
+  "reason": "Production deployments need reliable termination to avoid corrupt state, dropped requests, and resource leaks. Providing first‑class graceful shutdown makes yantraverse ready for container orchestration platforms and improves overall stability."
 }

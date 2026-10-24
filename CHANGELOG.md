@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-24
+### FEATURE
+- Graceful Shutdown & Signal Handling: Adds built‑in handling for SIGINT, SIGTERM and unhandled promise rejections, ensuring all active connections are closed and pending middleware completes before the process exits. This prevents data loss and improves reliability in production environments.
+
 ## [Automated] - 2026-10-23
 ### FEATURE
 - Graceful shutdown with signal handling and request draining: Adds support for SIGTERM/SIGINT handling so the server can stop accepting new connections, finish in‑flight requests, and close resources cleanly. This reduces abrupt termination errors and improves reliability in containerized deployments.
