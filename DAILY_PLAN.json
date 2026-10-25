@@ -1,19 +1,19 @@
 {
-  "date": "2026-10-24",
+  "date": "2026-10-25",
   "category": "FEATURE",
-  "title": "Graceful Shutdown & Signal Handling",
-  "description": "Adds built‑in handling for SIGINT, SIGTERM and unhandled promise rejections, ensuring all active connections are closed and pending middleware completes before the process exits. This prevents data loss and improves reliability in production environments.",
+  "title": "Add JSON Schema Request Validation Middleware",
+  "description": "Introduce a lightweight, zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This prevents malformed data from reaching route handlers, improves security, and reduces boilerplate validation code across the application.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/shutdown.js",
-    "src/server.js",
-    "test/shutdown.test.js"
+    "src/middleware/validation.js",
+    "src/app.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while a request is in flight and verify the server stops accepting new connections but finishes the ongoing request before exiting",
-    "Trigger an unhandled promise rejection and ensure the shutdown sequence logs the error and exits with a non‑zero code"
+    "Validate that a request with a valid payload passes through to the handler and returns the expected response",
+    "Validate that a request with an invalid payload is rejected with a 400 status and a detailed error message"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the framework stops accepting new requests, waits up to 30 seconds for active requests to finish, then closes the HTTP server and exits with code 0. Unhandled promise rejections are caught, logged, and trigger the same graceful shutdown with exit code 1. All tests pass and no resource leaks are detected.",
-  "reason": "Production deployments need reliable termination to avoid corrupt state, dropped requests, and resource leaks. Providing first‑class graceful shutdown makes yantraverse ready for container orchestration platforms and improves overall stability."
+  "acceptance": "When a route registers a schema, the middleware must (1) allow requests matching the schema to reach the handler unchanged, (2) block non‑matching requests with a 400 response containing the validation errors, and (3) not affect routes without a schema. All tests pass and existing test suite remains green.",
+  "reason": "Ensures data integrity and security across the framework, reduces repetitive validation code for developers, and aligns with the recent stability focus while keeping the framework lightweight."
 }
