@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-24",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework that delivers Express‑style simplicity with Fastify‑grade performance—built for edge, serverless, and AI‑native workloads.",
+  "date": "2026-10-25",
+  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
   "keywords": [
     "nodejs",
     "framework",
@@ -8,51 +8,17 @@
     "middleware",
     "express-alternative",
     "fast",
-    "zero-dependencies",
-    "edge-compute",
-    "serverless",
-    "microservices",
-    "cloud-native",
-    "observability",
-    "typescript",
-    "low-latency",
-    "async",
-    "security",
-    "ai-ml",
-    "edge-runtime",
-    "cloudflare-workers",
-    "deno-compat",
-    "bun",
-    "vite",
-    "llm",
-    "ai-native",
-    "zero-trust",
-    "edge-ai",
-    "aiops",
-    "generative-ai",
-    "rag",
-    "next-gen-api",
-    "web‑assembly",
-    "edge‑functions",
-    "server‑less‑api",
-    "observable‑metrics"
+    "zero-dependencies"
   ],
-  "npm_trending_strategy": "Leverage the \"edge‑first\" and \"AI‑native\" positioning: promote yantravese as the only zero‑dependency framework that runs unchanged on Cloudflare Workers, Vercel Edge Functions, Bun, Deno, and traditional Node—while offering built‑in observability hooks and first‑class TypeScript support. Pair this narrative with a quick‑start CLI that scaffolds a full‑stack AI‑powered microservice in <10 seconds, driving organic buzz on dev forums and AI‑tooling communities.",
+  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#edge",
-    "#serverless",
-    "#ai",
-    "#typescript",
-    "#lowlatency",
-    "#zeroDeps",
-    "#fastapi",
-    "#microservices"
+    "#performance"
   ],
   "download_hooks": [
-    "Blazing performance: benchmarked 2‑3× faster than Fastify on edge runtimes, with sub‑millisecond routing latency.",
-    "Zero‑dependency simplicity: one‑file install, no native build steps, works out‑of‑the‑box on Cloudflare Workers, Vercel, Bun, Deno, and Node.",
-    "AI‑ready developer experience: built‑in request‑body streaming, LLM‑friendly hooks, and TypeScript‑first API contracts that let you drop in LangChain, OpenAI, or custom models without extra adapters."
+    "Developers want fast, simple frameworks",
+    "Zero dependencies = less maintenance headaches",
+    "Perfect for high-traffic APIs"
   ]
 }
