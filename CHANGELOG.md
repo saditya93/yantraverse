@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-26
+### FEATURE
+- Implement Graceful Shutdown with Signal Handling: Adds support for handling SIGTERM/SIGINT, stops accepting new requests, waits for in‑flight requests, and closes the server cleanly. Provides a configurable shutdown timeout and optional cleanup hooks, improving reliability in containerized and production deployments.
+
 ## [Automated] - 2026-10-25
 ### FEATURE
 - Add JSON Schema Request Validation Middleware: Introduce a lightweight, zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This prevents malformed data from reaching route handlers, improves security, and reduces boilerplate validation code across the application.

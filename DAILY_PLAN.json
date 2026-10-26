@@ -1,19 +1,19 @@
 {
-  "date": "2026-10-25",
+  "date": "2026-10-26",
   "category": "FEATURE",
-  "title": "Add JSON Schema Request Validation Middleware",
-  "description": "Introduce a lightweight, zero‑dependency middleware that validates incoming request bodies against JSON Schema definitions. This prevents malformed data from reaching route handlers, improves security, and reduces boilerplate validation code across the application.",
+  "title": "Implement Graceful Shutdown with Signal Handling",
+  "description": "Adds support for handling SIGTERM/SIGINT, stops accepting new requests, waits for in‑flight requests, and closes the server cleanly. Provides a configurable shutdown timeout and optional cleanup hooks, improving reliability in containerized and production deployments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validation.js",
+    "src/gracefulShutdown.js",
     "src/app.js",
-    "test/validation.test.js"
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Validate that a request with a valid payload passes through to the handler and returns the expected response",
-    "Validate that a request with an invalid payload is rejected with a 400 status and a detailed error message"
+    "Signal handling: send SIGTERM to a running server, verify it stops accepting new connections, allows existing request to finish, and exits with code 0 within the configured timeout",
+    "Timeout fallback: start a long‑running request, trigger SIGTERM, set shutdown timeout shorter than request duration, verify server forces shutdown after timeout and logs a warning"
   ],
-  "acceptance": "When a route registers a schema, the middleware must (1) allow requests matching the schema to reach the handler unchanged, (2) block non‑matching requests with a 400 response containing the validation errors, and (3) not affect routes without a schema. All tests pass and existing test suite remains green.",
-  "reason": "Ensures data integrity and security across the framework, reduces repetitive validation code for developers, and aligns with the recent stability focus while keeping the framework lightweight."
+  "acceptance": "When the process receives SIGTERM or SIGINT, the framework stops accepting new connections, waits up to the configured timeout for all in‑flight requests to complete, executes any registered cleanup callbacks, and then exits cleanly. If the timeout expires, the server forces shutdown and logs an appropriate warning. All test cases pass and no unhandled promise rejections occur.",
+  "reason": "Production environments (e.g., Kubernetes, Docker) require graceful termination to avoid dropped requests and resource leaks. Implementing this feature dramatically increases reliability and makes yantraverse suitable for zero‑downtime deployments, a critical business need."
 }
