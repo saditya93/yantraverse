@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-26",
+  "date": "2026-10-27",
   "category": "FEATURE",
-  "title": "Implement Graceful Shutdown with Signal Handling",
-  "description": "Adds support for handling SIGTERM/SIGINT, stops accepting new requests, waits for in‑flight requests, and closes the server cleanly. Provides a configurable shutdown timeout and optional cleanup hooks, improving reliability in containerized and production deployments.",
+  "title": "Graceful Shutdown & Cleanup Hooks",
+  "description": "Introduce a built‑in graceful shutdown mechanism that listens for termination signals, stops accepting new connections, waits for in‑flight requests to finish, and runs registered cleanup callbacks. This improves production stability and prevents data loss on container restarts or deployments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
@@ -11,9 +11,9 @@
     "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Signal handling: send SIGTERM to a running server, verify it stops accepting new connections, allows existing request to finish, and exits with code 0 within the configured timeout",
-    "Timeout fallback: start a long‑running request, trigger SIGTERM, set shutdown timeout shorter than request duration, verify server forces shutdown after timeout and logs a warning"
+    "Simulate SIGTERM while a request is pending; verify the server stops accepting new connections but the pending request completes successfully.",
+    "Register a cleanup callback; ensure it is invoked exactly once when the shutdown sequence finishes."
   ],
-  "acceptance": "When the process receives SIGTERM or SIGINT, the framework stops accepting new connections, waits up to the configured timeout for all in‑flight requests to complete, executes any registered cleanup callbacks, and then exits cleanly. If the timeout expires, the server forces shutdown and logs an appropriate warning. All test cases pass and no unhandled promise rejections occur.",
-  "reason": "Production environments (e.g., Kubernetes, Docker) require graceful termination to avoid dropped requests and resource leaks. Implementing this feature dramatically increases reliability and makes yantraverse suitable for zero‑downtime deployments, a critical business need."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the framework stops listening for new requests, waits up to a configurable timeout for active requests to finish, executes all registered cleanup hooks, and then exits with code 0. No new connections are accepted after the signal, and cleanup hooks receive any error thrown during shutdown.",
+  "reason": "Production deployments frequently need reliable termination to avoid abrupt request drops and resource leaks. Adding graceful shutdown aligns with the recent stability focus and provides a high‑impact, zero‑dependency feature that benefits all users."
 }

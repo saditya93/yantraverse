@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-27
+### FEATURE
+- Graceful Shutdown & Cleanup Hooks: Introduce a built‑in graceful shutdown mechanism that listens for termination signals, stops accepting new connections, waits for in‑flight requests to finish, and runs registered cleanup callbacks. This improves production stability and prevents data loss on container restarts or deployments.
+
 ## [Automated] - 2026-10-26
 ### FEATURE
 - Implement Graceful Shutdown with Signal Handling: Adds support for handling SIGTERM/SIGINT, stops accepting new requests, waits for in‑flight requests, and closes the server cleanly. Provides a configurable shutdown timeout and optional cleanup hooks, improving reliability in containerized and production deployments.
