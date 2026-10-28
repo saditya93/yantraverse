@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.176-daily.20261027",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework with type‑safe routing, native HTTP/2+QUIC, and built‑in edge/serverless support – the Express‑style API you love, re‑engineered for 2026.",
+  "version": "0.0.177-daily.20261028",
+  "description": "Zero‑dependency, type‑safe Node.js framework with native HTTP/2 + HTTP/3 (QUIC), AI‑ready routing and built‑in edge/serverless support – the Express‑style API re‑engineered for 2026.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -54,13 +54,17 @@
     "deno-compat",
     "ai-ready",
     "llm",
+    "genai",
     "low-latency",
     "openapi",
     "graphql",
     "rest-api",
     "webassembly",
+    "wasm",
     "reactive",
-    "observable"
+    "observable",
+    "cloud-native",
+    "runtime-agnostic"
   ],
   "author": "",
   "license": "MIT",
