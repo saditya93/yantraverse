@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-28
+### FEATURE
+- Add schema‑based request validation middleware: Introduces a built‑in middleware that validates request params, query strings and bodies against JSON‑Schema definitions. It returns a 400 response with detailed error messages when validation fails, removing the need for repetitive manual checks and improving API reliability.
+
 ## [Automated] - 2026-10-27
 ### FEATURE
 - Graceful Shutdown & Cleanup Hooks: Introduce a built‑in graceful shutdown mechanism that listens for termination signals, stops accepting new connections, waits for in‑flight requests to finish, and runs registered cleanup callbacks. This improves production stability and prevents data loss on container restarts or deployments.

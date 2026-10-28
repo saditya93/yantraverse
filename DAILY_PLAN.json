@@ -1,19 +1,20 @@
 {
-  "date": "2026-10-27",
+  "date": "2026-10-28",
   "category": "FEATURE",
-  "title": "Graceful Shutdown & Cleanup Hooks",
-  "description": "Introduce a built‑in graceful shutdown mechanism that listens for termination signals, stops accepting new connections, waits for in‑flight requests to finish, and runs registered cleanup callbacks. This improves production stability and prevents data loss on container restarts or deployments.",
+  "title": "Add schema‑based request validation middleware",
+  "description": "Introduces a built‑in middleware that validates request params, query strings and bodies against JSON‑Schema definitions. It returns a 400 response with detailed error messages when validation fails, removing the need for repetitive manual checks and improving API reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/app.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/validation.js",
+    "test/middleware/validation.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while a request is pending; verify the server stops accepting new connections but the pending request completes successfully.",
-    "Register a cleanup callback; ensure it is invoked exactly once when the shutdown sequence finishes."
+    "Valid request matching the schema proceeds to the handler",
+    "Invalid request body returns 400 with a list of schema violations",
+    "Invalid query parameters return 400 with appropriate error details",
+    "Middleware integrates with existing error‑handling flow without breaking other middleware"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the framework stops listening for new requests, waits up to a configurable timeout for active requests to finish, executes all registered cleanup hooks, and then exits with code 0. No new connections are accepted after the signal, and cleanup hooks receive any error thrown during shutdown.",
-  "reason": "Production deployments frequently need reliable termination to avoid abrupt request drops and resource leaks. Adding graceful shutdown aligns with the recent stability focus and provides a high‑impact, zero‑dependency feature that benefits all users."
+  "acceptance": "When the middleware is registered with a route, any request that does not conform to the supplied JSON‑Schema is rejected with a 400 status and a JSON payload describing the validation errors; compliant requests are passed unchanged to the next handler. All existing tests continue to pass and new tests cover the scenarios above.",
+  "reason": "Ensures API contracts are enforced centrally, reduces boiler‑plate validation code, prevents malformed data from reaching business logic, and aligns the framework with production‑grade security and reliability standards."
 }
