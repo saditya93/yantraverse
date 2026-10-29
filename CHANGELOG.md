@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-29
+### FEATURE
+- Add built-in body parsing middleware: Provides native JSON and URL‑encoded request body parsing without external dependencies, keeping yantraverse zero‑dependency. The middleware integrates with the existing routing pipeline and offers size limits and error handling for malformed payloads.
+
 ## [Automated] - 2026-10-28
 ### FEATURE
 - Add schema‑based request validation middleware: Introduces a built‑in middleware that validates request params, query strings and bodies against JSON‑Schema definitions. It returns a 400 response with detailed error messages when validation fails, removing the need for repetitive manual checks and improving API reliability.

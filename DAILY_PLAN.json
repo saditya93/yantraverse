@@ -1,20 +1,21 @@
 {
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "category": "FEATURE",
-  "title": "Add schema‑based request validation middleware",
-  "description": "Introduces a built‑in middleware that validates request params, query strings and bodies against JSON‑Schema definitions. It returns a 400 response with detailed error messages when validation fails, removing the need for repetitive manual checks and improving API reliability.",
+  "title": "Add built-in body parsing middleware",
+  "description": "Provides native JSON and URL‑encoded request body parsing without external dependencies, keeping yantraverse zero‑dependency. The middleware integrates with the existing routing pipeline and offers size limits and error handling for malformed payloads.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validation.js",
-    "test/middleware/validation.test.js"
+    "src/middleware/bodyParser.js",
+    "src/app.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Valid request matching the schema proceeds to the handler",
-    "Invalid request body returns 400 with a list of schema violations",
-    "Invalid query parameters return 400 with appropriate error details",
-    "Middleware integrates with existing error‑handling flow without breaking other middleware"
+    "Parse a valid JSON payload and verify req.body contains the object",
+    "Parse a valid URL‑encoded payload and verify req.body contains the key/value pairs",
+    "Reject a malformed JSON payload with a 400 Bad Request error",
+    "Enforce a configurable body size limit and return 413 Payload Too Large when exceeded"
   ],
-  "acceptance": "When the middleware is registered with a route, any request that does not conform to the supplied JSON‑Schema is rejected with a 400 status and a JSON payload describing the validation errors; compliant requests are passed unchanged to the next handler. All existing tests continue to pass and new tests cover the scenarios above.",
-  "reason": "Ensures API contracts are enforced centrally, reduces boiler‑plate validation code, prevents malformed data from reaching business logic, and aligns the framework with production‑grade security and reliability standards."
+  "acceptance": "The middleware correctly populates req.body for JSON and URL‑encoded requests, returns appropriate HTTP errors for malformed or oversized payloads, integrates seamlessly with existing route handlers, and does not introduce any external package dependencies.",
+  "reason": "Body parsing is a core requirement for most APIs; currently developers must import third‑party parsers, contradicting yantraverse’s zero‑dependency promise. Adding this feature improves developer experience, reduces bundle size, and strengthens the framework’s production readiness."
 }
