@@ -1,21 +1,20 @@
 {
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "category": "FEATURE",
-  "title": "Add built-in body parsing middleware",
-  "description": "Provides native JSON and URL‑encoded request body parsing without external dependencies, keeping yantraverse zero‑dependency. The middleware integrates with the existing routing pipeline and offers size limits and error handling for malformed payloads.",
+  "title": "Add graceful shutdown with in‑flight request draining",
+  "description": "Provides a production‑ready shutdown flow that stops accepting new connections, waits for active requests to finish, and forces termination after a timeout. This prevents dropped requests during deployments or restarts and ensures resources are cleaned up safely.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "src/app.js",
-    "test/bodyParser.test.js"
+    "src/gracefulShutdown.js",
+    "src/server.js",
+    "test/gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Parse a valid JSON payload and verify req.body contains the object",
-    "Parse a valid URL‑encoded payload and verify req.body contains the key/value pairs",
-    "Reject a malformed JSON payload with a 400 Bad Request error",
-    "Enforce a configurable body size limit and return 413 Payload Too Large when exceeded"
+    "When SIGTERM is received, the server stops accepting new connections within 100 ms.",
+    "Active requests are allowed to complete before the process exits, up to a configurable timeout (default 5 s).",
+    "If the timeout expires, remaining connections are force‑closed and the process exits with code 1."
   ],
-  "acceptance": "The middleware correctly populates req.body for JSON and URL‑encoded requests, returns appropriate HTTP errors for malformed or oversized payloads, integrates seamlessly with existing route handlers, and does not introduce any external package dependencies.",
-  "reason": "Body parsing is a core requirement for most APIs; currently developers must import third‑party parsers, contradicting yantraverse’s zero‑dependency promise. Adding this feature improves developer experience, reduces bundle size, and strengthens the framework’s production readiness."
+  "acceptance": "The framework exports a `closeGracefully(timeout?)` method; invoking it (or receiving SIGINT/SIGTERM) returns a promise that resolves after all in‑flight requests finish or the timeout elapses. No new requests are accepted after shutdown begins, and the process exits cleanly with appropriate exit codes.",
+  "reason": "Deployments and container restarts are common in production; without graceful shutdown, in‑flight HTTP requests are abruptly terminated, leading to data loss and poor user experience. Adding this feature makes yantraverse suitable for high‑availability environments."
 }
