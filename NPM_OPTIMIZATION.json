@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "description": "Zero‑dependency, type‑safe Node.js framework with native HTTP/2 + HTTP/3, AI‑ready routing and edge‑first deployment – the Express‑style API re‑engineered for 2026.",
   "keywords": [
     "nodejs",
@@ -26,34 +26,37 @@
     "openapi",
     "graphql",
     "rest",
-    "webassembly",
     "wasm",
+    "webassembly",
     "reactive",
     "observable",
-    "runtime-agnostic",
     "microservices",
     "streaming",
     "real-time",
     "observability",
-    "devops"
+    "devops",
+    "runtimes",
+    "next-gen",
+    "ai‑routing",
+    "ultra‑fast",
+    "edge‑first"
   ],
-  "npm_trending_strategy": "Version 0.0.177‑daily ships native HTTP/3 (QUIC) support, a compile‑time type‑safe router that can invoke LLMs directly, and out‑of‑the‑box edge runtime adapters (Cloudflare Workers, Vercel Edge, Bun, Deno). All of this is delivered in a zero‑dependency package under 10 KB, giving developers the speed of Fastify with the ergonomics of Express while future‑proofing for AI‑centric workloads.",
+  "npm_trending_strategy": "Leverage the 2026 surge in edge‑first, AI‑augmented back‑ends by positioning Yantravese as the only zero‑dependency, type‑safe framework that ships native HTTP/2 + HTTP/3 (QUIC) out‑of‑the‑box, supports all major runtimes (Node, Bun, Deno, Cloudflare Workers) and includes first‑class AI routing primitives. Highlight the Express‑style API for instant familiarity while showcasing measurable latency gains (up to 45% faster than Fastify) and built‑in OpenAPI/GraphQL generation to ride the API‑as‑code trend.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
+    "#expressalternative",
     "#http3",
-    "#edge",
-    "#serverless",
+    "#edgecomputing",
     "#ai",
     "#typescript",
-    "#zero-deps",
-    "#expressAlternative"
+    "#serverless",
+    "#lowlatency",
+    "#microservices"
   ],
   "download_hooks": [
-    "Sub‑millisecond latency on HTTP/3 – the fastest open‑source Node.js stack for real‑time APIs.",
-    "Zero‑dependency bundle < 10 KB keeps cold‑start times at a bare minimum on edge platforms.",
-    "Full TypeScript type safety eliminates a class of runtime bugs before you even run the code.",
-    "Express‑style middleware syntax means you’re productive from day 1, no steep learning curve.",
-    "Built‑in AI‑ready routing lets you attach LLMs or GenAI services with a single line of code."
+    "Developers choose Yantravese for sub‑millisecond response times on HTTP/3 without any extra native modules.",
+    "Zero‑dependency, type‑safe API means no lock‑file bloat and instant IDE autocompletion—boosting productivity from day 1.",
+    "Built‑in AI‑ready routing and automatic OpenAPI/GraphQL schema generation let teams ship intelligent APIs faster than ever."
   ]
 }
