@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-10-31
+### FEATURE
+- Add Request ID Middleware for Traceable Logging: Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request and attaches it to the response headers and the request context. This enables correlation of logs across services, improves debugging, and satisfies compliance requirements for traceability.
+
 ## [Automated] - 2026-10-30
 ### FEATURE
 - Add graceful shutdown with in‑flight request draining: Provides a production‑ready shutdown flow that stops accepting new connections, waits for active requests to finish, and forces termination after a timeout. This prevents dropped requests during deployments or restarts and ensures resources are cleaned up safely.

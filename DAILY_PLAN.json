@@ -1,20 +1,21 @@
 {
-  "date": "2026-10-30",
+  "date": "2026-10-31",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with in‑flight request draining",
-  "description": "Provides a production‑ready shutdown flow that stops accepting new connections, waits for active requests to finish, and forces termination after a timeout. This prevents dropped requests during deployments or restarts and ensures resources are cleaned up safely.",
+  "title": "Add Request ID Middleware for Traceable Logging",
+  "description": "Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request and attaches it to the response headers and the request context. This enables correlation of logs across services, improves debugging, and satisfies compliance requirements for traceability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/request-id.js",
+    "src/app.js",
+    "test/request-id.test.js"
   ],
   "testCases": [
-    "When SIGTERM is received, the server stops accepting new connections within 100 ms.",
-    "Active requests are allowed to complete before the process exits, up to a configurable timeout (default 5 s).",
-    "If the timeout expires, remaining connections are force‑closed and the process exits with code 1."
+    "Should add a unique X-Request-Id header to every response",
+    "Should expose the same request ID on req.id for downstream middleware",
+    "Should preserve an incoming X-Request-Id header if client provides one",
+    "Should generate a new ID when the incoming header is missing or empty"
   ],
-  "acceptance": "The framework exports a `closeGracefully(timeout?)` method; invoking it (or receiving SIGINT/SIGTERM) returns a promise that resolves after all in‑flight requests finish or the timeout elapses. No new requests are accepted after shutdown begins, and the process exits cleanly with appropriate exit codes.",
-  "reason": "Deployments and container restarts are common in production; without graceful shutdown, in‑flight HTTP requests are abruptly terminated, leading to data loss and poor user experience. Adding this feature makes yantraverse suitable for high‑availability environments."
+  "acceptance": "All test cases pass, request IDs are 36‑character UUIDv4 strings, no duplicate IDs appear in concurrent requests, and the header is correctly set on responses without affecting existing routes.",
+  "reason": "Correlating logs across micro‑services is a common production pain point. Providing built‑in request IDs eliminates the need for third‑party packages, aligns with the framework's zero‑dependency goal, and enhances observability for Yantraverse users."
 }
