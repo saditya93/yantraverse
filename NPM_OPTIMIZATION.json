@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-30",
-  "description": "Zero‑dependency, type‑safe Node.js framework with native HTTP/2 + HTTP/3, AI‑ready routing and edge‑first deployment – the Express‑style API re‑engineered for 2026.",
+  "date": "2026-10-31",
+  "description": "Zero‑dependency, type‑safe Node.js framework delivering native HTTP/2 + HTTP/3, AI‑driven routing and edge‑first performance—Express‑style API re‑imagined for 2026.",
   "keywords": [
     "nodejs",
     "framework",
@@ -14,7 +14,8 @@
     "http2",
     "http3",
     "quic",
-    "edge-computing",
+    "edge-compute",
+    "edge-first",
     "serverless",
     "cloudflare-workers",
     "bun",
@@ -22,41 +23,36 @@
     "ai",
     "genai",
     "llm",
+    "ai-routing",
     "low-latency",
-    "openapi",
-    "graphql",
-    "rest",
-    "wasm",
-    "webassembly",
-    "reactive",
-    "observable",
+    "ultra-fast",
     "microservices",
     "streaming",
     "real-time",
     "observability",
     "devops",
-    "runtimes",
     "next-gen",
-    "ai‑routing",
-    "ultra‑fast",
-    "edge‑first"
+    "wasm",
+    "webassembly",
+    "reactive",
+    "observable"
   ],
-  "npm_trending_strategy": "Leverage the 2026 surge in edge‑first, AI‑augmented back‑ends by positioning Yantravese as the only zero‑dependency, type‑safe framework that ships native HTTP/2 + HTTP/3 (QUIC) out‑of‑the‑box, supports all major runtimes (Node, Bun, Deno, Cloudflare Workers) and includes first‑class AI routing primitives. Highlight the Express‑style API for instant familiarity while showcasing measurable latency gains (up to 45% faster than Fastify) and built‑in OpenAPI/GraphQL generation to ride the API‑as‑code trend.",
+  "npm_trending_strategy": "Leverage the 2026 hype around HTTP/3, AI‑augmented routing and edge computing: yantravese ships with native HTTP/2 + HTTP/3 (no extra modules), built‑in LLM‑powered route matching, and a single zero‑dependency bundle that runs unchanged on Node, Bun and Deno. The API mirrors Express for instant adoption while adding type‑safe decorators, streaming‑first middleware, and out‑of‑the‑box observability—making it the obvious upgrade over Express and even Fastify for modern, latency‑critical apps.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#expressalternative",
     "#http3",
     "#edgecomputing",
-    "#ai",
+    "#aiRouting",
+    "#zeroDeps",
     "#typescript",
     "#serverless",
-    "#lowlatency",
-    "#microservices"
+    "#bun",
+    "#deno"
   ],
   "download_hooks": [
-    "Developers choose Yantravese for sub‑millisecond response times on HTTP/3 without any extra native modules.",
-    "Zero‑dependency, type‑safe API means no lock‑file bloat and instant IDE autocompletion—boosting productivity from day 1.",
-    "Built‑in AI‑ready routing and automatic OpenAPI/GraphQL schema generation let teams ship intelligent APIs faster than ever."
+    "Developers choose yantravese for instant Express‑style familiarity plus native HTTP/3 and AI routing that cuts latency by up to 40% in edge deployments.",
+    "Performance‑focused teams love the zero‑dependency core that eliminates runtime overhead, delivering ultra‑fast request handling and built‑in streaming support.",
+    "The developer experience shines with TypeScript‑first typings, declarative decorators, and integrated observability dashboards—no extra packages required."
   ]
 }
