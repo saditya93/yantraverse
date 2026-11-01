@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-01
+### FEATURE
+- Add Graceful Shutdown & Health‑Check Endpoints: Introduce a built‑in graceful shutdown routine that stops accepting new connections, finishes in‑flight requests, and closes resources, plus a `/healthz` endpoint for liveness/readiness checks. This improves reliability in container orchestration and reduces abrupt terminations.
+
 ## [Automated] - 2026-10-31
 ### FEATURE
 - Add Request ID Middleware for Traceable Logging: Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request and attaches it to the response headers and the request context. This enables correlation of logs across services, improves debugging, and satisfies compliance requirements for traceability.

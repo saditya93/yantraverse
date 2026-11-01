@@ -1,21 +1,19 @@
 {
-  "date": "2026-10-31",
+  "date": "2026-11-01",
   "category": "FEATURE",
-  "title": "Add Request ID Middleware for Traceable Logging",
-  "description": "Introduce a lightweight middleware that generates a unique request ID for every incoming HTTP request and attaches it to the response headers and the request context. This enables correlation of logs across services, improves debugging, and satisfies compliance requirements for traceability.",
+  "title": "Add Graceful Shutdown & Health‑Check Endpoints",
+  "description": "Introduce a built‑in graceful shutdown routine that stops accepting new connections, finishes in‑flight requests, and closes resources, plus a `/healthz` endpoint for liveness/readiness checks. This improves reliability in container orchestration and reduces abrupt terminations.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/request-id.js",
-    "src/app.js",
-    "test/request-id.test.js"
+    "src/server.js",
+    "src/middleware/healthCheck.js",
+    "test/server.gracefulShutdown.test.js"
   ],
   "testCases": [
-    "Should add a unique X-Request-Id header to every response",
-    "Should expose the same request ID on req.id for downstream middleware",
-    "Should preserve an incoming X-Request-Id header if client provides one",
-    "Should generate a new ID when the incoming header is missing or empty"
+    "Verify that the server stops accepting new connections after SIGTERM and resolves pending requests before exiting",
+    "Ensure GET /healthz returns 200 with JSON {status:'ok'} and proper content‑type"
   ],
-  "acceptance": "All test cases pass, request IDs are 36‑character UUIDv4 strings, no duplicate IDs appear in concurrent requests, and the header is correctly set on responses without affecting existing routes.",
-  "reason": "Correlating logs across micro‑services is a common production pain point. Providing built‑in request IDs eliminates the need for third‑party packages, aligns with the framework's zero‑dependency goal, and enhances observability for Yantraverse users."
+  "acceptance": "When a SIGTERM (or SIGINT) is sent, the server stops accepting new requests, waits up to 10 seconds for ongoing requests to finish, then exits with code 0. The `/healthz` endpoint must be reachable at any time and return a 200 JSON payload indicating service health.",
+  "reason": "Containers and orchestrators (K8s, ECS) rely on graceful termination and health checks to manage scaling and restarts. Adding this feature eliminates the need for custom shutdown logic, reduces downtime, and aligns yantraverse with production‑grade expectations."
 }
