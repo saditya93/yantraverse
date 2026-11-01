@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.180-daily.20261031",
-  "description": "Zero‑dependency, type‑safe Node.js framework delivering native HTTP/2 + HTTP/3, AI‑driven routing and edge‑first performance—Express‑style API re‑imagined for 2026.",
+  "version": "0.0.181-daily.20261101",
+  "description": "Zero‑dependency, Type‑safe Node.js framework with native HTTP/2 + HTTP/3, AI‑driven routing and edge‑first performance – the Express‑style API re‑imagined for 2026.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -64,11 +64,13 @@
     "real-time",
     "observability",
     "devops",
-    "next-gen",
     "wasm",
     "webassembly",
     "reactive",
-    "observable"
+    "observable",
+    "next-gen",
+    "aiops",
+    "edge-ai"
   ],
   "author": "",
   "license": "MIT",
