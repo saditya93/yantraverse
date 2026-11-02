@@ -1,19 +1,22 @@
 {
-  "date": "2026-11-01",
+  "date": "2026-11-02",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown & Health‑Check Endpoints",
-  "description": "Introduce a built‑in graceful shutdown routine that stops accepting new connections, finishes in‑flight requests, and closes resources, plus a `/healthz` endpoint for liveness/readiness checks. This improves reliability in container orchestration and reduces abrupt terminations.",
+  "title": "Add built‑in body‑parser middleware with size limits and error handling",
+  "description": "Provides native support for parsing JSON, URL‑encoded, and raw request bodies without external dependencies. Enforces configurable size limits and returns standardized errors, simplifying API development and keeping the framework zero‑dependency.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/middleware/healthCheck.js",
-    "test/server.gracefulShutdown.test.js"
+    "src/middleware/bodyParser.js",
+    "src/app.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Verify that the server stops accepting new connections after SIGTERM and resolves pending requests before exiting",
-    "Ensure GET /healthz returns 200 with JSON {status:'ok'} and proper content‑type"
+    "Parse a valid JSON payload and verify req.body contains the object",
+    "Reject a JSON payload exceeding the configured size limit with a 413 response",
+    "Return a 400 error for malformed JSON payload",
+    "Parse a valid URL‑encoded payload and verify req.body fields",
+    "Parse a raw buffer payload when content‑type is application/octet-stream"
   ],
-  "acceptance": "When a SIGTERM (or SIGINT) is sent, the server stops accepting new requests, waits up to 10 seconds for ongoing requests to finish, then exits with code 0. The `/healthz` endpoint must be reachable at any time and return a 200 JSON payload indicating service health.",
-  "reason": "Containers and orchestrators (K8s, ECS) rely on graceful termination and health checks to manage scaling and restarts. Adding this feature eliminates the need for custom shutdown logic, reduces downtime, and aligns yantraverse with production‑grade expectations."
+  "acceptance": "The framework exposes app.use(bodyParser({json:{limit:'1mb'},urlencoded:{limit:'500kb'},raw:{limit:'2mb'}})). All tests pass, valid bodies are attached to req.body, oversized bodies trigger a 413 response, and malformed JSON triggers a 400 response with a clear error message.",
+  "reason": "Body parsing is a core requirement for most APIs. Providing a built‑in, zero‑dependency solution removes the need for external packages, reduces bundle size, and aligns with yantraverse's stability and production‑ready goals."
 }

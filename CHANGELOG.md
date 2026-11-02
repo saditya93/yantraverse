@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-02
+### FEATURE
+- Add built‑in body‑parser middleware with size limits and error handling: Provides native support for parsing JSON, URL‑encoded, and raw request bodies without external dependencies. Enforces configurable size limits and returns standardized errors, simplifying API development and keeping the framework zero‑dependency.
+
 ## [Automated] - 2026-11-01
 ### FEATURE
 - Add Graceful Shutdown & Health‑Check Endpoints: Introduce a built‑in graceful shutdown routine that stops accepting new connections, finishes in‑flight requests, and closes resources, plus a `/healthz` endpoint for liveness/readiness checks. This improves reliability in container orchestration and reduces abrupt terminations.
