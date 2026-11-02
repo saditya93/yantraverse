@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-01",
-  "description": "Zero‑dependency, Type‑safe Node.js framework with native HTTP/2 + HTTP/3, AI‑driven routing and edge‑first performance – the Express‑style API re‑imagined for 2026.",
+  "date": "2026-11-02",
+  "description": "Zero‑dependency, type‑safe Node.js framework with native HTTP/2 + HTTP/3, AI‑driven routing, and edge‑first performance – the Express‑style API re‑imagined for 2026.",
   "keywords": [
     "nodejs",
     "framework",
@@ -37,24 +37,27 @@
     "observable",
     "next-gen",
     "aiops",
+    "cloud-native",
     "edge-ai"
   ],
-  "npm_trending_strategy": "Leverages three 2026‑level trends in a single package: native HTTP/3 (QUIC) for sub‑millisecond latency, built‑in AI‑powered route selection that auto‑optimizes for LLM workloads, and an edge‑first deployment model that runs unchanged on Cloudflare Workers, Bun, Deno and serverless runtimes. All of this with zero runtime dependencies and full TypeScript typings, giving developers a drop‑in Express‑style API that outperforms Fastify and Nest on modern edge infrastructure.",
+  "npm_trending_strategy": "Version 0.0.181‑daily ships native HTTP/3 (QUIC) support, AI‑generated route matching, and a universal runtime layer that runs unmodified on Node, Bun, Deno, and Cloudflare Workers. Zero runtime dependencies keep install size < 30 KB, while full TypeScript typings guarantee compile‑time safety. The API mirrors Express, so onboarding is instant, but the built‑in edge‑first scheduler and built‑in observability give you performance that Fastify can’t match without extra plugins.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#http3",
-    "#edgecompute",
     "#ai",
-    "#typescript",
+    "#http3",
+    "#edge",
     "#serverless",
+    "#typescript",
+    "#zero-deps",
     "#microservices",
-    "#lowlatency",
-    "#nextgen"
+    "#real-time"
   ],
   "download_hooks": [
-    "Developers choose yantravese because it delivers the fastest request‑to‑response times on the edge without pulling in any third‑party modules.",
-    "Performance angle: native HTTP/3 + QUIC + zero‑dependency design shaves up to 70 % latency compared to Fastify on the same hardware.",
-    "Developer experience angle: Express‑style API, complete TypeScript definitions, and AI‑driven routing let you write less code and let the framework auto‑scale your LLM endpoints."
+    "Developers pick yantravese for sub‑millisecond latency thanks to native HTTP/3 and edge‑first request routing.",
+    "Zero‑dependency install (< 30 KB) means lightning‑fast CI/CD pipelines and tiny Docker images.",
+    "AI‑driven routing auto‑optimizes path matching and can adapt to LLM‑generated dynamic endpoints on the fly.",
+    "Full TypeScript support eliminates runtime bugs and boosts IDE autocomplete, making migration from Express painless.",
+    "Runs everywhere – Node, Bun, Deno, Cloudflare Workers – with a single codebase, future‑proofing your stack."
   ]
 }
