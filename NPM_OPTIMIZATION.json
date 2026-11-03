@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-02",
-  "description": "Zero‑dependency, type‑safe Node.js framework with native HTTP/2 + HTTP/3, AI‑driven routing, and edge‑first performance – the Express‑style API re‑imagined for 2026.",
+  "date": "2026-11-03",
+  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
   "keywords": [
     "nodejs",
     "framework",
@@ -8,56 +8,17 @@
     "middleware",
     "express-alternative",
     "fast",
-    "zero-dependencies",
-    "typescript",
-    "esm",
-    "http2",
-    "http3",
-    "quic",
-    "edge-compute",
-    "edge-first",
-    "serverless",
-    "cloudflare-workers",
-    "bun",
-    "deno",
-    "ai",
-    "genai",
-    "llm",
-    "ai-routing",
-    "low-latency",
-    "ultra-fast",
-    "microservices",
-    "streaming",
-    "real-time",
-    "observability",
-    "devops",
-    "wasm",
-    "webassembly",
-    "reactive",
-    "observable",
-    "next-gen",
-    "aiops",
-    "cloud-native",
-    "edge-ai"
+    "zero-dependencies"
   ],
-  "npm_trending_strategy": "Version 0.0.181‑daily ships native HTTP/3 (QUIC) support, AI‑generated route matching, and a universal runtime layer that runs unmodified on Node, Bun, Deno, and Cloudflare Workers. Zero runtime dependencies keep install size < 30 KB, while full TypeScript typings guarantee compile‑time safety. The API mirrors Express, so onboarding is instant, but the built‑in edge‑first scheduler and built‑in observability give you performance that Fastify can’t match without extra plugins.",
+  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#ai",
-    "#http3",
-    "#edge",
-    "#serverless",
-    "#typescript",
-    "#zero-deps",
-    "#microservices",
-    "#real-time"
+    "#performance"
   ],
   "download_hooks": [
-    "Developers pick yantravese for sub‑millisecond latency thanks to native HTTP/3 and edge‑first request routing.",
-    "Zero‑dependency install (< 30 KB) means lightning‑fast CI/CD pipelines and tiny Docker images.",
-    "AI‑driven routing auto‑optimizes path matching and can adapt to LLM‑generated dynamic endpoints on the fly.",
-    "Full TypeScript support eliminates runtime bugs and boosts IDE autocomplete, making migration from Express painless.",
-    "Runs everywhere – Node, Bun, Deno, Cloudflare Workers – with a single codebase, future‑proofing your stack."
+    "Developers want fast, simple frameworks",
+    "Zero dependencies = less maintenance headaches",
+    "Perfect for high-traffic APIs"
   ]
 }
