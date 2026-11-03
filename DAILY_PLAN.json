@@ -1,22 +1,21 @@
 {
-  "date": "2026-11-02",
+  "date": "2026-11-03",
   "category": "FEATURE",
-  "title": "Add built‑in body‑parser middleware with size limits and error handling",
-  "description": "Provides native support for parsing JSON, URL‑encoded, and raw request bodies without external dependencies. Enforces configurable size limits and returns standardized errors, simplifying API development and keeping the framework zero‑dependency.",
+  "title": "Add Built-in Request Validation Middleware",
+  "description": "Introduces a declarative request validation layer using JSON schemas, allowing developers to define and enforce payload shapes per route. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "src/app.js",
-    "test/bodyParser.test.js"
+    "src/middleware/validation.js",
+    "src/router.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Parse a valid JSON payload and verify req.body contains the object",
-    "Reject a JSON payload exceeding the configured size limit with a 413 response",
-    "Return a 400 error for malformed JSON payload",
-    "Parse a valid URL‑encoded payload and verify req.body fields",
-    "Parse a raw buffer payload when content‑type is application/octet-stream"
+    "Valid request body passes and reaches the handler",
+    "Invalid request body returns 400 with detailed error messages",
+    "Missing required fields are reported correctly",
+    "Nested object validation works as defined in schema"
   ],
-  "acceptance": "The framework exposes app.use(bodyParser({json:{limit:'1mb'},urlencoded:{limit:'500kb'},raw:{limit:'2mb'}})). All tests pass, valid bodies are attached to req.body, oversized bodies trigger a 413 response, and malformed JSON triggers a 400 response with a clear error message.",
-  "reason": "Body parsing is a core requirement for most APIs. Providing a built‑in, zero‑dependency solution removes the need for external packages, reduces bundle size, and aligns with yantraverse's stability and production‑ready goals."
+  "acceptance": "When a route registers a validation schema, incoming requests are automatically validated; valid requests proceed to the next middleware/handler, while invalid requests receive a 400 response with a JSON error payload describing all violations. The middleware must not interfere with existing routes that do not specify a schema.",
+  "reason": "Ensures data integrity at the edge of the application, reduces repetitive validation code, and aligns yantraverse with modern API best practices, making it more attractive for production use."
 }

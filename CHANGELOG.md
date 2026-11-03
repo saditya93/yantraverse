@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-03
+### FEATURE
+- Add Built-in Request Validation Middleware: Introduces a declarative request validation layer using JSON schemas, allowing developers to define and enforce payload shapes per route. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.
+
 ## [Automated] - 2026-11-02
 ### FEATURE
 - Add built‑in body‑parser middleware with size limits and error handling: Provides native support for parsing JSON, URL‑encoded, and raw request bodies without external dependencies. Enforces configurable size limits and returns standardized errors, simplifying API development and keeping the framework zero‑dependency.
