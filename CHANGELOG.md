@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-04
+### FEATURE
+- Graceful shutdown with signal handling and request draining: Adds support for SIGINT/SIGTERM handling to allow the server to stop accepting new connections while completing in‑flight requests. This prevents dropped requests during deployments and improves reliability in production environments.
+
 ## [Automated] - 2026-11-03
 ### FEATURE
 - Add Built-in Request Validation Middleware: Introduces a declarative request validation layer using JSON schemas, allowing developers to define and enforce payload shapes per route. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.

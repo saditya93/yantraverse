@@ -1,21 +1,19 @@
 {
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "category": "FEATURE",
-  "title": "Add Built-in Request Validation Middleware",
-  "description": "Introduces a declarative request validation layer using JSON schemas, allowing developers to define and enforce payload shapes per route. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.",
+  "title": "Graceful shutdown with signal handling and request draining",
+  "description": "Adds support for SIGINT/SIGTERM handling to allow the server to stop accepting new connections while completing in‑flight requests. This prevents dropped requests during deployments and improves reliability in production environments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validation.js",
-    "src/router.js",
-    "test/validation.test.js"
+    "src/server.js",
+    "src/shutdown.js",
+    "test/shutdown.test.js"
   ],
   "testCases": [
-    "Valid request body passes and reaches the handler",
-    "Invalid request body returns 400 with detailed error messages",
-    "Missing required fields are reported correctly",
-    "Nested object validation works as defined in schema"
+    "Simulate SIGTERM during active requests and verify the server stops accepting new connections but finishes existing ones within the configured timeout",
+    "Trigger SIGINT without any active requests and ensure the process exits cleanly with status 0"
   ],
-  "acceptance": "When a route registers a validation schema, incoming requests are automatically validated; valid requests proceed to the next middleware/handler, while invalid requests receive a 400 response with a JSON error payload describing all violations. The middleware must not interfere with existing routes that do not specify a schema.",
-  "reason": "Ensures data integrity at the edge of the application, reduces repetitive validation code, and aligns yantraverse with modern API best practices, making it more attractive for production use."
+  "acceptance": "When the process receives SIGINT or SIGTERM, the framework logs shutdown start, stops listening, waits up to 10 seconds for all active requests to finish, then exits with code 0; if the timeout expires, it force‑exits with code 1. No requests are abruptly terminated during normal shutdown.",
+  "reason": "Ensures zero‑downtime deployments and protects client interactions, addressing a common production‑grade requirement that is currently missing from yantraverse."
 }
