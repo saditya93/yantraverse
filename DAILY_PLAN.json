@@ -1,19 +1,21 @@
 {
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "category": "FEATURE",
-  "title": "Graceful shutdown with signal handling and request draining",
-  "description": "Adds support for SIGINT/SIGTERM handling to allow the server to stop accepting new connections while completing in‑flight requests. This prevents dropped requests during deployments and improves reliability in production environments.",
+  "title": "Add JSON Schema Request Validation Middleware",
+  "description": "Introduce a lightweight, zero‑dependency middleware that validates incoming request bodies, query strings, and params against JSON Schemas defined per route. This prevents malformed data from reaching handlers, reduces boiler‑plate validation code, and improves overall security and reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/shutdown.js",
-    "test/shutdown.test.js"
+    "src/middleware/validateRequest.js",
+    "src/router.js",
+    "test/validateRequest.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM during active requests and verify the server stops accepting new connections but finishes existing ones within the configured timeout",
-    "Trigger SIGINT without any active requests and ensure the process exits cleanly with status 0"
+    "Validate that a POST request with a body matching the schema passes through to the handler",
+    "Validate that a POST request with a missing required field returns a 400 response with a clear error message",
+    "Validate that query string validation works and invalid queries are rejected",
+    "Validate that route‑level schemas can be combined (params + query + body) without conflict"
   ],
-  "acceptance": "When the process receives SIGINT or SIGTERM, the framework logs shutdown start, stops listening, waits up to 10 seconds for all active requests to finish, then exits with code 0; if the timeout expires, it force‑exits with code 1. No requests are abruptly terminated during normal shutdown.",
-  "reason": "Ensures zero‑downtime deployments and protects client interactions, addressing a common production‑grade requirement that is currently missing from yantraverse."
+  "acceptance": "All new tests pass, existing test suite remains 100% green, middleware correctly returns 400 on validation failures and lets valid requests continue, and documentation is added to the README with usage examples.",
+  "reason": "Ensuring data integrity at the framework level eliminates repetitive validation logic in applications, reduces bugs, and aligns with the recent stability focus, delivering immediate value to developers using yantraverse."
 }

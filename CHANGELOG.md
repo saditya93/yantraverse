@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-05
+### FEATURE
+- Add JSON Schema Request Validation Middleware: Introduce a lightweight, zero‑dependency middleware that validates incoming request bodies, query strings, and params against JSON Schemas defined per route. This prevents malformed data from reaching handlers, reduces boiler‑plate validation code, and improves overall security and reliability.
+
 ## [Automated] - 2026-11-04
 ### FEATURE
 - Graceful shutdown with signal handling and request draining: Adds support for SIGINT/SIGTERM handling to allow the server to stop accepting new connections while completing in‑flight requests. This prevents dropped requests during deployments and improves reliability in production environments.
