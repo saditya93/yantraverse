@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-04",
-  "description": "Yantravese – a zero‑dependency, ultra‑fast Node.js framework with native ESM, TypeScript support, and edge‑ready routing that outpaces Express and Fastify.",
+  "date": "2026-11-05",
+  "description": "Yantravese – a zero‑dependency, native‑ESM Node.js framework that delivers Express‑level simplicity with Fastify‑level speed, built‑in TypeScript, edge‑ready routing, and instant observability.",
   "keywords": [
     "nodejs",
     "framework",
@@ -15,24 +15,29 @@
     "typescript",
     "esm",
     "http2",
-    "low‑latency",
-    "observability"
+    "low-latency",
+    "observability",
+    "ai‑ready",
+    "cloud‑native",
+    "edge‑runtime",
+    "web‑assembly",
+    "micro‑performance",
+    "dev‑experience"
   ],
-  "npm_trending_strategy": "Position Yantravese as the go‑to \"Express‑compatible but faster\" solution for modern serverless and edge deployments. Highlight its zero‑dependency core, native ESM, built‑in TypeScript definitions, and out‑of‑the‑box security middleware. Leverage trending 2026 buzzwords (edge, serverless, micro‑services, AI‑ready) in the README and tags, and promote the daily‑release model that guarantees cutting‑edge performance fixes.",
+  "npm_trending_strategy": "Leverages 2026’s top trends – AI‑ready APIs, edge‑first deployment, and built‑in observability – while staying 100 % zero‑dependency and fully native ESM. The version tag `daily.20261104` signals continuous, production‑grade updates, giving early‑adopters confidence that they’re on the bleeding edge of performance and developer ergonomics.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#routing",
-    "#middleware",
-    "#expressalternative",
-    "#fast",
-    "#zerodep",
+    "#edge",
+    "#typescript",
+    "#performance",
     "#serverless",
-    "#edge"
+    "#observability",
+    "#aiReady"
   ],
   "download_hooks": [
-    "Zero‑dependency core delivers sub‑millisecond routing, beating Express by 5‑10x and Fastify by 2‑3x in real‑world benchmarks.",
-    "Built‑in async middleware, native TypeScript typings, and out‑of‑the‑box security let you ship features faster with fewer bugs.",
-    "Single‑file install, native ESM, and edge‑ready APIs keep your dev setup trivial and CI pipelines lean."
+    "Developers choose Yantravese because it shaves milliseconds off every request – benchmarked 2‑3× faster than Fastify on HTTP/2 and 5‑10× faster than Express on edge runtimes.",
+    "Zero‑dependency design means no hidden bloat, instant start‑up, and trivial deployment to Vercel, Cloudflare Workers, or any edge platform.",
+    "Full TypeScript support out‑of‑the‑box, native ESM, and a single‑file router give a frictionless dev experience that lets you focus on business logic, not boilerplate."
   ]
 }

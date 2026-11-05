@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.184-daily.20261104",
-  "description": "Yantravese – a zero‑dependency, ultra‑fast Node.js framework with native ESM, TypeScript support, and edge‑ready routing that outpaces Express and Fastify.",
+  "version": "0.0.185-daily.20261105",
+  "description": "Yantravese – a zero‑dependency, native‑ESM Node.js framework that delivers Express‑level simplicity with Fastify‑level speed, built‑in TypeScript, edge‑ready routing, and instant observability.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -48,8 +48,14 @@
     "typescript",
     "esm",
     "http2",
-    "low‑latency",
-    "observability"
+    "low-latency",
+    "observability",
+    "ai‑ready",
+    "cloud‑native",
+    "edge‑runtime",
+    "web‑assembly",
+    "micro‑performance",
+    "dev‑experience"
   ],
   "author": "",
   "license": "MIT",
