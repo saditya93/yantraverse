@@ -1,21 +1,18 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "category": "FEATURE",
-  "title": "Add JSON Schema Request Validation Middleware",
-  "description": "Introduce a lightweight, zero‑dependency middleware that validates incoming request bodies, query strings, and params against JSON Schemas defined per route. This prevents malformed data from reaching handlers, reduces boiler‑plate validation code, and improves overall security and reliability.",
+  "title": "Add built‑in request body parser with size limits",
+  "description": "Parsing JSON, URL‑encoded, and multipart bodies is a common need that currently requires external middleware. This feature adds a lightweight, zero‑dependency parser with configurable size limits and automatic content‑type handling, improving developer ergonomics and security.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateRequest.js",
-    "src/router.js",
-    "test/validateRequest.test.js"
+    "src/middleware/bodyParser.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Validate that a POST request with a body matching the schema passes through to the handler",
-    "Validate that a POST request with a missing required field returns a 400 response with a clear error message",
-    "Validate that query string validation works and invalid queries are rejected",
-    "Validate that route‑level schemas can be combined (params + query + body) without conflict"
+    "Parse a valid JSON payload under the size limit and verify req.body contains the correct object",
+    "Reject a payload that exceeds the configured size limit with a 413 response"
   ],
-  "acceptance": "All new tests pass, existing test suite remains 100% green, middleware correctly returns 400 on validation failures and lets valid requests continue, and documentation is added to the README with usage examples.",
-  "reason": "Ensuring data integrity at the framework level eliminates repetitive validation logic in applications, reduces bugs, and aligns with the recent stability focus, delivering immediate value to developers using yantraverse."
+  "acceptance": "The framework exposes a `bodyParser(options)` middleware that correctly parses JSON and URL‑encoded bodies, respects `options.limit`, returns 413 on overflow, and integrates seamlessly with existing routing and error handling.",
+  "reason": "Eliminates the need for third‑party body‑parsing packages, reduces bundle size, and adds essential security controls, directly addressing developer pain points and production reliability."
 }

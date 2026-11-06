@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-06
+### FEATURE
+- Add built‑in request body parser with size limits: Parsing JSON, URL‑encoded, and multipart bodies is a common need that currently requires external middleware. This feature adds a lightweight, zero‑dependency parser with configurable size limits and automatic content‑type handling, improving developer ergonomics and security.
+
 ## [Automated] - 2026-11-05
 ### FEATURE
 - Add JSON Schema Request Validation Middleware: Introduce a lightweight, zero‑dependency middleware that validates incoming request bodies, query strings, and params against JSON Schemas defined per route. This prevents malformed data from reaching handlers, reduces boiler‑plate validation code, and improves overall security and reliability.
