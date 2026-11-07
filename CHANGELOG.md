@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-07
+### FEATURE
+- Add built-in request validation middleware: Provides a declarative way to validate query, params, headers and body against JSON schemas before reaching route handlers, reducing boilerplate and preventing malformed requests from entering business logic. Integrates with existing error handling and logging to surface validation errors as standardized responses.
+
 ## [Automated] - 2026-11-06
 ### FEATURE
 - Add built‑in request body parser with size limits: Parsing JSON, URL‑encoded, and multipart bodies is a common need that currently requires external middleware. This feature adds a lightweight, zero‑dependency parser with configurable size limits and automatic content‑type handling, improving developer ergonomics and security.

@@ -1,18 +1,19 @@
 {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "category": "FEATURE",
-  "title": "Add built‑in request body parser with size limits",
-  "description": "Parsing JSON, URL‑encoded, and multipart bodies is a common need that currently requires external middleware. This feature adds a lightweight, zero‑dependency parser with configurable size limits and automatic content‑type handling, improving developer ergonomics and security.",
+  "title": "Add built-in request validation middleware",
+  "description": "Provides a declarative way to validate query, params, headers and body against JSON schemas before reaching route handlers, reducing boilerplate and preventing malformed requests from entering business logic. Integrates with existing error handling and logging to surface validation errors as standardized responses.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
-    "test/bodyParser.test.js"
+    "src/validation.js",
+    "src/middleware.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Parse a valid JSON payload under the size limit and verify req.body contains the correct object",
-    "Reject a payload that exceeds the configured size limit with a 413 response"
+    "Validate that a request with a valid JSON body passes through to the route handler and receives a 200 response",
+    "Validate that a request with an invalid JSON body returns a 400 response with a detailed validation error payload"
   ],
-  "acceptance": "The framework exposes a `bodyParser(options)` middleware that correctly parses JSON and URL‑encoded bodies, respects `options.limit`, returns 413 on overflow, and integrates seamlessly with existing routing and error handling.",
-  "reason": "Eliminates the need for third‑party body‑parsing packages, reduces bundle size, and adds essential security controls, directly addressing developer pain points and production reliability."
+  "acceptance": "When a route registers a schema, incoming requests are automatically validated; valid requests reach the handler unchanged, invalid requests are halted with a 400 Bad Request and a JSON error object containing the schema violation details. All existing tests remain green and coverage for the new middleware is >= 90%.",
+  "reason": "Ensures data integrity at the edge of the application, cuts down on repetitive validation code, and improves security and reliability for production deployments."
 }
