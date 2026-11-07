@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.186-daily.20261106",
-  "description": "Zero‑dependency native‑ESM Node.js framework that gives you Express‑level simplicity with Fastify‑grade speed, built‑in TypeScript, edge‑ready routing, AI‑ready observability, and out‑of‑the‑box serverless support.",
+  "version": "0.0.187-daily.20261107",
+  "description": "Zero‑dependency native‑ESM Node.js framework that delivers Express‑level simplicity with Fastify‑grade performance, built‑in TypeScript, AI‑ready observability, and instant server‑less/edge deployment.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -59,14 +59,21 @@
     "prometheus",
     "tracing",
     "genai",
-    "llm-middleware",
+    "llm",
     "edge-ai",
     "cloudflare-workers",
     "deno-compat",
+    "bun",
     "reactive",
     "cicd",
     "devops",
-    "microfrontend"
+    "microfrontend",
+    "real-time",
+    "vite",
+    "astro",
+    "graphql",
+    "websocket",
+    "streaming"
   ],
   "author": "",
   "license": "MIT",
