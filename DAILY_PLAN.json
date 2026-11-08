@@ -1,19 +1,19 @@
 {
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "category": "FEATURE",
-  "title": "Add built-in request validation middleware",
-  "description": "Provides a declarative way to validate query, params, headers and body against JSON schemas before reaching route handlers, reducing boilerplate and preventing malformed requests from entering business logic. Integrates with existing error handling and logging to surface validation errors as standardized responses.",
+  "title": "Add Built‑in Request Logging Middleware with Configurable Formats",
+  "description": "Provides automatic structured request logging for every incoming HTTP request, improving observability and debugging in production. The middleware supports customizable log formats (combined, dev, json) and optional request ID correlation, without adding external dependencies.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/validation.js",
-    "src/middleware.js",
-    "test/validation.test.js"
+    "src/middleware/logger.js",
+    "src/app.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Validate that a request with a valid JSON body passes through to the route handler and receives a 200 response",
-    "Validate that a request with an invalid JSON body returns a 400 response with a detailed validation error payload"
+    "Logs a request using default \"combined\" format and verifies output contains method, url, status, and response time",
+    "Logs a request with json format and requestId enabled, asserting the JSON structure includes a unique requestId field"
   ],
-  "acceptance": "When a route registers a schema, incoming requests are automatically validated; valid requests reach the handler unchanged, invalid requests are halted with a 400 Bad Request and a JSON error object containing the schema violation details. All existing tests remain green and coverage for the new middleware is >= 90%.",
-  "reason": "Ensures data integrity at the edge of the application, cuts down on repetitive validation code, and improves security and reliability for production deployments."
+  "acceptance": "When the logger middleware is enabled, each request produces a correctly formatted log entry according to the selected format; the logger can be toggled via app configuration and does not impact request latency beyond <5ms in benchmark tests.",
+  "reason": "Enhanced observability is critical for production stability and rapid issue resolution; a zero‑dependency, configurable logger aligns with yantraverse's lightweight philosophy while filling a core operational gap."
 }

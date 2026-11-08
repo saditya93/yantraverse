@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-08
+### FEATURE
+- Add Built‑in Request Logging Middleware with Configurable Formats: Provides automatic structured request logging for every incoming HTTP request, improving observability and debugging in production. The middleware supports customizable log formats (combined, dev, json) and optional request ID correlation, without adding external dependencies.
+
 ## [Automated] - 2026-11-07
 ### FEATURE
 - Add built-in request validation middleware: Provides a declarative way to validate query, params, headers and body against JSON schemas before reaching route handlers, reducing boilerplate and preventing malformed requests from entering business logic. Integrates with existing error handling and logging to surface validation errors as standardized responses.
