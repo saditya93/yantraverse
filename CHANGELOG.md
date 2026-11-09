@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-09
+### FEATURE
+- Add graceful shutdown with signal handling and connection draining: Introduces process signal listeners (SIGINT, SIGTERM) that close the HTTP server, stop accepting new requests, and wait for in‑flight requests to finish before exiting. This prevents abrupt termination, reduces dropped requests, and improves reliability in containerized deployments.
+
 ## [Automated] - 2026-11-08
 ### FEATURE
 - Add Built‑in Request Logging Middleware with Configurable Formats: Provides automatic structured request logging for every incoming HTTP request, improving observability and debugging in production. The middleware supports customizable log formats (combined, dev, json) and optional request ID correlation, without adding external dependencies.
