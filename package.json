@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.188-daily.20261108",
-  "description": "Zero‑dependency native‑ESM Node.js framework that gives you Express‑style simplicity with Fastify‑grade speed, built‑in TypeScript, AI‑ready observability, and instant edge‑runtime deployment.",
+  "version": "0.0.189-daily.20261109",
+  "description": "Zero‑dependency native‑ESM framework that delivers Express‑style simplicity with Fastify‑level performance, built‑in TypeScript, AI‑ready observability, and instant edge‑runtime deployment.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -73,7 +73,14 @@
     "streaming",
     "low-latency",
     "http2",
-    "microservices"
+    "http3",
+    "quic",
+    "microservices",
+    "trpc",
+    "aiops",
+    "observability-as-code",
+    "edge-functions",
+    "serverless-edge"
   ],
   "author": "",
   "license": "MIT",
