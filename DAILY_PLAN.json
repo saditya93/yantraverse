@@ -1,18 +1,21 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with signal handling and connection draining",
-  "description": "Introduces process signal listeners (SIGINT, SIGTERM) that close the HTTP server, stop accepting new requests, and wait for in‑flight requests to finish before exiting. This prevents abrupt termination, reduces dropped requests, and improves reliability in containerized deployments.",
+  "title": "Add built‑in request body validation middleware",
+  "description": "Validating incoming JSON payloads prevents runtime errors and security issues. This middleware lets developers declare JSON schemas per route, automatically returning 400 with detailed errors when validation fails, while keeping the zero‑dependency promise.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "test/server.gracefulShutdown.test.js"
+    "src/middleware/validateBody.js",
+    "src/router.js",
+    "test/validateBody.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while handling a long‑running request and verify the server stops accepting new connections but completes the in‑flight request before process exit",
-    "Send SIGINT when no active requests exist and ensure the server closes immediately and process exits with code 0"
+    "Should pass when request body matches the defined schema",
+    "Should reject with 400 and a clear error message when body is missing required fields",
+    "Should reject with 400 when body contains fields of wrong type",
+    "Should ignore validation for routes without a schema"
   ],
-  "acceptance": "The server must listen for SIGINT and SIGTERM, stop accepting new connections, wait up to 30 seconds for active requests to finish, then close and exit with code 0. If requests exceed the timeout, they are force‑closed and the process still exits. All existing unit and integration tests must continue to pass.",
-  "reason": "Production environments (Docker, Kubernetes, serverless) rely on graceful shutdown to avoid data loss and improve uptime. Adding this feature aligns with the framework’s stability focus and eliminates a common operational pain point for users."
+  "acceptance": "All new tests pass, existing test suite remains green, and the middleware correctly validates payloads, returns appropriate HTTP status codes, and logs validation errors without crashing the server.",
+  "reason": "Improves API reliability and security, reduces boilerplate validation code, and aligns with the framework’s goal of providing production‑ready features out‑of‑the‑box."
 }

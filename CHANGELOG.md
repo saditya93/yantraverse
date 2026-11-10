@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-10
+### FEATURE
+- Add built‑in request body validation middleware: Validating incoming JSON payloads prevents runtime errors and security issues. This middleware lets developers declare JSON schemas per route, automatically returning 400 with detailed errors when validation fails, while keeping the zero‑dependency promise.
+
 ## [Automated] - 2026-11-09
 ### FEATURE
 - Add graceful shutdown with signal handling and connection draining: Introduces process signal listeners (SIGINT, SIGTERM) that close the HTTP server, stop accepting new requests, and wait for in‑flight requests to finish before exiting. This prevents abrupt termination, reduces dropped requests, and improves reliability in containerized deployments.
