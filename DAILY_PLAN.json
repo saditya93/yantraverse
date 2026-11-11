@@ -1,21 +1,20 @@
 {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "category": "FEATURE",
-  "title": "Add built‑in request body validation middleware",
-  "description": "Validating incoming JSON payloads prevents runtime errors and security issues. This middleware lets developers declare JSON schemas per route, automatically returning 400 with detailed errors when validation fails, while keeping the zero‑dependency promise.",
+  "title": "Add Graceful Shutdown & Health‑Check Endpoint",
+  "description": "Introduce a /health route that returns service status and implement graceful shutdown handling for SIGINT/SIGTERM. This ensures orchestrators can reliably detect health and that the server drains in‑flight requests before exiting, reducing dropped requests in production.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateBody.js",
-    "src/router.js",
-    "test/validateBody.test.js"
+    "src/server.js",
+    "src/middleware/health.js",
+    "test/health.test.js"
   ],
   "testCases": [
-    "Should pass when request body matches the defined schema",
-    "Should reject with 400 and a clear error message when body is missing required fields",
-    "Should reject with 400 when body contains fields of wrong type",
-    "Should ignore validation for routes without a schema"
+    "Health endpoint returns 200 with {status:\"ok\"} JSON payload",
+    "Server stops accepting new connections after SIGTERM but finishes pending requests before exiting",
+    "Shutdown logs contain \"Graceful shutdown initiated\" and \"Shutdown complete\" messages"
   ],
-  "acceptance": "All new tests pass, existing test suite remains green, and the middleware correctly validates payloads, returns appropriate HTTP status codes, and logs validation errors without crashing the server.",
-  "reason": "Improves API reliability and security, reduces boilerplate validation code, and aligns with the framework’s goal of providing production‑ready features out‑of‑the‑box."
+  "acceptance": "- GET /health returns 200 and correct JSON body\n- After sending SIGTERM, server no longer accepts new connections but resolves all active requests before process exit\n- Logs show start and completion of shutdown with timestamps",
+  "reason": "Provides essential observability for container orchestration and prevents request loss during deployments, directly addressing production stability goals."
 }
