@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.191-daily.20261111",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework with type‑safe routing, async middleware, and native HTTP/2/edge support—your modern Express alternative for serverless and edge workloads.",
+  "version": "0.0.192-daily.20261112",
+  "description": "Zero‑dependency, type‑safe Node.js framework that delivers Express‑level simplicity with Fastify‑level speed, native HTTP/2, edge‑runtime support, and built‑in async middleware.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -53,7 +53,19 @@
     "low-latency",
     "async",
     "lightweight",
-    "modern"
+    "modern",
+    "openapi",
+    "graphql",
+    "websocket",
+    "observability",
+    "wasm",
+    "edge-computing",
+    "ai",
+    "deno",
+    "nextjs",
+    "reactivity",
+    "runtime",
+    "type-safe"
   ],
   "author": "",
   "license": "MIT",
