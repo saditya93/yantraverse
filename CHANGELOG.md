@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-12
+### FEATURE
+- Add Built-in JSON Schema Request Validation Middleware: Introduces a zero‑dependency middleware that validates incoming request bodies against JSON Schemas. It automatically returns a 400 response with detailed error messages for invalid payloads, improving security and developer productivity without external packages.
+
 ## [Automated] - 2026-11-11
 ### FEATURE
 - Add Graceful Shutdown & Health‑Check Endpoint: Introduce a /health route that returns service status and implement graceful shutdown handling for SIGINT/SIGTERM. This ensures orchestrators can reliably detect health and that the server drains in‑flight requests before exiting, reducing dropped requests in production.

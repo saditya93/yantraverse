@@ -1,20 +1,19 @@
 {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown & Health‑Check Endpoint",
-  "description": "Introduce a /health route that returns service status and implement graceful shutdown handling for SIGINT/SIGTERM. This ensures orchestrators can reliably detect health and that the server drains in‑flight requests before exiting, reducing dropped requests in production.",
+  "title": "Add Built-in JSON Schema Request Validation Middleware",
+  "description": "Introduces a zero‑dependency middleware that validates incoming request bodies against JSON Schemas. It automatically returns a 400 response with detailed error messages for invalid payloads, improving security and developer productivity without external packages.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/middleware/health.js",
-    "test/health.test.js"
+    "src/validationMiddleware.js",
+    "test/validationMiddleware.test.js"
   ],
   "testCases": [
-    "Health endpoint returns 200 with {status:\"ok\"} JSON payload",
-    "Server stops accepting new connections after SIGTERM but finishes pending requests before exiting",
-    "Shutdown logs contain \"Graceful shutdown initiated\" and \"Shutdown complete\" messages"
+    "Valid request body matching the schema proceeds to the next handler and the sanitized data is attached to ctx.validatedBody",
+    "Invalid request body returns a 400 response with a JSON error payload describing the schema violations",
+    "Missing or malformed schema configuration throws a clear runtime error during app initialization"
   ],
-  "acceptance": "- GET /health returns 200 and correct JSON body\n- After sending SIGTERM, server no longer accepts new connections but resolves all active requests before process exit\n- Logs show start and completion of shutdown with timestamps",
-  "reason": "Provides essential observability for container orchestration and prevents request loss during deployments, directly addressing production stability goals."
+  "acceptance": "The middleware must accept a JSON Schema object, validate ctx.request.body, attach the cleaned data to ctx.validatedBody, and on failure respond with status 400 and a JSON error list. It should be composable with existing routing and middleware, and must not introduce any external dependencies. All new tests pass and existing test suite remains green.",
+  "reason": "Ensures data integrity at the edge of the application, reduces boilerplate validation code, and mitigates injection attacks, aligning with Yantraverse's goal of providing a secure, production‑ready framework out‑of‑the‑box."
 }
