@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-13
+### FEATURE
+- Graceful Shutdown and Connection Draining: Adds built‑in handling for SIGTERM/SIGINT to stop accepting new requests, wait for in‑flight requests to finish, and then exit cleanly. This prevents dropped requests during deployments and improves reliability in production environments.
+
 ## [Automated] - 2026-11-12
 ### FEATURE
 - Add Built-in JSON Schema Request Validation Middleware: Introduces a zero‑dependency middleware that validates incoming request bodies against JSON Schemas. It automatically returns a 400 response with detailed error messages for invalid payloads, improving security and developer productivity without external packages.
