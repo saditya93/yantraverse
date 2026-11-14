@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-14
+### FEATURE
+- Add Built‑in Request Validation Middleware: Provides automatic validation of request bodies against JSON‑schema definitions without external dependencies. This prevents malformed data from reaching route handlers, improving security and reducing boilerplate validation code.
+
 ## [Automated] - 2026-11-13
 ### FEATURE
 - Graceful Shutdown and Connection Draining: Adds built‑in handling for SIGTERM/SIGINT to stop accepting new requests, wait for in‑flight requests to finish, and then exit cleanly. This prevents dropped requests during deployments and improves reliability in production environments.

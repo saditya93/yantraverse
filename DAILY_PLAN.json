@@ -1,19 +1,21 @@
 {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "category": "FEATURE",
-  "title": "Graceful Shutdown and Connection Draining",
-  "description": "Adds built‑in handling for SIGTERM/SIGINT to stop accepting new requests, wait for in‑flight requests to finish, and then exit cleanly. This prevents dropped requests during deployments and improves reliability in production environments.",
+  "title": "Add Built‑in Request Validation Middleware",
+  "description": "Provides automatic validation of request bodies against JSON‑schema definitions without external dependencies. This prevents malformed data from reaching route handlers, improving security and reducing boilerplate validation code.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/validation.js",
+    "src/app.js",
+    "test/validation.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while handling an active request and verify the server stops accepting new connections but allows the active request to complete before exiting",
-    "Trigger SIGINT with no active requests and ensure the server exits immediately after cleanup"
+    "Valid payload passes and next() is called",
+    "Invalid payload returns 400 with detailed error message",
+    "Missing schema for a route returns 500 with clear log",
+    "Validation works for both JSON and URL‑encoded bodies"
   ],
-  "acceptance": "When the process receives SIGTERM or SIGINT, the server must stop accepting new connections, allow existing requests to finish within a configurable timeout (default 10 s), then close all listeners and exit with code 0. Logs must indicate shutdown start, request draining status, and final exit. All tests pass and no unhandled promise rejections occur.",
-  "reason": "Ensures production‑grade reliability by handling process termination gracefully, reducing request loss during restarts, and aligning yantraverse with best practices for zero‑downtime deployments."
+  "acceptance": "When a route registers a schema via app.validate(schema), incoming requests are validated; valid requests reach the handler, invalid requests receive a 400 response with a JSON error object. Errors are logged and do not crash the server. All new tests pass and existing test suite remains green.",
+  "reason": "Ensures data integrity at the framework level, reduces repetitive validation code in applications, and aligns with the recent stability focus while keeping the zero‑dependency promise."
 }
