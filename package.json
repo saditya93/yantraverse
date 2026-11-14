@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.193-daily.20261113",
-  "description": "Zero‑dependency, type‑safe Node.js framework that blends Express‑level simplicity with Fastify‑grade speed, native HTTP/2, and edge‑runtime support for AI‑augmented, serverless workloads.",
+  "version": "0.0.194-daily.20261114",
+  "description": "Zero‑dependency, type‑safe Node.js framework that feels like Express, runs at Fastify speed, and ships native HTTP/2 & edge‑runtime support for AI‑augmented serverless workloads.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -60,7 +60,7 @@
     "observable",
     "monitoring",
     "llm",
-    "ai",
+    "genai",
     "edge-computing",
     "reactivity",
     "runtime",
@@ -69,7 +69,14 @@
     "microfrontend",
     "supabase",
     "nextjs",
-    "modern"
+    "t3-stack",
+    "webgpu",
+    "edge-functions",
+    "vercel",
+    "cloudflare-pages",
+    "deno-deploy",
+    "ai-ops",
+    "copilot"
   ],
   "author": "",
   "license": "MIT",
