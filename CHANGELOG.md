@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-15
+### FEATURE
+- Add Graceful Shutdown with In‑Flight Request Tracking: Implements a production‑ready graceful shutdown mechanism that listens for SIGINT/SIGTERM, stops accepting new connections, waits for ongoing requests to finish (with a configurable timeout), and logs shutdown progress. This reduces abrupt terminations and improves reliability in containerized environments.
+
 ## [Automated] - 2026-11-14
 ### FEATURE
 - Add Built‑in Request Validation Middleware: Provides automatic validation of request bodies against JSON‑schema definitions without external dependencies. This prevents malformed data from reaching route handlers, improving security and reducing boilerplate validation code.
