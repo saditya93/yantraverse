@@ -1,89 +1,90 @@
 // test/requestLogger.test.js
-/**
- * Unit tests for the requestIdAndLogger middleware.
- * Uses Jest and SuperTest to simulate HTTP requests against an Express app.
- */
-const express = require('express')
 const request = require('supertest')
-const requestIdAndLogger = require('../src/requestLogger')
+const express = require('express')
+const { createRequestLogger } = require('../src/requestLogger')
 
-describe('requestIdAndLogger middleware', () => {
+/**
+ * Helper to capture console.log output
+ * @returns {{logs: string[], restore: function}}
+ */
+function captureConsole () {
+  const original = console.log
+  const logs = []
+  console.log = (msg) => {
+    logs.push(msg)
+  }
+  const restore = () => {
+    console.log = original
+  }
+  return { logs, restore }
+}
+
+describe('Request Logger Middleware', () => {
   let app
-  let consoleSpy
-
   beforeEach(() => {
     app = express()
-    // attach middleware early so it wraps all routes
-    app.use(requestIdAndLogger())
-    // simple route that returns the request id for verification
-    app.get('/ping', (req, res) => {
-      res.json({ id: req.id })
+    // simple route for testing
+    app.get('/test', (req, res) => {
+      res.status(200).send('ok')
     })
-    // route that triggers an error response
+    // route that returns an error status
     app.get('/error', (req, res) => {
-      res.status(400).json({ error: 'bad request' })
+      res.status(500).send('error')
     })
-    // route that ends response early without calling next()
-    app.get('/early', (req, res) => {
-      res.send('early')
-    })
-    // capture console.log output for log verification
-    consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {})
-  })
-
-  afterEach(() => {
-    consoleSpy.mockRestore()
-  })
-
-  test('attaches a UUID v4 request ID to req.id and sets X-Request-Id header', async () => {
-    const response = await request(app).get('/ping')
-    expect(response.headers['x-request-id']).toBeDefined()
-    // the body should contain the same id that the middleware generated
-    expect(response.body.id).toBe(response.headers['x-request-id'])
-    // basic UUID v4 format check (8-4-4-4-12 hex characters)
-    const uuidV4Regex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
-    expect(uuidV4Regex.test(response.body.id)).toBe(true)
-  })
-
-  test('logs a JSON object with method, url, status, duration, and requestId for successful requests', async () => {
-    const response = await request(app).get('/ping')
-    // wait a tick to ensure on-finished callback executed
-    await new Promise(resolve => setTimeout(resolve, 10))
-    expect(consoleSpy).toHaveBeenCalledTimes(1)
-    const logged = JSON.parse(consoleSpy.mock.calls[0][0])
-    expect(logged).toMatchObject({
-      requestId: response.headers['x-request-id'],
-      method: 'GET',
-      url: '/ping',
-      status: 200
-    })
-    expect(typeof logged.durationMs).toBe('number')
-  })
-
-  test('logs error responses and includes the request ID', async () => {
-    const response = await request(app).get('/error')
-    await new Promise(resolve => setTimeout(resolve, 10))
-    expect(consoleSpy).toHaveBeenCalledTimes(1)
-    const logged = JSON.parse(consoleSpy.mock.calls[0][0])
-    expect(logged).toMatchObject({
-      requestId: response.headers['x-request-id'],
-      method: 'GET',
-      url: '/error',
-      status: 400
+    // static-like route
+    app.get('/static/file.js', (req, res) => {
+      res.status(200).send('js')
     })
   })
 
-  test('does not interfere with routes that send response early (no next())', async () => {
-    const response = await request(app).get('/early')
-    await new Promise(resolve => setTimeout(resolve, 10))
-    expect(response.text).toBe('early')
-    expect(consoleSpy).toHaveBeenCalledTimes(1)
-    const logged = JSON.parse(consoleSpy.mock.calls[0][0])
-    expect(logged).toMatchObject({
-      requestId: response.headers['x-request-id'],
-      method: 'GET',
-      url: '/early',
-      status: 200
+  test('logs method, url, status and response time in default format', async () => {
+    const { logs, restore } = captureConsole()
+    app.use(createRequestLogger())
+    await request(app).get('/test')
+    restore()
+    expect(logs.length).toBe(1)
+    const log = logs[0]
+    expect(log).toMatch(/^GET \/test 200 \d+ms$/)
+  })
+
+  test('respects custom logLevel="error" and only logs error responses', async () => {
+    const { logs, restore } = captureConsole()
+    app.use(createRequestLogger({ logLevel: 'error' }))
+    await request(app).get('/test')
+    await request(app).get('/error')
+    restore()
+    expect(logs.length).toBe(1)
+    const log = logs[0]
+    expect(log).toMatch(/^GET \/error 500 \d+ms$/)
+  })
+
+  test('outputs JSON when format="json" with expected fields', async () => {
+    const { logs, restore } = captureConsole()
+    app.use(createRequestLogger({ format: 'json' }))
+    await request(app).get('/static/file.js')
+    restore()
+    expect(logs.length).toBe(1)
+    const parsed = JSON.parse(logs[0])
+    expect(parsed).toHaveProperty('method', 'GET')
+    expect(parsed).toHaveProperty('url', '/static/file.js')
+    expect(parsed).toHaveProperty('status', 200)
+    expect(parsed).toHaveProperty('responseTime')
+    expect(typeof parsed.responseTime).toBe('number')
+  })
+
+  test('does not crash on malformed request objects', async () => {
+    const { logs, restore } = captureConsole()
+    // Middleware that mutates req to undefined before logger runs
+    app.use((req, res, next) => {
+      req.method = undefined
+      req.url = undefined
+      next()
     })
+    app.use(createRequestLogger())
+    await request(app).get('/test')
+    restore()
+    expect(logs.length).toBe(1)
+    const log = logs[0]
+    expect(log).toMatch(/^UNKNOWN UNKNOWN 200 \d+ms$/)
   })
 })

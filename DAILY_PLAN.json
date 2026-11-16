@@ -1,19 +1,22 @@
 {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "category": "FEATURE",
-  "title": "Add Graceful Shutdown with In‑Flight Request Tracking",
-  "description": "Implements a production‑ready graceful shutdown mechanism that listens for SIGINT/SIGTERM, stops accepting new connections, waits for ongoing requests to finish (with a configurable timeout), and logs shutdown progress. This reduces abrupt terminations and improves reliability in containerized environments.",
+  "title": "Add Structured Request Logger Middleware",
+  "description": "Provides built‑in request logging with configurable log levels and JSON/pretty output. Improves observability in production without adding external dependencies, helping operators debug issues and monitor traffic patterns.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/server.js",
-    "src/shutdown.js",
-    "test/shutdown.test.js"
+    "src/middleware/logger.js",
+    "src/index.js",
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while a long‑running request is in flight and verify the server stops accepting new requests but completes the existing one before exiting",
-    "Trigger shutdown with no active requests and ensure the process exits immediately after cleanup callbacks run"
+    "Verify that a GET request logs method, url, status, response time in the default format",
+    "Verify that logger respects custom config: logLevel='error' only logs error responses",
+    "Verify that logger can output JSON when format='json' and that the JSON structure contains expected fields",
+    "Ensure static file requests are logged according to the same rules",
+    "Confirm that logger does not crash on malformed request objects"
   ],
-  "acceptance": "When a termination signal is received, the server must stop accepting new connections, allow active requests to finish within the timeout (default 10 s), log each shutdown step, and exit with code 0. If the timeout expires, pending requests are aborted and the process exits with code 1. All unit and integration tests pass.",
-  "reason": "Ensures yantraverse can be safely deployed in production orchestration platforms (Kubernetes, Docker Swarm) where graceful termination is required to avoid dropped requests and improve overall service stability."
+  "acceptance": "When the middleware is enabled, every incoming request results in a correctly formatted log entry respecting the configured level and format; no errors are thrown for any request type, and the logs can be captured by the test suite via a mocked console.",
+  "reason": "Observability is a critical production requirement. Adding a zero‑dependency, configurable logger directly into yantraverse gives developers immediate insight into request flow, reduces reliance on external tools, and aligns with the framework’s lightweight philosophy."
 }

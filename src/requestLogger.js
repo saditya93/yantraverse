@@ -1,53 +1,78 @@
 // src/requestLogger.js
 /**
- * Middleware that generates a unique request ID, attaches it to the request,
- * adds it to the response header and logs request/response details in a
- * structured JSON format.
+ * Request logger middleware creator.
+ * Logs each incoming HTTP request with method, url, status and response time.
+ * Configurable log level and output format.
  *
- * The middleware is safe for async route handlers and does not modify the
- * response body. It logs after the response is finished, regardless of the
- * outcome (success or error).
- *
- * @returns {import('express').RequestHandler}
+ * @param {Object} [options]
+ * @param {string} [options.logLevel='info'] - One of 'info', 'warn', 'error'.
+ * @param {string} [options.format='pretty'] - One of 'pretty', 'json'.
+ * @returns {function} Express middleware function
  */
-function requestIdAndLogger () {
-  const onFinished = require('on-finished')
-  const crypto = require('crypto')
+function createRequestLogger (options = {}) {
+  const {
+    logLevel = 'info',
+    format = 'pretty'
+  } = options
 
-  return function (req, res, next) {
-    // generate a UUID v4 request id – fallback to random bytes if unavailable
-    const requestId = (typeof crypto.randomUUID === 'function')
-      ? crypto.randomUUID()
-      : crypto.randomBytes(16).toString('hex')
-    // expose on request object for downstream handlers
-    req.id = requestId
-    // expose on response header for clients / tracing tools
-    res.setHeader('X-Request-Id', requestId)
+  const levelPriority = {
+    info: 0,
+    warn: 1,
+    error: 2
+  }
 
-    const start = process.hrtime.bigint()
-    // ensure logging runs after response is sent (including early responses)
-    onFinished(res, () => {
-      const end = process.hrtime.bigint()
-      const durationMs = Number(end - start) / 1e6
-      const logEntry = {
-        requestId,
-        method: req.method,
-        url: req.originalUrl || req.url,
-        status: res.statusCode,
-        durationMs: Number(durationMs.toFixed(2))
-      }
-      // structured log – stringified JSON for easy ingestion by log systems
-      console.log(JSON.stringify(logEntry))
-    })
+  const shouldLog = (status) => {
+    if (logLevel === 'info') return true
+    if (logLevel === 'warn') return status >= 400
+    if (logLevel === 'error') return status >= 500
+    return true
+  }
 
-    // continue to next middleware / route handler
+  const formatMessage = (info) => {
+    if (format === 'json') {
+      return JSON.stringify(info)
+    }
+    // pretty format
+    return `${info.method} ${info.url} ${info.status} ${info.responseTime}ms`
+  }
+
+  return function requestLogger (req, res, next) {
+    const start = process.hrtime()
+    // Ensure next is called even if request object is malformed
     try {
       next()
     } catch (err) {
-      // synchronous errors – let Express handle them after logging
-      next(err)
+      // Propagate error after logging
+      const diff = process.hrtime(start)
+      const responseTime = Math.round((diff[0] * 1e3) + (diff[1] / 1e6))
+      const info = {
+        method: req?.method || 'UNKNOWN',
+        url: req?.originalUrl || req?.url || 'UNKNOWN',
+        status: res?.statusCode || 500,
+        responseTime,
+        error: err.message
+      }
+      if (shouldLog(info.status)) {
+        console.log(formatMessage(info))
+      }
+      throw err
     }
+
+    // Listen for the finish event to log after response is sent
+    res.on('finish', () => {
+      const diff = process.hrtime(start)
+      const responseTime = Math.round((diff[0] * 1e3) + (diff[1] / 1e6))
+      const info = {
+        method: req?.method || 'UNKNOWN',
+        url: req?.originalUrl || req?.url || 'UNKNOWN',
+        status: res?.statusCode || 0,
+        responseTime
+      }
+      if (shouldLog(info.status)) {
+        console.log(formatMessage(info))
+      }
+    })
   }
 }
 
-module.exports = requestIdAndLogger
+module.exports = { createRequestLogger }

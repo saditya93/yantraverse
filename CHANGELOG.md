@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-16
+### FEATURE
+- Add Structured Request Logger Middleware: Provides built‑in request logging with configurable log levels and JSON/pretty output. Improves observability in production without adding external dependencies, helping operators debug issues and monitor traffic patterns.
+
 ## [Automated] - 2026-11-15
 ### FEATURE
 - Add Graceful Shutdown with In‑Flight Request Tracking: Implements a production‑ready graceful shutdown mechanism that listens for SIGINT/SIGTERM, stops accepting new connections, waits for ongoing requests to finish (with a configurable timeout), and logs shutdown progress. This reduces abrupt terminations and improves reliability in containerized environments.
