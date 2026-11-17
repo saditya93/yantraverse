@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-17
+### FEATURE
+- Add Built‑in Request Validation Middleware: Introduces a declarative request validation layer that parses route schemas and automatically validates params, query strings, headers, and bodies. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.
+
 ## [Automated] - 2026-11-16
 ### FEATURE
 - Add Structured Request Logger Middleware: Provides built‑in request logging with configurable log levels and JSON/pretty output. Improves observability in production without adding external dependencies, helping operators debug issues and monitor traffic patterns.
