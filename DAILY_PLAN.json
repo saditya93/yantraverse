@@ -1,21 +1,22 @@
 {
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "category": "FEATURE",
-  "title": "Add Built‑in Request Validation Middleware",
-  "description": "Introduces a declarative request validation layer that parses route schemas and automatically validates params, query strings, headers, and bodies. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.",
+  "title": "Add Unified Request Body Parser Middleware",
+  "description": "Introduce a core middleware that automatically parses JSON, URL‑encoded, and multipart/form‑data request bodies with configurable size limits and content‑type detection. This eliminates the need for external parsers, reduces boilerplate, and improves security by enforcing payload limits.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validator.js",
-    "src/router.js",
-    "test/validator.test.js"
+    "src/middleware/bodyParser.js",
+    "src/app.js",
+    "test/bodyParser.test.js"
   ],
   "testCases": [
-    "Valid request passes through and reaches the handler unchanged",
-    "Invalid body (missing required field) returns 400 with descriptive error",
-    "Invalid query parameter type returns 400",
-    "Custom schema error messages are respected"
+    "Parse a valid JSON payload and verify req.body contains the correct object",
+    "Parse a URL‑encoded payload and verify req.body matches the key/value pairs",
+    "Reject a payload exceeding the configured size limit with a 413 response",
+    "Gracefully handle malformed JSON with a 400 error",
+    "Parse a multipart/form‑data request with a file field and ensure the file buffer is attached to req.files"
   ],
-  "acceptance": "When a route is defined with a validation schema, incoming requests are automatically checked; valid requests proceed to the next middleware/handler, while invalid requests receive a 400 response with a JSON error payload. The middleware must work for JSON bodies, URL‑encoded forms, and query parameters, and must not affect routes without a schema.",
-  "reason": "Many applications spend repetitive code on input validation, leading to bugs and security gaps. Providing a first‑class, zero‑dependency validator aligns with yantraverse's lightweight ethos while delivering a high‑impact productivity and safety boost for production deployments."
+  "acceptance": "All new tests pass, existing test suite remains green, middleware can be enabled via app.use(bodyParser({limit: '1mb'})), and error responses follow the framework's standard error format.",
+  "reason": "Body parsing is a common requirement for any API. Providing a built‑in, zero‑dependency parser reduces friction for developers, standardizes error handling, and aligns with yantraverse's goal of being a lightweight, production‑ready framework."
 }

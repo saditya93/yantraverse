@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-18
+### FEATURE
+- Add Unified Request Body Parser Middleware: Introduce a core middleware that automatically parses JSON, URL‑encoded, and multipart/form‑data request bodies with configurable size limits and content‑type detection. This eliminates the need for external parsers, reduces boilerplate, and improves security by enforcing payload limits.
+
 ## [Automated] - 2026-11-17
 ### FEATURE
 - Add Built‑in Request Validation Middleware: Introduces a declarative request validation layer that parses route schemas and automatically validates params, query strings, headers, and bodies. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.
