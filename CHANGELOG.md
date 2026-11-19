@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-19
+### FEATURE
+- Automatic async error handling middleware: Provides a global middleware that automatically catches errors thrown in async route handlers and forwards them to the error handler, eliminating the need for repetitive try/catch blocks. Enhances reliability and developer ergonomics in production environments.
+
 ## [Automated] - 2026-11-18
 ### FEATURE
 - Add Unified Request Body Parser Middleware: Introduce a core middleware that automatically parses JSON, URL‑encoded, and multipart/form‑data request bodies with configurable size limits and content‑type detection. This eliminates the need for external parsers, reduces boilerplate, and improves security by enforcing payload limits.

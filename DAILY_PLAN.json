@@ -1,22 +1,20 @@
 {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "category": "FEATURE",
-  "title": "Add Unified Request Body Parser Middleware",
-  "description": "Introduce a core middleware that automatically parses JSON, URL‑encoded, and multipart/form‑data request bodies with configurable size limits and content‑type detection. This eliminates the need for external parsers, reduces boilerplate, and improves security by enforcing payload limits.",
+  "title": "Automatic async error handling middleware",
+  "description": "Provides a global middleware that automatically catches errors thrown in async route handlers and forwards them to the error handler, eliminating the need for repetitive try/catch blocks. Enhances reliability and developer ergonomics in production environments.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/bodyParser.js",
+    "src/middleware/asyncErrorWrapper.js",
     "src/app.js",
-    "test/bodyParser.test.js"
+    "test/asyncErrorWrapper.test.js"
   ],
   "testCases": [
-    "Parse a valid JSON payload and verify req.body contains the correct object",
-    "Parse a URL‑encoded payload and verify req.body matches the key/value pairs",
-    "Reject a payload exceeding the configured size limit with a 413 response",
-    "Gracefully handle malformed JSON with a 400 error",
-    "Parse a multipart/form‑data request with a file field and ensure the file buffer is attached to req.files"
+    "Async route throws an error and receives a standardized JSON error response with correct status code",
+    "Sync route throws an error and is handled identically",
+    "Successful async route returns expected payload without interference"
   ],
-  "acceptance": "All new tests pass, existing test suite remains green, middleware can be enabled via app.use(bodyParser({limit: '1mb'})), and error responses follow the framework's standard error format.",
-  "reason": "Body parsing is a common requirement for any API. Providing a built‑in, zero‑dependency parser reduces friction for developers, standardizes error handling, and aligns with yantraverse's goal of being a lightweight, production‑ready framework."
+  "acceptance": "All async and sync route errors are captured, logged, and responded with a JSON payload containing { error: true, message, status }. No unhandled promise rejections occur, and normal routes behave unchanged.",
+  "reason": "Reduces boilerplate and prevents uncaught promise rejections, leading to more stable production deployments and faster feature development."
 }
