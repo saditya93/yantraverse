@@ -1,20 +1,21 @@
 {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "category": "FEATURE",
-  "title": "Automatic async error handling middleware",
-  "description": "Provides a global middleware that automatically catches errors thrown in async route handlers and forwards them to the error handler, eliminating the need for repetitive try/catch blocks. Enhances reliability and developer ergonomics in production environments.",
+  "title": "Add JSON Schema Request Validation Middleware",
+  "description": "Introduce a zero‑dependency middleware that validates request bodies against user‑provided JSON schemas. This prevents malformed data from reaching route handlers, reduces boilerplate validation code, and improves API reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/asyncErrorWrapper.js",
+    "src/middleware/validateRequest.js",
     "src/app.js",
-    "test/asyncErrorWrapper.test.js"
+    "test/validateRequest.test.js"
   ],
   "testCases": [
-    "Async route throws an error and receives a standardized JSON error response with correct status code",
-    "Sync route throws an error and is handled identically",
-    "Successful async route returns expected payload without interference"
+    "Valid request body passes validation and reaches the handler",
+    "Invalid request body returns 400 with detailed error messages",
+    "Missing schema defaults to a no‑op (passes all requests)",
+    "Schema with required fields and type constraints correctly identifies missing or wrong‑typed fields"
   ],
-  "acceptance": "All async and sync route errors are captured, logged, and responded with a JSON payload containing { error: true, message, status }. No unhandled promise rejections occur, and normal routes behave unchanged.",
-  "reason": "Reduces boilerplate and prevents uncaught promise rejections, leading to more stable production deployments and faster feature development."
+  "acceptance": "When the middleware is registered with a schema, any request that does not conform returns a 400 response containing a JSON error object; conforming requests proceed unchanged. The middleware must not affect performance noticeably and must log validation failures at debug level.",
+  "reason": "Current yantraverse apps rely on manual checks in each route, leading to duplicated code and inconsistent error handling. A central validation layer raises overall code quality, speeds up development, and aligns with the framework's goal of being a production‑ready, zero‑dependency solution."
 }

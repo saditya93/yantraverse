@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-20
+### FEATURE
+- Add JSON Schema Request Validation Middleware: Introduce a zero‑dependency middleware that validates request bodies against user‑provided JSON schemas. This prevents malformed data from reaching route handlers, reduces boilerplate validation code, and improves API reliability.
+
 ## [Automated] - 2026-11-19
 ### FEATURE
 - Automatic async error handling middleware: Provides a global middleware that automatically catches errors thrown in async route handlers and forwards them to the error handler, eliminating the need for repetitive try/catch blocks. Enhances reliability and developer ergonomics in production environments.
