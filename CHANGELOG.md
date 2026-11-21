@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-21
+### FEATURE
+- Add Structured Request Logging Middleware with Correlation IDs: Introduce a lightweight, zero‑dependency middleware that generates a unique request ID, attaches it to the request/response objects, and logs each request in a structured JSON format (method, url, status, duration, requestId). This improves observability and simplifies tracing across distributed services.
+
 ## [Automated] - 2026-11-20
 ### FEATURE
 - Add JSON Schema Request Validation Middleware: Introduce a zero‑dependency middleware that validates request bodies against user‑provided JSON schemas. This prevents malformed data from reaching route handlers, reduces boilerplate validation code, and improves API reliability.

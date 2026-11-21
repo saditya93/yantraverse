@@ -1,21 +1,19 @@
 {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "category": "FEATURE",
-  "title": "Add JSON Schema Request Validation Middleware",
-  "description": "Introduce a zero‑dependency middleware that validates request bodies against user‑provided JSON schemas. This prevents malformed data from reaching route handlers, reduces boilerplate validation code, and improves API reliability.",
+  "title": "Add Structured Request Logging Middleware with Correlation IDs",
+  "description": "Introduce a lightweight, zero‑dependency middleware that generates a unique request ID, attaches it to the request/response objects, and logs each request in a structured JSON format (method, url, status, duration, requestId). This improves observability and simplifies tracing across distributed services.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateRequest.js",
+    "src/middleware/logger.js",
     "src/app.js",
-    "test/validateRequest.test.js"
+    "test/logger.test.js"
   ],
   "testCases": [
-    "Valid request body passes validation and reaches the handler",
-    "Invalid request body returns 400 with detailed error messages",
-    "Missing schema defaults to a no‑op (passes all requests)",
-    "Schema with required fields and type constraints correctly identifies missing or wrong‑typed fields"
+    "Should generate a unique requestId for each incoming request and expose it on req.id and res.getHeader('X-Request-Id')",
+    "Should log a JSON line containing method, url, statusCode, durationMs, and requestId after the response finishes"
   ],
-  "acceptance": "When the middleware is registered with a schema, any request that does not conform returns a 400 response containing a JSON error object; conforming requests proceed unchanged. The middleware must not affect performance noticeably and must log validation failures at debug level.",
-  "reason": "Current yantraverse apps rely on manual checks in each route, leading to duplicated code and inconsistent error handling. A central validation layer raises overall code quality, speeds up development, and aligns with the framework's goal of being a production‑ready, zero‑dependency solution."
+  "acceptance": "All unit tests pass, logger middleware can be enabled via app.use(logger()), logs are emitted in JSON format, request IDs are unique per request, and the X-Request-Id header is present on every response without breaking existing routes or error handling.",
+  "reason": "Enhanced observability is critical for production readiness, enabling faster debugging, performance monitoring, and correlation of logs across services while keeping the framework lightweight and dependency‑free."
 }

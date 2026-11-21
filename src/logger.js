@@ -1,59 +1,44 @@
 // src/logger.js
 /**
- * Built‑in request/response logging middleware.
- * Logs a single line JSON object to stdout for each request.
+ * Middleware that assigns a unique request identifier and logs request details
+ * in a structured JSON format. The identifier is also exposed via the
+ * `X-Request-Id` response header and the `req.id` property.
  *
- * @param {Object} [options={}] Configuration options
- * @param {boolean} [options.enabled=true] Enable or disable logging
- * @param {function(Object):string} [options.format] Custom formatter that receives the log object and returns a string
- * @returns {function} Express middleware function
+ * The middleware is deliberately lightweight and has no external runtime
+ * dependencies. It uses the built‑in `crypto` module for UUID generation and
+ * `process.hrtime.bigint` for high‑resolution timing.
+ *
+ * @returns {function} Express compatible middleware
  */
-function logger (options = {}) {
-  const {
-    enabled = true,
-    format
-  } = options
+function logger () {
+  return function (req, res, next) {
+    // generate a request id – reuse if already present (e.g. upstream proxy)
+    const crypto = require('crypto')
+    const generatedId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex')
+    const requestId = req.id || generatedId
+    req.id = requestId
+    // expose the id to the client
+    res.setHeader('X-Request-Id', requestId)
 
-  // If logging is disabled, return a no‑op middleware
-  if (!enabled) {
-    return function noOp (req, res, next) {
-      next()
-    }
-  }
-
-  return function middleware (req, res, next) {
-    const start = process.hrtime()
-    const { method, originalUrl } = req
-    const ip = req.ip || req.connection?.remoteAddress || ''
-
-    // When response finishes, calculate duration and log
-    const onFinish = () => {
-      const diff = process.hrtime(start)
-      const responseTime = (diff[0] * 1e3) + (diff[1] / 1e6) // ms with fractions
+    const start = process.hrtime.bigint()
+    // `finish` fires when the response is sent and the underlying socket is closed
+    res.once('finish', () => {
+      const end = process.hrtime.bigint()
+      const durationMs = Number(end - start) / 1e6
       const logEntry = {
-        timestamp: new Date().toISOString(),
-        method,
-        url: originalUrl,
-        status: res.statusCode,
-        responseTime: Number(responseTime.toFixed(3)),
-        ip
+        method: req.method,
+        url: req.originalUrl || req.url,
+        statusCode: res.statusCode,
+        durationMs: Math.round(durationMs),
+        requestId: requestId
       }
-
-      let output
+      // Defensive: ensure logging never throws the request handling flow
       try {
-        output = typeof format === 'function' ? format(logEntry) : JSON.stringify(logEntry)
-      } catch (e) {
-        // Fallback to JSON if custom formatter throws
-        output = JSON.stringify(logEntry)
-      }
+        console.log(JSON.stringify(logEntry))
+      } catch (_) {}
+    })
 
-      // Ensure a newline for line‑delimited logs
-      process.stdout.write(output + '\n')
-    }
-
-    res.on('finish', onFinish)
-    // In case of error, also log when the response is closed
-    res.on('close', onFinish)
+    // continue to the next middleware / route handler
     next()
   }
 }
