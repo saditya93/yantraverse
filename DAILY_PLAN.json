@@ -1,19 +1,21 @@
 {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "category": "FEATURE",
-  "title": "Add Structured Request Logging Middleware with Correlation IDs",
-  "description": "Introduce a lightweight, zero‑dependency middleware that generates a unique request ID, attaches it to the request/response objects, and logs each request in a structured JSON format (method, url, status, duration, requestId). This improves observability and simplifies tracing across distributed services.",
+  "title": "Add Built‑in Request Body Validation Middleware",
+  "description": "Provides a declarative way to validate JSON request bodies against a schema before reaching route handlers, reducing boilerplate and preventing malformed data from entering the app. The middleware integrates with existing routing and returns standardized 400 errors with detailed messages.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/logger.js",
-    "src/app.js",
-    "test/logger.test.js"
+    "src/middleware/validateBody.js",
+    "src/router.js",
+    "test/validateBody.test.js"
   ],
   "testCases": [
-    "Should generate a unique requestId for each incoming request and expose it on req.id and res.getHeader('X-Request-Id')",
-    "Should log a JSON line containing method, url, statusCode, durationMs, and requestId after the response finishes"
+    "Valid JSON matching schema passes through and reaches the handler",
+    "Invalid JSON (missing required field) returns 400 with error details",
+    "Invalid type for a field returns 400 with appropriate message",
+    "Non‑JSON content‑type bypasses validation and proceeds unchanged"
   ],
-  "acceptance": "All unit tests pass, logger middleware can be enabled via app.use(logger()), logs are emitted in JSON format, request IDs are unique per request, and the X-Request-Id header is present on every response without breaking existing routes or error handling.",
-  "reason": "Enhanced observability is critical for production readiness, enabling faster debugging, performance monitoring, and correlation of logs across services while keeping the framework lightweight and dependency‑free."
+  "acceptance": "The middleware can be attached to any route via router.use or router.post('/path', validateBody(schema), handler). All test cases pass, existing routes remain unaffected, and error responses follow the framework's error format.",
+  "reason": "Ensures data integrity at the edge of the application, reduces duplicated validation code, and improves security and developer productivity, aligning with the framework's stability‑focused roadmap."
 }

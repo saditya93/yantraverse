@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-22
+### FEATURE
+- Add Built‑in Request Body Validation Middleware: Provides a declarative way to validate JSON request bodies against a schema before reaching route handlers, reducing boilerplate and preventing malformed data from entering the app. The middleware integrates with existing routing and returns standardized 400 errors with detailed messages.
+
 ## [Automated] - 2026-11-21
 ### FEATURE
 - Add Structured Request Logging Middleware with Correlation IDs: Introduce a lightweight, zero‑dependency middleware that generates a unique request ID, attaches it to the request/response objects, and logs each request in a structured JSON format (method, url, status, duration, requestId). This improves observability and simplifies tracing across distributed services.
