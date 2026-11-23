@@ -1,7 +1,7 @@
 {
   "name": "yantravese",
-  "version": "0.0.202-daily.20261122",
-  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
+  "version": "0.0.203-daily.20261123",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework delivering Express‑level simplicity with Fastify‑grade performance—ideal for edge, serverless and AI‑powered APIs.",
   "main": "index.js",
   "types": "types/index.d.ts",
   "exports": {
@@ -41,7 +41,19 @@
     "middleware",
     "express-alternative",
     "fast",
-    "zero-dependencies"
+    "zero-dependencies",
+    "serverless",
+    "edge-computing",
+    "microservices",
+    "ai",
+    "typescript",
+    "esm",
+    "observable",
+    "reactivity",
+    "cloud-native",
+    "low-latency",
+    "ultra-fast",
+    "lightweight"
   ],
   "author": "",
   "license": "MIT",
