@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-23
+### FEATURE
+- Add Built‑in Request Validation Middleware: Introduce a lightweight validation layer that lets developers declare schemas for route parameters, query strings, headers, and bodies using a simple declarative API. It automatically rejects invalid requests with a 400 response, reducing boilerplate and preventing malformed data from reaching business logic.
+
 ## [Automated] - 2026-11-22
 ### FEATURE
 - Add Built‑in Request Body Validation Middleware: Provides a declarative way to validate JSON request bodies against a schema before reaching route handlers, reducing boilerplate and preventing malformed data from entering the app. The middleware integrates with existing routing and returns standardized 400 errors with detailed messages.

@@ -1,21 +1,21 @@
 {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "category": "FEATURE",
-  "title": "Add Built‑in Request Body Validation Middleware",
-  "description": "Provides a declarative way to validate JSON request bodies against a schema before reaching route handlers, reducing boilerplate and preventing malformed data from entering the app. The middleware integrates with existing routing and returns standardized 400 errors with detailed messages.",
+  "title": "Add Built‑in Request Validation Middleware",
+  "description": "Introduce a lightweight validation layer that lets developers declare schemas for route parameters, query strings, headers, and bodies using a simple declarative API. It automatically rejects invalid requests with a 400 response, reducing boilerplate and preventing malformed data from reaching business logic.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/middleware/validateBody.js",
+    "src/middleware/validate.js",
     "src/router.js",
-    "test/validateBody.test.js"
+    "test/validate.test.js"
   ],
   "testCases": [
-    "Valid JSON matching schema passes through and reaches the handler",
-    "Invalid JSON (missing required field) returns 400 with error details",
-    "Invalid type for a field returns 400 with appropriate message",
-    "Non‑JSON content‑type bypasses validation and proceeds unchanged"
+    "Valid request passes through middleware and reaches the handler",
+    "Invalid JSON body returns 400 with detailed error message",
+    "Missing required query param returns 400 with field name",
+    "Extra unknown fields are ignored unless 'strict' mode is enabled"
   ],
-  "acceptance": "The middleware can be attached to any route via router.use or router.post('/path', validateBody(schema), handler). All test cases pass, existing routes remain unaffected, and error responses follow the framework's error format.",
-  "reason": "Ensures data integrity at the edge of the application, reduces duplicated validation code, and improves security and developer productivity, aligning with the framework's stability‑focused roadmap."
+  "acceptance": "All existing tests continue to pass; new validation tests pass; middleware can be attached per‑route via router.use('/path', validate({body: schema})) and returns 400 on any schema violation with a JSON error payload.",
+  "reason": "Improves security and developer ergonomics by catching bad input early, lowers bug surface, and aligns yantraverse with modern API standards without adding external dependencies."
 }
