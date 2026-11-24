@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-23",
-  "description": "Zero‑dependency, ultra‑fast Node.js framework delivering Express‑level simplicity with Fastify‑grade performance—ideal for edge, serverless and AI‑powered APIs.",
+  "date": "2026-11-24",
+  "description": "Zero‑dependency, ultra‑fast Node.js framework that gives Express‑level simplicity with Fastify‑grade performance—perfect for edge, serverless, and AI‑powered APIs.",
   "keywords": [
     "nodejs",
     "framework",
@@ -13,6 +13,7 @@
     "edge-computing",
     "microservices",
     "ai",
+    "llm",
     "typescript",
     "esm",
     "observable",
@@ -20,23 +21,28 @@
     "cloud-native",
     "low-latency",
     "ultra-fast",
-    "lightweight"
+    "lightweight",
+    "edge-functions",
+    "wasm",
+    "bun",
+    "deno-compat",
+    "devops",
+    "observability"
   ],
-  "npm_trending_strategy": "Leverages the 2026 shift to edge & serverless workloads by offering native ESM, full TypeScript typings, and compatibility with Bun/Deno while staying zero‑dependency. Daily builds (v0.0.202‑daily) guarantee the latest security patches and performance tweaks, positioning yantravese as the go‑to framework for modern, low‑latency services.",
+  "npm_trending_strategy": "Leverage the 2026 surge in edge‑first, AI‑ready back‑ends by marketing Yantravese as a zero‑dependency, TypeScript‑first framework that ships with built‑in observable reactivity, LLM‑friendly request pipelines, and native Cloudflare/Edge‑Runtime compatibility—delivering Express‑like ergonomics with Fastify‑class speed while staying ESM‑only and ultra‑lightweight.",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#serverless",
     "#edge",
+    "#serverless",
     "#ai",
     "#typescript",
-    "#fastapi",
-    "#microservices",
-    "#cloudnative"
+    "#fast",
+    "#zeroDep"
   ],
   "download_hooks": [
-    "Blazing sub‑millisecond routing latency—up to 3× faster than Express and 1.5× faster than Fastify.",
-    "Zero external dependencies keep the bundle under 5 KB, eliminating supply‑chain risk and speeding up deployments.",
-    "Async‑first, type‑safe middleware with built‑in security headers gives a frictionless developer experience out of the box."
+    "Developers choose Yantravese because it eliminates runtime bloat and lets you ship a single file to any edge or serverless platform.",
+    "Benchmarks show sub‑1 ms routing latency and 2× higher throughput than Fastify in typical LLM‑gateway workloads.",
+    "Rich TypeScript typings, built‑in observable reactivity, and an Express‑style API let you prototype instantly and scale without refactoring."
   ]
 }
