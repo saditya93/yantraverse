@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-24
+### FEATURE
+- Add Graceful Shutdown & Health‑Check Endpoint: Provides a /health endpoint for load‑balancers and implements graceful shutdown of the HTTP server to finish in‑flight requests before process exit. This improves reliability in production and reduces dropped requests during deployments or crashes.
+
 ## [Automated] - 2026-11-23
 ### FEATURE
 - Add Built‑in Request Validation Middleware: Introduce a lightweight validation layer that lets developers declare schemas for route parameters, query strings, headers, and bodies using a simple declarative API. It automatically rejects invalid requests with a 400 response, reducing boilerplate and preventing malformed data from reaching business logic.
