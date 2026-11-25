@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-25
+### FEATURE
+- Add graceful shutdown with signal handling and in‑flight request draining: Provides production‑grade process termination by listening to SIGTERM/SIGINT, stopping new connections, and waiting for active requests to finish or timeout. This prevents dropped requests and resource leaks during deployments or container restarts.
+
 ## [Automated] - 2026-11-24
 ### FEATURE
 - Add Graceful Shutdown & Health‑Check Endpoint: Provides a /health endpoint for load‑balancers and implements graceful shutdown of the HTTP server to finish in‑flight requests before process exit. This improves reliability in production and reduces dropped requests during deployments or crashes.
