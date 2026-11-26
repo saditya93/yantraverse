@@ -1,19 +1,21 @@
 {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "category": "FEATURE",
-  "title": "Add graceful shutdown with signal handling and in‑flight request draining",
-  "description": "Provides production‑grade process termination by listening to SIGTERM/SIGINT, stopping new connections, and waiting for active requests to finish or timeout. This prevents dropped requests and resource leaks during deployments or container restarts.",
+  "title": "Add Built‑in Request Body Validation Middleware",
+  "description": "Integrates a lightweight schema‑based validator into the request pipeline, allowing developers to declare JSON schemas for route payloads. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
-    "src/gracefulShutdown.js",
-    "src/server.js",
-    "test/gracefulShutdown.test.js"
+    "src/middleware/validateBody.js",
+    "src/app.js",
+    "test/validateBody.test.js"
   ],
   "testCases": [
-    "Simulate SIGTERM while a request is in progress and verify the server stops accepting new connections but allows the in‑flight request to complete before exit",
-    "Trigger SIGINT with no active requests and ensure the server shuts down immediately and process.exit is called with code 0"
+    "Valid JSON payload passes through and reaches the route handler",
+    "Invalid JSON payload returns 400 with detailed error message",
+    "Missing required field triggers validation error",
+    "Extra unknown fields are ignored or flagged based on schema options"
   ],
-  "acceptance": "- Server registers listeners for SIGTERM and SIGINT\n- New connections are rejected after signal receipt\n- In‑flight requests are allowed up to a configurable timeout (default 10 s)\n- Process exits with code 0 on successful shutdown, non‑zero on timeout\n- Logs appropriate shutdown steps without uncaught exceptions",
-  "reason": "Ensures reliability during automated deployments and container orchestrations, reducing 5xx errors caused by abrupt termination and aligning the framework with production best practices."
+  "acceptance": "When a route registers a validation schema, the middleware validates incoming JSON bodies, returning a 400 response with a clear error object for any schema violations, while allowing valid requests to proceed unchanged. All tests pass and existing routes remain unaffected.",
+  "reason": "Ensures data integrity at the edge of the application, reducing runtime errors and defensive code in handlers, which aligns with the framework’s stability focus and offers high‑impact value to users."
 }

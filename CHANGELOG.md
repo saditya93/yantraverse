@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-26
+### FEATURE
+- Add Built‑in Request Body Validation Middleware: Integrates a lightweight schema‑based validator into the request pipeline, allowing developers to declare JSON schemas for route payloads. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.
+
 ## [Automated] - 2026-11-25
 ### FEATURE
 - Add graceful shutdown with signal handling and in‑flight request draining: Provides production‑grade process termination by listening to SIGTERM/SIGINT, stopping new connections, and waiting for active requests to finish or timeout. This prevents dropped requests and resource leaks during deployments or container restarts.
