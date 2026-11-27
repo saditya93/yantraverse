@@ -1,21 +1,19 @@
 {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "category": "FEATURE",
-  "title": "Add Built‑in Request Body Validation Middleware",
-  "description": "Integrates a lightweight schema‑based validator into the request pipeline, allowing developers to declare JSON schemas for route payloads. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.",
+  "title": "Add JSON Schema Request Body Validation Middleware",
+  "description": "Introduce a lightweight middleware that validates incoming request bodies against a user‑provided JSON schema. This eliminates repetitive validation code, improves security, and returns standardized 400 errors for malformed payloads.",
   "complexity": 7,
   "estimatedLoc": 180,
   "filesAffected": [
     "src/middleware/validateBody.js",
-    "src/app.js",
     "test/validateBody.test.js"
   ],
   "testCases": [
-    "Valid JSON payload passes through and reaches the route handler",
-    "Invalid JSON payload returns 400 with detailed error message",
-    "Missing required field triggers validation error",
-    "Extra unknown fields are ignored or flagged based on schema options"
+    "Valid request body matching schema returns next() and proceeds to handler",
+    "Invalid request body returns 400 with detailed validation errors",
+    "Missing schema argument throws a descriptive developer error"
   ],
-  "acceptance": "When a route registers a validation schema, the middleware validates incoming JSON bodies, returning a 400 response with a clear error object for any schema violations, while allowing valid requests to proceed unchanged. All tests pass and existing routes remain unaffected.",
-  "reason": "Ensures data integrity at the edge of the application, reducing runtime errors and defensive code in handlers, which aligns with the framework’s stability focus and offers high‑impact value to users."
+  "acceptance": "The middleware can be attached to any route via router.use(validateBody(schema)). When the payload conforms to the schema the request proceeds; otherwise the response is a JSON 400 error containing an array of validation messages. The middleware does not interfere with existing routing, static file serving, or other middleware and logs validation failures at debug level.",
+  "reason": "Developers frequently need request payload validation, currently done manually in each handler. Providing a built‑in, zero‑dependency solution reduces boilerplate, prevents malformed data from reaching business logic, and aligns yantraverse with production‑grade security practices."
 }

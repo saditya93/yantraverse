@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-27
+### FEATURE
+- Add JSON Schema Request Body Validation Middleware: Introduce a lightweight middleware that validates incoming request bodies against a user‑provided JSON schema. This eliminates repetitive validation code, improves security, and returns standardized 400 errors for malformed payloads.
+
 ## [Automated] - 2026-11-26
 ### FEATURE
 - Add Built‑in Request Body Validation Middleware: Integrates a lightweight schema‑based validator into the request pipeline, allowing developers to declare JSON schemas for route payloads. This prevents malformed data from reaching handlers, reduces boilerplate, and improves security and reliability.
