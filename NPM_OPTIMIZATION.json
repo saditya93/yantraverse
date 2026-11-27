@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-26",
-  "description": "Zero‑dependency, AI‑first Node.js framework that delivers Express‑level simplicity with Fastify‑grade (2×) performance for edge, serverless, and LLM‑driven APIs.",
+  "date": "2026-11-27",
+  "description": "Ultra-fast, zero-dependency Node.js framework. Lightning routing, middleware, security.",
   "keywords": [
     "nodejs",
     "framework",
@@ -8,48 +8,17 @@
     "middleware",
     "express-alternative",
     "fast",
-    "ultra-fast",
-    "zero-dependencies",
-    "serverless",
-    "edge-runtime",
-    "edge-computing",
-    "microservices",
-    "ai",
-    "llm",
-    "genai",
-    "typescript",
-    "esm",
-    "observable",
-    "reactive",
-    "cloud-native",
-    "low-latency",
-    "vector-db",
-    "prompt-engineering",
-    "wasm",
-    "bun",
-    "deno-compat",
-    "cloudflare-workers",
-    "next-gen",
-    "devops",
-    "observability",
-    "api-gateway"
+    "zero-dependencies"
   ],
-  "npm_trending_strategy": "Leverages the 2026 surge in AI‑native and edge‑runtime development by offering built‑in LLM routing, zero‑dependency ESM modules, and benchmarked 2× faster request handling than Fastify, all in a single daily‑release version that stays ahead of security patches and feature trends.",
+  "npm_trending_strategy": "Consistent quality updates + high performance = npm trending",
   "recommended_tags": [
     "#nodejs",
     "#framework",
-    "#ai",
-    "#serverless",
-    "#edge",
-    "#fast",
-    "#zero-dep",
-    "#llm",
-    "#wasm",
-    "#bun"
+    "#performance"
   ],
   "download_hooks": [
-    "Developers choose yantravese for its unmatched speed—benchmarks show 2× faster throughput than Fastify and 5× faster than Express on edge platforms.",
-    "Zero‑dependency, type‑safe ESM design means no bloat, instant startup, and painless deployment to Cloudflare Workers, Bun, or Deno.",
-    "AI‑first features like automatic LLM‑aware routing, vector‑search middleware, and built‑in observability let teams ship GenAI APIs in minutes."
+    "Developers want fast, simple frameworks",
+    "Zero dependencies = less maintenance headaches",
+    "Perfect for high-traffic APIs"
   ]
 }
