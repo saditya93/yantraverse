@@ -1,5 +1,9 @@
 # Changelog
 
+## [Automated] - 2026-11-28
+### FEATURE
+- Graceful Shutdown and Signal Handling: Introduce built‑in graceful shutdown to ensure yantraverse stops accepting new requests on SIGTERM/SIGINT, drains existing connections, and exits cleanly. This improves reliability during deployments and prevents request loss.
+
 ## [Automated] - 2026-11-27
 ### FEATURE
 - Add JSON Schema Request Body Validation Middleware: Introduce a lightweight middleware that validates incoming request bodies against a user‑provided JSON schema. This eliminates repetitive validation code, improves security, and returns standardized 400 errors for malformed payloads.
